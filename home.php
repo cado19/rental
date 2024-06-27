@@ -189,7 +189,9 @@
 
             <div class="user-profile">
                 <div class="log">
-                    <img src="images/logo/png" alt="">
+                    <img src="images/logo/png">
+                    <h2>Kisuzi Smartex</h2>
+                    <p>Simple Rental for you</p>
                 </div>
             </div>
        </div>

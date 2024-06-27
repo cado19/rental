@@ -161,6 +161,36 @@
          <!-- End of Recent Orders  -->
 
       </main>
-
       <!-- End of Main Content  -->
+
+      <!-- Right Side  -->
+       <div class="right-section">\
+            <!-- Nav  -->
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="dark-mode">
+                    <span class="material-symbols-outlined active">light_mode</span>
+                    <span class="material-symbols-outlined active">dark_mode</span>
+                </div>
+
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Reza</b></p>
+                        <span class="text-muted">Admin</span>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="images/profile-1.jpg">
+                    </div>
+                </div>
+            </div>
+            <!-- End of Nav  -->
+
+            <div class="user-profile">
+                <div class="log">
+                    <img src="images/logo/png" alt="">
+                </div>
+            </div>
+       </div>
 </div>

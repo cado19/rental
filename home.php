@@ -55,6 +55,60 @@
 
      <!-- Main Content  -->
       <main>
-        
+        <h1>Analytics</h1>
+        <!-- Analyses  -->
+
+        <div class="analyze">
+            <div class="sales">
+                <div class="status">
+                    <div class="info">
+                        <h3>Total Sales</h3>
+                        <h1>$65,024</h1>
+                    </div>
+                    <div class="progress">
+                        <svg>
+                            <circle cx="38" cy="38" r="36"></circle>
+                        </svg>
+                        <div class="percentage">
+                            <p>+82%</p>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div class="visits">
+                <div class="status">
+                    <div class="info">
+                        <h3>Site Visits</h3>
+                        <h1>24,982</h1>
+                    </div>
+                    <div class="progress">
+                        <svg>
+                            <circle cx="38" cy="38" r="36"></circle>
+                        </svg>
+                        <div class="percentage">
+                            <p>48%</p>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div class="searches">
+                <div class="status">
+                    <div class="info">
+                        <h3>Seearches</h3>
+                        <h1>14,271</h1>
+                    </div>
+                    <div class="progress">
+                        <svg>
+                            <circle cx="38" cy="38" r="36"></circle>
+                        </svg>
+                        <div class="percentage">
+                            <p>21%</p>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End of Analyses  -->
       </main>
 </div>

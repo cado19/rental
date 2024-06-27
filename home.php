@@ -110,5 +110,34 @@
         </div>
 
         <!-- End of Analyses  -->
+
+        <!-- New Users  -->
+        <div class="new-users">
+            <h2>New Users</h2>
+            <div class="user-list">
+                <div class="user">
+                    <img src="images/profile-2.jpg">
+                    <h2>Jack</h2>
+                    <p>54 Min ago</p>
+                </div>
+                <div class="user">
+                    <img src="images/profile-3.jpg">
+                    <h2>Amir</h2>
+                    <p>3 Hours ago</p>
+                </div>
+                <div class="user">
+                    <img src="images/profile-4.jpg">
+                    <h2>Ember</h2>
+                    <p>54 min ago</p>
+                </div>
+                <div class="user">
+                    <img src="images/plus.png">
+                    <h2>More</h2>
+                    <p>New User</p>
+                </div>
+            </div>
+        </div>
+        <!-- End of New Users  -->
+
       </main>
 </div>

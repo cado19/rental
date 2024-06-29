@@ -189,10 +189,49 @@
 
             <div class="user-profile">
                 <div class="log">
-                    <img src="images/logo/png">
+                    <img src="images/logo.png">
                     <h2>Kisuzi Smartex</h2>
                     <p>Simple Rental for you</p>
                 </div>
+            </div>
+
+            <div class="reminders">
+                <div class="header">
+                    <h2>Reminders</h2>
+                    <span class="material-symbols-outlined">notifications_none</span>
+                </div>
+
+                <div class="notification">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">volume_up</span>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                            <h3>Workshop</h3>
+                            <small class="text-muted">
+                                08:00 AM - 12:00 PM
+                            </small>
+                        </div>
+                        <span class="material-symbols-outlined"></span>
+                    </div>
+                </div>
+                
+                <div class="notification">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">volume_up</span>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                            <h3>Workshop</h3>
+                            <small class="text-muted">
+                                08:00 AM - 12:00 PM
+                            </small>
+                        </div>
+                        <span class="material-symbols-outlined"></span>
+                    </div>
+                </div>
+
+
             </div>
        </div>
 </div>

@@ -1,4 +1,5 @@
 <?php
+    include_once "config/functions.php";
     include 'partials/header.php';
 
     // Page is set to home (home.php) by default, so when the visitor visits, that will be the page they see.

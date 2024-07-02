@@ -183,3 +183,7 @@ CREATE TABLE `kisuzi-rental`.`vehicle_pricing` (
   PRIMARY KEY (`id`));
 
 INSERT INTO `kisuzi-rental`.`customer_details` (`first_name`, `last_name`, `phone_no`, `email`, `date_of_birth`, `dl_no`, `dl_expiration`, `id_type`, `id_no`, `residential_address`, `work_address`, `blacklisted`) VALUES ('Michael', 'Ochieng', '7586276644', 'michael.williams@x.dummyjson.com', '1989-8-10', '52QT67WE', '2027-9-30', 'National Id', '29875643', 'Kisumu, Kisumu', 'Kakamega, Kakamega', 'No');
+
+INSERT INTO `kisuzi-rental`.`vehicle_basics` (`model`, `make`, `number_plate`, `seats`, `category`, `drive_train`, `transmission`, `fuel`) VALUES ('Montero', 'Mitsubishi', 'KDM 344J', '7', 'SUV', '4WD', 'Automatic', 'Petrol');
+
+select vb.model AS Model, vb.make AS Make, vb.category AS Category, vp.daily_rate AS Rate FROM `kisuzi-rental`.`vehicle_basics` vb INNER JOIN `kisuzi-rental`.`vehicle_pricing` vp ON vb.id = vp.vehicle_id;   

@@ -11,7 +11,7 @@
     <h1>Customers</h1>
 
     <div class="recent-orders">
-        <table>
+        <table id="myTable" class="dataTable">
             <thead>
                 <tr>
                     <th>Name</th>

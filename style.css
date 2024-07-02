@@ -361,7 +361,10 @@ main .recent-orders table {
 main .recent-orders table:hover {
     box-shadow: none;
 }
-
+main .recent-orders table input{
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+}
 main table tbody td {
     height: 2.8rem;
     padding: 8px;

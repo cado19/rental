@@ -30,6 +30,12 @@
                 </span>
                 <h3>Analytics</h3>
             </a>
+            <a href="index.php?page=fleet/vehicles">
+                <span class="material-symbols-outlined">
+                    directions_car
+                </span>
+                <h3>Fleet</h3>
+            </a>
             <a href="#">
                 <span class="material-symbols-outlined">
                     menu_book

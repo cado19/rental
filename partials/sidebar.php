@@ -24,6 +24,12 @@
                 </span>
                 <h3>Users</h3>
             </a>
+            <a href="index.php?page=drivers/drivers">
+                <span class="material-symbols-outlined">
+                    badge
+                </span>
+                <h3>Drivers</h3>
+            </a>
             <a href="#">
                 <span class="material-symbols-outlined">
                     insights

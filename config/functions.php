@@ -7,7 +7,7 @@
                 //   ******************* */ CUSTOMER FUNCTIONS ******************* */
     function all_customers(){
         global $con;
-        global $customers;
+        global $drivers;
 
         try {
 
@@ -16,14 +16,14 @@
 			$sql = "SELECT id, first_name, last me, email, id_no, phone_no FROM customer_details";
 			$stmt = $con->prepare($sql);
 			$stmt->execute();
-			$customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
 		} catch (Exception $e) {
 			$con->rollback();
 		}
 
-        return $customers;
+        return $drivers;
     }
 
 
@@ -50,4 +50,26 @@
 		return $vehicles;
     }
 
+	
+                //   ******************* */ DRIVER FUNCTIONS ******************* */
+	function all_drivers(){
+		global $con;
+		global $drivers;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM drivers";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+			$drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+		return $drivers;
+	}
 ?>

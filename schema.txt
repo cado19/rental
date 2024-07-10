@@ -84,10 +84,29 @@ booking
 	id 
 	customer_id
 	vehicle_id
+  driver_id
 	status (options: pending/unsigned-contract, active/signed-contract, completed/vehicle-returned)
-	contract_id
 	start_date
 	end_date
+  created_at
+
+contract
+  id
+  booking_id
+  price_per_day
+  excess
+  car_model
+  car_make
+  car_reg
+  hirer_address
+  hirer_name
+  driver_name
+  driver_dl
+  driver_id
+  signature
+  created_at
+
+  In contract details we'll be making the calculations
 	
 	
 	
@@ -181,6 +200,20 @@ CREATE TABLE `kisuzi-rental`.`vehicle_pricing` (
   `vehicle_excess` VARCHAR(11) NULL,
   `refundable_security_deposit` VARCHAR(11) NULL,
   PRIMARY KEY (`id`));
+
+
+CREATE TABLE `kisuzi-rental`.`booking` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `vehicle_id` INT NOT NULL,
+  `customer_id` INT NULL,
+  `driver_id` INT NULL,
+  `start_date` DATE NULL,
+  `end_date` DATE(11) NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`));
+
+
+
 
 INSERT INTO `kisuzi-rental`.`customer_details` (`first_name`, `last_name`, `phone_no`, `email`, `date_of_birth`, `dl_no`, `dl_expiration`, `id_type`, `id_no`, `residential_address`, `work_address`, `blacklisted`) VALUES ('Michael', 'Ochieng', '7586276644', 'michael.williams@x.dummyjson.com', '1989-8-10', '52QT67WE', '2027-9-30', 'National Id', '29875643', 'Kisumu, Kisumu', 'Kakamega, Kakamega', 'No');
 

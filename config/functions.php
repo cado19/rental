@@ -72,4 +72,205 @@
 
 		return $drivers;
 	}
+
+	 //   ******************* */ BOOKING FUNCTIONS ******************* */
+
+	 // function to get all bookings 
+	 function bookings(){
+		global $con;
+		global $res;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id;";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+			$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+		return $res;
+	 }
+
+	 // function to get single booking
+	 function booking($id){
+		global $con;
+		global $res;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "SELECT c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.id = ?";
+			$stmt = $con->prepare($sql);
+			$stmt->execute([$id]);
+			$res = $stmt->fetch();
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+		return $res;
+	 }
+
+	// function to get all vehicles for the booking process 
+	function booking_vehicles(){
+		global $con;
+		global $bk_vehicles;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "SELECT id, make, model, number_plate FROM vehicle_basics ORDER BY id DESC";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+			$bk_vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+		return $bk_vehicles;
+	}
+
+	// function to get all customers for the booking process 
+	function booking_customers(){
+		global $con;
+		global $bk_customers;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "SELECT id, first_name, last_name FROM customer_details ORDER BY id DESC";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+			$bk_customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+		return $bk_customers;
+	}
+
+	// function to get all drivers for the booking process 
+	function booking_drivers(){
+		global $con;
+		global $bk_drivers;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "SELECT id, first_name, last_name FROM drivers ORDER BY id DESC";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+			$bk_drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+		return $bk_drivers;
+	}
+
+	// function to insert booking into database
+	function save_booking($v_id, $c_id, $d_id, $start_date, $end_date){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "INSERT INTO bookings (vehicle_id, customer_id, driver_id, start_date, end_date) VALUES (?,?,?,?,?)";
+			$stmt = $con->prepare($sql);
+			if ($stmt->execute([$v_id, $c_id, $d_id, $start_date, $end_date])) {
+				$res = $con->lastInsertId();
+			} else {
+				$res = "No Success";
+			}
+
+			$con->commit();
+		} catch (\Throwable $th) {
+			$con->rollback();
+		}
+
+		return $res;
+	}
+	
+	// function to insert contract into database
+	function create_contract($bk_id){
+		global $con;
+		global $res;
+		global $lastId;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "INSERT INTO contracts (booking_id) VALUES (?)";
+			$stmt = $con->prepare($sql);
+
+			if ($stmt->execute([$bk_id])) {
+				$res = "Successfully created contract";
+			} else {
+				$res = "An error occurred";
+			}
+			
+			$con->commit();
+		} catch (\Throwable $th) {
+			$con->rollback();
+		}
+
+		return $res;
+	}
+
+	// fetch id of the contract that is to be signed
+	function contract_to_sign($id){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "SELECT id from contracts WHERE booking_id = ?";
+			$stmt = $con->prepare($sql);
+			$stmt->execute([$id]);
+			$res = $stmt->fetch();
+
+			$con->commit();
+		} catch (\Throwable $th) {
+			$con->rollback();
+		}
+
+		return $res;
+	}
+
+	// function to upload signature
+	function sign_contract($id){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "UPDATE contracts SET signature = ? WHERE id = ?";
+
+			$con->comit();
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
+	}
+
+
 ?>

@@ -38,11 +38,11 @@
             </a>
             <a href="index.php?page=fleet/vehicles">
                 <span class="material-symbols-outlined">
-                    directions_car
+                    traffic_jam
                 </span>
                 <h3>Fleet</h3>
             </a>
-            <a href="#">
+            <a href="index.php?page=bookings/all">
                 <span class="material-symbols-outlined">
                     menu_book
                 </span>

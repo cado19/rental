@@ -340,11 +340,13 @@ main .new-users .user-list .user img{
     border-radius: 50%;
 }
 
+
+        /* RECENT ORDERS STYLES / TABLE STYLES  */
 main .recent-orders {
     margin-top: 1.3rem;
 }
 
-main .recentt-orders h2 {
+main .recent-orders h2 {
     margin-bottom: 0.8rem;
 }
 
@@ -382,6 +384,69 @@ main .recent-orders a {
     margin: 1rem auto;
     color: var(--color-primary);
 }
+
+        /* FORM / INFO COLLECT STYLES  */
+main .info-collect{
+    margin-top: 1.3rem;
+}
+
+main .info-collect h2{
+    margin-bottom: 0.8rem;
+}
+
+main .info-collect .form-container{
+    background-color: var(--color-white);
+    width: 100%;
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--card-border-radius);
+    transition: all 0.3s ease;
+}
+
+main .info-collect .form-container .dates{
+    margin-left: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .info-collect .form-container .form-group{
+    margin-bottom: 20px;
+}
+
+main .info-collect .form-container .form-group label{
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-style: italic;
+    color: rgb(158, 147, 147);
+}
+
+main .info-collect .form-container .form-group input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px #ddd;
+}
+
+main .info-collect .form-container .form-group button{
+    background-color: lightgray;
+    color: var(--color-dark);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+main .info-collect .form-container .form-group button:hover{
+    background-color: gray;
+}
+
+        /* RIGHT SECTION STYLES  */
 
 .right-section {
     margin-top: 1.4rem;

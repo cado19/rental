@@ -7,24 +7,48 @@
                 //   ******************* */ CUSTOMER FUNCTIONS ******************* */
     function all_customers(){
         global $con;
-        global $drivers;
+        global $res;
 
         try {
 
 			$con->beginTransaction();
 
-			$sql = "SELECT id, first_name, last me, email, id_no, phone_no FROM customer_details";
+			$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM customer_details";
 			$stmt = $con->prepare($sql);
 			$stmt->execute();
-			$drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
 		} catch (Exception $e) {
 			$con->rollback();
 		}
 
-        return $drivers;
+        return $res;
     }
+
+	function save_customer($first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth){
+		global $con;
+        global $res;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "INSERT INTO customer_details (first_name, last_name, email, id_type, phone_no, id_no, residential_address, work_address, date_of_birth) VALUES (?,?,?,?,?,?,?,?,?)";
+			$stmt = $con->prepare($sql);
+			if ($stmt->execute([$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth])){
+				$res = "Success";
+			} else {
+				$res = "Uncsuccessful";
+			}
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+        return $res;
+	}
 
 
                 //   ******************* */ VEHICLE FUNCTIONS ******************* */
@@ -37,7 +61,7 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM `kisuzi-rental`.`vehicle_basics` vb INNER JOIN `kisuzi-rental`.`vehicle_pricing` vp ON vb.id = vp.vehicle_id;   ";
+			$sql = "SELECT vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM `kisuzi-rental`.`vehicle_basics` vb INNER JOIN `kisuzi-rental`.`vehicle_pricing` vp ON vb.id = vp.vehicle_id";
 			$stmt = $con->prepare($sql);
 			$stmt->execute();
 			$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);

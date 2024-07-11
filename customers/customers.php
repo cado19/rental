@@ -38,3 +38,26 @@
         </table>
     </div>
 </main>
+
+<div class="right-section">
+
+    <div class="reminders">
+        <div class="header">
+            <h3>Actions</h3>
+        </div>
+
+        <div class="notification">
+            <div class="icon">
+                    <a href="index.php?page=customers/new">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+                    </a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        New Client
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>

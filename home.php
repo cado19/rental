@@ -120,7 +120,7 @@
       <!-- End of Main Content  -->
 
       <!-- Right Side  -->
-       <div class="right-section">\
+       <div class="right-section">
             <!-- Nav  -->
             <div class="nav">
                 <button id="menu-btn">

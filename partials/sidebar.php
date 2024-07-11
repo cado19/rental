@@ -22,7 +22,7 @@
                 <span class="material-symbols-outlined">
                     group
                 </span>
-                <h3>Users</h3>
+                <h3>Clients</h3>
             </a>
             <a href="index.php?page=drivers/drivers">
                 <span class="material-symbols-outlined">

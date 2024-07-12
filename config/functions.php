@@ -270,7 +270,7 @@
 			$sql = "SELECT id from contracts WHERE booking_id = ?";
 			$stmt = $con->prepare($sql);
 			$stmt->execute([$id]);
-			$res = $stmt->fetch();
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
 
 			$con->commit();
 		} catch (\Throwable $th) {
@@ -281,7 +281,7 @@
 	}
 
 	// function to upload signature
-	function sign_contract($id){
+	function sign_contract($id, $file){
 		global $con;
 		global $res;
 
@@ -289,11 +289,19 @@
 			$con->beginTransaction();
 
 			$sql = "UPDATE contracts SET signature = ? WHERE id = ?";
+			$stmt = $con->prepare($sql);
+			if ($stmt->execute([$file,$id])){
+				$res = "success";
+			} else {
+				$res = "Failed";
+			}
 
 			$con->comit();
 		} catch (\Throwable $th) {
-			//throw $th;
+			$con->rollback();
 		}
+
+		return $res;
 	}
 
 

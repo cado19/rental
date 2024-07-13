@@ -24,7 +24,8 @@
                 $stmt->execute([$fileNameNew, $new_id]);
                 // $response = sign_contract($new_id, $fileNameNew);
                 move_uploaded_file($fileTmPName, $fileDestination);
-                $log->info($response);
+                // $log->info($response);
+                // CHANGE BOOKING TO ACTIVE
             } else {
                 echo "There was an error uploading your file";
             }

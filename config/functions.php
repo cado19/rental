@@ -4,7 +4,49 @@
     //INCLUDE DATABASE CONNECTION FILE
     include_once "config/db_conn.php"; 
 
-                //   ******************* */ CUSTOMER FUNCTIONS ******************* */
+                //   ******************* */ HOMEPAGE FUNCTIONS ******************* */
+    function vehicle_count(){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "SELECT COUNT(id) AS number_of_cars FROM vehicle_basics";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$con->commit();
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
+	}
+				
+	function customer_count(){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "SELECT COUNT(id) AS number_of_customers FROM customer_details";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$con->commit();
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
+	}		
+				
+	function active_bookings(){
+		
+	}	
+				
+				
+				//   ******************* */ CUSTOMER FUNCTIONS ******************* */
     function all_customers(){
         global $con;
         global $res;
@@ -297,6 +339,32 @@
 			}
 
 			$con->comit();
+		} catch (\Throwable $th) {
+			$con->rollback();
+		}
+
+		return $res;
+	}
+
+	function contract($id){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "SELECT c.first_name AS c_fname, c.last_name AS c_lname, c.id_no AS c_id_no, c.phone_no AS c_phone_no, c.email AS c_email,
+					c.residential_address, d.first_name, d.last_name, d.id_no, d.phone_no, vb.make, vb.model, vb.number_plate, vp.daily_rate, 
+					bk.start_date, bk.end_date, ct.signature FROM bookings bk INNER JOIN customer_details c ON bk.customer_id = c.id 
+					INNER JOIN drivers d ON bk.driver_id = d.id INNER JOIN vehicle_basics vb ON bk.vehicle_id = vb.id INNER JOIN contracts ct 
+					ON ct.booking_id = bk.id INNER JOIN vehicle_pricing vp ON bk.vehicle_id = vp.vehicle_id WHERE bk.id = ?";
+
+			$stmt = $con->prepare($sql);
+			$stmt->execute([$id]);
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$con->commit();
+
 		} catch (\Throwable $th) {
 			$con->rollback();
 		}

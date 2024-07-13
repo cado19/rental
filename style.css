@@ -651,6 +651,38 @@ main .info-collect .form-container .form-group button:hover{
     gap: 0.6rem;
 }
 
+/* CONTRACT CSS  */
+.contract {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.contract-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.row {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.contract-table{
+    width: 100%;
+}
+
+.contract-table th, .contract-td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.signature-img {
+    width: 15rem;
+    height: 7rem;
+}
 
 /* RESPONSIVE  CODES  */
 @media screen and (max-width: 1200px) {

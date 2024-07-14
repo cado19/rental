@@ -1,15 +1,16 @@
 <?php
     // FOR NOW THIS WILL BE THE HOME DASHBOARD. wE'LL CUSTOMIZE IT AS THE APP GROWS
+    include_once 'partials/content_start.php';
 
+    $vehicle_count = vehicle_count();
+    $customer_count = customer_count();
+    $active_bookings = active_bookings();
+    $bookings = home_bookings();
+
+    $log->info($vehicle_count['number_of_cars']);
 ?>
 
-<div class="container">
-    <!-- Sidebar Section  -->
-     
-       <?php include 'partials/sidebar.php'; ?>
-    <!-- End Sidebar Section  -->
 
-     <!-- Main Content  -->
       <main>
         <h1>Analytics</h1>
         <!-- Analyses  -->
@@ -18,8 +19,8 @@
             <div class="sales">
                 <div class="status">
                     <div class="info">
-                        <h3>Total Sales</h3>
-                        <h1>$65,024</h1>
+                        <h3>Total Vehicles</h3>
+                        <h1><?php echo $vehicle_count['number_of_cars']; ?></h1>
                     </div>
                     <div class="progress">
                         <svg>
@@ -34,8 +35,8 @@
             <div class="visits">
                 <div class="status">
                     <div class="info">
-                        <h3>Site Visits</h3>
-                        <h1>24,982</h1>
+                        <h3>Your customers</h3>
+                        <h1><?php echo $customer_count->number_of_customers; ?></h1>
                     </div>
                     <div class="progress">
                         <svg>
@@ -50,8 +51,8 @@
             <div class="searches">
                 <div class="status">
                     <div class="info">
-                        <h3>Seearches</h3>
-                        <h1>14,271</h1>
+                        <h3>Bookings</h3>
+                        <h1><?php echo $active_bookings->number_of_bookings ?></h1>
                     </div>
                     <div class="progress">
                         <svg>
@@ -102,14 +103,35 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Course Name</th>
-                        <th>Course Number</th>
-                        <th>Payment</th>
-                        <th>Status</th>
-                        <th></th>
+                        <th>Name</th>
+                        <th>Car</th>
+                        <th>Registration</th>
+                        <th>Start</th>
+                        <th>End</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                <?php forEach($bookings as $booking): ?>
+                    <tr>
+                        <td> <?php echo $booking['first_name'];?> <?php echo $booking['last_name']; ?> </td>
+                        <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
+                        <td> <?php echo $booking['number_plate']; ?> </td>
+                        <td> 
+                            <?php
+                                $start = strtotime($booking['start_date']);
+                                echo date("l jS \of F Y", $start); 
+                            ?> 
+                        </td>
+                        <td> 
+                            <?php
+                                $end = strtotime($booking['end_date']);
+                                echo date("l jS \of F Y", $end); 
+                            ?> 
+                        </td>
+                        <td> <a href="index.php?page=bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
             </table>
             <a href="#">Show All</a>
          </div>

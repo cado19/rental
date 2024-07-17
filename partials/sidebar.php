@@ -12,7 +12,7 @@
         </div>
 
         <div class="sidebar">
-            <a href="#">
+            <a href="index.php?page=home">
                 <span class="material-symbols-outlined">
                     dashboard
                 </span>

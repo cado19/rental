@@ -15,6 +15,14 @@
 
         $result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date);
 
+        //GET BOOKING USING LAST INSERT ID
+        $booking = booking($result);
+        $start_date = strtotime($booking['start_date']);
+        $end_date = strtotime($booking['end_date']); 
+        $duration = ($end_date - $start_date)/86400;
+        $total = $booking['daily_rate'] * $duration;
+        $total = update_booking($total, $result);
+
         // CREATE A CCONTRACT WITH THE CURRENT LAST BOOKING ID AS THE REFERENCE ID (THIS JUST MIGHT BE IN THE FUNCTIONS FILE)
         $response = create_contract($result);
         

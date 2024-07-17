@@ -4,6 +4,7 @@
 	}
 	$contract = contract($id);
 	$log->info('contract:',$contract);
+	
 ?>
     <div class="contract">
 		<div class="row contract-header">

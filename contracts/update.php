@@ -24,7 +24,14 @@
                 $stmt->execute([$fileNameNew, $new_id]);
                 // $response = sign_contract($new_id, $fileNameNew);
                 move_uploaded_file($fileTmPName, $fileDestination);
-                // $log->info($response);
+
+                // get booking id for redirection to booking show page
+                $booking_id = booking_from_contract($id);
+
+                // redirect to booking show page 
+                header("Location: index.php?page=bookings/show&id=".$booking_id['booking_id']);
+
+                $log->info('booking_id:',$booking_id);
                 // CHANGE BOOKING TO ACTIVE
             } else {
                 echo "There was an error uploading your file";

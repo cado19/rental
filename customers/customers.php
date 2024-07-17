@@ -4,6 +4,7 @@
     // print_r($customers);
     // echo "</pre>";
     include_once 'partials/content_start.php';
+    $log->info('customers:',$customers);
 ?>
 
 <!-- Main Content  -->
@@ -23,12 +24,7 @@
             <tbody>
                 <?php forEach($customers as $customer): ?>
                     <tr>
-                        <td> 
-                            <?php 
-                                $full_name = $customer['first_name'] . ' ' . $customer['last_name'];
-                                echo $full_name;
-                            ?> 
-                        </td>
+                        <td> <?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?> </td>
                         <td> <?php echo $customer['email']; ?> </td>
                         <td> <?php echo $customer['id_no']; ?> </td>
                         <td> 254<?php echo $customer['phone_no']; ?> </td>

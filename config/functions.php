@@ -99,7 +99,7 @@
 			$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM customer_details";
 			$stmt = $con->prepare($sql);
 			$stmt->execute();
-			$res = $stmt->fetchAll(PDO::FETCH_OBJ);
+			$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
 		} catch (Exception $e) {
@@ -213,10 +213,35 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.id = ?";
+			$sql = "SELECT c.first_name, c.last_name, v.model, v.make, v.number_plate, vp.daily_rate, b.start_date, b.end_date, b.total FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id INNER JOIN vehicle_pricing vp ON b.vehicle_id = vp.vehicle_id WHERE b.id = ?";
 			$stmt = $con->prepare($sql);
 			$stmt->execute([$id]);
 			$res = $stmt->fetch();
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+		return $res;
+	 }
+
+	 // function to update last booking details (total_price)
+	 function update_booking($total, $id){
+	 	global $con;
+		global $res;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "UPDATE bookings SET total = ? WHERE id = ?";
+			$stmt = $con->prepare($sql);
+			if ($stmt->execute([$total, $id])){
+				$res = "Success";
+			} else {
+				$res = "Error";
+			}
 
 			$con->commit();
 		} catch (Exception $e) {
@@ -406,6 +431,27 @@
 
 			$con->commit();
 
+		} catch (\Throwable $th) {
+			$con->rollback();
+		}
+
+		return $res;
+	}
+
+	// get booking id using contract id
+	function booking_from_contract($id){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "SELECT booking_id from contracts WHERE id = ?";
+			$stmt = $con->prepare($sql);
+			$stmt->execute([$id]);
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$con->commit();
 		} catch (\Throwable $th) {
 			$con->rollback();
 		}

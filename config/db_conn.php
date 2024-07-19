@@ -1,6 +1,8 @@
 <?php
     // THIS FILE IS RESPONSIBLE FOR CONNECTING THE APP TO THE DATABASE 
 
+    include_once '../db_credentials/credentials.php';
+
     // DATABASE DRIVER
     $DBDRIVER = "mysql"; 
 
@@ -8,10 +10,10 @@
     $DBHOST = "localhost"; 
 
     // DATABASE USER USERNAME
-    $DBUSER = "root"; 
+    $DBUSER = $DBUSERNAME; 
 
     // DATABASE USER PASSWORD
-    $DBPASS = "cado"; 
+    $DBPASS = $DBPASSWORD; 
 
     // DATABASE NAME
     $DBNAME = "kisuzi-rental"; 

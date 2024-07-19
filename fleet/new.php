@@ -6,64 +6,62 @@
 <main>
     
     <div class="info-collect">
-        <h2>Add Customer</h2>
+        <h2>Add Vehicle</h2>
         <div class="form-container">
             <form action="index.php?page=customers/create" method="post" autocomplete="off">
                 <div class="dates">
                     
                     <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" placeholder="eg: Michelle" required>
+                        <label for="make">Make</label>
+                        <input type="text" name="make" placeholder="eg: Toyota" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" placeholder="eg: Ngele" required>
+                        <label for="model">Last Name</label>
+                        <input type="text" name="model" placeholder="eg: Land Cruiser" required>
                     </div>
 
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" required>
+                    <label for="email">Number Plate</label>
+                    <input type="text" name="number_plate" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="id_type">Id Type</label>
-                    <select name="id_type">
+                    <label for="category">Category</label>
+                    <select name="category">
                             <option value="">--Please choose an option--</option>
-                            <option value="national_id"> National ID </option>
-                            <option value="passport"> Passport </option>
-                            <option value="military_id"> Military ID </option>
+                            <option value="mid-size suv"> Mid Size SUV </option>
+                            <option value="Medium Car"> Medium Car </option>
+                            <option value="Small Car "> Small Car </option>
+                            <option value="Safari"> Safari </option>
+                            <option value="Luxury"> Luxury </option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="id">Id Number</label>
-                    <input type="text" name="id_number" required>
+                    <label for="transmission">Transmission</label>
+                    <select name="transmission">
+                            <option value="">--Please choose an option--</option>
+                            <option value="national_id"> Automatic </option>
+                            <option value="passport"> Manual </option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="tel">Tel</label>
-                    <div class="InputAddOn">
-                        <span class="InputAddOn-Item" style="width: 10%; margin: auto; font-size: 15px;"><label for="">+254</label></span>
-                        <input type="text" name="tel" class="InputAddOn-field" placeholder="without '0'" required>
-                    </div>
+                    <label for="fuel">Category</label>
+                    <select name="fuel">
+                            <option value="">--Please choose an option--</option>
+                            <option value="petrol"> Petrol </option>
+                            <option value="Diesel"> Diesel </option>
+                    </select>
                 </div>
+                
 
                 <div class="form-group">
-                    <label for="residential_address">Residential Address</label>
-                    <input type="text" name="residential_address" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="work_address">Work Address</label>
-                    <input type="text" name="work_address">
-                </div>
-
-                <div class="form-group">
-                    <label for="date_of_birth">Date of Birth</label>
-                    <input type="text" name="date_of_birth" id="start_date_picker" required>
+                    <label for="id">Seats</label>
+                    <input type="text" name="seats" required>
                 </div>
 
                 <div class="form-group">

@@ -87,6 +87,86 @@
 	}
 				
 				
+				//   ******************* */ ACCOUNT FUNCTIONS ******************* */
+
+	function unique_email($email){
+		global $con;
+        global $res;
+
+        try {
+
+			$con->beginTransaction();
+
+			$sql = "SELECT id FROM accounts WHERE email = ?";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+			if ($stmt->rowCount()  == 1) {
+				$res = "Email Taken";
+			} else {
+				$res = "Proceed";
+			}
+			
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+        return $res;
+    }
+
+    function create_account($name, $email, $password){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+
+			$sql = "INSERT INTO accounts (name, email, password) VALUES (?,?,?)";
+			$stmt = $con->prepare($sql);
+			if ($stmt->execute([$name, $email, $password])) {
+				$res = $con->lastInsertId();
+			} else {
+				$res = "No Success";
+			}
+
+			$con->commit();
+		} catch (\Throwable $th) {
+			$con->rollback();
+		}
+    }
+
+    function fetch_account($email){
+    	global $con;
+        global $res;
+
+        try {
+
+			$con->beginTransaction();
+
+			$sql = "SELECT * FROM accounts WHERE email = ?";
+			$stmt = $con->prepare($sql);
+			$stmt->execute([$email]);
+			if ($stmt->rowCount() == 1) {
+				$res = $stmt->fetch();
+				// $res = ["Proceed"];
+			} else {
+				$res = ["No such person"];
+			}
+			
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+        return $res;
+    }
+
+    function login(){
+
+    }
+
+
+
 				//   ******************* */ CUSTOMER FUNCTIONS ******************* */
     function all_customers(){
         global $con;
@@ -155,6 +235,30 @@
 		}
 
 		return $vehicles;
+    }
+
+    function save_vehicle($make,$model,$number_plate,$category,$transmission,$fuel,$seats){
+    	global $con;
+        global $res;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "INSERT INTO vehicle_basics ($make,$model,$number_plate,$category,$transmission,$fuel,$seats) VALUES (?,?,?,?,?,?,?)";
+			$stmt = $con->prepare($sql);
+			if ($stmt->execute([$make,$model,$number_plate,$category,$transmission,$fuel,$seats])){
+				$res = "Success";
+			} else {
+				$res = "Uncsuccessful";
+			}
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+        return $res;
     }
 
 	

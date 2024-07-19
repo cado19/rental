@@ -1,5 +1,6 @@
 <?php
     // FOR NOW THIS WILL BE THE HOME DASHBOARD. wE'LL CUSTOMIZE IT AS THE APP GROWS
+    include_once 'partials/header.php';
     include_once 'partials/content_start.php';
 
     $vehicle_count = vehicle_count();

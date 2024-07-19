@@ -3,6 +3,7 @@
     // echo "<pre>";
     // print_r($customers);
     // echo "</pre>";
+    include_once 'partials/header.php';
     include_once 'partials/content_start.php';
     $log->info('customers:',$customers);
 ?>

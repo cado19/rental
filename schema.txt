@@ -248,6 +248,9 @@ ALTER TABLE `kisuzi-rental`.`bookings`
 ADD COLUMN `total` VARCHAR(45) NULL AFTER `end_date`,
 ADD COLUMN `deleted` VARCHAR(45) NULL DEFAULT 'false' AFTER `total`;
 
+ALTER TABLE `kisuzi-rental`.`accounts` 
+ADD COLUMN `verified` VARCHAR(10) NULL DEFAULT 'false' AFTER `deleted`;
+
 
 
 INSERT INTO `kisuzi-rental`.`customer_details` (`first_name`, `last_name`, `phone_no`, `email`, `date_of_birth`, `dl_no`, `dl_expiration`, `id_type`, `id_no`, `residential_address`, `work_address`, `blacklisted`) VALUES ('Michael', 'Ochieng', '7586276644', 'michael.williams@x.dummyjson.com', '1989-8-10', '52QT67WE', '2027-9-30', 'National Id', '29875643', 'Kisumu, Kisumu', 'Kakamega, Kakamega', 'No');

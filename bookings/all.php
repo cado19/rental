@@ -1,4 +1,5 @@
 <?php
+    include_once 'partials/header.php';
     include_once 'partials/content_start.php'; 
     $bookings = bookings();
 

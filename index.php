@@ -1,7 +1,7 @@
 <?php
     include_once "config/functions.php";
     include_once "config/logger.php";
-    include 'partials/header.php';
+    // include 'partials/header.php';
 
   
 

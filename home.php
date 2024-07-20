@@ -2,13 +2,14 @@
     // FOR NOW THIS WILL BE THE HOME DASHBOARD. wE'LL CUSTOMIZE IT AS THE APP GROWS
     include_once 'partials/header.php';
     include_once 'partials/content_start.php';
+    
+    $account_id = $_SESSION['account']['id'];
+    $vehicle_count = vehicle_count($account_id);
+    $customer_count = customer_count($account_id);
+    $active_bookings = active_bookings($account_id);
+    $bookings = home_bookings($account_id);
 
-    $vehicle_count = vehicle_count();
-    $customer_count = customer_count();
-    $active_bookings = active_bookings();
-    $bookings = home_bookings();
-
-    $log->info($vehicle_count['number_of_cars']);
+    $log->info('bookings',$bookings);
 ?>
 
 
@@ -100,8 +101,10 @@
         <!-- Recent Orders Table  -->
          <div class="recent-orders">
             <h2>Recent Orders</h2>
-
-            <table id="myTable">
+            <?php if(empty($bookings)): ?>
+                <h4>You currently have no bookings yet</h4>
+            <?php else: ?>
+            <table>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -112,27 +115,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php forEach($bookings as $booking): ?>
-                    <tr>
-                        <td> <?php echo $booking['first_name'];?> <?php echo $booking['last_name']; ?> </td>
-                        <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
-                        <td> <?php echo $booking['number_plate']; ?> </td>
-                        <td> 
-                            <?php
-                                $start = strtotime($booking['start_date']);
-                                echo date("l jS \of F Y", $start); 
-                            ?> 
-                        </td>
-                        <td> 
-                            <?php
-                                $end = strtotime($booking['end_date']);
-                                echo date("l jS \of F Y", $end); 
-                            ?> 
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                    <?php forEach($bookings as $booking): ?>
+                        <tr>
+                            <td> <?php echo $booking['first_name'];?> <?php echo $booking['last_name']; ?> </td>
+                            <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
+                            <td> <?php echo $booking['number_plate']; ?> </td>
+                            <td> 
+                                <?php
+                                    $start = strtotime($booking['start_date']);
+                                    echo date("l jS \of F Y", $start); 
+                                ?> 
+                            </td>
+                            <td> 
+                                <?php
+                                    $end = strtotime($booking['end_date']);
+                                    echo date("l jS \of F Y", $end); 
+                                ?> 
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
+            <?php endif; ?>
             <a href="index.php?page=bookings/all">Show All</a>
          </div>
 

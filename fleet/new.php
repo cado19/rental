@@ -1,6 +1,7 @@
 <?php 
     include_once 'partials/header.php';
     include_once 'partials/content_start.php'; 
+    $account_id = $_SESSION['account']['id'];
 ?>
 
 <main>
@@ -9,6 +10,7 @@
         <h2>Add Vehicle</h2>
         <div class="form-container">
             <form action="index.php?page=customers/create" method="post" autocomplete="off">
+                <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
                 <div class="dates">
                     
                     <div class="form-group">

@@ -1,5 +1,6 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $account_id = trim($_POST['account_id']);
         $v_id = $_POST['vehicle_id'];
         $c_id = $_POST['customer_id'];
         $d_id = $_POST['driver_id'];

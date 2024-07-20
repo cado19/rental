@@ -1,10 +1,11 @@
 <?php
-    $customers = all_customers();
     // echo "<pre>";
     // print_r($customers);
     // echo "</pre>";
     include_once 'partials/header.php';
     include_once 'partials/content_start.php';
+    $account_id = $_SESSION['account']['id'];
+    $customers = all_customers($account_id);
     $log->info('customers:',$customers);
 ?>
 

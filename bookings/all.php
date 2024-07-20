@@ -1,7 +1,8 @@
 <?php
     include_once 'partials/header.php';
     include_once 'partials/content_start.php'; 
-    $bookings = bookings();
+    $account_id = $_SESSION['account']['id'];
+    $bookings = bookings($account_id);
 
     // echo "<pre>";
     // print_r($bookings);

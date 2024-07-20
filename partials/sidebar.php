@@ -18,7 +18,7 @@
                 </span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="index.php?page=customers/customers">
+            <a href="index.php?page=customers/all">
                 <span class="material-symbols-outlined">
                     group
                 </span>

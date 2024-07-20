@@ -7,6 +7,8 @@
     // echo "</pre>";
     include_once 'partials/header.php';
     include_once 'partials/content_start.php';
+    $account_id = $_SESSION['account']['id'];
+    // $log->info($account_id);
 ?>
 
 <main>
@@ -15,6 +17,7 @@
         <h2>Create Booking</h2>
         <div class="form-container">
             <form action="index.php?page=bookings/create" method="post" autocomplete="off">
+                <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
                 <div class="form-group">
                     <label for="vehicle_id">Vehicle</label>
                     <select name="vehicle_id">

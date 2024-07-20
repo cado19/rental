@@ -36,7 +36,7 @@
                 </span>
                 <h3>Analytics</h3>
             </a>
-            <a href="index.php?page=fleet/vehicles">
+            <a href="index.php?page=fleet/all">
                 <span class="material-symbols-outlined">
                     traffic_jam
                 </span>

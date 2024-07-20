@@ -20,6 +20,7 @@
                     <th>Registration</th>
                     <th>Category</th>
                     <th>Rate</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,7 @@
                         <td> <?php echo $vehicle['reg']; ?> </td>
                         <td> <?php echo $vehicle['category']; ?> </td>
                         <td> <?php echo number_format($vehicle['rate']); ?>/- </td>
+                        <td> <a href="index.php?page=fleet/show&id=<?php echo $vehicle['id']; ?>">Details</a> </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

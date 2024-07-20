@@ -74,17 +74,17 @@
             <h2>New Users</h2>
             <div class="user-list">
                 <div class="user">
-                    <img src="images/profile-2.jpg">
+                    <img src="images/profile-2-min.jpg">
                     <h2>Jack</h2>
                     <p>54 Min ago</p>
                 </div>
                 <div class="user">
-                    <img src="images/profile-3.jpg">
+                    <img src="images/profile-3-min.jpg">
                     <h2>Amir</h2>
                     <p>3 Hours ago</p>
                 </div>
                 <div class="user">
-                    <img src="images/profile-4.jpg">
+                    <img src="images/profile-4-min.jpg">
                     <h2>Ember</h2>
                     <p>54 min ago</p>
                 </div>
@@ -101,7 +101,7 @@
          <div class="recent-orders">
             <h2>Recent Orders</h2>
 
-            <table>
+            <table id="myTable">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -129,12 +129,11 @@
                                 echo date("l jS \of F Y", $end); 
                             ?> 
                         </td>
-                        <td> <a href="index.php?page=bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
             </table>
-            <a href="#">Show All</a>
+            <a href="index.php?page=bookings/all">Show All</a>
          </div>
 
          <!-- End of Recent Orders  -->
@@ -156,11 +155,11 @@
 
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Reza</b></p>
+                        <p>Hey, <b><?php echo $_SESSION['account']['name']; ?></b></p>
                         <span class="text-muted">Admin</span>
                     </div>
                     <div class="profile-photo">
-                        <img src="images/profile-1.jpg">
+                        <img src="images/profile-1-min.jpg">
                     </div>
                 </div>
             </div>

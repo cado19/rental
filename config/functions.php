@@ -224,7 +224,7 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM `kisuzi-rental`.`vehicle_basics` vb INNER JOIN `kisuzi-rental`.`vehicle_pricing` vp ON vb.id = vp.vehicle_id";
+			$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM `kisuzi-rental`.`vehicle_basics` vb INNER JOIN `kisuzi-rental`.`vehicle_pricing` vp ON vb.id = vp.vehicle_id";
 			$stmt = $con->prepare($sql);
 			$stmt->execute();
 			$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -235,6 +235,26 @@
 		}
 
 		return $vehicles;
+    }
+
+    function get_vehicle($id){
+    	global $con;
+    	global $res;
+
+    	try{
+    		$con->beginTransaction();
+
+    		$sql = "SELECT vb.make, vb.model, vb.number_plate, vb.category, vb.drive_train, vb.seats, vp.daily_rate, vp.vehicle_excess FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id WHERE vb.id = ?";
+    		$stmt = $con->prepare($sql);
+    		$stmt->execute([$id]);
+    		$res = $stmt->fetch();
+
+    		$con->commit();
+    	} catch(Exception $e) {
+    		$con->rollback();
+    	}
+
+    	return $res;
     }
 
     function save_vehicle($make,$model,$number_plate,$category,$transmission,$fuel,$seats){
@@ -259,6 +279,30 @@
 		}
 
         return $res;
+    }
+
+    function update_daily_rate($id, $rate){
+	    global $con;
+        global $res;
+
+		try {
+
+			$con->beginTransaction();
+
+			$sql = "UPDATE vehicle_pricing SET daily_rate = ? WHERE vehicle_id = ?";
+			$stmt = $con->prepare($sql);
+			if ($stmt->execute([$rate, $id])){
+				$res = "Success";
+			} else {
+				$res = "Uncsuccessful";
+			}
+
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+
+        return $res;	
     }
 
 	

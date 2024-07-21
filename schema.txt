@@ -145,6 +145,8 @@ CREATE TABLE `kisuzi-rental`.`customer_details` (
   `residential_address` VARCHAR(45) NULL,
   `work_address` VARCHAR(45) NULL,
   `blacklisted` VARCHAR(11) NULL,
+  `deleted` VARCHAR(45) NULL DEFAULT 'false',
+  `account_id` INT NULL,
   PRIMARY KEY (`id`));
   
 CREATE TABLE `kisuzi-rental`.`organisation_details` (
@@ -182,6 +184,9 @@ CREATE TABLE `kisuzi-rental`.`drivers` (
   `date_of_birth` DATETIME NULL,
   `phone_no` VARCHAR(11) NULL,
   `email` VARCHAR(100) NULL,
+  `profile` VARCHAR(255) NULL,
+  `deleted` VARCHAR(45) NULL DEFAULT 'false',
+  `account_id` INT NULL, 
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
   
@@ -195,6 +200,8 @@ CREATE TABLE `kisuzi-rental`.`vehicle_basics` (
   `drive_train` VARCHAR(11) NULL,
   `transmission` VARCHAR(11) NULL,
   `fuel` VARCHAR(11) NULL,
+  `deleted` VARCHAR(45) NULL DEFAULT 'false',
+  `account_id` INT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
 
@@ -228,6 +235,8 @@ CREATE TABLE `kisuzi-rental`.`booking` (
   `driver_id` INT NULL,
   `start_date` DATE NULL,
   `end_date` DATE(11) NULL,
+  `deleted` VARCHAR(45) NULL DEFAULT 'false',
+  `account_id` INT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
 
@@ -240,6 +249,7 @@ CREATE TABLE `kisuzi-rental`.`accounts` (
 `logo` VARCHAR(255) NULL,
 `signature` VARCHAR(255) NULL,
 `representative` VARCHAR(100) NULL,
+`verified` VARCHAR(100) NULL DEFAULT 'false',
 `deleted` VARCHAR(45) NULL DEFAULT 'false',
 `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
 PRIMARY KEY (`id`));

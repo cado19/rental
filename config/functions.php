@@ -95,7 +95,7 @@
 
         try {
 
-			$con->beginTransaction();
+			// $con->BEGIN;
 
 			$sql = "SELECT id FROM accounts WHERE email = ?";
 			$stmt = $con->prepare($sql);
@@ -106,9 +106,9 @@
 				$res = "Proceed";
 			}
 			
-			$con->commit();
+			// $con->COMMIT;
 		} catch (Exception $e) {
-			$con->rollback();
+			// $con->ROLLBACK();
 		}
 
         return $res;
@@ -123,7 +123,8 @@
 
 			$sql = "INSERT INTO accounts (name, email, password) VALUES (?,?,?)";
 			$stmt = $con->prepare($sql);
-			if ($stmt->execute([$name, $email, $password])) {
+			$stmt->bind_param("sss", $name, $email, $password);
+			if ($stmt->execute()) {
 				$res = $con->lastInsertId();
 			} else {
 				$res = "No Success";
@@ -133,6 +134,8 @@
 		} catch (\Throwable $th) {
 			$con->rollback();
 		}
+
+		return $res;
     }
 
     function fetch_account($email){

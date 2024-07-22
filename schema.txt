@@ -234,7 +234,8 @@ CREATE TABLE `kisuzi-rental`.`booking` (
   `customer_id` INT NULL,
   `driver_id` INT NULL,
   `start_date` DATE NULL,
-  `end_date` DATE(11) NULL,
+  `end_date` DATE NULL,
+  `total` VARCHAR(45) NULL,
   `deleted` VARCHAR(45) NULL DEFAULT 'false',
   `account_id` INT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
@@ -251,8 +252,18 @@ CREATE TABLE `kisuzi-rental`.`accounts` (
 `representative` VARCHAR(100) NULL,
 `verified` VARCHAR(100) NULL DEFAULT 'false',
 `deleted` VARCHAR(45) NULL DEFAULT 'false',
-`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`));
+
+CREATE TABLE `kisuzi-rental`.`contracts`(
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `booking_id` INT NULL,
+  `signature` VARCHAR(255) NULL,
+  `account_id` INT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`));
+
+
 
 ALTER TABLE `kisuzi-rental`.`bookings` 
 ADD COLUMN `total` VARCHAR(45) NULL AFTER `end_date`,

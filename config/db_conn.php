@@ -1,7 +1,7 @@
 <?php
     // THIS FILE IS RESPONSIBLE FOR CONNECTING THE APP TO THE DATABASE 
 
-    include_once '../db_credentials/credentials.php';
+    include_once 'db_credentials/postgres_credentials.php';
 
     // DATABASE DRIVER
     $DBDRIVER = "mysql"; 

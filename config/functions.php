@@ -351,7 +351,27 @@
 		return $drivers;
 	}
 
-	function driver($first_name,$last_name,$email,$id_number,$tel,$date_of_birth,$account_id){
+    function get_driver($id){
+		global $con;
+        global $res;
+
+        try {
+        	$con->beginTransaction();
+
+        	$sql = "SELECT * FROM drivers WHERE id = ?";
+        	$stmt = $con->prepare($sql);
+        	$stmt->execute([$id]);
+        	$res = $stmt->fetch();
+
+        	$con->commit();
+        } catch (Exception $e) {
+        	$con->rollback();
+        }
+
+        return $res;
+    }
+
+	function save_driver($first_name,$last_name,$email,$id_number,$tel,$date_of_birth,$account_id){
 		global $con;
 	    global $res;
 
@@ -359,7 +379,7 @@
 
 			$con->beginTransaction();
 
-			$sql = "INSERT INTO customer_details (first_name, last_name, email, phone_no, id_no, date_of_birth,account_id) VALUES (?,?,?,?,?,?,?)";
+			$sql = "INSERT INTO drivers (first_name, last_name, email, phone_no, id_no, date_of_birth,account_id) VALUES (?,?,?,?,?,?,?)";
 			$stmt = $con->prepare($sql);
 			if ($stmt->execute([$first_name,$last_name,$email,$id_number,$tel,$date_of_birth,$account_id])){
 				$res = "Success";

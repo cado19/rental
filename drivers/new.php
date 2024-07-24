@@ -9,7 +9,7 @@
     <div class="info-collect">
         <h2>Add Customer</h2>
         <div class="form-container">
-            <form action="index.php?page=customers/create" method="post" autocomplete="off">
+            <form action="index.php?page=drivers/create" method="post" autocomplete="off">
                 <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
                 <div class="dates">
                     

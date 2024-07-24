@@ -11,7 +11,7 @@
 
         $details = [$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth];
 
-        $result = save_customer($first_name,$last_name,$email,$id_number,$tel,$date_of_birth,$account_id);
+        $result = save_driver($first_name,$last_name,$email,$id_number,$tel,$date_of_birth,$account_id);
 
         $log->info($result);
 

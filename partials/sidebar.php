@@ -24,7 +24,7 @@
                 </span>
                 <h3>Clients</h3>
             </a>
-            <a href="index.php?page=drivers/drivers">
+            <a href="index.php?page=drivers/all">
                 <span class="material-symbols-outlined">
                     badge
                 </span>

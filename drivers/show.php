@@ -28,7 +28,7 @@
         <div class="sales">
             <div class="status">
                 <div class="info">
-                    <h3><?php echo $driver['id_type']; ?></h3>
+                    <h3>National ID</h3>
                     <h2> <?php echo $driver['id_no']; ?> </h2>
                 </div>
                 <div class="progress">
@@ -56,14 +56,10 @@
             </div>
             <div class="user">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#5f6368"><path d="M220-180h150v-250h220v250h150v-390L480-765 220-570v390Zm-60 60v-480l320-240 320 240v480H530v-250H430v250H160Zm320-353Z"/></svg>
-                <h2>Residential Address</h2>
-                <p><?php echo $driver['residential_address'] ?></p>
+                <h2>License</h2>
+                <p><?php echo $driver['dl_no'] ?></p>
             </div>
-            <div class="user">
-                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#5f6368"><path d="M540-420q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM220-280q-24.75 0-42.37-17.63Q160-315.25 160-340v-400q0-24.75 17.63-42.38Q195.25-800 220-800h640q24.75 0 42.38 17.62Q920-764.75 920-740v400q0 24.75-17.62 42.37Q884.75-280 860-280H220Zm100-60h440q0-42 29-71t71-29v-200q-42 0-71-29t-29-71H320q0 42-29 71t-71 29v200q42 0 71 29t29 71Zm480 180H100q-24.75 0-42.37-17.63Q40-195.25 40-220v-460h60v460h700v60ZM220-340v-400 400Z"/></svg>
-                <h2>Blacklisted</h2>
-                <p> <?php echo $driver['blacklisted']; ?>/- </p>
-            </div>
+
         </div>
     </div>
 <!-- End of New Users  -->

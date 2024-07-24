@@ -30,7 +30,7 @@
                         <td> <?php echo $driver['email']; ?> </td>
                         <td> <?php echo $driver['id_no']; ?> </td>
                         <td> 254<?php echo $driver['phone_no']; ?> </td>
-                        <td> <a href="index.php?page=customers/show&id=<?php echo $driver['id']; ?>">Details</a> </td>
+                        <td> <a href="index.php?page=drivers/show&id=<?php echo $driver['id']; ?>">Details</a> </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

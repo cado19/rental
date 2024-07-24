@@ -72,7 +72,7 @@
                 </div>
                 <div class="content">
                     <div class="info">
-                        All Dribers
+                        All Drivers
                     </div>
                 </div>
         </div>

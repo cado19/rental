@@ -192,6 +192,26 @@
         return $res;
     }
 
+    function get_customer($id){
+		global $con;
+        global $res;
+
+        try {
+        	$con->beginTransaction();
+
+        	$sql = "SELECT * FROM customer_details WHERE id = ?";
+        	$stmt = $con->prepare($sql);
+        	$stmt->execute([$id]);
+        	$res = $stmt->fetch();
+
+        	$con->commit();
+        } catch (Exception $e) {
+        	$con->rollback();
+        }
+
+        return $res;
+    }
+
 	function save_customer($first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id){
 		global $con;
         global $res;
@@ -359,7 +379,7 @@
 	 //   ******************* */ BOOKING FUNCTIONS ******************* */
 
 	 // function to get all bookings 
-	 function bookings(){
+	 function bookings($account_id){
 		global $con;
 		global $res;
 

@@ -10,7 +10,7 @@
 
 <!-- Main Content  -->
 <main>
-    <h1>Customers</h1>
+    <h1>Drivers</h1>
 
     <div class="recent-orders">
         <table id="myTable" class="dataTable">

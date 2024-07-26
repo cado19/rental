@@ -14,7 +14,7 @@
 
         // INSERT BOOKING DATA INTO THE DATABASE
 
-        $result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date);
+        $result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date, $account_id);
 
         //GET BOOKING USING LAST INSERT ID
         $booking = booking($result);

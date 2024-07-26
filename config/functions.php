@@ -247,7 +247,7 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM `kisuzi-rental`.`vehicle_basics` vb INNER JOIN `kisuzi-rental`.`vehicle_pricing` vp ON vb.id = vp.vehicle_id WHERE vb.account_id = ?";
+			$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id WHERE vb.account_id = ?";
 			$stmt = $con->prepare($sql);
 			$stmt->execute([$account_id]);
 			$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -280,28 +280,51 @@
     	return $res;
     }
 
-    function save_vehicle($make,$model,$number_plate,$category,$transmission,$fuel,$seats,$account_id){
+    function save_vehicle($make,$model,$number_plate,$category,$transmission,$fuel,$seats,$drive_train,$account_id){
     	global $con;
-        global $res;
+    	global $res;
 
-		try {
+    	try {
+    		$con->beginTransaction();
 
-			$con->beginTransaction();
+    		$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train,account_id) VALUES (?,?,?,?,?,?,?,?,?)";
+    		$stmt = $con->prepare($sql);
+    		if ($stmt->execute([$make,$model,$number_plate,$category,$transmission,$fuel,$seats,$drive_train,$account_id])) {
+    			$res = $con->lastInsertId();
+    		} else {
+    			$res = "Couldn't save vehicle";
+    		}
+    		
 
-			$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,account_id) VALUES (?,?,?,?,?,?,?,?)";
-			$stmt = $con->prepare($sql);
-			if ($stmt->execute([$make,$model,$number_plate,$category,$transmission,$fuel,$seats,$account_id])){
-				$res = "Success";
-			} else {
-				$res = "Uncsuccessful";
-			}
+    		$con->commit();
+    	} catch (Exception $e) {
+    		$con->rollback();
+    	}
 
-			$con->commit();
-		} catch (Exception $e) {
-			$con->rollback();
-		}
+    	return $res;
+    }
 
-        return $res;
+    function save_vehicle_pricing($id, $daily_rate, $vehicle_excess, $deposit){
+    	global $con;
+    	global $res;
+
+    	try {
+    		$con->beginTransaction();
+
+    		$sql = "INSERT INTO vehicle_pricing (vehicle_id, daily_rate, vehicle_excess, refundable_security_deposit) VALUES (?,?,?,?)";
+    		$stmt= $con->prepare($sql);
+    		if($stmt->execute()){
+    			$res = "Success";
+    		} else {
+    			$res = "Failed";
+    		}
+
+    		$con->commit();
+    	} catch (Exception $e) {
+    		$con->rollback();
+    	}
+
+    	return $res;
     }
 
     function update_daily_rate($id, $rate){
@@ -636,10 +659,7 @@
 			$con->beginTransaction();
 
 			$sql = "SELECT c.first_name AS c_fname, c.last_name AS c_lname, c.id_no AS c_id_no, c.phone_no AS c_phone_no, c.email AS c_email,
-					c.residential_address, d.first_name, d.last_name, d.id_no, d.phone_no, vb.make, vb.model, vb.number_plate, vp.daily_rate, 
-					bk.start_date, bk.end_date, ct.signature FROM bookings bk INNER JOIN customer_details c ON bk.customer_id = c.id 
-					INNER JOIN drivers d ON bk.driver_id = d.id INNER JOIN vehicle_basics vb ON bk.vehicle_id = vb.id INNER JOIN contracts ct 
-					ON ct.booking_id = bk.id INNER JOIN vehicle_pricing vp ON bk.vehicle_id = vp.vehicle_id WHERE bk.id = ?";
+					c.residential_address, d.first_name, d.last_name, d.id_no, d.phone_no, vb.make, vb.model, vb.number_plate, vp.daily_rate, vp.vehicle_excess,bk.start_date, bk.end_date, ct.signature FROM bookings bk INNER JOIN customer_details c ON bk.customer_id = c.id INNER JOIN drivers d ON bk.driver_id = d.id INNER JOIN vehicle_basics vb ON bk.vehicle_id = vb.id INNER JOIN contracts ct ON ct.booking_id = bk.id INNER JOIN vehicle_pricing vp ON bk.vehicle_id = vp.vehicle_id WHERE bk.id = ?";
 
 			$stmt = $con->prepare($sql);
 			$stmt->execute([$id]);

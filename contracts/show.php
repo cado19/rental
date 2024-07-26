@@ -1,4 +1,5 @@
 <?php 
+include_once 'partials/header.php';
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 	}
@@ -193,8 +194,7 @@
 						<td class="contract-td">
 							Prior to signing this contract, the undersigned and a representative of the car hire company have conducted a mandatory inspection of the vehicle’s engine, 
 							interior, exterior and boot. The undersigned also confirms that the vehicle has no outstanding fines. The inspection will happen through either a checklist walkthrough, photo submissions or video submissions between the undersigned and the car hire company’s representative. All noted damages will be clearly indicated. 
-							I the undersigned am Hiring Car No. _<?php echo $contract['number_plate'] ?>_________________ in good condition and I am liable to pay any damage caused to this car up to KSH 
-							__________________ and any fines accrued during use of the vehicle.
+							I the undersigned am Hiring Car No. _<?php echo $contract['number_plate'] ?>__ in good condition and I am liable to pay any damage caused to this car up to KSH ____<?php echo number_format($contract['vehicle_excess']); ?>/-______________ and any fines accrued during use of the vehicle.
 						</td>
 					</tr>
 				</table>

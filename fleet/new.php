@@ -9,7 +9,7 @@
     <div class="info-collect">
         <h2>Add Vehicle</h2>
         <div class="form-container">
-            <form action="index.php?page=customers/create" method="post" autocomplete="off">
+            <form action="index.php?page=fleet/create" method="post" autocomplete="off">
                 <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
                 <div class="dates">
                     
@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="model">Last Name</label>
+                        <label for="model">Model</label>
                         <input type="text" name="model" placeholder="eg: Land Cruiser" required>
                     </div>
 
@@ -34,7 +34,8 @@
                     <label for="category">Category</label>
                     <select name="category">
                             <option value="">--Please choose an option--</option>
-                            <option value="mid-size suv"> Mid Size SUV </option>
+                            <option value="Mid-size SUV"> Mid Size SUV </option>
+                            <option value="Mid-size SUV"> Crossover SUV </option>
                             <option value="Medium Car"> Medium Car </option>
                             <option value="Small Car "> Small Car </option>
                             <option value="Safari"> Safari </option>
@@ -46,8 +47,8 @@
                     <label for="transmission">Transmission</label>
                     <select name="transmission">
                             <option value="">--Please choose an option--</option>
-                            <option value="national_id"> Automatic </option>
-                            <option value="passport"> Manual </option>
+                            <option value="Automatic"> Automatic </option>
+                            <option value="Manual"> Manual </option>
                     </select>
                 </div>
 
@@ -55,16 +56,47 @@
                     <label for="fuel">Fuel Type</label>
                     <select name="fuel">
                             <option value="">--Please choose an option--</option>
-                            <option value="petrol"> Petrol </option>
+                            <option value="Petrol"> Petrol </option>
                             <option value="Diesel"> Diesel </option>
+                            <option value="Hybrid"> Hybrid </option>
                     </select>
                 </div>
-                
 
                 <div class="form-group">
-                    <label for="id">Seats</label>
+                    <label for="fuel">Drive Train</label>
+                    <select name="drive_train">
+                            <option value="">--Please choose an option--</option>
+                            <option value="2WD"> 2WD </option>
+                            <option value="4WD"> 4WD </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="seats">Seats</label>
                     <input type="text" name="seats" required>
                 </div>
+
+                <hr>
+
+                <h2>Pricing</h2>
+                
+
+
+                <div class="form-group">
+                    <label for="daily_rate">Daily Rate</label>
+                    <input type="text" name="daily_rate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehicle_excess">Vehicle Excess</label>
+                    <input type="text" name="vehicle_excess" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="deposit">Refundable Security Deposit</label>
+                    <input type="text" name="deposit" required>
+                </div>
+
 
                 <div class="form-group">
                     <button type="submit">Add Vehicle</button>

@@ -12,13 +12,14 @@
         $work_address = $_POST['work_address'];
         $date_of_birth = $_POST['date_of_birth'];
 
-        $details = [$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth];
+        // $details = [$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id];
+        // $log->warning('client:',$details);
 
         $result = save_customer($first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id);
 
         $log->info($result);
 
-        header("Location: index.php?page=customers/all");
+        // header("Location: index.php?page=customers/all");
     }
 
 ?>

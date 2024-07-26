@@ -1,4 +1,6 @@
 <?php
+    include_once 'partials/header.php';
+    include_once 'partials/content_start.php';
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
     }
@@ -7,7 +9,6 @@
     
     $log->info($new_id);
     $log->warning($id);
-    include_once 'partials/content_start.php';
 ?>
 <main>
     <div class="info-collect">

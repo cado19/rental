@@ -1,63 +1,70 @@
 <?php
-    // echo "<pre>";
-    // print_r($customers);
-    // echo "</pre>";
+    // THIS FILE DISPLAYS ALL THE CUSTOMERS 
+    
+    //page name. We set this inn the content start and also in the page title programatically
+    $page = "Customers";
+
+    // Navbar Links. We set these link in the navbar programatically.
+    $home_link = "index.php?page=customers/all";
+    $home_link_name = "All Clients";
+
+    $new_link = "index.php?page=customers/new";
+    $new_link_name = "New Client";
+
+    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+    $breadcrumb = "Clients";
+    $breadcrumb_active= "All Clients";
+
+    // File Inclusions
     include_once 'partials/header.php';
     include_once 'partials/content_start.php';
+
     $account_id = $_SESSION['account']['id'];
-    $customers = all_customers($account_id);
+
+    //Fetch all customers
+    $customers = all_customers();
+
+    // Log customers for testing purposes
     $log->info('customers:',$customers);
 ?>
 
-<!-- Main Content  -->
-<main>
-    <h1>Customers</h1>
 
-    <div class="recent-orders">
-        <table id="myTable" class="dataTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>ID</th>
-                    <th>Tel</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php forEach($customers as $customer): ?>
-                    <tr>
-                        <td> <?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?> </td>
-                        <td> <?php echo $customer['email']; ?> </td>
-                        <td> <?php echo $customer['id_no']; ?> </td>
-                        <td> 254<?php echo $customer['phone_no']; ?> </td>
-                        <td> <a href="index.php?page=customers/show&id=<?php echo $customer['id']; ?>">Details</a> </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-</main>
-
-<div class="right-section">
-
-    <div class="reminders">
-        <div class="header">
-            <h3>Actions</h3>
-        </div>
-
-        <div class="notification">
-            <div class="icon">
-                    <a href="index.php?page=customers/new">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
-                    </a>
-                </div>
-                <div class="content">
-                    <div class="info">
-                        New Client
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        
+                    </div>
+                    <div class="card-body">
+                        <table id="example1" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>ID</th>
+                                    <th>Tel</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php forEach($customers as $customer): ?>
+                                    <tr>
+                                        <td> <?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?> </td>
+                                        <td> <?php echo $customer['email']; ?> </td>
+                                        <td> <?php echo $customer['id_no']; ?> </td>
+                                        <td> 254<?php echo $customer['phone_no']; ?> </td>
+                                        <td> <a href="index.php?page=customers/show&id=<?php echo $customer['id']; ?>">Details</a> </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
+</section>
 
-</div>
+

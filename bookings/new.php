@@ -1,89 +1,101 @@
 <?php
-    // echo "<pre>";
-    // print_r($customers);
-    // echo "</pre>";
+    // THIS FILE IS THE FORM FOR CREATING A NEW BOOKING
+
+//page name. We set this inn the content start and also in the page title programatically
+    $page = "New booking";
+
+    // Navbar Links. We set these link in the navbar programatically.
+    $home_link = "index.php?page=bookings/all";
+    $home_link_name = "All Bookings";
+
+    $new_link = "index.php?page=bookings/new";
+    $new_link_name = "New Bookings";
+
+    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+    $breadcrumb = "Bookings";
+    $breadcrumb_active= "All Bookings";
+  
     include_once 'partials/header.php';
     include_once 'partials/content_start.php';
     $account_id = $_SESSION['account']['id'];
-    $vehicles = booking_vehicles($account_id);
-    $customers = booking_customers($account_id);
-    $drivers = booking_drivers($account_id);
-    // $log->info($account_id);
+
+    $vehicles = booking_vehicles();
+    $customers = booking_customers();
+    $drivers = booking_drivers();
+    $log->info('customers', $customers);
 ?>
 
-<main>
-    
-    <div class="info-collect">
-        <h2>Create Booking</h2>
-        <div class="form-container">
-            <form action="index.php?page=bookings/create" method="post" autocomplete="off">
-                <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
-                <div class="form-group">
-                    <label for="vehicle_id">Vehicle</label>
-                    <select name="vehicle_id">
-                        <?php foreach($vehicles as $vehicle): ?>
-                            <option value="<?php echo $vehicle['id']; ?>"> <?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?> <?php echo $vehicle['number_plate'];?> </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
 
-                <div class="form-group">
-                    <label for="customer_id">Customer</label>
-                    <select name="customer_id">
-                        <?php foreach($customers as $customer): ?>
-                            <option value="<?php echo $customer['id']; ?>"> <?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?> </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                        <form action="index.php?page=bookings/create" method="post" autocomplete="off">
+                            <div class="form-group">
+                                <label for="vehicle_id">Vehicle</label>
+                                <select name="vehicle_id"  class="form-control form-control-border">
+                                    <?php foreach($vehicles as $vehicle): ?>
+                                        <option value="<?php echo $vehicle['id']; ?>"> <?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?> <?php echo $vehicle['number_plate'];?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
 
-                <div class="form-group">
-                    <label for="driver_id">Driver</label>
-                    <select name="driver_id">
-                        <?php foreach($drivers as $driver): ?>
-                            <option value="<?php echo $driver['id']; ?>"> <?php echo $driver['first_name']; ?> <?php echo $driver['last_name']; ?> </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="dates">
-                
-                    <div class="form-group">
-                        <label for="start_date">Start Date</label>
-                        <input type="text" name="start_date" id="start_date_picker">
+                            <div class="form-group">
+                                <label for="customer_id">Customer</label>
+                                <select name="customer_id" class="form-control form-control-border">
+                                    <?php foreach($customers as $customer): ?>
+                                        <option value="<?php echo $customer['id']; ?>"> <?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?> </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="driver_id">Driver</label>
+                                <select name="driver_id" class="form-control form-control-border">
+                                    <?php foreach($drivers as $driver): ?>
+                                        <option value="<?php echo $driver['id']; ?>"> <?php echo $driver['first_name']; ?> <?php echo $driver['last_name']; ?> </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="date_of_birth">Start Date</label>
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                            <input type="text" name="start_date" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="date_of_birth">End Date</label>
+                                        <div class="input-group date" id="enddate" data-target-input="nearest">
+                                            <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#enddate"/>
+                                            <div class="input-group-append" data-target="#enddate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-dark">Proceed to Contract</button>
+                            </div>
+                        </form>
+
                     </div>
-
-                    <div class="form-group">
-                        <label for="end_date">End Date</label>
-                        <input type="text" name="end_date" id="end_date_picker">
-                    </div>
-
                 </div>
-                <div class="form-group">
-                    <button type="submit">Proceed to Contract</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</main>
-
-<div class="right-section">
-
-    <div class="reminders">
-        <div class="header">
-            <h3>Actions</h3>
-        </div>
-
-        <div class="notification">
-            <div class="icon">
-                    <a href="index.php?page=bookings/all">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M320-280q17 0 28.5-11.5T360-320q0-17-11.5-28.5T320-360q-17 0-28.5 11.5T280-320q0 17 11.5 28.5T320-280Zm0-160q17 0 28.5-11.5T360-480q0-17-11.5-28.5T320-520q-17 0-28.5 11.5T280-480q0 17 11.5 28.5T320-440Zm0-160q17 0 28.5-11.5T360-640q0-17-11.5-28.5T320-680q-17 0-28.5 11.5T280-640q0 17 11.5 28.5T320-600Zm120 320h240v-80H440v80Zm0-160h240v-80H440v80Zm0-160h240v-80H440v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
-                    </a>
-                </div>
-                <div class="content">
-                    <div class="info">
-                        All Bookings
-                    </div>
-                </div>
-        </div>
-    </div>
-
-</div>
+</section>

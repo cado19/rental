@@ -1,43 +1,59 @@
 <?php
-    	if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $id = $_POST['id'];
-            $new_id = (string)$id;
-            $file = $_FILES['signature'];
-            $log->warning($id);
-    
-            $fileName = $file['name'];
-            $fileTmPName = $file['tmp_name'];
-            $filesize = $file['size'];
-            $fileError = $file['error'];
-            $fileType = $file['type'];
-    
-            $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
-    
-            $allowed = array('jpg', 'jpeg', 'png');
-    
-            if (in_array($fileExt, $allowed)) {
-                // So uniqid gets a random number based on the current time. Microseconds. We then append that to the extension ($fileExt)
-                $fileNameNew = uniqid('', true).".".$fileExt;
-                $fileDestination = 'contracts/signatures/'.$fileNameNew;
-                $sql = "UPDATE contracts SET signature = ? WHERE id = ?";
-                $stmt = $con->prepare($sql);
-                $stmt->execute([$fileNameNew, $new_id]);
-                // $response = sign_contract($new_id, $fileNameNew);
-                move_uploaded_file($fileTmPName, $fileDestination);
+    // our database configuration
+    include_once '../db_credentials/credentials.php';
 
-                // get booking id for redirection to booking show page
-                $booking_id = booking_from_contract($id);
+    // DATABASE DRIVER
+    $DBDRIVER = "mysql"; 
 
-                // redirect to booking show page 
-                header("Location: index.php?page=bookings/show&id=".$booking_id['booking_id']);
+    // DATABASE HOST
+    $DBHOST = "localhost"; 
 
-                $log->info('booking_id:',$booking_id);
-                // CHANGE BOOKING TO ACTIVE
-            } else {
-                echo "There was an error uploading your file";
-            }
-            
-        }
+    // DATABASE USER USERNAME
+    $DBUSER = $DBUSERNAME; 
+
+    // DATABASE USER PASSWORD
+    $DBPASS = $DBPASSWORD; 
+
+    // DATABASE NAME
+    $DBNAME = "kisuzi-rental"; 
+
+
+    try {
+        $con = new PDO("$DBDRIVER:host=$DBHOST;dbname=$DBNAME",$DBUSER,$DBPASS);
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $id = $_POST['id'];
+        $new_id = (string)$id;
+
+
+        $sig_string = $_POST['signature'];
+        $destination = "signatures/";
+        $nama_file = "signature_".date("his").".png";
+        $file_to_upload = $destination . "signature_".date("his").".png";
+        // echo $nama_file;
+        file_put_contents($file_to_upload, file_get_contents($sig_string));
+
+        //SQL TO UPDATE CONTRACT
+        $sql = "UPDATE contracts SET signature = ? WHERE id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$nama_file, $new_id]);
+
+        // fetch id of booking from contracts for redirect
+        $sql1 = "SELECT booking_id FROM contracts WHERE id = ?";
+        $stmt1 = $con->prepare($sql1);
+        $stmt1->execute([$new_id]);
+        $booking_id = $stmt1->fetch();
+
+
+        // redirect to booking show page 
+        header("Location: ../index.php?page=bookings/show&id=".$booking_id['booking_id']);
+
+        // CHANGE BOOKING TO ACTIVE
+    }
     
 
 

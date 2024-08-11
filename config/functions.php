@@ -5,16 +5,16 @@
     include_once "config/db_conn.php"; 
 
                 //   ******************* */ HOMEPAGE FUNCTIONS ******************* */
-    function vehicle_count($account_id){
+    function vehicle_count(){
 		global $con;
 		global $res;
 
 		try {
 			$con->beginTransaction();
 
-			$sql = "SELECT COUNT(id) AS number_of_cars FROM vehicle_basics WHERE account_id = ?";
+			$sql = "SELECT COUNT(id) AS number_of_cars FROM vehicle_basics";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
+			$stmt->execute();
 			$res = $stmt->fetch();
 
 			$con->commit();
@@ -25,17 +25,17 @@
 		return $res;
 	}
 				
-	function customer_count($account_id){
+	function customer_count(){
 		global $con;
 		global $res;
 
 		try {
 			$con->beginTransaction();
 
-			$sql = "SELECT COUNT(id) AS number_of_customers FROM customer_details WHERE account_id = ?";
+			$sql = "SELECT COUNT(id) AS number_of_customers FROM customer_details";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
-			$res = $stmt->fetch(PDO::FETCH_OBJ);
+			$stmt->execute();
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
 
 			$con->commit();
 		} catch (\Throwable $th) {
@@ -45,17 +45,17 @@
 		return $res;
 	}		
 				
-	function active_bookings($account_id){
+	function active_bookings(){
 		global $con;
 		global $res;
 
 		try {
 			$con->beginTransaction();
 
-			$sql = "SELECT COUNT(id) AS number_of_bookings FROM bookings WHERE account_id = ?";
+			$sql = "SELECT COUNT(id) AS number_of_bookings FROM bookings";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
-			$res = $stmt->fetch(PDO::FETCH_OBJ);
+			$stmt->execute();
+			$res = $stmt->fetch(PDO::FETCH_ASSOC);
 
 			$con->commit();
 		} catch (\Throwable $th) {
@@ -65,7 +65,7 @@
 		return $res;
 	}	
 
-	function home_bookings($account_id){
+	function home_bookings(){
 		global $con;
 		global $res;
 
@@ -73,9 +73,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.account_id = ? ORDER BY b.created_at DESC";
+			$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id ORDER BY b.created_at DESC";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
+			$stmt->execute();
 			$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
@@ -212,7 +212,7 @@
         return $res;
     }
 
-	function save_customer($first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id){
+	function save_customer($first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth){
 		global $con;
         global $res;
 
@@ -220,9 +220,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "INSERT INTO customer_details (first_name, last_name, email, id_type, phone_no, id_no, residential_address, work_address, date_of_birth,account_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
+			$sql = "INSERT INTO customer_details (first_name, last_name, email, id_type, phone_no, id_no, residential_address, work_address, date_of_birth) VALUES (?,?,?,?,?,?,?,?,?)";
 			$stmt = $con->prepare($sql);
-			if ($stmt->execute([$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id])){
+			if ($stmt->execute([$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,])){
 				$res = "Success";
 			} else {
 				$res = "Uncsuccessful";
@@ -239,7 +239,7 @@
 
                 //   ******************* */ VEHICLE FUNCTIONS ******************* */
     
-    function all_vehicles($account_id){
+    function all_vehicles(){
         global $con;
         global $vehicles;
 
@@ -247,9 +247,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id WHERE vb.account_id = ?";
+			$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
+			$stmt->execute();
 			$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
@@ -280,7 +280,7 @@
     	return $res;
     }
 
-    function save_vehicle($make,$model,$number_plate,$category,$transmission,$fuel,$seats,$drive_train,$account_id){
+    function save_vehicle($make,$model,$number_plate,$category,$transmission,$fuel,$seats,$drive_train){
     	global $con;
     	global $res;
 
@@ -353,7 +353,7 @@
 
 	
                 //   ******************* */ DRIVER FUNCTIONS ******************* */
-	function all_drivers($account_id){
+	function all_drivers(){
 		global $con;
 		global $drivers;
 
@@ -361,9 +361,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM drivers WHERE account_id = ?";
+			$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM drivers";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
+			$stmt->execute();
 			$drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
@@ -394,7 +394,7 @@
         return $res;
     }
 
-	function save_driver($first_name,$last_name,$email,$id_number,$tel,$date_of_birth,$account_id){
+	function save_driver($first_name,$last_name,$email,$id_number,$tel,$date_of_birth){
 		global $con;
 	    global $res;
 
@@ -402,9 +402,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "INSERT INTO drivers (first_name, last_name, email, phone_no, id_no, date_of_birth,account_id) VALUES (?,?,?,?,?,?,?)";
+			$sql = "INSERT INTO drivers (first_name, last_name, email, phone_no, id_no, date_of_birth) VALUES (?,?,?,?,?,?)";
 			$stmt = $con->prepare($sql);
-			if ($stmt->execute([$first_name,$last_name,$email,$id_number,$tel,$date_of_birth,$account_id])){
+			if ($stmt->execute([$first_name,$last_name,$email,$id_number,$tel,$date_of_birth])){
 				$res = "Success";
 			} else {
 				$res = "Uncsuccessful";
@@ -422,7 +422,7 @@
 	 //   ******************* */ BOOKING FUNCTIONS ******************* */
 
 	 // function to get all bookings 
-	 function bookings($account_id){
+	 function bookings(){
 		global $con;
 		global $res;
 
@@ -430,9 +430,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.account_id = ?";
+			$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
+			$stmt->execute();
 			$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
@@ -491,7 +491,7 @@
 	 }
 
 	// function to get all vehicles for the booking process 
-	function booking_vehicles($account_id){
+	function booking_vehicles(){
 		global $con;
 		global $bk_vehicles;
 
@@ -499,9 +499,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT id, make, model, number_plate FROM vehicle_basics WHERE account_id = ? ORDER BY id DESC";
+			$sql = "SELECT id, make, model, number_plate FROM vehicle_basics ORDER BY id DESC";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
+			$stmt->execute();
 			$bk_vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
@@ -513,7 +513,7 @@
 	}
 
 	// function to get all customers for the booking process 
-	function booking_customers($account_id){
+	function booking_customers(){
 		global $con;
 		global $bk_customers;
 
@@ -521,9 +521,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT id, first_name, last_name FROM customer_details WHERE account_id = ? ORDER BY id DESC";
+			$sql = "SELECT id, first_name, last_name FROM customer_details ORDER BY id DESC";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
+			$stmt->execute();
 			$bk_customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
@@ -535,7 +535,7 @@
 	}
 
 	// function to get all drivers for the booking process 
-	function booking_drivers($account_id){
+	function booking_drivers(){
 		global $con;
 		global $bk_drivers;
 
@@ -543,9 +543,9 @@
 
 			$con->beginTransaction();
 
-			$sql = "SELECT id, first_name, last_name FROM drivers WHERE account_id = ? ORDER BY id DESC";
+			$sql = "SELECT id, first_name, last_name FROM drivers ORDER BY id DESC";
 			$stmt = $con->prepare($sql);
-			$stmt->execute([$account_id]);
+			$stmt->execute();
 			$bk_drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$con->commit();
@@ -557,16 +557,16 @@
 	}
 
 	// function to insert booking into database
-	function save_booking($v_id, $c_id, $d_id, $start_date, $end_date,$account_id){
+	function save_booking($v_id, $c_id, $d_id, $start_date, $end_date){
 		global $con;
 		global $res;
 
 		try {
 			$con->beginTransaction();
 
-			$sql = "INSERT INTO bookings (vehicle_id, customer_id, driver_id, start_date, end_date, account_id) VALUES (?,?,?,?,?,?)";
+			$sql = "INSERT INTO bookings (vehicle_id, customer_id, driver_id, start_date, end_date) VALUES (?,?,?,?,?)";
 			$stmt = $con->prepare($sql);
-			if ($stmt->execute([$v_id, $c_id, $d_id, $start_date, $end_date,$account_id])) {
+			if ($stmt->execute([$v_id, $c_id, $d_id, $start_date, $end_date])) {
 				$res = $con->lastInsertId();
 			} else {
 				$res = "No Success";
@@ -695,5 +695,15 @@
 		return $res;
 	}
 
-
+//   ******************* */ DISPLAY FUNCTIONS ******************* */
+	// display images such as profile pictures and id images 
+	function display_image($directory, $image){
+		global $path;
+		if (isset($image)) {
+			$path = "<img src=$directory/$image>";
+		} else {
+			$path = "<img src=$directory/avatar.jpg>";
+		}
+		return $path;
+	}
 ?>

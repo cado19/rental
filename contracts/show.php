@@ -1,5 +1,6 @@
 <?php 
 include_once 'partials/header.php';
+// include_once 'partials/content_start.php';
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 	}
@@ -7,8 +8,8 @@ include_once 'partials/header.php';
 	$log->info('contract:',$contract);
 	
 ?>
-    <div class="contract">
-		<div class="row contract-header">
+    <div class="container">
+		<div class="row d-flex justify-content-between">
 			<div class="logo">Logo goes here</div>
 
 
@@ -21,7 +22,7 @@ include_once 'partials/header.php';
 		</div>
 
 		<div class="row mt-3">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><em>CONTRACT No.</em></td>
 					<td class="contract-td">4</td>
@@ -31,7 +32,7 @@ include_once 'partials/header.php';
 
 		<div class="row">
 			<h3>HIRER DETAILS</h3>
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<th>HIRER'S NAME</th>
 					<th>HIRER'S ID No.</th>
@@ -50,7 +51,7 @@ include_once 'partials/header.php';
 		</div>
 
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>AREA OF USE</b><em>(Where the hirer intends to use the car)</em></td>
 				</tr>
@@ -61,7 +62,7 @@ include_once 'partials/header.php';
 		</div>
 
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>HIRER EMAIL</b></td>
 					<td class="contract-td"><b>HIRER HOME ADDRESS</b></td>
@@ -82,7 +83,7 @@ include_once 'partials/header.php';
 		</div>
 
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td">Below are the authorized drivers for this rental. The rental company reserves the right to update the authorized driver until the end of the contract period</td>
 				</tr>
@@ -90,7 +91,7 @@ include_once 'partials/header.php';
 		</div>
 
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<th>DRIVER NAME</th>
 					<th>DRIVER ID No.</th>
@@ -109,14 +110,14 @@ include_once 'partials/header.php';
 
 		<div class="row">
 			<h3>VEHICLE DETAILS AND PRICING</h3>
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td">For all vehicles rented on behalf of an organisation, the organization listed below will the primary entity (Lessee) in contract with the rental company</td>
 				</tr>
 			</table>
 		</div>
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>CAR MAKE</b></td>
 					<td class="contract-td"><b>CAR MODEL</b></td>
@@ -130,7 +131,7 @@ include_once 'partials/header.php';
 			</table>
 		</div>
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>CAR CHECKED IN AT (PICK UP)</b></td>
 				</tr>
@@ -149,7 +150,7 @@ include_once 'partials/header.php';
 			</table>
 		</div>
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>DATE OUT (CAR LEAVES)</b></td>
 					<td class="contract-td"><b>TIME OUT (CAR LEAVES)</b></td>
@@ -166,14 +167,14 @@ include_once 'partials/header.php';
 		</div>
 
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><em>Note: Prices listed are indicative as per initial dates set and may change based on extension or rental company details. More details in Article 3 and 4</em></td>
 				</tr>
 			</table>
 		</div>
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>PRICE PER DAY (KSH)</b></td>
 					<td class="contract-td"><b>TOTAL PRICE DUE (KSH) <em>(INDICATIVE)</em></b></td>
@@ -189,7 +190,7 @@ include_once 'partials/header.php';
 
 			<div class="row">
 				<h3>MANDATORY VEHICLE INSPECTION</h3>
-				<table class="contract-table">
+				<table class="table">
 					<tr>
 						<td class="contract-td">
 							Prior to signing this contract, the undersigned and a representative of the car hire company have conducted a mandatory inspection of the vehicle’s engine, 
@@ -202,7 +203,7 @@ include_once 'partials/header.php';
 
 		<div class="row">
 			<h3>STATUTORY DECLARATION</h3>
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td">
 						I declare the Motor Vehicle will be used for legal purposes only. I am not under 23 years old nor over 70 years old. I do not suffer any physical infirmity, defective vision, or defective hearing which is likely to affect my driving ability. 
@@ -218,7 +219,7 @@ include_once 'partials/header.php';
 
 
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>SIGNATURE SHOULD GO SOMEWHERE HERE BUT ON THE RIGHT SIDE</b></td>
 					<td class="contract-td"><img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img"></td>
@@ -227,7 +228,7 @@ include_once 'partials/header.php';
 		</div>
 
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td">
 						 have not been convicted during the last five years of any offense for careless or 
@@ -255,7 +256,7 @@ include_once 'partials/header.php';
 			</table>
 		</div>
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>DATE</b></td>
 					<td class="contract-td"><b>HIRER SIGNATURE</b></td>
@@ -267,7 +268,7 @@ include_once 'partials/header.php';
 			</table>
 		</div>
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td">
 						 FULLY UNDERSTAND THAT I AM THE AUTHORIZED PERSON TO DRIVE THIS VEHICLE UNLESS OTHER DRIVERS ARE SPECIFIED ABOVE 
@@ -280,7 +281,7 @@ include_once 'partials/header.php';
 
 
 		<div class="row">
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td"><b>DATE</b></td>
 					<td class="contract-td"><b>HIRER SIGNATURE</b></td>
@@ -296,7 +297,7 @@ include_once 'partials/header.php';
 		
 		<div class="row">
 			<h3 class="text-center">GENERAL CONDITIONS</h3>
-			<table class="contract-table">
+			<table class="table">
 				<tr>
 					<td class="contract-td">
 						<p>

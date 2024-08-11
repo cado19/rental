@@ -1,60 +1,75 @@
-    <!-- Sidebar Section  -->
-    <aside>
-        <div class="toggle">
-            <div class="logo">
-                <img src="images/logo.png">
-                <h2>Rental<span class="danger">Magari</span></h2>
-            </div>
+    <!-- New Sidebar  -->
 
-            <div class="close" id="close-btn">
-                <span class="material-symbols-outlined">close</span>
-            </div>
-        </div>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index3.html" class="brand-link">
+          <img src="assets/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <span class="brand-text font-weight-light">Kizusi Rental</span>
+        </a>
 
+        <!-- Sidebar -->
         <div class="sidebar">
-            <a href="index.php?page=home">
-                <span class="material-symbols-outlined">
-                    dashboard
-                </span>
-                <h3>Dashboard</h3>
-            </a>
-            <a href="index.php?page=customers/all">
-                <span class="material-symbols-outlined">
-                    group
-                </span>
-                <h3>Clients</h3>
-            </a>
-            <a href="index.php?page=drivers/all">
-                <span class="material-symbols-outlined">
-                    badge
-                </span>
-                <h3>Drivers</h3>
-            </a>
-            <a href="#">
-                <span class="material-symbols-outlined">
-                    insights
-                </span>
-                <h3>Analytics</h3>
-            </a>
-            <a href="index.php?page=fleet/all">
-                <span class="material-symbols-outlined">
-                    traffic_jam
-                </span>
-                <h3>Fleet</h3>
-            </a>
-            <a href="index.php?page=bookings/all">
-                <span class="material-symbols-outlined">
-                    menu_book
-                </span>
-                <h3>Bookings</h3>
-                <span class="message-count">27</span>
-            </a>
-            <a href="#">
-                <span class="material-symbols-outlined">
-                    inventory
-                </span>
-                <h3>Sale List</h3>
-            </a>
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                    <li class="nav-item">
+                        <a href="index.php?page=home" class="nav-link">
+                          <i class="nav-icon fa fa-tachometer"></i>
+                          <p>
+                            Dashboard
+                          </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="index.php?page=customers/all" class="nav-link">
+                          <i class="nav-icon fa fa-users"></i>
+                          <p>
+                            Clients
+                          </p>
+                        </a>
+                    </li> 
+
+                    <li class="nav-item">
+                        <a href="index.php?page=drivers/all" class="nav-link">
+                          <i class="nav-icon fa fa-id-card"></i>
+                          <p>
+                            Drivers
+                          </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="index.php?page=fleet/all" class="nav-link">
+                          <i class="nav-icon fa fa-car"></i>
+                          <p>
+                            Fleet
+                          </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="index.php?page=bookings/all" class="nav-link">
+                          <i class="nav-icon fa fa-list"></i>
+                          <p>
+                            Bookings
+                            <span class="right badge badge-danger">New</span>
+                          </p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="pages/widgets.html" class="nav-link">
+                          <i class="nav-icon fa fa-pie-chart"></i>
+                          <p>
+                            Analytics
+                            <span class="right badge badge-danger">New</span>
+                          </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
         </div>
-     </aside>
-    <!-- End Sidebar Section  -->
+    </aside>

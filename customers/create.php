@@ -1,7 +1,8 @@
 <?php
+    // THIS SCRIPT WILL HANDLE THE NEW CUSTOMER FORM PROCESSING
+
     $first_name = $last_name = $email = $id_type = $tel = $residential_address = $work_address = $date_of_birth = $account_id = '';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $account_id = trim($_POST['account_id']);
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
@@ -15,11 +16,11 @@
         // $details = [$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id];
         // $log->warning('client:',$details);
 
-        $result = save_customer($first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id);
+        $result = save_customer($first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth);
 
         $log->info($result);
 
-        // header("Location: index.php?page=customers/all");
+        header("Location: index.php?page=customers/all&msg=".$result);
     }
 
 ?>

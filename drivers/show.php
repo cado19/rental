@@ -37,7 +37,7 @@
                     <div class="text-center">
                          <?php if(isset($driver['profile_image'])): ?>
                             <img class="profile-user-img img-fluid img-circle"
-                               src="customers/profile/<?php echo $driver['profile_image']; ?>"
+                               src="drivers/profile/<?php echo $driver['profile_image']; ?>"
                                alt="User profile picture">
                         <?php else: ?>
                             <img class="profile-user-img img-fluid img-circle"
@@ -62,7 +62,7 @@
                       </li>
                     </ul>
 
-                    <a href="#" class="btn btn-primary btn-block"><b>Edit</b></a>
+                    <a href="index.php?page=drivers/profile_form&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile Picture</b></a>
                   </div>
                   <!-- /.card-body -->
                 </div>
@@ -74,10 +74,10 @@
                     <!-- show id images through a carousel -->
                     <div class="col-6">
                         <div class="card mb-3">
-                            <?php if(isset($driver['profile_image'])): ?>
+                            <?php if(isset($driver['id_image'])): ?>
                                 <img class="profile-user-img img-fluid img-circle"
-                                   src="customers/profile/<?php echo $driver['profile_image']; ?>"
-                                   alt="User profile picture">
+                                   src="drivers/id/<?php echo $driver['id_image']; ?>"
+                                   alt="Driver ID picture">
                             <?php else: ?>
                                 <img class="profile-user-img img-fluid img-circle"
                                    src="images/male-laughter-avatar.jpg"
@@ -93,19 +93,19 @@
                     </div>
                     <div class="col-6">
                         <div class="card mb-3">
-                            <?php if(isset($driver['profile_image'])): ?>
+                            <?php if(isset($driver['license_image'])): ?>
                                 <img class="profile-user-img img-fluid img-circle"
-                                   src="customers/profile/<?php echo $driver['profile_image']; ?>"
+                                   src="drivers/license/<?php echo $driver['license_image']; ?>"
                                    alt="User profile picture">
                             <?php else: ?>
                                 <img class="profile-user-img img-fluid img-circle"
                                    src="images/male-laughter-avatar.jpg"
-                                   alt="User profile picture">
+                                   alt="Driver License picture">
                             <?php endif; ?>
                           <div class="card-body">
                             <h5 class="card-title">Driver's License</h5>
                             <p class="card-text">This is the driver's license.</p>
-                            <a href="#" class="btn btn-primary">Upload Driver's License</a>
+                            <a href="index.php?page=drivers/license_form&id=<?php echo $id; ?>" class="btn btn-primary">Upload Driver's License</a>
                           </div>
                         </div>
                     </div>

@@ -64,7 +64,7 @@
                       </li>
                     </ul>
 
-                    <a href="#" class="btn btn-primary btn-block"><b>Edit</b></a>
+                    <a href="index.php?page=customers/profile_form&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile Picture</b></a>
                   </div>
                   <!-- /.card-body -->
                 </div>
@@ -76,7 +76,7 @@
                     <!-- show id images through a carousel -->
                     <div class="col-6">
                         <div class="card mb-3">
-                            <?php if(isset($customer['profile_image'])): ?>
+                            <?php if(isset($customer['id_image'])): ?>
                                 <img src="customers/id/<?php echo $customer['id_image']; ?>" class="card-img-top" alt="Client ID Image">
                             <?php else: ?>
                                 <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client ID Image">
@@ -93,7 +93,7 @@
 
                     <div class="col-6">
                         <div class="card mb-3">
-                            <?php if(isset($customer['profile_image'])): ?>
+                            <?php if(isset($customer['license_image'])): ?>
                                 <img src="customers/license/<?php echo $customer['license_image']; ?>" class="card-img-top" alt="Client License Image">
                             <?php else: ?>
                                 <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client License Image">

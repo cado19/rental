@@ -88,7 +88,12 @@
 
                             <div class="form-group">
                                 <label for="date_of_birth">Date of Birth</label>
-                                <input type="text" name="date_of_birth" id="start_date_picker" class="form-control form-control-border" required>
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                    <input type="text" name="date_of_birth" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">

@@ -1,31 +1,31 @@
 <?php
-    // THIS PAGE WILL SHOW INDIVIDUAL DRIVER'S DETAILS 
+// THIS PAGE WILL SHOW INDIVIDUAL DRIVER'S DETAILS
 
-     //page name. We set this inn the content start and also in the page title programatically
-    $page = "Drivers";
+//page name. We set this inn the content start and also in the page title programatically
+$page = "Drivers";
 
-    // Navbar Links. We set these link in the navbar programatically.
-    $home_link = "index.php?page=drivers/all";
-    $home_link_name = "All Drivers";
+// Navbar Links. We set these link in the navbar programatically.
+$home_link = "index.php?page=drivers/all";
+$home_link_name = "All Drivers";
 
-    $new_link = "index.php?page=drivers/new";
-    $new_link_name = "New Drivers";
+$new_link = "index.php?page=drivers/new";
+$new_link_name = "New Drivers";
 
-    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-    $breadcrumb = "Drivers";
-    $breadcrumb_active= "Driver";
+// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+$breadcrumb = "Drivers";
+$breadcrumb_active = "Driver";
 
-    // include navbar, functions, db_conn and sidebar
-    include_once 'partials/header.php';
-    include_once 'partials/content_start.php';
+// include navbar, functions, db_conn and sidebar
+include_once 'partials/header.php';
+include_once 'partials/content_start.php';
 
-    // fetch id from url and use to fetch driver record from database 
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-        $driver = get_driver($id);
-        $log->info('Foo: ', $driver);
-    }
-    
+// fetch id from url and use to fetch driver record from database
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+	$driver = get_driver($id);
+	$log->info('Foo: ', $driver);
+}
+
 ?>
 <section class="content">
     <div class="container-fluid">
@@ -35,7 +35,7 @@
                 <div class="card card-primary card-outline">
                   <div class="card-body box-profile">
                     <div class="text-center">
-                         <?php if(isset($driver['profile_image'])): ?>
+                         <?php if (isset($driver['profile_image'])): ?>
                             <img class="profile-user-img img-fluid img-circle"
                                src="drivers/profile/<?php echo $driver['profile_image']; ?>"
                                alt="User profile picture">
@@ -43,7 +43,7 @@
                             <img class="profile-user-img img-fluid img-circle"
                                src="images/male-laughter-avatar.jpg"
                                alt="User profile picture">
-                        <?php endif; ?>
+                        <?php endif;?>
                     </div>
 
                     <h3 class="profile-username text-center"><?php echo $driver['first_name']; ?> <?php echo $driver['last_name']; ?></h3>
@@ -58,11 +58,13 @@
                         <b>National ID</b> <a class="float-right"><?php echo $driver['id_no']; ?></a>
                       </li>
                       <li class="list-group-item">
-                        <b>Tel</b> <a class="float-right">254<?php echo ($driver['phone_no']);  ?></a>
+                        <b>Tel</b> <a class="float-right">254<?php echo ($driver['phone_no']); ?></a>
                       </li>
                     </ul>
 
                     <a href="index.php?page=drivers/profile_form&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile Picture</b></a>
+                    <a href="index.php?page=drivers/edit&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+
                   </div>
                   <!-- /.card-body -->
                 </div>
@@ -74,7 +76,7 @@
                     <!-- show id images through a carousel -->
                     <div class="col-6">
                         <div class="card mb-3">
-                            <?php if(isset($driver['id_image'])): ?>
+                            <?php if (isset($driver['id_image'])): ?>
                                 <img class="profile-user-img img-fluid img-circle"
                                    src="drivers/id/<?php echo $driver['id_image']; ?>"
                                    alt="Driver ID picture">
@@ -82,7 +84,7 @@
                                 <img class="profile-user-img img-fluid img-circle"
                                    src="images/male-laughter-avatar.jpg"
                                    alt="User profile picture">
-                            <?php endif; ?>
+                            <?php endif;?>
 
                           <div class="card-body">
                             <h5 class="card-title">Identification</h5>
@@ -93,7 +95,7 @@
                     </div>
                     <div class="col-6">
                         <div class="card mb-3">
-                            <?php if(isset($driver['license_image'])): ?>
+                            <?php if (isset($driver['license_image'])): ?>
                                 <img class="profile-user-img img-fluid img-circle"
                                    src="drivers/license/<?php echo $driver['license_image']; ?>"
                                    alt="User profile picture">
@@ -101,7 +103,7 @@
                                 <img class="profile-user-img img-fluid img-circle"
                                    src="images/male-laughter-avatar.jpg"
                                    alt="Driver License picture">
-                            <?php endif; ?>
+                            <?php endif;?>
                           <div class="card-body">
                             <h5 class="card-title">Driver's License</h5>
                             <p class="card-text">This is the driver's license.</p>
@@ -114,4 +116,19 @@
         </div>
     </div>
 </section>
-
+<?php
+$msg = $_GET['msg'];
+echo "
+<script>
+    $(function(){
+        Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: $msg,
+            showConfirmButton: false,
+            timer: 3000
+        });
+    });
+</script>
+";
+?>

@@ -9,10 +9,10 @@
 
 
   <!-- JQuery  -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   <!-- Sweet Alert -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.4/sweetalert2.min.js" integrity="sha512-w4LAuDSf1hC+8OvGX+CKTcXpW4rQdfmdD8prHuprvKv3MPhXH9LonXX9N2y1WEl2u3ZuUSumlNYHOlxkS/XEHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- jQuery Knob Chart -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
@@ -48,6 +48,32 @@
 
 <!-- AdminLTE App -->
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+
+<?php
+// DISPLAY SWEET ALERT IF A MESSAGE IS SET IN THE URL
+
+// check for message in the url
+
+if (isset($_GET['msg'])) {
+	$msg = $_GET['msg'];
+	echo "
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '$msg',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            })
+        </script>
+    ";
+}
+
+?>
 
 <script>
     $(document).ready(function() {

@@ -116,19 +116,5 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </section>
-<?php
-$msg = $_GET['msg'];
-echo "
-<script>
-    $(function(){
-        Swal.fire({
-            position: 'top-end',
-            type: 'success',
-            title: $msg,
-            showConfirmButton: false,
-            timer: 3000
-        });
-    });
-</script>
-";
-?>
+
+

@@ -42,6 +42,10 @@
       <!-- Theme style -->
       <link rel="stylesheet" href="assets/adminlte.min.css">
 
+      <!-- OUR CSS  -->
+      <link rel="stylesheet" href="assets/style.css">
+
+
 
       <script type="text/javascript" src="assets/signature.js"></script>
 

@@ -1,0 +1,7 @@
+.display-img{
+    width: 500px;
+    height: 400px;
+    object-fit: contain;
+    margin-top: 5px;
+    border-radius: 5px;
+}

@@ -26,7 +26,7 @@ $log->info('vehicles', $vehicles);
                     </div>
                     <div class="m-t text-righ">
 
-                        <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                        <a href="index.php?page=client/catalog/show&id=<?php echo $vehicle['id']; ?>" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
                     </div>
                 </div>
             </div>

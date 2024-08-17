@@ -86,6 +86,29 @@ function home_bookings() {
 	return $res;
 }
 
+//   ******************* */ CLIENT FUNCTIONS ******************* */
+
+// get all vehicles for catalog
+function catalog_vehicles() {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+		$sql = "SELECT vb.model, vb.make, vb.number_plate, vb.category, vp.daily_rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id";
+
+		$stmt = $con->prepare($sql);
+		$stmt->execute();
+		$res = $stmt->fetchAll();
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
 //   ******************* */ ACCOUNT FUNCTIONS ******************* */
 
 function unique_email($email) {

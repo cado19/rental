@@ -77,11 +77,11 @@ if (isset($_GET['id'])) {
                     <div class="col-6">
                         <div class="card mb-3">
                             <?php if (isset($driver['id_image'])): ?>
-                                <img class="profile-user-img img-fluid img-circle"
+                                <img class="card-img-top display-img"
                                    src="drivers/id/<?php echo $driver['id_image']; ?>"
                                    alt="Driver ID picture">
                             <?php else: ?>
-                                <img class="profile-user-img img-fluid img-circle"
+                                <img class="card-img-top display-img"
                                    src="images/male-laughter-avatar.jpg"
                                    alt="User profile picture">
                             <?php endif;?>
@@ -96,11 +96,11 @@ if (isset($_GET['id'])) {
                     <div class="col-6">
                         <div class="card mb-3">
                             <?php if (isset($driver['license_image'])): ?>
-                                <img class="profile-user-img img-fluid img-circle"
+                                <img class="card-img-top display-img"
                                    src="drivers/license/<?php echo $driver['license_image']; ?>"
                                    alt="User profile picture">
                             <?php else: ?>
-                                <img class="profile-user-img img-fluid img-circle"
+                                <img class="card-img-top display-img"
                                    src="images/male-laughter-avatar.jpg"
                                    alt="Driver License picture">
                             <?php endif;?>

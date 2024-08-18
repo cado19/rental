@@ -21,10 +21,9 @@ $log->info('vehicle', $vehicle);
             </div><!-- / project-info-box -->
 
             <div class="project-info-box">
-                <p><b>Client:</b> CUPCAKE CO</p>
-                <p><b>Date:</b> 14.02.2020</p>
-                <p><b>Designer:</b> James Doe</p>
-                <p><b>Tools:</b> Illustrator</p>
+                <p><b>Transmission:</b> <?php echo $vehicle['transmission']; ?></p>
+                <p><b>Seats:</b> <?php echo $vehicle['seats']; ?></p>
+                <p><b>Category:</b> <?php echo $vehicle['category']; ?></p>
                 <p class="mb-0"><b>Daily Rate:</b> <?php echo number_format($vehicle['daily_rate']); ?>/-</p>
             </div><!-- / project-info-box -->
 

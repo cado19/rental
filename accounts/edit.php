@@ -1,4 +1,5 @@
 <?php
+$page = "Edit Password";
 include_once 'partials/account-header.php';
 ?>
 
@@ -6,7 +7,7 @@ include_once 'partials/account-header.php';
           <div id="formContent">
             <!-- Tabs Titles -->
             <h4>We are <span>Kisuzi Rental</span></h4>
-            <p>Welcome back! Log in and resume.</p>
+            <p>Edit Your Password</p>
 
             <!-- Icon -->
             <div class="fadeIn first">
@@ -18,12 +19,12 @@ include_once 'partials/account-header.php';
             <form action="index.php?page=accounts/update" method="POST" class="log-in" autocomplete="off">
               <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
               <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
-              <input type="submit" class="fadeIn fourth" value="Log In">
+              <input type="submit" class="fadeIn fourth" value="Submit">
             </form>
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-              <a class="underlineHover" href="#">Forgot Password?</a>
+              <a class="underlineHover" href="index.php?page=accounts/login">Log in</a>
             </div>
 
           </div>

@@ -1,4 +1,5 @@
 <?php
+$page = "New account";
 include_once 'partials/account-header.php';
 ?>
 
@@ -24,7 +25,7 @@ include_once 'partials/account-header.php';
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-              <a class="underlineHover" href="#">Forgot Password?</a>
+              <a class="underlineHover" href="index.php?page=accounts/login">Log in</a>
             </div>
 
           </div>

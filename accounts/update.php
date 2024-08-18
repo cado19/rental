@@ -1,13 +1,13 @@
 <?php
 $name = $email = $password = "";
 $username_err = $email_err = "";
+$msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$name = $_POST['name'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 
-	$posts = [$name, $email, $password];
+	$posts = [$email, $password];
 
 	$log->info('posts', $posts);
 
@@ -20,18 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// 	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 	// }
 
-	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+	// validate email
+	$response = get_email($email);
+	$log->warning($response);
 
-	$sql = "UPDATE accounts SET password = ? WHERE email = ?";
-	$stmt = $con->prepare($sql);
-	$stmt->execute([$hashed_password, $email]);
-	$msg = "Changed Password";
+	if ($response == "No such email") {
+		$msg = "There is no account with such an email";
+		header("Location: index.php?page=accounts/edit&msg=$msg");
+	} elseif ($response == "You may proceed") {
+		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-	$response = create_account($name, $email, $hashed_password);
-
-	$msg = "Your application has been received. You will be contacted via email when your account is approved";
-
-	header("Location: index.php?page=accounts/login&msg=$msg");
+		$sql = "UPDATE accounts SET password = ? WHERE email = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$hashed_password, $email]);
+		$msg = "Changed Password";
+		header("Location: index.php?page=accounts/login&msg=$msg");
+	}
 
 }
 ?>

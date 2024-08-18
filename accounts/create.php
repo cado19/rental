@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Validate username
 	$taken_email = unique_email($email);
 	if ($taken_email == "Email Taken") {
-		$email_err = "Choose another email";
-		header("Location: index.php?page=accounts/new&msg=" . $email_err);
+		$email_err = "An account exists with such an email. Log in.";
+		header("Location: index.php?page=accounts/new&msg=$email_err");
 	} else {
 		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 	}
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	$msg = "Your application has been received. You will be contacted via email when your account is approved";
 
-	header("Location: index.php?page=accounts/login&msg=" . $response);
+	header("Location: index.php?page=accounts/login&msg=$msg");
 
 }
 ?>

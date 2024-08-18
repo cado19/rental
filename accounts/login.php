@@ -1,9 +1,10 @@
-<?php 
-      include_once 'partials/account-header.php';
-      // $log->info('session', $_SESSION['logged_in']);
-      if(isset($_SESSION['account'])){
-        $log->info('account', $_SESSION['account']);
-      }
+<?php
+$page = "Login";
+include_once 'partials/account-header.php';
+// $log->info('session', $_SESSION['logged_in']);
+if (isset($_SESSION['account'])) {
+	$log->info('account', $_SESSION['account']);
+}
 ?>
 
 
@@ -28,7 +29,7 @@
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-              <a class="underlineHover" href="#">Forgot Password?</a>
+              <a class="underlineHover" href="index.php?page=accounts/edit">Forgot Password?</a>
             </div>
 
           </div>

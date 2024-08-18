@@ -144,14 +144,40 @@ function unique_email($email) {
 		$stmt = $con->prepare($sql);
 		$stmt->execute();
 		if ($stmt->rowCount() == 1) {
-			$res = "Email Taken";
+			$res = "Email taken";
 		} else {
-			$res = "Proceed";
+			$res = "You may proceed";
 		}
 
-		// $con->COMMIT;
+		$con->commit;
 	} catch (Exception $e) {
-		// $con->ROLLBACK();
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// get email that will be used for password reset
+function get_email($email) {
+	global $con;
+	global $res;
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT id FROM accounts WHERE email = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$email]);
+		if ($stmt->rowCount() == 1) {
+			$res = "You may proceed";
+		} else {
+			$res = "No such email";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
 	}
 
 	return $res;

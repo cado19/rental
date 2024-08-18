@@ -12,19 +12,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$log->info('posts', $posts);
 
 	// Validate username
-	$taken_email = unique_email($email);
-	if ($taken_email == "Email Taken") {
-		$email_err = "Choose another email";
-		header("Location: index.php?page=accounts/new&msg=" . $email_err);
-	} else {
-		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-	}
+	// $taken_email = unique_email($email);
+	// if ($taken_email == "Email Taken") {
+	// 	$email_err = "Choose another email";
+	// 	header("Location: index.php?page=accounts/new&msg=" . $email_err);
+	// } else {
+	// 	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+	// }
+
+	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+	$sql = "UPDATE accounts SET password = ? WHERE email = ?";
+	$stmt = $con->prepare($sql);
+	$stmt->execute([$hashed_password, $email]);
+	$msg = "Changed Password";
 
 	$response = create_account($name, $email, $hashed_password);
 
 	$msg = "Your application has been received. You will be contacted via email when your account is approved";
 
-	header("Location: index.php?page=accounts/login&msg=" . $response);
+	header("Location: index.php?page=accounts/login&msg=$msg");
 
 }
 ?>

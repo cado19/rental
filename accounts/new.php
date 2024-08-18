@@ -6,7 +6,7 @@ include_once 'partials/account-header.php';
           <div id="formContent">
             <!-- Tabs Titles -->
             <h4>We are <span>Kisuzi Rental</span></h4>
-            <p>Welcome back! Log in and resume.</p>
+            <p>Create New Account</p>
 
             <!-- Icon -->
             <div class="fadeIn first">
@@ -16,9 +16,10 @@ include_once 'partials/account-header.php';
 
             <!-- Login Form -->
             <form action="index.php?page=accounts/create" method="POST" class="log-in" autocomplete="off">
-              <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
+              <input type="text" id="name" class="fadeIn second" name="name" placeholder="name">
+              <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">
               <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
-              <input type="submit" class="fadeIn fourth" value="Log In">
+              <input type="submit" class="fadeIn fourth" value="Sign Up">
             </form>
 
             <!-- Remind Passowrd -->

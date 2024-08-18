@@ -10,6 +10,31 @@ if (isset($_GET['id'])) {
 
 $vehicle = catalog_vehicle($id);
 $log->info('vehicle', $vehicle);
+$features = array();
+if ($vehicle['bluetooth'] == 'Yes') {
+	array_push($features, 'bluetooth');
+}
+
+if ($vehicle['bluetooth'] == 'Yes') {
+	array_push($features, 'bluetooth');
+}
+
+if ($vehicle['bluetooth'] == 'Yes') {
+	array_push($features, 'bluetooth');
+}
+
+if ($vehicle['bluetooth'] == 'Yes') {
+	array_push($features, 'bluetooth');
+}
+
+if ($vehicle['bluetooth'] == 'Yes') {
+	array_push($features, 'bluetooth');
+}
+
+if ($vehicle['bluetooth'] == 'Yes') {
+	array_push($features, 'bluetooth');
+}
+
 ?>
 
 <div class="container">

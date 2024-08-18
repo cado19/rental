@@ -1,27 +1,27 @@
 <?php
-     
-    //page name. We set this inn the content start and also in the page title programatically
-    $page = "Drivers";
 
-    // Navbar Links. We set these link in the navbar programatically.
-    $home_link = "index.php?page=drivers/all";
-    $home_link_name = "All Drivers";
+//page name. We set this inn the content start and also in the page title programatically
+$page = "Drivers";
 
-    $new_link = "index.php?page=drivers/new";
-    $new_link_name = "New Driver";
+// Navbar Links. We set these link in the navbar programatically.
+$home_link = "index.php?page=drivers/all";
+$home_link_name = "All Drivers";
 
-    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-    $breadcrumb = "Drivers";
-    $breadcrumb_active= "All Drivers";
+$new_link = "index.php?page=drivers/new";
+$new_link_name = "New Driver";
 
-    include_once 'partials/header.php';
-    include_once 'partials/content_start.php';
+// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+$breadcrumb = "Drivers";
+$breadcrumb_active = "All Drivers";
 
-    // fetch account_id from the account session set in login
-    $account_id = $_SESSION['account']['id'];
+include_once 'partials/header.php';
+include_once 'partials/content_start.php';
 
-    // fetch all the drivers 
-    $drivers = all_drivers();
+// fetch account_id from the account session set in login
+$account_id = $_SESSION['account']['id'];
+
+// fetch all the drivers
+$drivers = all_drivers();
 ?>
 
 <!-- Main Content  -->
@@ -32,8 +32,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        
-                    
+
+
                         <table id="example1" class="table">
                             <thead>
                                 <tr>
@@ -45,15 +45,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php forEach($drivers as $driver): ?>
+                                <?php forEach ($drivers as $driver): ?>
                                     <tr>
-                                        <td><?php echo $driver['first_name'] ?> <?php echo $driver['first_name'] ?> </td>
+                                        <td><?php echo $driver['first_name'] ?> <?php echo $driver['last_name'] ?> </td>
                                         <td> <?php echo $driver['email']; ?> </td>
                                         <td> <?php echo $driver['id_no']; ?> </td>
                                         <td> 254<?php echo $driver['phone_no']; ?> </td>
                                         <td> <a href="index.php?page=drivers/show&id=<?php echo $driver['id']; ?>">Details</a> </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </tbody>
                         </table>
                     </div>

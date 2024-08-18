@@ -441,7 +441,7 @@ function save_driver($first_name, $last_name, $email, $id_number, $dl_number, $t
 		$con->beginTransaction();
 
 		$sql = "INSERT INTO drivers
-				(first_name, last_name, email, id_number, dl_number, tel, date_of_birth)
+				(first_name, last_name, email, id_no, dl_no, phone_no, date_of_birth)
 				VALUES (?,?,?,?,?,?,?)";
 
 		$stmt = $con->prepare($sql);

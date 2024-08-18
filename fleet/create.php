@@ -6,7 +6,6 @@ $bluetooth = $keyless_entry = $reverse_cam = $audio_input = $gps = $android_auto
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// vehicle basics data
-	$account_id = trim($_POST['account_id']);
 	$make = $_POST['make'];
 	$model = $_POST['model'];
 	$number_plate = $_POST['number_plate'];
@@ -68,9 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// insert vehicle basics data
 
-	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train,account_id) VALUES (?,?,?,?,?,?,?,?,?)";
+	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train) VALUES (?,?,?,?,?,?,?,?)";
 	$stmt = $con->prepare($sql);
-	if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $account_id])) {
+	if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train])) {
 		$res = $con->lastInsertId();
 	} else {
 		$res = "Couldn't save vehicle";
@@ -88,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	$sql2 = "INSERT INTO vehicle_extras (vehicle_id,bluetooth,keyless_entry,reverse_cam,audio_input,gps,android_auto,apple_carplay)
-			 VALUES (?,?,?,?,?,?,?,?,)";
+			 VALUES (?,?,?,?,?,?,?,?)";
 	$stmt2 = $con->prepare($sql2);
 	if ($stmt2->execute([$res, $bluetooth, $keyless_entry, $reverse_cam, $audio_input, $gps, $android_auto, $apple_carplay])) {
 		$response = "Success";

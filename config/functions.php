@@ -138,7 +138,7 @@ function unique_email($email) {
 
 	try {
 
-		// $con->BEGIN;
+		$con->beginTransaction();
 
 		$sql = "SELECT id FROM accounts WHERE email = ?";
 		$stmt = $con->prepare($sql);
@@ -149,7 +149,7 @@ function unique_email($email) {
 			$res = "You may proceed";
 		}
 
-		$con->commit;
+		$con->commit();
 	} catch (Exception $e) {
 		$con->rollback();
 	}
@@ -192,8 +192,7 @@ function create_account($name, $email, $password) {
 
 		$sql = "INSERT INTO accounts (name, email, password) VALUES (?,?,?)";
 		$stmt = $con->prepare($sql);
-		$stmt->bind_param("sss", $name, $email, $password);
-		if ($stmt->execute()) {
+		if ($stmt->execute([$name, $email, $password])) {
 			$res = $con->lastInsertId();
 		} else {
 			$res = "No Success";

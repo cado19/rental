@@ -1,62 +1,60 @@
 <?php
-    // THIS PAGE IS WHERE THE CONTRACT WILL BE SIGNED
+// THIS PAGE IS WHERE THE CONTRACT WILL BE SIGNED
 
-    
-    // our database configuration
-    include_once '../db_credentials/credentials.php';
+// our database configuration
+include_once '../../db_credentials/credentials.php';
 
-    // DATABASE DRIVER
-    $DBDRIVER = "mysql"; 
+// DATABASE DRIVER
+$DBDRIVER = "mysql";
 
-    // DATABASE HOST
-    $DBHOST = "localhost"; 
+// DATABASE HOST
+$DBHOST = "localhost";
 
-    // DATABASE USER USERNAME
-    $DBUSER = $DBUSERNAME; 
+// DATABASE USER USERNAME
+$DBUSER = $DBUSERNAME;
 
-    // DATABASE USER PASSWORD
-    $DBPASS = $DBPASSWORD; 
+// DATABASE USER PASSWORD
+$DBPASS = $DBPASSWORD;
 
-    // DATABASE NAME
-    $DBNAME = "kisuzi-rental"; 
+// DATABASE NAME
+$DBNAME = "kisuzi-rental";
 
+try {
+	$con = new PDO("$DBDRIVER:host=$DBHOST;dbname=$DBNAME", $DBUSER, $DBPASS);
+	$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+	echo $e->getMessage();
+}
 
-    try {
-        $con = new PDO("$DBDRIVER:host=$DBHOST;dbname=$DBNAME",$DBUSER,$DBPASS);
-        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
+// get booking id from the url
+$id = "";
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+}
 
-    // get booking id from the url
-    $id = ""; 
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-    }
+// use the id from the url to fetch the contract id for the contract that needs to be signed
+$sql = "SELECT id from contracts WHERE booking_id = ?";
+$stmt = $con->prepare($sql);
+$stmt->execute([$id]);
+$contract_id = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // use the id from the url to fetch the contract id for the contract that needs to be signed 
-    $sql = "SELECT id from contracts WHERE booking_id = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->execute([$id]);
-    $contract_id = $stmt->fetch(PDO::FETCH_ASSOC);
+$new_id = $contract_id['id'];
 
-    $new_id = $contract_id['id'];
-    
-    $path = $_SERVER['DOCUMENT_ROOT'] . "/contracts/update.php";
-    // echo $new_id;
+$path = $_SERVER['DOCUMENT_ROOT'] . "/contracts/update.php";
+// echo $new_id;
 
-    // $log->info($new_id);
-    // $log->warning($id);
+// $log->info($new_id);
+// $log->warning($id);
 ?>
 <!DOCTYPE html>
 <html>
-<head> 
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>The Signature</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <!-- <link rel="stylesheet" href="libs/css/bootstrap.v3.3.6.css"> -->
     <script type="text/javascript" src="../assets/signature.js"></script>
     <style>
@@ -73,7 +71,7 @@
             <div class="col-8">
             <div class="card shadow">
                 <div class="card-header">
-                    <h1 class="card-title">Digital Signature</h1>                    
+                    <h1 class="card-title">Digital Signature</h1>
                 </div>
                 <div class="card-body">
 
@@ -97,7 +95,7 @@
         </div>
         </div>
     </div>
-    
+
 <script>
 var wrapper = document.getElementById("signature-pad");
 var clearButton = wrapper.querySelector("[data-action=clear]");

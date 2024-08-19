@@ -540,7 +540,7 @@ function booking($id) {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT c.first_name, c.last_name, v.model, v.make, v.number_plate, vp.daily_rate, b.start_date, b.end_date, b.total FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id INNER JOIN vehicle_pricing vp ON b.vehicle_id = vp.vehicle_id WHERE b.id = ?";
+		$sql = "SELECT c.first_name, c.last_name, v.model, v.make, v.number_plate, v.drive_train, v.category, v.seats, vp.daily_rate, b.start_date, b.end_date, b.total FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id INNER JOIN vehicle_pricing vp ON b.vehicle_id = vp.vehicle_id WHERE b.id = ?";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$id]);
 		$res = $stmt->fetch();

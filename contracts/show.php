@@ -10,14 +10,14 @@ $log->info('contract:', $contract);
 ?>
     <div class="container">
 		<div class="row d-flex justify-content-between">
-			<div class="logo">Logo goes here</div>
+			<div class="logo"><img src="assets/kizusi-logo.jpg" class="logo-img" alt="Logo"></div>
 
 
 			<div class="contact">
 				<b>Address</b>: KIPRO CENTRE, WESTLANDS NAIROBI, KENYA <br>
-				<b>Tel</b>: 254791369645 <br>
-				<b>Email</b>: info@kisuzismartextext.com <br>
-				<b>Website</b>: https://kisuzi-smartex.com <br>
+				<b>Tel</b>: 2547262390101, 254716281045 254733390101 <br>
+				<b>Email</b>: bookings@kizusismartex.co.ke <br>
+				<b>Website</b>: https://www.kizusiismartex.com <br>
 			</div>
 		</div>
 

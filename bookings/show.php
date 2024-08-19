@@ -1,35 +1,35 @@
 <?php
-    // THIS PAGE WILL SHOW INDIVIDUAL BOOKING'S DETAILS 
+// THIS PAGE WILL SHOW INDIVIDUAL BOOKING'S DETAILS
 
-     //page name. We set this inn the content start and also in the page title programatically
-    $page = "Bookings";
+//page name. We set this inn the content start and also in the page title programatically
+$page = "Bookings";
 
-    // Navbar Links. We set these link in the navbar programatically.
-    $home_link = "index.php?page=bookings/all";
-    $home_link_name = "All Bookings";
+// Navbar Links. We set these link in the navbar programatically.
+$home_link = "index.php?page=bookings/all";
+$home_link_name = "All Bookings";
 
-    $new_link = "index.php?page=bookings/new";
-    $new_link_name = "New Bookings";
+$new_link = "index.php?page=bookings/new";
+$new_link_name = "New Bookings";
 
-    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-    $breadcrumb = "Bookings";
-    $breadcrumb_active= "Booking";
+// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+$breadcrumb = "Bookings";
+$breadcrumb_active = "Booking";
 
-    include_once 'partials/header.php';
-    include_once 'partials/content_start.php';
+include_once 'partials/header.php';
+include_once 'partials/content_start.php';
 
-    // GET BOOKING ID FROM URL 
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-        $booking = booking($id);
-        $log->info('Foo: ', $booking);
-    }
+// GET BOOKING ID FROM URL
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+	$booking = booking($id);
+	$log->info('Foo: ', $booking);
+}
 
-    $start_date = strtotime($booking['start_date']);
-    $end_date = strtotime($booking['end_date']); 
-    $duration = ($end_date - $start_date)/86400;
-    $total = $booking['daily_rate'] * $duration;
-    $log->warning($total);
+$start_date = strtotime($booking['start_date']);
+$end_date = strtotime($booking['end_date']);
+$duration = ($end_date - $start_date) / 86400;
+$total = $booking['daily_rate'] * $duration;
+$log->warning($total);
 ?>
 <section class="content">
     <div class="container-fluid">
@@ -85,8 +85,8 @@
                                       </div>
                                       <!-- /.user-block -->
                                       <p>
-                                        The [car name] is a [drive train] [vehicle category] loved by many. It can carry [seats]
-                                        people. The hire rate is [daily rate].
+                                        The <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> is a <?php echo $booking['drive_train']; ?> <?php echo $booking['category']; ?> loved by many. It can carry <?php echo $booking['seats']; ?>
+                                        people. The hire rate is <?php echo number_format($booking['daily_rate']); ?>.
                                       </p>
 
                                       <p>
@@ -101,14 +101,14 @@
                         </div>
                         <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
                           <h3 class="text-primary"><i class="fas fa-paint-brush"></i> Contract Details</h3>
-                          <p class="text-muted">This is the contract between The renter and [client name]. The current state of the contract is [contract state(signed/unsigned)].</p>
+                          <p class="text-muted">This is the contract between The renter and <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?>. The current state of the contract is [contract state(signed/unsigned)].</p>
                           <br>
                           <div class="text-muted">
                             <p class="text-sm">Company Name
-                              <b class="d-block">[Our Company Name]</b>
+                              <b class="d-block">Kizusi Rentals</b>
                             </p>
                             <p class="text-sm">Client
-                              <b class="d-block">[Client Name]</b>
+                              <b class="d-block"><?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?></b>
                             </p>
                           </div>
 
@@ -121,18 +121,13 @@
                               <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
                             </li>
                             <li>
-                              <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> Email-from-flatbal.mln</a>
+                              <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> bookings@kizusismartex.co.ke</a>
                             </li>
-                            <li>
-                              <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i> Logo.png</a>
-                            </li>
-                            <li>
-                              <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Contract-10_12_2014.docx</a>
                             </li>
                           </ul>
                           <div class="text-center mt-5 mb-3">
                             <a href="index.php?page=contracts/edit&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">Sign Contract</a>
-                            <a href="index.php?page=contracts/show&id=<?php echo $id; ?>" class="btn btn-sm btn-warning">Show contact</a>
+                            <a href="index.php?page=contracts/show&id=<?php echo $id; ?>" class="btn btn-sm btn-warning" target="_blank">Show contact</a>
                           </div>
                         </div>
                     </div>

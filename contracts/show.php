@@ -5,6 +5,7 @@ if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 }
 $contract = contract($id);
+$created = strtotime($contract['created_at']);
 $log->info('contract:', $contract);
 
 ?>
@@ -262,7 +263,7 @@ $log->info('contract:', $contract);
 					<td class="contract-td"><b>HIRER SIGNATURE</b></td>
 				</tr>
 				<tr>
-					<td class="contract-td"><b><?php echo date("l jS \of F Y", $contract['created_at']) ?></b></td>
+					<td class="contract-td"><b><?php echo date("l jS \of F Y", $created); ?></b></td>
 					<td class="contract-td"><img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img"></td>
 				</tr>
 			</table>
@@ -288,7 +289,7 @@ $log->info('contract:', $contract);
 					<td class="contract-td"><b>CAR HIRE COMPANY REPRESENTATIVE</b></td>
 				</tr>
 				<tr>
-					<td class="contract-td"><b><?php echo date("l jS \of F Y", $contract['created_at']) ?></b></td>
+					<td class="contract-td"><b><?php echo date("l jS \of F Y", $created); ?></b></td>
 					<td class="contract-td"><b><img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img"></b></td>
 					<td class="contract-td"><b>SIMON KIBE</b></td>
 				</tr>

@@ -36,7 +36,7 @@ $log->info('bookings', $bookings);
                     <!-- small box -->
                     <div class="small-box bg-info">
                       <div class="inner">
-                        <h3><?php echo $vehicle_count['number_of_cars']; ?></h3>
+                        <h3><?php echo number_format($vehicle_count['number_of_cars']); ?></h3>
 
                         <p>Total Vehicles</p>
                       </div>
@@ -52,7 +52,7 @@ $log->info('bookings', $bookings);
                     <!-- small box -->
                     <div class="small-box bg-warning">
                       <div class="inner">
-                        <h3><?php echo $customer_count['number_of_customers']; ?></h3>
+                        <h3><?php echo number_format($customer_count['number_of_customers']); ?></h3>
 
                         <p>Your customers</p>
                       </div>
@@ -68,7 +68,7 @@ $log->info('bookings', $bookings);
                     <!-- small box -->
                     <div class="small-box bg-success">
                       <div class="inner">
-                        <h3><?php echo $active_bookings['number_of_bookings']; ?></h3>
+                        <h3><?php echo number_format($active_bookings['number_of_bookings']); ?></h3>
 
                         <p>Your bookings</p>
                       </div>

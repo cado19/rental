@@ -2,7 +2,7 @@
 // THIS PAGE IS WHERE THE CONTRACT WILL BE SIGNED
 
 // our database configuration
-include_once '../../db_credentials/credentials.php';
+include_once '../db_credentials/credentials.php';
 
 // DATABASE DRIVER
 $DBDRIVER = "mysql";

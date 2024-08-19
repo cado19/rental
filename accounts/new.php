@@ -17,9 +17,9 @@ include_once 'partials/account-header.php';
 
             <!-- Login Form -->
             <form action="index.php?page=accounts/create" method="POST" class="log-in" autocomplete="off">
-              <input type="text" id="name" class="fadeIn second" name="name" placeholder="name">
-              <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">
-              <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+              <input type="text" id="name" class="fadeIn second" name="name" placeholder="name" required>
+              <input type="text" id="login" class="fadeIn second" name="email" placeholder="email" required>
+              <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required>
               <input type="submit" class="fadeIn fourth" value="Sign Up">
             </form>
 

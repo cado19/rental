@@ -17,8 +17,8 @@ include_once 'partials/account-header.php';
 
             <!-- Login Form -->
             <form action="index.php?page=accounts/update" method="POST" class="log-in" autocomplete="off">
-              <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
-              <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+              <input type="text" id="login" class="fadeIn second" name="email" placeholder="login" required>
+              <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required>
               <input type="submit" class="fadeIn fourth" value="Submit">
             </form>
 

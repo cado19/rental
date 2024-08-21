@@ -278,6 +278,57 @@ function get_customer($id) {
 	return $res;
 }
 
+// check whether a customer exists with the given email
+function unique_customer_email($email) {
+	global $con;
+	global $res;
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT id FROM customer_details WHERE email = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute();
+		if ($stmt->rowCount() == 1) {
+			$res = "Email taken";
+		} else {
+			$res = "You may proceed";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// create customer account through self sign up
+function create_customer_account($name, $email, $password) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "INSERT INTO customer_details (name, email, password) VALUES (?,?,?)";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$name, $email, $password])) {
+			$res = $con->lastInsertId();
+		} else {
+			$res = "No Success";
+		}
+
+		$con->commit();
+	} catch (\Throwable $th) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// save customer when created from admin section
 function save_customer($first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth) {
 	global $con;
 	global $res;
@@ -288,11 +339,56 @@ function save_customer($first_name, $last_name, $email, $id_type, $id_number, $t
 
 		$sql = "INSERT INTO customer_details (first_name, last_name, email, id_type, phone_no, id_no, residential_address, work_address, date_of_birth) VALUES (?,?,?,?,?,?,?,?,?)";
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth])) {
+		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $tel, $id_number, $residential_address, $work_address, $date_of_birth])) {
 			$res = "Success";
 		} else {
 			$res = "Uncsuccessful";
 		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// update customer
+function update_customer($first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id) {
+	global $con;
+	global $res;
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "UPDATE customer_details SET first_name = ?, last_name = ?, email = ?, id_type = ?, id_no = ?, phone_no = ?, residential_address = ?, work_address = ?, date_of_birth = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id])) {
+			$res = "Success";
+		} else {
+			$res = "Unsuccessful";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function login_customer($id) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+		$sql = "SELECT first_name, last_name, phone_no, email, date_of_birth, dl_no, dl_expiration, id_no, residential_address,
+				work_address, id_image, profile_image, license_image FROM customer_details WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$id]);
+		$res = $stmt->fetch();
 
 		$con->commit();
 	} catch (Exception $e) {

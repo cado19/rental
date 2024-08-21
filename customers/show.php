@@ -65,6 +65,7 @@ if (isset($_GET['id'])) {
                     </ul>
 
                     <a href="index.php?page=customers/profile_form&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile Picture</b></a>
+                    <a href="index.php?page=customers/edit&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
                   </div>
                   <!-- /.card-body -->
                 </div>

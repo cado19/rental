@@ -24,6 +24,11 @@ if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$driver = get_driver($id);
 	$log->info('Foo: ', $driver);
+	exit;
+} else {
+	$msg = "Couldn't fetch user";
+	header("Location: index.php?page=customers/all&msg=$msg");
+	exit;
 }
 
 ?>

@@ -512,6 +512,7 @@ function update_daily_rate($id, $rate) {
 }
 
 //   ******************* */ DRIVER FUNCTIONS ******************* */
+// get all driver records
 function all_drivers() {
 	global $con;
 	global $drivers;
@@ -533,6 +534,7 @@ function all_drivers() {
 	return $drivers;
 }
 
+// get single driver record
 function get_driver($id) {
 	global $con;
 	global $res;
@@ -553,6 +555,7 @@ function get_driver($id) {
 	return $res;
 }
 
+// save driver into the database
 function save_driver($first_name, $last_name, $email, $id_number, $dl_number, $tel, $date_of_birth) {
 	global $con;
 	global $res;
@@ -580,6 +583,7 @@ function save_driver($first_name, $last_name, $email, $id_number, $dl_number, $t
 	return $res;
 }
 
+// update driver record
 function update_driver($first_name, $last_name, $email, $id_number, $dl_number, $tel, $date_of_birth, $id) {
 	global $con;
 	global $res;

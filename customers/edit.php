@@ -2,7 +2,7 @@
 // THIS FILE CONTAINS THE FORM FOR CREATING A NEW CUSTOMER
 
 //page name. We set this inn the content start and also in the page title programatically
-$page = "New Client";
+$page = "Editing Client";
 
 // Navbar Links. We set these link in the navbar programatically.
 $home_link = "index.php?page=customers/all";
@@ -23,6 +23,9 @@ if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$customer = get_customer($id);
 	$log->info('Foo: ', $customer);
+} else {
+	$error = "An error occured";
+	header("Location: index.php?page=customers/all&msg=$error");
 }
 
 $account_id = $_SESSION['account']['id'];
@@ -41,7 +44,11 @@ $account_id = $_SESSION['account']['id'];
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="first_name">First Name</label>
-                                        <input type="text" name="first_name" value="<?php echo $customer['first_name']; ?>" placeholder="eg: Michelle" class="form-control form-control-border" required>
+                                        <input type="text" name="first_name" value="<?php echo $customer['first_name']; ?>" placeholder="eg: Michelle" class="form-control form-control-border">
+                                        <?php if (isset($_GET['first_name_err'])): ?>
+                                            <p class="text-danger"><?php echo $_GET['first_name_err']; ?></p>
+                                        <?php endif;?>
+
                                     </div>
                                 </div>
 
@@ -49,6 +56,9 @@ $account_id = $_SESSION['account']['id'];
                                     <div class="form-group">
                                         <label for="last_name">Last Name</label>
                                         <input type="text" name="last_name" value="<?php echo $customer['last_name']; ?>" placeholder="eg: Ngele" class="form-control form-control-border" required>
+                                        <?php if (isset($_GET['last_name_err'])): ?>
+                                            <p class="text-danger"><?php echo $_GET['last_name_err']; ?></p>
+                                        <?php endif;?>
                                     </div>
                                 </div>
 
@@ -58,6 +68,9 @@ $account_id = $_SESSION['account']['id'];
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" name="email" value="<?php echo $customer['email']; ?>" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['email_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['email_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
@@ -68,11 +81,17 @@ $account_id = $_SESSION['account']['id'];
                                         <option value="passport"> Passport </option>
                                         <option value="military_id"> Military ID </option>
                                 </select>
+                                <?php if (isset($_GET['id_type_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['id_type_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
                                 <label for="id">Id Number</label>
                                 <input type="text" name="id_number" value="<?php echo $customer['id_no']; ?>" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['id_no_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['id_no_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
@@ -82,17 +101,26 @@ $account_id = $_SESSION['account']['id'];
                                         <span class="input-group-text">+254</span>
                                     </div>
                                     <input type="text" name="tel" placeholder="without '0'" value="<?php echo $customer['phone_no']; ?>" class="form-control form-control-border" required>
+                                    <?php if (isset($_GET['tel_err'])): ?>
+                                        <p class="text-danger"><?php echo $_GET['tel_err']; ?></p>
+                                    <?php endif;?>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="residential_address">Residential Address</label>
                                 <input type="text" name="residential_address" value="<?php echo $customer['residential_address']; ?>" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['residential_address_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['residential_address_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
                                 <label for="work_address">Work Address</label>
                                 <input type="text" name="work_address" value="<?php echo $customer['work_address']; ?>" class="form-control form-control-border">
+                                <?php if (isset($_GET['work_address_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['work_address_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
@@ -102,6 +130,9 @@ $account_id = $_SESSION['account']['id'];
                                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
+                                    <?php if (isset($_GET['date_of_birth_err'])): ?>
+                                        <p class="text-danger"><?php echo $_GET['date_of_birth_err']; ?></p>
+                                    <?php endif;?>
                                 </div>
                             </div>
 

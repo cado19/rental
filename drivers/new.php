@@ -14,6 +14,7 @@ $breadcrumb_active = "New Driver";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
+
 $account_id = $_SESSION['account']['id'];
 ?>
 
@@ -32,12 +33,18 @@ $account_id = $_SESSION['account']['id'];
                                         <div class="form-group">
                                             <label for="first_name">First Name</label>
                                             <input type="text" name="first_name" placeholder="eg: Michelle" class="form-control form-control-border"  required>
+                                            <?php if (isset($_GET['first_name_err'])): ?>
+                                                <p class="text-danger"><?php echo $_GET['first_name_err']; ?></p>
+                                            <?php endif;?>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="last_name">Last Name</label>
                                             <input type="text" name="last_name" placeholder="eg: Ngele" class="form-control form-control-border"  required>
+                                            <?php if (isset($_GET['last_name_err'])): ?>
+                                                <p class="text-danger"><?php echo $_GET['last_name_err']; ?></p>
+                                            <?php endif;?>
                                         </div>
                                     </div>
 
@@ -47,16 +54,25 @@ $account_id = $_SESSION['account']['id'];
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" name="email" class="form-control form-control-border"  required>
+                                    <?php if (isset($_GET['email_err'])): ?>
+                                        <p class="text-danger"><?php echo $_GET['email_err']; ?></p>
+                                    <?php endif;?>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="id">Id Number</label>
                                     <input type="text" name="id_number" class="form-control form-control-border"  required>
+                                    <?php if (isset($_GET['id_no_err'])): ?>
+                                        <p class="text-danger"><?php echo $_GET['id_no_err']; ?></p>
+                                    <?php endif;?>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="dl">Driver's License Number</label>
                                     <input type="text" name="dl_number" class="form-control form-control-border"  required>
+                                    <?php if (isset($_GET['dl_number_err'])): ?>
+                                        <p class="text-danger"><?php echo $_GET['dl_number_err']; ?></p>
+                                    <?php endif;?>
                                 </div>
 
                                 <div class="form-group">
@@ -66,6 +82,9 @@ $account_id = $_SESSION['account']['id'];
                                             <span class="input-group-text">+254</span>
                                         </div>
                                         <input type="text" name="tel" class="form-control form-control-border" placeholder="without '0'" required>
+                                        <?php if (isset($_GET['tel_err'])): ?>
+                                            <p class="text-danger"><?php echo $_GET['tel_err']; ?></p>
+                                        <?php endif;?>
                                     </div>
                                 </div>
 
@@ -77,6 +96,9 @@ $account_id = $_SESSION['account']['id'];
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>
+                                    <?php if (isset($_GET['date_of_birth_err'])): ?>
+                                        <p class="text-danger"><?php echo $_GET['date_of_birth_err']; ?></p>
+                                    <?php endif;?>
                                 </div>
 
                                 <div class="form-group">

@@ -1,6 +1,44 @@
 <?php
 $first_name = $last_name = $email = $id_number = $dl_number = $tel = $date_of_birth = $msg = '';
+$first_name_err = $last_name_err = $email_err = $id_number_err = $dl_number_err = $tel_err = $date_of_birth_err = $msg = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	//VALIDATIONS
+	if (empty($_POST['first_name'])) {
+		$first_name_err = "Required";
+		header("Location: index.php?page=drivers/edit&id=$id&first_name_err=$first_name_err");
+		exit;
+	}
+	if (empty($_POST['last_name'])) {
+		$last_name_err = "Required";
+		header("Location: index.php?page=drivers/edit&id=$id&last_name_err=$last_name_err");
+		exit;
+	}
+	if (empty($_POST['email'])) {
+		$email_err = "Required";
+		header("Location: index.php?page=drivers/edit&id=$id&email_err=$email_err");
+		exit;
+	}
+
+	if (empty($_POST['id_number'])) {
+		$id_number_err = "Required";
+		header("Location: index.php?page=drivers/edit&id=$id&id_number_err=$id_number_err");
+		exit;
+	}
+	if (empty($_POST['dl_number'])) {
+		$dl_number_err = "Required";
+		header("Location: index.php?page=drivers/edit&id=$id&dl_number_err=$dl_number_err");
+		exit;
+	}
+	if (empty($_POST['tel'])) {
+		$tel_err = "Required";
+		header("Location: index.php?page=drivers/edit&id=$id&tel_err=$tel_err");
+	}
+
+	if (empty($_POST['date_of_birth'])) {
+		$date_of_birth_err = "Required";
+		header("Location: index.php?page=drivers/edit&id=$id&date_of_birth_err=$date_of_birth_err");
+		exit;
+	}
 
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
@@ -14,9 +52,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	$result = save_driver($first_name, $last_name, $email, $id_number, $dl_number, $tel, $date_of_birth);
 
-	$log->info($result);
+	if ($result == "Success") {
+		$msg = "Successfully added driver";
+		header("Location: index.php?page=drivers/all&msg=$msg");
+		exit;
+	} else {
+		$msg = "An error occured. Please try again later";
+		header("Location: index.php?page=drivers/all&msg=$msg");
+		exit;
+	}
 
-	header("Location: index.php?page=drivers/all&msg=$result");
+	// $log->info($result);
+
 }
 
 ?>

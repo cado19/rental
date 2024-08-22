@@ -1,8 +1,12 @@
 <?php
 // THIS SCRIPT WILL HANDLE THE NEW CUSTOMER FORM PROCESSING
 
-$first_name = $last_name = $email = $id_type = $tel = $residential_address = $work_address = $date_of_birth = $account_id = '';
+$first_name = $last_name = $email = $id_type = $id_number = $tel = $residential_address = $work_address = $date_of_birth = '';
+$first_name_err = $last_name_err = $email_err = $id_type_err = $id_number_err = $tel_err = $residential_address_err = $work_address_err = $date_of_birth_err = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$id = $_POST['id'];
+
 	//VALIDATIONS
 	if (empty($_POST['first_name'])) {
 		$first_name_err = "Required";
@@ -62,16 +66,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// $details = [$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id];
 	// $log->warning('client:',$details);
 
-	$result = save_customer($first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth);
-
+	$result = update_customer($first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id);
 	if ($result == "Success") {
-		$msg = "Successfully created customers";
+		$msg = "Successfully updated customer's details";
 		header("Location: index.php?page=customers/all&msg=$msg");
 	} else {
-		$msg = "An error occured";
+		$msg = "An error occured. Try again";
 		header("Location: index.php?page=customers/all&msg=$msg");
 	}
+
 	// $log->info($result);
+
 }
 
 ?>
+

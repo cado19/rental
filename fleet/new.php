@@ -36,6 +36,9 @@ $account_id = $_SESSION['account']['id'];
                                     <div class="form-group">
                                         <label for="make">Make</label>
                                         <input type="text" name="make" placeholder="eg: Toyota" class="form-control form-control-border" required>
+                                        <?php if (isset($_GET['make_err'])): ?>
+                                            <p class="text-danger"><?php echo $_GET['make_err']; ?></p>
+                                        <?php endif;?>
                                     </div>
                                 </div>
 
@@ -43,6 +46,9 @@ $account_id = $_SESSION['account']['id'];
                                     <div class="form-group">
                                         <label for="model">Model</label>
                                         <input type="text" name="model" placeholder="eg: Land Cruiser" class="form-control form-control-border" required>
+                                        <?php if (isset($_GET['model_err'])): ?>
+                                            <p class="text-danger"><?php echo $_GET['model_err']; ?></p>
+                                        <?php endif;?>
                                     </div>
                                 </div>
 
@@ -51,6 +57,9 @@ $account_id = $_SESSION['account']['id'];
                             <div class="form-group">
                                 <label for="email">Number Plate</label>
                                 <input type="text" name="number_plate" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['number_plate_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['number_plate_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
@@ -64,6 +73,9 @@ $account_id = $_SESSION['account']['id'];
                                         <option value="Safari"> Safari </option>
                                         <option value="Luxury"> Luxury </option>
                                 </select>
+                                <?php if (isset($_GET['category_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['category_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
@@ -73,6 +85,9 @@ $account_id = $_SESSION['account']['id'];
                                         <option value="Automatic"> Automatic </option>
                                         <option value="Manual"> Manual </option>
                                 </select>
+                                <?php if (isset($_GET['transmission_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['transmission_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
@@ -83,6 +98,9 @@ $account_id = $_SESSION['account']['id'];
                                         <option value="Diesel"> Diesel </option>
                                         <option value="Hybrid"> Hybrid </option>
                                 </select>
+                                <?php if (isset($_GET['fuel_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['fuel_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
@@ -92,11 +110,17 @@ $account_id = $_SESSION['account']['id'];
                                         <option value="2WD"> 2WD </option>
                                         <option value="4WD"> 4WD </option>
                                 </select>
+                                <?php if (isset($_GET['drive_train_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['drive_train_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
                                 <label for="seats">Seats</label>
                                 <input type="text" name="seats" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['seats_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['seats_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                           </div>
@@ -111,20 +135,28 @@ $account_id = $_SESSION['account']['id'];
                            </div>
                         </div>
                         <div class="card-body">
-                            Lorem ipsum..
                             <div class="form-group">
                                 <label for="daily_rate">Daily Rate</label>
                                 <input type="text" name="daily_rate" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['daily_rate_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['daily_rate_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
                                 <label for="vehicle_excess">Vehicle Excess</label>
                                 <input type="text" name="vehicle_excess" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['vehicle_excess_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['vehicle_excess_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">
                                 <label for="deposit">Refundable Security Deposit</label>
                                 <input type="text" name="deposit" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['deposit_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['deposit_err']; ?></p>
+                                <?php endif;?>
                             </div>
 
                         </div>

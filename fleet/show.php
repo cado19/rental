@@ -22,6 +22,9 @@ if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$vehicle = get_vehicle($id);
 	$log->info('Foo: ', $vehicle);
+} else {
+	$msg = "Couldn't fetch fetch vehicle";
+	header("Location: index.php?page=fleet/all&msg=$msg");
 }
 
 ?>
@@ -62,6 +65,7 @@ if (isset($_GET['id'])) {
                                 <li><i class="fa fa-check text-success"></i><?php echo $vehicle['category']; ?></li>
                                 <li><i class="fa fa-check text-success"></i><?php echo $vehicle['drive_train']; ?></li>
                             </ul>
+                            <a href="index.php?page=fleet/edit&id=<?php echo $id; ?>" class="btn btn-dark btn-rounded">Edit Vehicle</a>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <h3 class="box-title mt-5">General Info</h3>
@@ -86,7 +90,7 @@ if (isset($_GET['id'])) {
                                         </tr>
                                         <tr>
                                             <td>Deposit</td>
-                                            <td>Contemporary&amp;Modern</td>
+                                            <td><?php echo number_format($vehicle['refundable_security_deposit']); ?>/-</td>
                                         </tr>
                                         <tr>
                                             <td>Vehicle Excess</td>

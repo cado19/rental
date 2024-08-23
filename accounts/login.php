@@ -22,8 +22,8 @@ if (isset($_SESSION['account'])) {
 
             <!-- Login Form -->
             <form action="index.php?page=accounts/signin" method="POST" class="log-in" autocomplete="off">
-              <input type="text" id="login" class="fadeIn second" name="email" placeholder="login" required>
-              <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required>
+              <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email" required>
+              <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password" required>
               <input type="submit" class="fadeIn fourth" value="Log In">
             </form>
 
@@ -34,5 +34,3 @@ if (isset($_SESSION['account'])) {
 
           </div>
         </div>
-</body>
-</html>

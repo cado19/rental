@@ -64,6 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// $log->info($result);
 
+} else {
+	$msg = "Unauthorized activity";
+	session_start();
+	session_destroy();
+	header("Location: index.php?msg=$msg");
+	exit;
 }
 
 ?>

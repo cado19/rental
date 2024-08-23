@@ -44,5 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	// }
 
 	// SIGNATURE UPLOAD
+} else {
+	$msg = "Unauthorized activity";
+	session_start();
+	session_destroy();
+	header("Location: index.php?msg=$msg");
+	exit;
 }
 ?>

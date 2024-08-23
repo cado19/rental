@@ -23,4 +23,14 @@ work_address, id_image, profile_image, license_image FROM customer_details WHERE
 -- UPDATE CUSTOMER SQL 
 UPDATE customer_details SET first_name = ?, last_name = ?, email = ?, id_type = ?, id_no = ?, phone_no = ?, residential_address = ?, work_address = ?, date_of_birth = ? WHERE id = ?
 
+-- UPDATE VEHICLE BASICS SQL 
+UPDATE vehicle_basics SET make = ?,model = ?,number_plate = ?,category = ?,transmission = ?,fuel = ?,seats = ?,drive_train = ? WHERE id = ?;
+
+-- UPDATE VEHICLE PRICING 
+UPDATE vehicle_pricing SET  daily_rate = ?, vehicle_excess = ?, refundable_security_deposit = ? WHERE vehicle_id = ?;
+
+-- UPDATE VEHICLE EXTRAS 
+UPDATE vehicle_extras SET bluetooth = ?,keyless_entry = ?,reverse_cam = ?,audio_input = ?,gps = ?,android_auto = ?,apple_carplay = ? WHERE vehicle_id = ?;
+
+
 

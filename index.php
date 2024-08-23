@@ -1,17 +1,17 @@
 <?php
-    include_once "config/functions.php";
-    include_once "config/logger.php";
-    // include 'partials/header.php';
+include_once "config/functions.php";
+include_once "config/logger.php";
+// include 'partials/header.php';
 
-  
+// Page is set to home (home.php) by default, so when the visitor visits, that will be the page they see.
 
-    // Page is set to home (home.php) by default, so when the visitor visits, that will be the page they see.
+$page = isset($_GET['page']) && file_exists($_GET['page'] . '.php') ? $_GET['page'] : 'home';
 
-	$page = isset($_GET['page']) && file_exists($_GET['page'] . '.php') ? $_GET['page'] : 'home';
+// Include and show the requested page
+include $page . '.php';
 
-	// Include and show the requested page
-	include $page . '.php';
+if ($page != "accounts/login") {
+	include_once "partials/footer.php";
+}
 
-    include_once "partials/footer.php";
-    
 ?>

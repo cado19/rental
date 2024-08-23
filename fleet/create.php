@@ -1,9 +1,77 @@
 <?php
 include_once 'config/db_conn.php';
-$make = $model = $number_plate = $category = $transmission = $fuel = $seats = $account_id = $res = $response = '';
+$make = $model = $number_plate = $category = $transmission = $fuel = $seats = $daily_rate = $vehicle_excess = $deposit = '';
 $bluetooth = $keyless_entry = $reverse_cam = $audio_input = $gps = $android_auto = $apple_carplay = 'No';
 
+$make_err = $model_err = $number_plate_err = $categor_erry = $transmission_err = $fuel_err = $seats_err = $daily_rate_err = $vehicle_excess_err = $deposit_err = '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	//VALIDATIONS
+	if (empty($_POST['make'])) {
+		$make_err = "Required";
+		header("Location: index.php?page=fleet/new&make=$make_err");
+		exit;
+	}
+	if (empty($_POST['model'])) {
+		$model_err = "Required";
+		header("Location: index.php?page=fleet/new&model_err=$model_err");
+		exit;
+	}
+	if (empty($_POST['number_plate'])) {
+		$number_plate_err = "Required";
+		header("Location: index.php?page=fleet/new&$number_plate_err=$number_plate_err");
+		exit;
+	}
+
+	if (empty($_POST['category'])) {
+		$category_err = "Required";
+		header("Location: index.php?page=fleet/new&category_err=$category_err");
+		exit;
+	}
+	if (empty($_POST['transmission'])) {
+		$transmission_err = "Required";
+		header("Location: index.php?page=fleet/new&transmission_err=$transmission_err");
+		exit;
+	}
+	if (empty($_POST['fuel'])) {
+		$fuel_err = "Required";
+		header("Location: index.php?page=fleet/new&fuel_err=$fuel_err");
+	}
+
+	if (empty($_POST['seats'])) {
+		$seats_err = "Required";
+		header("Location: index.php?page=fleet/new&seats_err=$seats_err");
+		exit;
+	}
+	if (empty($_POST['daily_rate'])) {
+		$daily_rate_err = "Required";
+		header("Location: index.php?page=fleet/new&daily_rate_err=$daily_rate_err");
+		exit;
+	} elseif (($_POST['daily_rate']) <= 0) {
+		$daily_rate_err = "Must be greater than 0";
+		header("Location: index.php?page=fleet/new&daily_rate_err=$daily_rate_err");
+		exit;
+	}
+
+	if (empty($_POST['vehicle_excess'])) {
+		$vehicle_excess_err = "Required";
+		header("Location: index.php?page=fleet/new&vehicle_excess_err=$vehicle_excess_err");
+		exit;
+	} elseif (($_POST['vehicle_excess']) <= 0) {
+		$vehicle_excess_err = "Must be greater than 0";
+		header("Location: index.php?page=fleet/new&vehicle_excess_err=$daily_rate_err");
+		exit;
+	}
+
+	if (empty($_POST['deposit'])) {
+		$deposit_err = "Required";
+		header("Location: index.php?page=fleet/new&deposit_err=$deposit_err");
+		exit;
+	} elseif (($_POST['deposit']) <= 0) {
+		$deposit_err = "Must be greater than 0";
+		header("Location: index.php?page=fleet/new&deposit_err=$deposit_err");
+		exit;
+	}
 
 	// vehicle basics data
 	$make = $_POST['make'];
@@ -17,8 +85,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// vehicle pricing data
 	$daily_rate = $_POST['daily_rate'];
+	// remove commas from daily_rate
+	$daily_rate = intval(preg_replace('/[^\d.]/', '', $daily_rate));
+
 	$vehicle_excess = $_POST['vehicle_excess'];
+	// remove commas from vehicle_excess
+	$vehicle_excess = intval(preg_replace('/[^\d.]/', '', $vehicle_excess));
+
 	$deposit = $_POST['deposit'];
+	// remove commas from deposit
+	$deposit = intval(preg_replace('/[^\d.]/', '', $deposit));
 
 	// vehicle extras
 	if (isset($_POST['bluetooth'])) {
@@ -73,6 +149,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$res = $con->lastInsertId();
 	} else {
 		$res = "Couldn't save vehicle";
+		header("Location: index.php?page=fleet/all&msg=$res");
+		exit;
 	}
 
 	// insert vehicle pricing data
@@ -84,6 +162,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$result = "Success";
 	} else {
 		$result = "Failed";
+		header("Location: index.php?page=fleet/all&msg=$result");
+		exit;
 	}
 
 	$sql2 = "INSERT INTO vehicle_extras (vehicle_id,bluetooth,keyless_entry,reverse_cam,audio_input,gps,android_auto,apple_carplay)
@@ -91,11 +171,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$stmt2 = $con->prepare($sql2);
 	if ($stmt2->execute([$res, $bluetooth, $keyless_entry, $reverse_cam, $audio_input, $gps, $android_auto, $apple_carplay])) {
 		$response = "Success";
+		header("Location: index.php?page=fleet/all&msg=$response");
+		exit;
 	} else {
 		$response = "Failed";
+		header("Location: index.php?page=fleet/all&msg=$response");
+		exit;
 	}
-	$log->warning($response);
 
-	header("Location: index.php?page=fleet/all&msg=$response");
+	// $log->warning($response);
+
+	// header("Location: index.php?page=fleet/all&msg=$response");
+} else {
+	$msg = "Unauthorized activity";
+	session_start();
+	session_destroy();
+	header("Location: index.php?msg=$msg");
+	exit;
 }
 ?>

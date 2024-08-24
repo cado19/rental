@@ -1,26 +1,25 @@
 <?php
-    //page name. We set this inn the content start and also in the page title programatically
-    $page = "Bookings";
+//page name. We set this inn the content start and also in the page title programatically
+$page = "Bookings";
 
-    // Navbar Links. We set these link in the navbar programatically.
-    $home_link = "index.php?page=bookings/all";
-    $home_link_name = "All Bookings";
+// Navbar Links. We set these link in the navbar programatically.
+$home_link = "index.php?page=bookings/all";
+$home_link_name = "All Bookings";
 
-    $new_link = "index.php?page=bookings/new";
-    $new_link_name = "New Bookings";
+$new_link = "index.php?page=bookings/new";
+$new_link_name = "New Bookings";
 
-    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-    $breadcrumb = "Bookings";
-    $breadcrumb_active= "All Bookings";
+// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+$breadcrumb = "Bookings";
+$breadcrumb_active = "All Bookings";
 
-    include_once 'partials/header.php';
-    include_once 'partials/content_start.php';
+include_once 'partials/header.php';
+include_once 'partials/content_start.php';
 
-    include_once 'partials/header.php';
-    include_once 'partials/content_start.php'; 
-    $account_id = $_SESSION['account']['id'];
-    $bookings = bookings($account_id);
-
+include_once 'partials/header.php';
+include_once 'partials/content_start.php';
+$account_id = $_SESSION['account']['id'];
+$bookings = bookings($account_id);
 
 ?>
 
@@ -32,7 +31,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        
+
                         <table id="example1" class="table">
                             <thead>
                                 <tr>
@@ -45,26 +44,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php forEach($bookings as $booking): ?>
+                                <?php forEach ($bookings as $booking): ?>
                                     <tr>
-                                        <td> <?php echo $booking['first_name'];?> <?php echo $booking['last_name']; ?> </td>
+                                        <td> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </td>
                                         <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
                                         <td> <?php echo $booking['number_plate']; ?> </td>
-                                        <td> 
+                                        <td>
                                             <?php
-                                                $start = strtotime($booking['start_date']);
-                                                echo date("l jS \of F Y", $start); 
-                                            ?> 
+$start = strtotime($booking['start_date']);
+echo date("l jS \of F Y", $start);
+?>
                                         </td>
-                                        <td> 
+                                        <td>
                                             <?php
-                                                $end = strtotime($booking['end_date']);
-                                                echo date("l jS \of F Y", $end); 
-                                            ?> 
+$end = strtotime($booking['end_date']);
+echo date("l jS \of F Y", $end);
+?>
                                         </td>
                                         <td> <a href="index.php?page=bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </tbody>
                         </table>
                     </div>
@@ -73,3 +72,5 @@
         </div>
     </div>
 </section>
+
+<?php include_once "partials/footer.php";?>

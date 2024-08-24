@@ -1,28 +1,28 @@
 <?php
-    // THIS FILE IS THE FORM FOR CREATING A NEW BOOKING
+// THIS FILE IS THE FORM FOR CREATING A NEW BOOKING
 
 //page name. We set this inn the content start and also in the page title programatically
-    $page = "New booking";
+$page = "New booking";
 
-    // Navbar Links. We set these link in the navbar programatically.
-    $home_link = "index.php?page=bookings/all";
-    $home_link_name = "All Bookings";
+// Navbar Links. We set these link in the navbar programatically.
+$home_link = "index.php?page=bookings/all";
+$home_link_name = "All Bookings";
 
-    $new_link = "index.php?page=bookings/new";
-    $new_link_name = "New Bookings";
+$new_link = "index.php?page=bookings/new";
+$new_link_name = "New Bookings";
 
-    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-    $breadcrumb = "Bookings";
-    $breadcrumb_active= "All Bookings";
-  
-    include_once 'partials/header.php';
-    include_once 'partials/content_start.php';
-    $account_id = $_SESSION['account']['id'];
+// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+$breadcrumb = "Bookings";
+$breadcrumb_active = "All Bookings";
 
-    $vehicles = booking_vehicles();
-    $customers = booking_customers();
-    $drivers = booking_drivers();
-    $log->info('customers', $customers);
+include_once 'partials/header.php';
+include_once 'partials/content_start.php';
+$account_id = $_SESSION['account']['id'];
+
+$vehicles = booking_vehicles();
+$customers = booking_customers();
+$drivers = booking_drivers();
+$log->info('customers', $customers);
 ?>
 
 <section class="content">
@@ -36,28 +36,28 @@
                             <div class="form-group">
                                 <label for="vehicle_id">Vehicle</label>
                                 <select name="vehicle_id"  class="form-control form-control-border">
-                                    <?php foreach($vehicles as $vehicle): ?>
-                                        <option value="<?php echo $vehicle['id']; ?>"> <?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?> <?php echo $vehicle['number_plate'];?>
+                                    <?php foreach ($vehicles as $vehicle): ?>
+                                        <option value="<?php echo $vehicle['id']; ?>"> <?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?> <?php echo $vehicle['number_plate']; ?>
                                         </option>
-                                    <?php endforeach; ?>
+                                    <?php endforeach;?>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="customer_id">Customer</label>
                                 <select name="customer_id" class="form-control form-control-border">
-                                    <?php foreach($customers as $customer): ?>
+                                    <?php foreach ($customers as $customer): ?>
                                         <option value="<?php echo $customer['id']; ?>"> <?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?> </option>
-                                    <?php endforeach; ?>
+                                    <?php endforeach;?>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="driver_id">Driver</label>
                                 <select name="driver_id" class="form-control form-control-border">
-                                    <?php foreach($drivers as $driver): ?>
+                                    <?php foreach ($drivers as $driver): ?>
                                         <option value="<?php echo $driver['id']; ?>"> <?php echo $driver['first_name']; ?> <?php echo $driver['last_name']; ?> </option>
-                                    <?php endforeach; ?>
+                                    <?php endforeach;?>
                                 </select>
                             </div>
                             <div class="row">
@@ -83,7 +83,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                  
+
                                 </div>
 
                             </div>
@@ -99,3 +99,4 @@
         </div>
     </div>
 </section>
+<?php include_once "partials/footer.php";?>

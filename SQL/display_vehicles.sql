@@ -12,3 +12,12 @@ CHANGE COLUMN `availability` `availability` VARCHAR(45) NULL DEFAULT 'Free' ;
 
 ALTER TABLE `kisuzi-rental`.`vehicle_extras` 
 ADD COLUMN `sunroof` VARCHAR(11) NULL DEFAULT 'No' AFTER `apple_carplay`;
+
+ALTER TABLE `kisuzi-rental`.`vehicle_extras` 
+CHANGE COLUMN `bluetooth` `bluetooth` VARCHAR(11) NULL DEFAULT 'No' ,
+CHANGE COLUMN `keyless_entry` `keyless_entry` VARCHAR(11) NULL DEFAULT 'No' ,
+CHANGE COLUMN `reverse_cam` `reverse_cam` VARCHAR(11) NULL DEFAULT 'No' ,
+CHANGE COLUMN `audio_input` `audio_input` VARCHAR(11) NULL DEFAULT 'No' ,
+CHANGE COLUMN `gps` `gps` VARCHAR(11) NULL DEFAULT 'No' ,
+CHANGE COLUMN `android_auto` `android_auto` VARCHAR(11) NULL DEFAULT 'No' ,
+CHANGE COLUMN `apple_carplay` `apple_carplay` VARCHAR(11) NULL DEFAULT 'No' ;

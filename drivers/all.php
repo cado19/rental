@@ -63,3 +63,4 @@ $drivers = all_drivers();
         </div>
     </div>
 </section>
+<?php include_once "partials/footer.php";?>

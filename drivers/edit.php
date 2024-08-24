@@ -124,3 +124,4 @@ if (isset($_GET['id'])) {
     </div>
 </section>
 
+<?php include_once "partials/footer.php";?>

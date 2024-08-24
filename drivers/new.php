@@ -112,3 +112,4 @@ $account_id = $_SESSION['account']['id'];
         </div>
     </div>
 </section>
+<?php include_once "partials/footer.php";?>

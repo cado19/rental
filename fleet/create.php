@@ -43,6 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		header("Location: index.php?page=fleet/new&seats_err=$seats_err");
 		exit;
 	}
+
+	if (empty($_POST['colour'])) {
+		$colour_err = "Required";
+		header("Location: index.php?page=fleet/new&colour_err=$colour_err");
+		exit;
+	}
+
 	if (empty($_POST['daily_rate'])) {
 		$daily_rate_err = "Required";
 		header("Location: index.php?page=fleet/new&daily_rate_err=$daily_rate_err");
@@ -82,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$fuel = $_POST['fuel'];
 	$seats = $_POST['seats'];
 	$drive_train = $_POST['drive_train'];
+	$colour = $_POST['colour'];
 
 	// vehicle pricing data
 	$daily_rate = $_POST['daily_rate'];
@@ -124,6 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['apple_carplay'])) {
 		$apple_carplay = $_POST['apple_carplay'];
 	}
+	if (isset($_POST['sunroof'])) {
+		$sunroof = $_POST['sunroof'];
+	}
 
 	$post = [
 		'make' => $make,
@@ -143,9 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// insert vehicle basics data
 
-	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train) VALUES (?,?,?,?,?,?,?,?)";
+	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train,colour) VALUES (?,?,?,?,?,?,?,?,?)";
 	$stmt = $con->prepare($sql);
-	if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train])) {
+	if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $colour])) {
 		$res = $con->lastInsertId();
 	} else {
 		$res = "Couldn't save vehicle";
@@ -166,10 +177,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
-	$sql2 = "INSERT INTO vehicle_extras (vehicle_id,bluetooth,keyless_entry,reverse_cam,audio_input,gps,android_auto,apple_carplay)
+	$sql2 = "INSERT INTO vehicle_extras (vehicle_id,bluetooth,keyless_entry,reverse_cam,audio_input,gps,android_auto,apple_carplay,sunroof)
 			 VALUES (?,?,?,?,?,?,?,?)";
 	$stmt2 = $con->prepare($sql2);
-	if ($stmt2->execute([$res, $bluetooth, $keyless_entry, $reverse_cam, $audio_input, $gps, $android_auto, $apple_carplay])) {
+	if ($stmt2->execute([$res, $bluetooth, $keyless_entry, $reverse_cam, $audio_input, $gps, $android_auto, $apple_carplay, $sunroof])) {
 		$response = "Success";
 		header("Location: index.php?page=fleet/all&msg=$response");
 		exit;

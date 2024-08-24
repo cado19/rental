@@ -51,6 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			header("Location: index.php?page=fleet/edit&id=$id&seats_err=$seats_err");
 			exit;
 		}
+
+		if (empty($_POST['colour'])) {
+			$colour_err = "Required";
+			header("Location: index.php?page=fleet/edit&id=$id&colour_err=$colour_err");
+			exit;
+		}
+
 		if (empty($_POST['daily_rate'])) {
 			$daily_rate_err = "Required";
 			header("Location: index.php?page=fleet/edit&id=$id&daily_rate_err=$daily_rate_err");

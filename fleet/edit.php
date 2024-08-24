@@ -133,6 +133,14 @@ if (isset($_GET['id'])) {
                                 <?php endif;?>
                             </div>
 
+                            <div class="form-group">
+                                <label for="seats">Colour</label>
+                                <input type="text" value="<?php echo $vehicle['colour']; ?>" name="colour" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['colour_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['colour_err']; ?></p>
+                                <?php endif;?>
+                            </div>
+
                           </div>
                     </div>
 
@@ -180,6 +188,15 @@ if (isset($_GET['id'])) {
                            </div>
                         </div>
                         <div class="card-body">
+                            <div class="form-group">
+                                <label for="bluetooth">Sunroof</label>
+                                <select name="sunroof" class="form-control form-control-border">
+                                    <option value="<?php echo $vehicle['sunroof']; ?>">--Please choose an option--</option>
+                                    <option value="Yes"> Yes </option>
+                                    <option value="No"> No </option>
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label for="bluetooth">Bluetooth</label>
                                 <select name="bluetooth" class="form-control form-control-border">

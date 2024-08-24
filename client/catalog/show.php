@@ -11,28 +11,33 @@ if (isset($_GET['id'])) {
 $vehicle = catalog_vehicle($id);
 $log->info('vehicle', $vehicle);
 $features = array();
-if ($vehicle['bluetooth'] == 'Yes') {
-	array_push($features, 'bluetooth');
-}
 
 if ($vehicle['bluetooth'] == 'Yes') {
 	array_push($features, 'bluetooth');
 }
 
-if ($vehicle['bluetooth'] == 'Yes') {
-	array_push($features, 'bluetooth');
+if ($vehicle['keyless_entry'] == 'Yes') {
+	array_push($features, 'keyless_entry');
 }
 
-if ($vehicle['bluetooth'] == 'Yes') {
-	array_push($features, 'bluetooth');
+if ($vehicle['reverse_cam'] == 'Yes') {
+	array_push($features, 'reverse_cam');
 }
 
-if ($vehicle['bluetooth'] == 'Yes') {
-	array_push($features, 'bluetooth');
+if ($vehicle['audio_input'] == 'Yes') {
+	array_push($features, 'audio_input');
 }
 
-if ($vehicle['bluetooth'] == 'Yes') {
-	array_push($features, 'bluetooth');
+if ($vehicle['gps'] == 'Yes') {
+	array_push($features, 'gps');
+}
+
+if ($vehicle['android_auto'] == 'Yes') {
+	array_push($features, 'android_auto');
+}
+
+if ($vehicle['apple_carplay'] == 'Yes') {
+	array_push($features, 'apple_carplay');
 }
 
 ?>
@@ -52,22 +57,17 @@ if ($vehicle['bluetooth'] == 'Yes') {
                 <p class="mb-0"><b>Daily Rate:</b> <?php echo number_format($vehicle['daily_rate']); ?>/-</p>
             </div><!-- / project-info-box -->
 
-            <div class="project-info-box mt-0 mb-0">
-                <p class="mb-0">
-                    <span class="fw-bold mr-10 va-middle hide-mobile">Share:</span>
-                    <a href="#x" class="btn btn-xs btn-facebook btn-circle btn-icon mr-5 mb-0"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#x" class="btn btn-xs btn-twitter btn-circle btn-icon mr-5 mb-0"><i class="fab fa-twitter"></i></a>
-                    <a href="#x" class="btn btn-xs btn-pinterest btn-circle btn-icon mr-5 mb-0"><i class="fab fa-pinterest"></i></a>
-                    <a href="#x" class="btn btn-xs btn-linkedin btn-circle btn-icon mr-5 mb-0"><i class="fab fa-linkedin-in"></i></a>
-                </p>
-            </div><!-- / project-info-box -->
         </div><!-- / column -->
 
         <div class="col-md-7">
             <img src="https://www.bootdey.com/image/400x300/FFB6C1/000000" alt="project-image" class="rounded">
             <div class="project-info-box">
-                <p><b>Categories:</b> Design, Illustration</p>
-                <p><b>Skills:</b> Illustrator</p>
+                <p>
+                    <b>Features:</b>
+                    <?php forEach ($features as $feature): ?>
+                        <?php echo $feature . ", "; ?>
+                    <?php endforeach;?>
+                </p>
             </div><!-- / project-info-box -->
         </div><!-- / column -->
     </div>

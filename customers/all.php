@@ -1,31 +1,31 @@
 <?php
-    // THIS FILE DISPLAYS ALL THE CUSTOMERS 
-    
-    //page name. We set this inn the content start and also in the page title programatically
-    $page = "Customers";
+// THIS FILE DISPLAYS ALL THE CUSTOMERS
 
-    // Navbar Links. We set these link in the navbar programatically.
-    $home_link = "index.php?page=customers/all";
-    $home_link_name = "All Clients";
+//page name. We set this inn the content start and also in the page title programatically
+$page = "Customers";
 
-    $new_link = "index.php?page=customers/new";
-    $new_link_name = "New Client";
+// Navbar Links. We set these link in the navbar programatically.
+$home_link = "index.php?page=customers/all";
+$home_link_name = "All Clients";
 
-    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-    $breadcrumb = "Clients";
-    $breadcrumb_active= "All Clients";
+$new_link = "index.php?page=customers/new";
+$new_link_name = "New Client";
 
-    // File Inclusions
-    include_once 'partials/header.php';
-    include_once 'partials/content_start.php';
+// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+$breadcrumb = "Clients";
+$breadcrumb_active = "All Clients";
 
-    $account_id = $_SESSION['account']['id'];
+// File Inclusions
+include_once 'partials/header.php';
+include_once 'partials/content_start.php';
 
-    //Fetch all customers
-    $customers = all_customers();
+$account_id = $_SESSION['account']['id'];
 
-    // Log customers for testing purposes
-    $log->info('customers:',$customers);
+//Fetch all customers
+$customers = all_customers();
+
+// Log customers for testing purposes
+$log->info('customers:', $customers);
 ?>
 
 
@@ -35,7 +35,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        
+
                     </div>
                     <div class="card-body">
                         <table id="example1" class="table">
@@ -49,7 +49,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php forEach($customers as $customer): ?>
+                                <?php forEach ($customers as $customer): ?>
                                     <tr>
                                         <td> <?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?> </td>
                                         <td> <?php echo $customer['email']; ?> </td>
@@ -57,7 +57,7 @@
                                         <td> 254<?php echo $customer['phone_no']; ?> </td>
                                         <td> <a href="index.php?page=customers/show&id=<?php echo $customer['id']; ?>">Details</a> </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </tbody>
                         </table>
                     </div>
@@ -67,4 +67,4 @@
     </div>
 </section>
 
-
+<?php include_once "partials/footer.php";?>

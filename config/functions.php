@@ -589,14 +589,15 @@ function delete_vehicle($id) {
 function all_drivers() {
 	global $con;
 	global $drivers;
+	$status = "false";
 
 	try {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM drivers";
+		$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM drivers WHERE deleted = ?";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$status]);
 		$drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$con->commit();
@@ -670,6 +671,31 @@ function update_driver($first_name, $last_name, $email, $id_number, $dl_number, 
 			$res = "Success";
 		} else {
 			$res = "Uncsuccessful";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// function to delete a driver
+function delete_driver($id) {
+	global $con;
+	global $res;
+	$status = "true";
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "UPDATE drivers SET deleted = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$status, $id])) {
+			$res = "Deleted";
+		} else {
+			$res = "Failed to delete";
 		}
 
 		$con->commit();

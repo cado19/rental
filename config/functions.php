@@ -264,14 +264,15 @@ function login() {
 function all_customers() {
 	global $con;
 	global $res;
+	$status = "false";
 
 	try {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM customer_details";
+		$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM customer_details WHERE deleted = ?";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$status]);
 		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$con->commit();
@@ -413,6 +414,31 @@ function login_customer($id) {
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$id]);
 		$res = $stmt->fetch();
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// function to delete a customer
+function delete_customer($id) {
+	global $con;
+	global $res;
+	$status = "true";
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "UPDATE customer_details SET deleted = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$status, $id])) {
+			$res = "Deleted";
+		} else {
+			$res = "Failed to delete";
+		}
 
 		$con->commit();
 	} catch (Exception $e) {
@@ -781,14 +807,15 @@ function update_booking($total, $id) {
 function booking_vehicles() {
 	global $con;
 	global $bk_vehicles;
+	$status = "false";
 
 	try {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT id, make, model, number_plate FROM vehicle_basics ORDER BY id DESC";
+		$sql = "SELECT id, make, model, number_plate FROM vehicle_basics WHERE deleted = ? ORDER BY id DESC";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$status]);
 		$bk_vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$con->commit();
@@ -803,14 +830,15 @@ function booking_vehicles() {
 function booking_customers() {
 	global $con;
 	global $bk_customers;
+	$status = "false";
 
 	try {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT id, first_name, last_name FROM customer_details ORDER BY id DESC";
+		$sql = "SELECT id, first_name, last_name FROM customer_details WHERE deleted = ? ORDER BY id DESC";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$status]);
 		$bk_customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$con->commit();
@@ -825,14 +853,15 @@ function booking_customers() {
 function booking_drivers() {
 	global $con;
 	global $bk_drivers;
+	$status = "false";
 
 	try {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT id, first_name, last_name FROM drivers ORDER BY id DESC";
+		$sql = "SELECT id, first_name, last_name FROM drivers WHERE deleted = ? ORDER BY id DESC";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$status]);
 		$bk_drivers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$con->commit();

@@ -147,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		'daily_rate' => $daily_rate,
 		'vehicle_excess' => $vehicle_excess,
 		'drive_train' => $drive_train,
-		'account_id' => $account_id,
 	];
 
 	$log->info('foo:', $post);
@@ -178,10 +177,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	$sql2 = "INSERT INTO vehicle_extras (vehicle_id,bluetooth,keyless_entry,reverse_cam,audio_input,gps,android_auto,apple_carplay,sunroof)
-			 VALUES (?,?,?,?,?,?,?,?)";
+			 VALUES (?,?,?,?,?,?,?,?,?)";
 	$stmt2 = $con->prepare($sql2);
 	if ($stmt2->execute([$res, $bluetooth, $keyless_entry, $reverse_cam, $audio_input, $gps, $android_auto, $apple_carplay, $sunroof])) {
-		$response = "Success";
+		$response = "Successfully created vehicle";
 		header("Location: index.php?page=fleet/all&msg=$response");
 		exit;
 	} else {

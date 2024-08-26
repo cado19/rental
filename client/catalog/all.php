@@ -1,12 +1,16 @@
 <?php
+$page = "Catalog";
+
 include_once 'partials/client-header.php';
+include_once 'partials/client-nav.php';
+
 $vehicles = catalog_vehicles();
 $log->info('vehicles', $vehicles);
 ?>
 
 <div class="container">
 
-    <div class="row">
+    <div class="row mt-3">
     	<?php foreach ($vehicles as $vehicle): ?>
 
         <div class="col-md-3">

@@ -90,6 +90,15 @@ booking
 	end_date
   created_at
 
+booking_request
+  id
+  vehicle_id
+  customer_id
+  start_date
+  end_date
+  seen
+  created_at
+
 contract
   id
   booking_id
@@ -262,6 +271,16 @@ CREATE TABLE `kisuzi-rental`.`contracts`(
   `account_id` INT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`));
+
+CREATE TABLE `kisuzi-rental`.`client_requests` (
+  `id` INT NOT NULL,
+  `customer_id` VARCHAR(11) NULL,
+  `vehicle_id` VARCHAR(11) NULL,
+  `start_date` DATE NULL,
+  `end_date` DATE NULL,
+  `seen` VARCHAR(11) NULL DEFAULT 'No',
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`));
 
 
 

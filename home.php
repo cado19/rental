@@ -43,7 +43,7 @@ $log->info('bookings', $bookings);
                       <div class="icon">
                         <i class="ion ion-android-car"></i>
                       </div>
-                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                      <a href="index.php?page=fleet/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                   <!-- ./col -->
@@ -59,7 +59,7 @@ $log->info('bookings', $bookings);
                       <div class="icon">
                         <i class="ion ion-person-add"></i>
                       </div>
-                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                      <a href="index.php?page=customers/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                   <!-- ./col -->
@@ -75,7 +75,7 @@ $log->info('bookings', $bookings);
                       <div class="icon">
                         <i class="ion-android-list"></i>
                       </div>
-                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                      <a href="index.php?page=bookings/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                   <!-- ./col -->
@@ -144,4 +144,4 @@ echo date("l jS \of F Y", $end);
       <!-- End of Main Content  -->
 
 
-
+<?php include_once "partials/footer.php";?>

@@ -11,8 +11,10 @@ if (isset($_SESSION['account'])) {
         <div class="wrapper fadeInDown">
           <div id="formContent">
             <!-- Tabs Titles -->
-            <h4>We are <span>Kisuzi Rental</span></h4>
-            <p>Welcome back! Log in and resume.</p>
+            <div class="titles">
+              <h4>We are <span>Kizusi Rental</span></h4>
+              <p>Welcome back! Log in and resume.</p>
+            </div>
 
             <!-- Icon -->
             <div class="fadeIn first">

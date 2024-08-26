@@ -21,3 +21,9 @@ CHANGE COLUMN `audio_input` `audio_input` VARCHAR(11) NULL DEFAULT 'No' ,
 CHANGE COLUMN `gps` `gps` VARCHAR(11) NULL DEFAULT 'No' ,
 CHANGE COLUMN `android_auto` `android_auto` VARCHAR(11) NULL DEFAULT 'No' ,
 CHANGE COLUMN `apple_carplay` `apple_carplay` VARCHAR(11) NULL DEFAULT 'No' ;
+
+ALTER TABLE `kisuzi-rental`.`customer_details` 
+ADD COLUMN `password` VARCHAR(255) NULL AFTER `email`;
+
+ALTER TABLE `kisuzi-rental`.`customer_details` 
+ADD COLUMN `self_registered` VARCHAR(45) NULL DEFAULT 'No' AFTER `license_image`;

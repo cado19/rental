@@ -1,3 +1,7 @@
+<?php
+$page = "Login";
+include_once 'partials/client-header.php';
+?>
 <div class="container h-100">
     <div class="row h-100">
         <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">

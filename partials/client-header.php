@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="assets/client.css">
 
 
-	<title>Document</title>
+	<title>Rental | <?php echo $page; ?></title>
 </head>
 <body>
 

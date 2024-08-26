@@ -88,6 +88,30 @@ function home_bookings() {
 
 //   ******************* */ CLIENT FUNCTIONS ******************* */
 
+// fetch client for login
+function fetch_client($email) {
+	global $con;
+	global $client;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "SELECT * FROM customer_details WHERE email = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->rowCount() == 1) {
+			$res = stmt->fetch();
+		} else {
+			$res = "No such person";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
 // get all vehicles for catalog
 function catalog_vehicles() {
 	global $con;

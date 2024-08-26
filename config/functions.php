@@ -427,14 +427,38 @@ function login_customer($id) {
 function all_vehicles() {
 	global $con;
 	global $vehicles;
+	$status = "false";
 
 	try {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id";
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id AND vb.deleted = ?";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$status]);
+		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $vehicles;
+}
+
+// function to get deleted vehicles
+function deleted_vehicles() {
+	global $con;
+	global $vehicles;
+	$status = "true";
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id AND vb.deleted = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$status]);
 		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$con->commit();
@@ -525,6 +549,31 @@ function update_daily_rate($id, $rate) {
 			$res = "Success";
 		} else {
 			$res = "Uncsuccessful";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// function to delete a vehicle
+function delete_vehicle($id) {
+	global $con;
+	global $res;
+	$status = "true";
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "UPDATE vehicle_basics SET deleted = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$status, $id])) {
+			$res = "Deleted";
+		} else {
+			$res = "Failed to delete";
 		}
 
 		$con->commit();

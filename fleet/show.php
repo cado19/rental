@@ -134,7 +134,7 @@ if (isset($_GET['id'])) {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <a href="index.php?page=fleet/delete&id=<?php echo $id; ?>" class="btn btn-ouline-danger">Delete</a>
+                                <a href="index.php?page=fleet/delete&id=<?php echo $id; ?>" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                     </div>

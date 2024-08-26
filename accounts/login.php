@@ -11,8 +11,8 @@ if (isset($_SESSION['account'])) {
         <div class="wrapper fadeInDown">
           <div id="formContent">
             <!-- Tabs Titles -->
-            <div class="titles">
-              <h4>We are <span>Kizusi Rental</span></h4>
+            <div class="titles mt-3">
+              <h4>We are <span>Kizusi Smartex</span></h4>
               <p>Welcome back! Log in and resume.</p>
             </div>
 
@@ -25,7 +25,7 @@ if (isset($_SESSION['account'])) {
             <!-- Login Form -->
             <form action="index.php?page=accounts/signin" method="POST" class="log-in" autocomplete="off">
               <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email" required>
-              <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password" required>
+              <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
               <input type="submit" class="fadeIn fourth" value="Log In">
             </form>
 

@@ -448,6 +448,76 @@ function delete_customer($id) {
 	return $res;
 }
 
+// this function sets blacklist field to true in customer_details table
+function blacklist_customer($id) {
+	global $con;
+	global $res;
+	$status = "true";
+
+	try {
+		$con->beginTransaction();
+		$sql = "UPDATE customer_details SET blacklisted = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$status, $id])) {
+			$res = "Success";
+		} else {
+			$res = "Failed";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function blacklist_reason($id, $reason) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+		$sql = "INSERT INTO blacklist (customer_id, reason) VALUES (?,?)";
+		$stmt = $con->prepare($sql);
+		$res = $stmt->execute([$id, $reason]);
+		// if ($stmt->execute([$id, $reason])) {
+		// 	$res = "Success";
+		// } else {
+		// 	$res = "Failed";
+		// }
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function blacklisted_customers() {
+	global $con;
+	global $res;
+	$status = "true";
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM customer_details WHERE blacklisted = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$status]);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+//   ******************* */ END CUSTOMER FUNCTIONS ******************* */
+
 //   ******************* */ VEHICLE FUNCTIONS ******************* */
 
 function all_vehicles() {
@@ -1013,13 +1083,8 @@ function booking_from_contract($id) {
 
 //   ******************* */ DISPLAY FUNCTIONS ******************* */
 // display images such as profile pictures and id images
-function display_image($directory, $image) {
-	global $path;
-	if (isset($image)) {
-		$path = "<img src=$directory/$image>";
-	} else {
-		$path = "<img src=$directory/avatar.jpg>";
-	}
-	return $path;
+function capitalize_first($string) {
+	$res = ucfirst($string);
+	return $res;
 }
 ?>

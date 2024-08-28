@@ -9,7 +9,8 @@
     <!-- ChartJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
 
-
+<!-- SummerNote Js -->
+<script src="assets/summernote.min.js"></script>
 
   <!-- Sweet Alert -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.4/sweetalert2.min.js" integrity="sha512-w4LAuDSf1hC+8OvGX+CKTcXpW4rQdfmdD8prHuprvKv3MPhXH9LonXX9N2y1WEl2u3ZuUSumlNYHOlxkS/XEHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -25,8 +26,6 @@
 
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" ></script>
-
-
 
 <!-- overlayScrollbars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.10.0/browser/overlayscrollbars.browser.es6.min.js"></script>
@@ -64,6 +63,22 @@ if (isset($_GET['msg'])) {
                     toast: true,
                     position: 'top-end',
                     icon: 'success',
+                    title: '$msg',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            })
+        </script>
+    ";
+} elseif (isset($_GET['err_msg'])) {
+	$msg = $_GET['err_msg'];
+	echo "
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
                     title: '$msg',
                     showConfirmButton: false,
                     timer: 3000

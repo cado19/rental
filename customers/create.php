@@ -49,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		exit;
 	}
 
-	$first_name = $_POST['first_name'];
-	$last_name = $_POST['last_name'];
+	$first_name = ucfirst($_POST['first_name']);
+	$last_name = ucfirst($_POST['last_name']);
 	$email = $_POST['email'];
 	$id_type = $_POST['id_type'];
 	$id_number = $_POST['id_number'];

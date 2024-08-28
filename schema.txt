@@ -282,6 +282,13 @@ CREATE TABLE `kisuzi-rental`.`client_requests` (
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
 
+CREATE TABLE `kisuzi-rental`.`blacklist` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `customer_id` INT NULL,
+  `reason` LONGTEXT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+  PRIMARY KEY (`id`));
+
 
 
 ALTER TABLE `kisuzi-rental`.`bookings` 

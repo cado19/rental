@@ -1,8 +1,8 @@
 <?php
-// THIS FILE DISPLAYS ALL THE CUSTOMERS
+// THIS FILE DISPLAYS ALL THE BLACKLISTED CUSTOMERS
 
 //page name. We set this inn the content start and also in the page title programatically
-$page = "Customers";
+$page = "Blacklist Customers";
 
 // Navbar Links. We set these link in the navbar programatically.
 $home_link = "index.php?page=customers/all";
@@ -25,7 +25,7 @@ include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
 
 //Fetch all customers
-$customers = all_customers();
+$customers = blacklisted_customers();
 
 // Log customers for testing purposes
 $log->info('customers:', $customers);

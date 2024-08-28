@@ -2,7 +2,7 @@
 // THIS FILE WILL DISPLAY AN INDIVIDUAL CUSTOMER
 
 //page name. We set this inn the content start and also in the page title programatically
-$page = "Customers";
+$page = "Showing Client";
 
 // Navbar Links. We set these link in the navbar programatically.
 $home_link = "index.php?page=customers/all";
@@ -66,7 +66,8 @@ if (isset($_GET['id'])) {
 
                     <a href="index.php?page=customers/profile_form&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile Picture</b></a>
                     <a href="index.php?page=customers/edit&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
-                    <a href="index.php?page=customers/delete&id=<?php echo $id; ?>" class="btn btn-danger btn-block">Delete Vehicle</a>
+                    <a href="index.php?page=customers/delete&id=<?php echo $id; ?>" class="btn btn-danger btn-block">Delete Client</a>
+                    <a href="index.php?page=customers/blacklist_form&id=<?php echo $id; ?>" class="btn btn-warning btn-block">Blacklist Client</a>
                   </div>
                   <!-- /.card-body -->
                 </div>

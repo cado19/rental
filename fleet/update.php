@@ -89,8 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 		// vehicle basics data
-		$make = $_POST['make'];
-		$model = $_POST['model'];
+		$make = ucfirst($_POST['make']);
+		$model = ucfirst($_POST['model']);
 		$number_plate = $_POST['number_plate'];
 		$category = $_POST['category'];
 		$transmission = $_POST['transmission'];
@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$res = $con->lastInsertId();
 		} else {
 			$res = "Couldn't update vehicle";
-			header("Location: index.php?page=fleet/all&msg=$res");
+			header("Location: index.php?page=fleet/all&err_msg=$res");
 			exit;
 		}
 
@@ -192,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$result = "Success";
 		} else {
 			$result = "Failed";
-			header("Location: index.php?page=fleet/all&msg=$result");
+			header("Location: index.php?page=fleet/all&err_msg=$result");
 			exit;
 		}
 
@@ -204,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			exit;
 		} else {
 			$response = "Failed";
-			header("Location: index.php?page=fleet/all&msg=$response");
+			header("Location: index.php?page=fleet/all&err_msg=$response");
 			exit;
 		}
 	}

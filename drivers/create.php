@@ -1,4 +1,5 @@
 <?php
+// THIS FILE WILL HANDLE SAVING OF DRIVER INTO THE DB
 $first_name = $last_name = $email = $id_number = $dl_number = $tel = $date_of_birth = $msg = '';
 $first_name_err = $last_name_err = $email_err = $id_number_err = $dl_number_err = $tel_err = $date_of_birth_err = $msg = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -40,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		exit;
 	}
 
-	$first_name = $_POST['first_name'];
-	$last_name = $_POST['last_name'];
+	$first_name = ucfirst($_POST['first_name']);
+	$last_name = ucfirst($_POST['last_name']);
 	$email = $_POST['email'];
 	$id_number = $_POST['id_number'];
 	$dl_number = $_POST['dl_number'];
@@ -58,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		exit;
 	} else {
 		$msg = "An error occured. Please try again later";
-		header("Location: index.php?page=drivers/all&msg=$msg");
+		header("Location: index.php?page=drivers/all&err_msg=$msg");
 		exit;
 	}
 
@@ -68,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$msg = "Unauthorized activity";
 	session_start();
 	session_destroy();
-	header("Location: index.php?msg=$msg");
+	header("Location: index.php?err_msg=$msg");
 	exit;
 }
 

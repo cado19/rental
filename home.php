@@ -5,7 +5,7 @@
 $page = "Customers";
 
 // Navbar Links. We set these link in the navbar programatically.
-$home_link = "index.php?";
+$home_link = "index.php";
 $home_link_name = "Home";
 
 $new_link = "index.php";

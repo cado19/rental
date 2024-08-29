@@ -69,14 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location: index.php?page=customers/all&msg=$msg");
 	} else {
 		$msg = "An error occured";
-		header("Location: index.php?page=customers/all&msg=$msg");
+		header("Location: index.php?page=customers/all&err_msg=$msg");
 	}
 	// $log->info($result);
 } else {
 	$msg = "Unauthorized activity";
 	session_start();
 	session_destroy();
-	header("Location: index.php?msg=$msg");
+	header("Location: index.php?err_msg=$msg");
 	exit;
 }
 

@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
 	$log->info('Foo: ', $driver);
 } else {
 	$msg = "Couldn't fetch user";
-	header("Location: index.php?page=customers/all&msg=$msg");
+	header("Location: index.php?page=customers/all&err_msg=$msg");
 	exit;
 }
 ?>

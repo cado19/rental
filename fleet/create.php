@@ -81,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	// vehicle basics data
-	$make = $_POST['make'];
-	$model = $_POST['model'];
+	$make = ucfirst($_POST['make']);
+	$model = ucfirst($_POST['model']);
 	$number_plate = $_POST['number_plate'];
 	$category = $_POST['category'];
 	$transmission = $_POST['transmission'];

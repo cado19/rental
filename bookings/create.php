@@ -23,6 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	// GET THE DURATION (TOTAL NUMBER OF DAYS OF THE BOOKING)
 	$duration = ($end_date - $start_date) / 86400;
 
+	// VALIDATION TO MAKE SURE BOOKING IS GREATER THAN OR EQUAL TO 3 DAYS
+	if ($duration < 3) {
+		$end_date_err = "Rental duration must be atleast 3 days";
+		header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
+	}
+
 	// GET THE TOTAL PRICE OF THE BOOKING BY MULTIPLYING THE DURATION WITH THE DAILY RATE OF THE VEHICLE
 	$total = $booking['daily_rate'] * $duration;
 
@@ -35,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//REDIRECT TO THE CONTRACT PAGE SO THAT A SIGNATURE CAN BE UPLOADED IF IT IS AVAILABLE
 	$msg = "Booking created";
 
-	header("Location: index.php?page=contracts/edit&id=" . $result);
+	header("Location: index.php?page=contracts/edit&id=$result&msg=$msg");
 
 	// if ($result == "Successfully created contract") {
 	// } else {

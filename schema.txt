@@ -289,6 +289,13 @@ CREATE TABLE `kisuzi-rental`.`blacklist` (
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`));
 
+CREATE TABLE `kisuzi-rental`.`partners` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`name` VARCHAR(150) NULL,
+`email` VARCHAR(100) NULL,
+`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`));
+
 
 
 ALTER TABLE `kisuzi-rental`.`bookings` 

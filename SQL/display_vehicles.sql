@@ -30,3 +30,6 @@ ADD COLUMN `self_registered` VARCHAR(45) NULL DEFAULT 'No' AFTER `license_image`
 
 ALTER TABLE `kisuzi-rental`.`drivers` 
 ADD COLUMN `deleted` VARCHAR(11) NULL DEFAULT 'false' AFTER `license_image`;
+
+ALTER TABLE `kisuzi-rental`.`vehicle_basics` 
+ADD COLUMN `partner_vehicle` VARCHAR(11) NULL DEFAULT 'No' AFTER `catalog_display`;

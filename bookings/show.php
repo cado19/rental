@@ -2,7 +2,7 @@
 // THIS PAGE WILL SHOW INDIVIDUAL BOOKING'S DETAILS
 
 //page name. We set this inn the content start and also in the page title programatically
-$page = "Bookings";
+$page = "Booking Details";
 
 // Navbar Links. We set these link in the navbar programatically.
 $home_link = "index.php?page=bookings/all";
@@ -89,9 +89,11 @@ $log->warning($total);
                                         people. The hire rate is <?php echo number_format($booking['daily_rate']); ?>.
                                       </p>
 
-                                      <p>
-                                        <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 1 v2</a>
-                                      </p>
+                                      <?php if ($booking['status'] == "upcoming"): ?>
+                                        <p>
+                                          <a href="#" class="link-black text-sm"><i class="fa fa-link mr-1"></i>Assign </a>
+                                        </p>
+                                      <?php endif;?>
                                     </div>
 
 

@@ -9,19 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$end_date = $_POST['end_date'];
 
 	$posts = array($v_id, $c_id, $d_id, $start_date, $end_date);
-
-	// INSERT BOOKING DATA INTO THE DATABASE
-
-	$result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date);
-
-	//GET BOOKING USING LAST INSERT ID
-	$booking = booking($result);
-
-	$start_date = strtotime($booking['start_date']);
-	$end_date = strtotime($booking['end_date']);
-
+	$log->info('Posts:', $posts);
 	// GET THE DURATION (TOTAL NUMBER OF DAYS OF THE BOOKING)
-	$duration = ($end_date - $start_date) / 86400;
+	$start_date_time = strtotime($_POST['start_date']);
+	$end_date_time = strtotime($_POST['end_date']);
+	$duration = ($end_date_time - $start_date_time) / 86400;
 
 	// VALIDATION TO MAKE SURE BOOKING IS GREATER THAN OR EQUAL TO 3 DAYS
 	if ($duration < 3) {
@@ -29,28 +21,30 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
 		exit;
 	}
+	// INSERT BOOKING DATA INTO THE DATABASE
 
-	// GET THE TOTAL PRICE OF THE BOOKING BY MULTIPLYING THE DURATION WITH THE DAILY RATE OF THE VEHICLE
-	$total = $booking['daily_rate'] * $duration;
+	$result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date);
+		if ($result == "No Success") {
+		$err = "An error occured. Try again later";
+		header("Location: index.php?page=bookings/new&err_msg=$err");
+		exit;
+	} else {
+		//GET BOOKING USING LAST INSERT ID
+		$booking = booking($result);
 
-	// UPDATE THE TOTAL PRICE
-	$total = update_booking($total, $result);
+		// GET THE TOTAL PRICE OF THE BOOKING BY MULTIPLYING THE DURATION WITH THE DAILY RATE OF THE VEHICLE
+		$total = $booking['daily_rate'] * $duration;
 
-	// CREATE A CONTRACT WITH THE CURRENT LAST BOOKING ID AS THE REFERENCE ID (THIS JUST MIGHT BE IN THE FUNCTIONS FILE)
-	$response = create_contract($result);
+		// UPDATE THE TOTAL PRICE
+		$total = update_booking($total, $result);
 
-	//REDIRECT TO THE CONTRACT PAGE SO THAT A SIGNATURE CAN BE UPLOADED IF IT IS AVAILABLE
-	$msg = "Booking created";
+		// CREATE A CONTRACT WITH THE CURRENT LAST BOOKING ID AS THE REFERENCE ID (THIS JUST MIGHT BE IN THE FUNCTIONS FILE)
+		$response = create_contract($result);
 
-	header("Location: index.php?page=contracts/edit&id=$result&msg=$msg");
+		//REDIRECT TO THE CONTRACT PAGE SO THAT A SIGNATURE CAN BE UPLOADED IF IT IS AVAILABLE
+		$msg = "Booking created";
 
-	// if ($result == "Successfully created contract") {
-	// } else {
-	//     $msg = "An error occured";
-	//     header("Location: index.php?page=bookings/all");
-	// }
-
-	// SIGNATURE UPLOAD
+		header("Location: index.php?page=contracts/edit&id=$result&msg=$msg");
 } else {
 	$msg = "Unauthorized activity";
 	session_start();

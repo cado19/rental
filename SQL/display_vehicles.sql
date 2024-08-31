@@ -42,3 +42,8 @@ ADD COLUMN `partner_id` INT NULL AFTER `catalog_display`;
 
 ALTER TABLE `kisuzi-rental`.`vehicle_pricing` 
 ADD COLUMN `partner_rate` VARCHAR(11) NULL AFTER `refundable_security_deposit`;
+
+-- Add status to bookings table 
+ALTER TABLE `kisuzi-rental`.`bookings` 
+ADD COLUMN `status` VARCHAR(20) NULL AFTER `account_id`;
+

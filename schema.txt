@@ -293,6 +293,8 @@ CREATE TABLE `kisuzi-rental`.`partners` (
 `id` INT NOT NULL AUTO_INCREMENT,
 `name` VARCHAR(150) NULL,
 `email` VARCHAR(100) NULL,
+`phone_no` VARCHAR(15) NULL,
+`deleted` VARCHAR(15) NULL DEFAULT 'No',
 `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`));
 
@@ -304,6 +306,9 @@ ADD COLUMN `deleted` VARCHAR(45) NULL DEFAULT 'false' AFTER `total`;
 
 ALTER TABLE `kisuzi-rental`.`accounts` 
 ADD COLUMN `verified` VARCHAR(10) NULL DEFAULT 'false' AFTER `deleted`;
+
+ALTER TABLE `partners` 
+ADD COLUMN `phone_no` VARCHAR(15) NULL AFTER `email`;
 
 
 

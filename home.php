@@ -2,7 +2,7 @@
 // FOR NOW THIS WILL BE THE HOME DASHBOARD. WE'LL CUSTOMIZE IT AS THE APP GROWS
 
 //page name. We set this inn the content start and also in the page title programatically
-$page = "Customers";
+$page = "Dashboard";
 
 // Navbar Links. We set these link in the navbar programatically.
 $home_link = "index.php";

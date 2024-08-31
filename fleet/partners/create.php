@@ -9,78 +9,89 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//VALIDATIONS
 	if (empty($_POST['make'])) {
 		$make_err = "Required";
-		header("Location: index.php?page=fleet/new&make=$make_err");
+		header("Location: index.php?page=fleet/partners/new&make=$make_err");
 		exit;
 	}
 	if (empty($_POST['model'])) {
 		$model_err = "Required";
-		header("Location: index.php?page=fleet/new&model_err=$model_err");
+		header("Location: index.php?page=fleet/partners/new&model_err=$model_err");
 		exit;
 	}
 	if (empty($_POST['number_plate'])) {
 		$number_plate_err = "Required";
-		header("Location: index.php?page=fleet/new&$number_plate_err=$number_plate_err");
+		header("Location: index.php?page=fleet/partners/new&$number_plate_err=$number_plate_err");
 		exit;
 	}
 
 	if (empty($_POST['category'])) {
 		$category_err = "Required";
-		header("Location: index.php?page=fleet/new&category_err=$category_err");
+		header("Location: index.php?page=fleet/partners/new&category_err=$category_err");
 		exit;
 	}
 	if (empty($_POST['transmission'])) {
 		$transmission_err = "Required";
-		header("Location: index.php?page=fleet/new&transmission_err=$transmission_err");
+		header("Location: index.php?page=fleet/partners/new&transmission_err=$transmission_err");
 		exit;
 	}
 	if (empty($_POST['fuel'])) {
 		$fuel_err = "Required";
-		header("Location: index.php?page=fleet/new&fuel_err=$fuel_err");
+		header("Location: index.php?page=fleet/partners/new&fuel_err=$fuel_err");
 	}
 
 	if (empty($_POST['seats'])) {
 		$seats_err = "Required";
-		header("Location: index.php?page=fleet/new&seats_err=$seats_err");
+		header("Location: index.php?page=fleet/partners/new&seats_err=$seats_err");
 		exit;
 	}
 
 	if (empty($_POST['colour'])) {
 		$colour_err = "Required";
-		header("Location: index.php?page=fleet/new&colour_err=$colour_err");
+		header("Location: index.php?page=fleet/partners/new&colour_err=$colour_err");
+		exit;
+	}
+
+	if (empty($_POST['partner_rate'])) {
+		$partner_rate_err = "Required";
+		header("Location: index.php?page=fleet/partners/new&partner_rate_err=$partner_rate_err");
+		exit;
+	} elseif (($_POST['partner_rate']) <= 0) {
+		$daily_rate_err = "Must be greater than 0";
+		header("Location: index.php?page=fleet/partners/new&partner_rate_err=$partner_rate_err");
 		exit;
 	}
 
 	if (empty($_POST['daily_rate'])) {
 		$daily_rate_err = "Required";
-		header("Location: index.php?page=fleet/new&daily_rate_err=$daily_rate_err");
+		header("Location: index.php?page=fleet/partners/new&daily_rate_err=$daily_rate_err");
 		exit;
 	} elseif (($_POST['daily_rate']) <= 0) {
 		$daily_rate_err = "Must be greater than 0";
-		header("Location: index.php?page=fleet/new&daily_rate_err=$daily_rate_err");
+		header("Location: index.php?page=fleet/partners/new&daily_rate_err=$daily_rate_err");
 		exit;
 	}
 
 	if (empty($_POST['vehicle_excess'])) {
 		$vehicle_excess_err = "Required";
-		header("Location: index.php?page=fleet/new&vehicle_excess_err=$vehicle_excess_err");
+		header("Location: index.php?page=fleet/partners/new&vehicle_excess_err=$vehicle_excess_err");
 		exit;
 	} elseif (($_POST['vehicle_excess']) <= 0) {
 		$vehicle_excess_err = "Must be greater than 0";
-		header("Location: index.php?page=fleet/new&vehicle_excess_err=$daily_rate_err");
+		header("Location: index.php?page=fleet/partners/new&vehicle_excess_err=$daily_rate_err");
 		exit;
 	}
 
 	if (empty($_POST['deposit'])) {
 		$deposit_err = "Required";
-		header("Location: index.php?page=fleet/new&deposit_err=$deposit_err");
+		header("Location: index.php?page=fleet/partners/new&deposit_err=$deposit_err");
 		exit;
 	} elseif (($_POST['deposit']) <= 0) {
 		$deposit_err = "Must be greater than 0";
-		header("Location: index.php?page=fleet/new&deposit_err=$deposit_err");
+		header("Location: index.php?page=fleet/partners/new&deposit_err=$deposit_err");
 		exit;
 	}
 
 	// vehicle basics data
+	$partner_id = $_POST['partner_id'];
 	$make = ucfirst($_POST['make']);
 	$model = ucfirst($_POST['model']);
 	$number_plate = $_POST['number_plate'];
@@ -92,6 +103,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$colour = ucfirst($_POST['colour']);
 
 	// vehicle pricing data
+	$partner_rate = $_POST['partner_rate'];
+	// remove commas from daily_rate
+	$partner_rate = intval(preg_replace('/[^\d.]/', '', $partner_rate));
+
 	$daily_rate = $_POST['daily_rate'];
 	// remove commas from daily_rate
 	$daily_rate = intval(preg_replace('/[^\d.]/', '', $daily_rate));
@@ -153,9 +168,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// insert vehicle basics data
 
-	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train,colour) VALUES (?,?,?,?,?,?,?,?,?)";
+	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train,colour,partner_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	$stmt = $con->prepare($sql);
-	if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $colour])) {
+	if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $colour, $partner_id])) {
 		$res = $con->lastInsertId();
 	} else {
 		$res = "Couldn't save vehicle";
@@ -166,9 +181,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// insert vehicle pricing data
 	$log->info($res);
 
-	$sql1 = "INSERT INTO vehicle_pricing (vehicle_id, daily_rate, vehicle_excess, refundable_security_deposit) VALUES (?,?,?,?)";
+	$sql1 = "INSERT INTO vehicle_pricing (vehicle_id, partner_rate, daily_rate, vehicle_excess, refundable_security_deposit) VALUES (?,?,?,?,?)";
 	$stmt1 = $con->prepare($sql1);
-	if ($stmt1->execute([$res, $daily_rate, $vehicle_excess, $deposit])) {
+	if ($stmt1->execute([$res, $partner_rate, $daily_rate, $vehicle_excess, $deposit])) {
 		$result = "Success";
 	} else {
 		$result = "Failed";
@@ -181,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$stmt2 = $con->prepare($sql2);
 	if ($stmt2->execute([$res, $bluetooth, $keyless_entry, $reverse_cam, $audio_input, $gps, $android_auto, $apple_carplay, $sunroof])) {
 		$response = "Successfully created vehicle";
-		header("Location: index.php?page=fleet/all&msg=$response");
+		header("Location: index.php?page=fleet/partners/all&msg=$response");
 		exit;
 	} else {
 		$response = "Failed";

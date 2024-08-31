@@ -41,6 +41,15 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="index.php?page=partners/all" class="nav-link">
+                          <i class="nav-icon fa fa-handshake-o"></i>
+                          <p>
+                            Partners
+                          </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="index.php?page=fleet/all" class="nav-link">
                           <i class="nav-icon fa fa-car"></i>
                           <p>

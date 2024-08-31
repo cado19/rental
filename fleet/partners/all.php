@@ -2,7 +2,7 @@
 // THIS PAGE OUGHT TO SHOW ALL VEHICLES
 
 //page name. We set this inn the content start and also in the page title programatically
-$page = "Vehicles";
+$page = "Partner Vehicles";
 
 // Navbar Links. We set these link in the navbar programatically.
 $home_link = "index.php?page=fleet/all";
@@ -20,14 +20,13 @@ $partner_vehicle_link_name = "Partner Vehicles";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Vehicles";
-$breadcrumb_active = "All Vehicles";
+$breadcrumb_active = "Partner Vehicles";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 
 $account_id = $_SESSION['account']['id'];
-$vehicles = all_vehicles($account_id);
-$log->info('vehicles', $vehicles)
+$vehicles = partner_vehicles();
 ?>
 
 <!-- Main Content  -->

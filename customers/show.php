@@ -23,6 +23,7 @@ include_once 'partials/content_start.php';
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$customer = get_customer($id);
+	$bookings = customer_bookings($id);
 	$log->info('Foo: ', $customer);
 }
 
@@ -109,6 +110,56 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><?php echo $customer['first_name']; ?>'s Bookings</h3>
+                    <div class="card-tools">
+                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <?php if (empty($bookings)): ?>
+                        <p><?php echo $customer['first_name']; ?> has no bookings</p>
+                    <?php else: ?>
+                        <table id="example1" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Vehicle</th>
+                                    <th>Plate</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php forEach ($bookings as $booking): ?>
+                                    <tr>
+                                        <td> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </td>
+                                        <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
+                                        <td> <?php echo $booking['number_plate']; ?> </td>
+                                        <td>
+                                            <?php
+$start = strtotime($booking['start_date']);
+echo date("l jS \of F Y", $start);
+?>
+                                        </td>
+                                        <td>
+                                            <?php
+$end = strtotime($booking['end_date']);
+echo date("l jS \of F Y", $end);
+?>
+                                        </td>
+                                        <td> <a href="index.php?page=bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
+                                    </tr>
+                                <?php endforeach;?>
+                            </tbody>
+                        </table>
+                    <?php endif;?>
                 </div>
             </div>
         </div>

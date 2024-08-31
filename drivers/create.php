@@ -6,38 +6,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//VALIDATIONS
 	if (empty($_POST['first_name'])) {
 		$first_name_err = "Required";
-		header("Location: index.php?page=drivers/edit&id=$id&first_name_err=$first_name_err");
+		header("Location: index.php?page=drivers/new&first_name_err=$first_name_err");
 		exit;
 	}
 	if (empty($_POST['last_name'])) {
 		$last_name_err = "Required";
-		header("Location: index.php?page=drivers/edit&id=$id&last_name_err=$last_name_err");
+		header("Location: index.php?page=drivers/new&last_name_err=$last_name_err");
 		exit;
 	}
 	if (empty($_POST['email'])) {
 		$email_err = "Required";
-		header("Location: index.php?page=drivers/edit&id=$id&email_err=$email_err");
+		header("Location: index.php?page=drivers/new&email_err=$email_err");
 		exit;
 	}
 
 	if (empty($_POST['id_number'])) {
 		$id_number_err = "Required";
-		header("Location: index.php?page=drivers/edit&id=$id&id_number_err=$id_number_err");
+		header("Location: index.php?page=drivers/new&id_number_err=$id_number_err");
 		exit;
 	}
 	if (empty($_POST['dl_number'])) {
 		$dl_number_err = "Required";
-		header("Location: index.php?page=drivers/edit&id=$id&dl_number_err=$dl_number_err");
+		header("Location: index.php?page=drivers/new&dl_number_err=$dl_number_err");
 		exit;
 	}
 	if (empty($_POST['tel'])) {
 		$tel_err = "Required";
-		header("Location: index.php?page=drivers/edit&id=$id&tel_err=$tel_err");
+		header("Location: index.php?page=drivers/new&tel_err=$tel_err");
 	}
 
 	if (empty($_POST['date_of_birth'])) {
 		$date_of_birth_err = "Required";
-		header("Location: index.php?page=drivers/edit&id=$id&date_of_birth_err=$date_of_birth_err");
+		header("Location: index.php?page=drivers/new&date_of_birth_err=$date_of_birth_err");
 		exit;
 	}
 

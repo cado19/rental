@@ -15,13 +15,15 @@ $breadcrumb_active = "New Vehicle";
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
+
+$partners = partners_for_vehicle();
 ?>
 
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <form action="index.php?page=fleet/create" method="post" autocomplete="off">
+                <form action="index.php?page=fleet/partners/create" method="post" autocomplete="off">
 
                     <div class="card">
                         <div class="card-header">
@@ -31,6 +33,19 @@ $account_id = $_SESSION['account']['id'];
                            </div>
                         </div>
                         <div class="card-body">
+
+                            <div class="form-group">
+                                <label for="partner">Partner</label>
+                                <select name="partner_id" class="form-control form-control-border">
+                                    <?php forEach ($partners as $partner): ?>
+                                        <option value="<?php echo $partner['id'] ?>"><?php echo $partner['name']; ?></option>
+                                    <?php endforeach;?>
+                                </select>
+                                <?php if (isset($_GET['partner_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['category_err']; ?></p>
+                                <?php endif;?>
+                            </div>
+
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
@@ -143,11 +158,20 @@ $account_id = $_SESSION['account']['id'];
                            </div>
                         </div>
                         <div class="card-body">
+
                             <div class="form-group">
                                 <label for="daily_rate">Daily Rate</label>
                                 <input type="text" name="daily_rate" class="form-control form-control-border" required>
                                 <?php if (isset($_GET['daily_rate_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['daily_rate_err']; ?></p>
+                                <?php endif;?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="daily_rate">Partner Rate</label>
+                                <input type="text" name="partner_rate" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['partner_rate_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['partner_rate_err']; ?></p>
                                 <?php endif;?>
                             </div>
 

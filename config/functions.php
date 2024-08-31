@@ -516,6 +516,28 @@ function blacklisted_customers() {
 
 	return $res;
 }
+
+// get bookings for a cusomer
+function customer_bookings($id) {
+	global $con;
+	global $res;
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE c.id = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$id]);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
 //   ******************* */ END CUSTOMER FUNCTIONS ******************* */
 
 //   ******************* */ VEHICLE FUNCTIONS ******************* */
@@ -679,6 +701,104 @@ function delete_vehicle($id) {
 
 	return $res;
 }
+
+// get all partner vehicles
+function partner_vehicles() {
+	global $con;
+	global $vehicles;
+	$status = "false";
+	$partner = '';
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id AND vb.deleted = ? AND vb.partner_id != ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$status, $partner]);
+		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $vehicles;
+}
+
+//   ******************* */ END VEHICLE FUNCTIONS ******************* */
+
+//   ******************* */ PARTNER FUNCTIONS ******************* */
+
+function all_partners() {
+	global $con;
+	global $res;
+	$status = "false";
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT * FROM partners WHERE deleted = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$status]);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function partners_for_vehicle() {
+	global $con;
+	global $res;
+	$status = "false";
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT id, name FROM partners WHERE deleted = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$status]);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function save_partner($name, $email, $tel) {
+	global $con;
+	global $res;
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "INSERT INTO partners (name, email, phone_no) VALUES (?,?,?)";
+
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$name, $email, $tel])) {
+			$res = "Success";
+		} else {
+			$res = "Uncsuccessful";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+//   ******************* */ END PARTNER FUNCTIONS ******************* */
 
 //   ******************* */ DRIVER FUNCTIONS ******************* */
 // get all driver records
@@ -886,6 +1006,30 @@ function booking_vehicles() {
 		$sql = "SELECT id, make, model, number_plate FROM vehicle_basics WHERE deleted = ? ORDER BY id DESC";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$status]);
+		$bk_vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $bk_vehicles;
+}
+
+// function to get all partner vehicles for the booking process
+function partner_booking_vehicles() {
+	global $con;
+	global $bk_vehicles;
+	$status = "false";
+	$partner = '';
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT id, make, model, number_plate FROM vehicle_basics WHERE deleted = ? AND partner_id != ? ORDER BY id DESC";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$status, $partner]);
 		$bk_vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$con->commit();

@@ -33,3 +33,12 @@ ADD COLUMN `deleted` VARCHAR(11) NULL DEFAULT 'false' AFTER `license_image`;
 
 ALTER TABLE `kisuzi-rental`.`vehicle_basics` 
 ADD COLUMN `partner_vehicle` VARCHAR(11) NULL DEFAULT 'No' AFTER `catalog_display`;
+
+ALTER TABLE `kisuzi-rental`.`partners` 
+CHANGE COLUMN `deleted` `deleted` VARCHAR(15) NULL DEFAULT 'false' ;
+
+ALTER TABLE `kisuzi-rental`.`vehicle_basics` 
+ADD COLUMN `partner_id` INT NULL AFTER `catalog_display`;
+
+ALTER TABLE `kisuzi-rental`.`vehicle_pricing` 
+ADD COLUMN `partner_rate` VARCHAR(11) NULL AFTER `refundable_security_deposit`;

@@ -1,5 +1,5 @@
 <?php
-// THIS SCRIPT WILL HANDLE THE NEW BOOKING FORM PROCESSING
+// THIS SCRIPT WILL HANDLE THE NEW PARTNER BOOKING FORM PROCESSING
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$v_id = $_POST['vehicle_id'];
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	// VALIDATION TO MAKE SURE BOOKING IS GREATER THAN OR EQUAL TO 3 DAYS
 	if ($duration < 3) {
 		$end_date_err = "Rental duration must be atleast 3 days";
-		header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
+		header("Location: index.php?page=bookings/new_pb&end_date_err=$end_date_err");
 		exit;
 	}
 

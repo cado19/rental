@@ -72,7 +72,7 @@ $log->info('bookings', $bookings);
                       <div class="inner">
                         <h3><?php echo number_format($active_bookings['number_of_bookings']); ?></h3>
 
-                        <p>Your bookings</p>
+                        <p>Your active bookings</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-android-list"></i>

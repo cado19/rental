@@ -42,13 +42,14 @@ function customer_count() {
 function active_bookings() {
 	global $con;
 	global $res;
+	$status = "active";
 
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT COUNT(id) AS number_of_bookings FROM bookings";
+		$sql = "SELECT COUNT(id) AS number_of_bookings FROM bookings WHERE status = ?";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$status]);
 		$res = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		$con->commit();

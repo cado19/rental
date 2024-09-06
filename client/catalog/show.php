@@ -65,7 +65,7 @@ if ($vehicle['apple_carplay'] == 'Yes') {
                 <p>
                     <b>Features:</b>
                     <?php forEach ($features as $feature): ?>
-                        <?php echo $feature . ", "; ?>
+                        <?php echo trim($feature . ", "); ?>
                     <?php endforeach;?>
                 </p>
             </div><!-- / project-info-box -->

@@ -32,6 +32,8 @@ $total = $booking['daily_rate'] * $duration;
 // $log->warning($total);
 
 $account_id = $_SESSION['account']['id'];
+
+$current_date = date('Y-m-d');
 ?>
 <script>console.log(<?php echo json_encode($booking); ?>)</script>
 <section class="content">
@@ -109,13 +111,27 @@ $account_id = $_SESSION['account']['id'];
                                       <?php else: ?>
                                         <div class="row">
                                           <div class="col-12 col-sm-4">
-                                          <div class="info-box bg-light">
-                                            <div class="info-box-content">
-                                              <span class="info-box-text text-center text-muted">Booking State:</span>
-                                              <span class="info-box-number text-center text-muted mb-0"><?php echo $booking['status']; ?></span>
+                                            <div class="info-box bg-light">
+                                              <div class="info-box-content">
+                                                <span class="info-box-text text-center text-muted">Booking State:</span>
+                                                <span class="info-box-number text-center text-muted mb-0"><?php echo $booking['status']; ?></span>
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
+                                          <?php if ($current_date >= $booking['end_date']): ?>
+
+                                          <div class="col-12 col-sm-4">
+                                            <div class="info-box bg-light">
+                                              <div class="info-box-content">
+                                                <form action="index.php?page=bookings/complete" method="POST">
+                                                  <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                                  <button type="submit" class="btn btn-outline-dark">Complete booking</button>
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <?php endif;?>
                                         </div>
                                       <?php endif;?>
                                     </div>

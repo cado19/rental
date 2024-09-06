@@ -32,5 +32,24 @@ UPDATE vehicle_pricing SET  daily_rate = ?, vehicle_excess = ?, refundable_secur
 -- UPDATE VEHICLE EXTRAS 
 UPDATE vehicle_extras SET bluetooth = ?,keyless_entry = ?,reverse_cam = ?,audio_input = ?,gps = ?,android_auto = ?,apple_carplay = ? WHERE vehicle_id = ?;
 
+-- GET MOST BOOKED VEHICLES 
+SELECT 
+    vb.id, vb.model, vb.make, count(vb.id)
+FROM
+    vehicle_basics vb
+        INNER JOIN
+    bookings bk ON vb.id = bk.vehicle_id GROUP BY vb.id ORDER BY count(vb.id) DESC;
 
+-- GET BOOKINGS BELONGING TO A CERTAIN VEHICLE
+SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date, b.total FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.vehicle_id = ?
+
+-- GET OUR VEHICLES BASED ON TOTAL INCOME 
+SELECT v.model, v.make, sum(b.total) AS Income FROM vehicle_basics v INNER JOIN bookings b ON v.id = b.vehicle_id AND v.partner_id IS NULL GROUP BY v.id ORDER BY Income DESC; 
+
+
+-- CLIENTS WITH THE MOST BOOKINGS 
+SELECT c.first_name, c.last_name, count(c.id) AS Bookings FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id GROUP BY c.id ORDER BY Bookings DESC
+
+-- MOST PROFITABLE CLIENTS 
+SELECT c.first_name, c.last_name, sum(b.total) AS Income FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id GROUP BY c.id ORDER BY Income DESC
 

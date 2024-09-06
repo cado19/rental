@@ -68,7 +68,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
+                        <a href="index.php?page=analytics/landing" class="nav-link">
                           <i class="nav-icon fa fa-pie-chart"></i>
                           <p>
                             Analytics

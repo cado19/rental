@@ -23,10 +23,12 @@ $account_id = $_SESSION['account']['id'];
 $vehicle_count = vehicle_count();
 $customer_count = customer_count();
 $active_bookings = active_bookings();
+$partner_count = partner_count();
 $bookings = home_bookings();
 
 $log->info('bookings', $bookings);
 ?>
+
 
     <section class="content">
         <div class="container-fluid">
@@ -73,9 +75,26 @@ $log->info('bookings', $bookings);
                         <p>Your bookings</p>
                       </div>
                       <div class="icon">
-                        <i class="ion-android-list"></i>
+                        <i class="ion ion-android-list"></i>
                       </div>
                       <a href="index.php?page=bookings/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                  </div>
+                  <!-- ./col -->
+
+
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-primary">
+                      <div class="inner">
+                        <h3><?php echo number_format($partner_count['number_of_partners']); ?></h3>
+
+                        <p>Your partners</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-ios-people"></i>
+                      </div>
+                      <a href="index.php?page=partners/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                   <!-- ./col -->

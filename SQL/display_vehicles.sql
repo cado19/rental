@@ -37,9 +37,11 @@ ADD COLUMN `partner_vehicle` VARCHAR(11) NULL DEFAULT 'No' AFTER `catalog_displa
 ALTER TABLE `kisuzi-rental`.`partners` 
 CHANGE COLUMN `deleted` `deleted` VARCHAR(15) NULL DEFAULT 'false' ;
 
+-- Add partner_id to bookings table 
 ALTER TABLE `kisuzi-rental`.`vehicle_basics` 
 ADD COLUMN `partner_id` INT NULL AFTER `catalog_display`;
 
+-- Add partner rate to bookings table 
 ALTER TABLE `kisuzi-rental`.`vehicle_pricing` 
 ADD COLUMN `partner_rate` VARCHAR(11) NULL AFTER `refundable_security_deposit`;
 
@@ -47,3 +49,11 @@ ADD COLUMN `partner_rate` VARCHAR(11) NULL AFTER `refundable_security_deposit`;
 ALTER TABLE `kisuzi-rental`.`bookings` 
 ADD COLUMN `status` VARCHAR(20) NULL AFTER `account_id`;
 
+-- add status to contracts
+ALTER TABLE `kisuzi-rental`.`contracts` 
+ADD COLUMN `status` VARCHAR(15) NULL DEFAULT 'unsigned' AFTER `account_id`;
+
+
+add fuel to bookings
+ALTER TABLE `kisuzi-rental`.`bookings` 
+ADD COLUMN `fuel` VARCHAR(20) NULL AFTER `created_at`;

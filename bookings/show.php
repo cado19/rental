@@ -30,13 +30,15 @@ $end_date = strtotime($booking['end_date']);
 $duration = ($end_date - $start_date) / 86400;
 $total = $booking['daily_rate'] * $duration;
 $log->warning($total);
+
+$account_id = $_SESSION['account']['id'];
 ?>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="card">
+            <div class="card shaadow">
                 <div class="card-header">
-                    <h2 class="card-title">Booking for: </h2> <h3 class="card-title"><?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </h3>
+                    <h2 class="card-title">Booking for: </h2> <h3 class="card-title"> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </h3>
                 </div>
 
                 <div class="card-body">
@@ -90,9 +92,19 @@ $log->warning($total);
                                       </p>
 
                                       <?php if ($booking['status'] == "upcoming"): ?>
+                                        <div class="col-md-8">
+                                        <h5><u>Assign Vehicle</u></h5>
                                         <p>
-                                          <a href="#" class="link-black text-sm"><i class="fa fa-link mr-1"></i>Assign </a>
+                                          <form action="index.php?page=bookings/assign">
+                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                            <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
+                                            <div class="form-group">
+                                              <input type="text" name="fuel" placeholder="Fuel level" class="form-control form-control-border">
+                                            </div>
+                                            <button type="submit" class="btn btn-outline-dark text-sm"><i class="fa fa-link mr-1"></i> Assign </button>
+                                          </form>
                                         </p>
+                                        </div>
                                       <?php endif;?>
                                     </div>
 
@@ -103,7 +115,7 @@ $log->warning($total);
                         </div>
                         <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
                           <h3 class="text-primary"><i class="fas fa-paint-brush"></i> Contract Details</h3>
-                          <p class="text-muted">This is the contract between The renter and <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?>. The current state of the contract is [contract state(signed/unsigned)].</p>
+                          <p class="text-muted">This is the contract between The renter and <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?>. The current state of the contract is <?php echo $booking['signature_status']; ?>.</p>
                           <br>
                           <div class="text-muted">
                             <p class="text-sm">Company Name
@@ -114,22 +126,11 @@ $log->warning($total);
                             </p>
                           </div>
 
-                          <h5 class="mt-5 text-muted">Signature</h5>
-                          <ul class="list-unstyled">
-                            <li>
-                              <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Functional-requirements.docx</a>
-                            </li>
-                            <li>
-                              <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
-                            </li>
-                            <li>
-                              <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> bookings@kizusismartex.co.ke</a>
-                            </li>
-                            </li>
-                          </ul>
                           <div class="text-center mt-5 mb-3">
-                            <a href="index.php?page=contracts/edit&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">Sign Contract</a>
-                            <a href="index.php?page=contracts/show&id=<?php echo $id; ?>" class="btn btn-sm btn-warning" target="_blank">Show contact</a>
+                            <?php if ($booking['signature_status'] == "unsigned"): ?>
+                              <a href="index.php?page=contracts/edit&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">Sign Contract</a>
+                            <?php endif;?>
+                            <a href="index.php?page=contracts/show&id=<?php echo $id; ?>" class="btn btn-sm btn-warning" target="_blank">Show contract</a>
                           </div>
                         </div>
                     </div>

@@ -7,7 +7,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- ChartJS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+
+<script src="assets/chart.js/Chart.min.js"></script>
 
 <!-- SummerNote Js -->
 <script src="assets/summernote.min.js"></script>
@@ -47,6 +48,143 @@
 
 <!-- AdminLTE App -->
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+
+<?php if ($page == "Client Analytics"): ?>
+    <!-- profitable client chart script -->
+    <script>
+        const client_names = <?php echo json_encode($loaded_client_names); ?>;
+        const revenue = <?php echo json_encode($loaded_clients); ?>;
+        //setup block
+        const data = {
+            labels: client_names,
+            datasets: [{
+                label: 'Clients by Revenue',
+                data: revenue,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        //config block
+        const config = {
+            type: 'bar',
+            options: {
+                scales: {
+                    y: {beginAtZero: true}
+                }
+            },
+            data
+        };
+
+        //render block
+        const myChart = new Chart(
+            document.getElementById('myChart').getContext('2d'),
+            config
+        );
+    </script>
+<?php endif;?>
+
+<?php if ($page == "Analytics"): ?>
+    <!-- 90 day income chart script -->
+    <script>
+        const months = <?php echo json_encode($months); ?>;
+        const money = <?php echo json_encode($money); ?>;
+        //setup block
+        const income_data = {
+            labels: months,
+            datasets: [{
+                label: 'Revenue last 90 Days',
+                data: money,
+                backgroundColor: [
+                   'rgb(139, 0, 0)',
+                    'rgb(255, 215, 0)',
+                    'rgb(255, 0, 255)'
+
+                ],
+                borderColor: [
+                    'rgb(139, 0, 0)',
+                    'rgb(255, 215, 0)',
+                    'rgb(255, 0, 255)'
+
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        //config block
+        const income_config = {
+            type: 'bar',
+            options: {
+                scales: {
+                    y: {beginAtZero: true}
+                }
+            },
+            data: income_data
+        };
+
+        //render block
+        const incomeChart = new Chart(
+            document.getElementById('threeMonthChart').getContext('2d'),
+            income_config
+        );
+    </script>
+    <script>
+        const vehicles = <?php echo json_encode($vehicles); ?>;
+        const popularity = <?php echo json_encode($popularity); ?>;
+        //setup block
+        const data = {
+            labels: vehicles,
+            datasets: [{
+                label: 'Revenue last 90 Days',
+                data: popularity,
+                backgroundColor: [
+                    'rgb(220, 20, 60)',
+                    'rgb(255, 140, 0)',
+                    'rgb(255, 87, 51)'
+
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        //config block
+        const config = {
+            type: 'doughnut',
+            options: {
+                scales: {
+                    y: {beginAtZero: true}
+                }
+            },
+            data
+        };
+
+        //render block
+        const myChart = new Chart(
+            document.getElementById('popularCarChart').getContext('2d'),
+            config
+        );
+    </script>
+
+
+<?php endif;?>
 
 
 <?php
@@ -139,6 +277,7 @@ if (isset($_GET['msg'])) {
   function my_function(){
       document.getElementById("note").innerHTML="";
   }
+
 
 </script>
 

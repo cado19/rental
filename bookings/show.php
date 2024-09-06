@@ -22,17 +22,18 @@ include_once 'partials/content_start.php';
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$booking = booking($id);
-	$log->info('Foo: ', $booking);
+	// $log->info('Foo: ', $booking);
 }
 
 $start_date = strtotime($booking['start_date']);
 $end_date = strtotime($booking['end_date']);
 $duration = ($end_date - $start_date) / 86400;
 $total = $booking['daily_rate'] * $duration;
-$log->warning($total);
+// $log->warning($total);
 
 $account_id = $_SESSION['account']['id'];
 ?>
+<script>console.log(<?php echo json_encode($booking); ?>)</script>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -95,7 +96,7 @@ $account_id = $_SESSION['account']['id'];
                                         <div class="col-md-8">
                                         <h5><u>Assign Vehicle</u></h5>
                                         <p>
-                                          <form action="index.php?page=bookings/assign">
+                                          <form action="index.php?page=bookings/assign" method="POST">
                                             <input type="hidden" name="id" value="<?php echo $id; ?>">
                                             <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
                                             <div class="form-group">
@@ -104,6 +105,17 @@ $account_id = $_SESSION['account']['id'];
                                             <button type="submit" class="btn btn-outline-dark text-sm"><i class="fa fa-link mr-1"></i> Assign </button>
                                           </form>
                                         </p>
+                                        </div>
+                                      <?php else: ?>
+                                        <div class="row">
+                                          <div class="col-12 col-sm-4">
+                                          <div class="info-box bg-light">
+                                            <div class="info-box-content">
+                                              <span class="info-box-text text-center text-muted">Booking State:</span>
+                                              <span class="info-box-number text-center text-muted mb-0"><?php echo $booking['status']; ?></span>
+                                            </div>
+                                          </div>
+                                        </div>
                                         </div>
                                       <?php endif;?>
                                     </div>

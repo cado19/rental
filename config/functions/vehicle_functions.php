@@ -64,6 +64,29 @@ function get_vehicle($id) {
 	return $res;
 }
 
+function unique_registration($plate) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "SELECT id from vehicle_basics WHERE number_plate = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute();
+		if ($stmt->rowCount == 1) {
+			$res = "Taken";
+		} else {
+			$res = "Proceed";
+		}
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
 function save_vehicle($make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train) {
 	global $con;
 	global $res;

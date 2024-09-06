@@ -54,12 +54,28 @@ $account_id = $_SESSION['account']['id'];
 
                             </div>
 
-                            <div class="form-group">
-                                <label for="email">Number Plate</label>
-                                <input type="text" name="number_plate" class="form-control form-control-border" required>
-                                <?php if (isset($_GET['number_plate_err'])): ?>
-                                    <p class="text-danger"><?php echo $_GET['number_plate_err']; ?></p>
-                                <?php endif;?>
+                            <div class="row">
+                                <h6 class="text-center"><b>Number Plate:</b></h6>
+                                <div class="row mt-3">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <input type="text" name="num_plate_1" placeholder="eg: KAA" class="form-control form-control-border" required>
+                                            <?php if (isset($_GET['make_err'])): ?>
+                                                <p class="text-danger"><?php echo $_GET['make_err']; ?></p>
+                                            <?php endif;?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <input type="text" name="num_plate_2" placeholder="eg: 123X" class="form-control form-control-border" required>
+                                            <?php if (isset($_GET['model_err'])): ?>
+                                                <p class="text-danger"><?php echo $_GET['model_err']; ?></p>
+                                            <?php endif;?>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="form-group">

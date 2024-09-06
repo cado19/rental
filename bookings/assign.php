@@ -1,19 +1,17 @@
-<?
+<?php
 $fuel = $result = $response = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$id = $_POST['id']; // this is the id of the booking
 	$account_id = $_POST['account_id'];
 	if (!empty($_POST['fuel'])) {
 		$fuel = $_POST['fuel'];
-	} else {
-		$fuel = "";
 	}
 	$result = assign_vehicle($id, $fuel, $account_id);
 
 	if ($result == "Success") {
 		//activate booking
 		$response = activate_booking($id);
-		if($response == "Success"){
+		if ($response == "Success") {
 			$msg = "Successfully assigned vehicle. Booking activated";
 			header("Location: index.php?page=bookings/show&id=$id&msg=$msg");
 		} else {

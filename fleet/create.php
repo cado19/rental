@@ -1,9 +1,9 @@
 <?php
 include_once 'config/db_conn.php';
-$make = $model = $number_plate = $category = $transmission = $fuel = $seats = $daily_rate = $vehicle_excess = $deposit = '';
+$make = $model = $num_plate_1 = $num_plate_2 = $number_plate = $category = $transmission = $fuel = $seats = $daily_rate = $vehicle_excess = $deposit = '';
 $bluetooth = $keyless_entry = $reverse_cam = $audio_input = $gps = $android_auto = $apple_carplay = 'No';
 
-$make_err = $model_err = $number_plate_err = $categor_erry = $transmission_err = $fuel_err = $seats_err = $daily_rate_err = $vehicle_excess_err = $deposit_err = '';
+$make_err = $model_err = $number_plate_err = $num_plate_1_err = $num_plate_2_err = $categor_erry = $transmission_err = $fuel_err = $seats_err = $daily_rate_err = $vehicle_excess_err = $deposit_err = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//VALIDATIONS
@@ -17,9 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		header("Location: index.php?page=fleet/new&model_err=$model_err");
 		exit;
 	}
-	if (empty($_POST['number_plate'])) {
-		$number_plate_err = "Required";
-		header("Location: index.php?page=fleet/new&$number_plate_err=$number_plate_err");
+	if (empty($_POST['num_plate_1'])) {
+		$num_plate_1_err = "Required";
+		header("Location: index.php?page=fleet/new&$num_plate_1_err=$num_plate_1_err");
+		exit;
+	} elseif ($_POST['num_plate_1'] != 3) {
+		$num_plate_1_err = "Atleast 3 letters required";
+		header("Location: index.php?page=fleet/new&$num_plate_1_err=$num_plate_1_err");
+		exit;
+	}
+	if (empty($_POST['num_plate_2'])) {
+		$num_plate_2_err = "Required";
+		header("Location: index.php?page=fleet/new&$num_plate_2_err=$num_plate_2_err");
+		exit;
+	} elseif ($_POST['num_plate_2'] != 4) {
+		$num_plate_2_err = "Atleast 4 characters required";
+		header("Location: index.php?page=fleet/new&$num_plate_2_err=$num_plate_2_err");
 		exit;
 	}
 
@@ -80,10 +93,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
+	// format the number plate
+	$num_plate_1 = ucwords($_POST['num_plate_1']);
+	$num_plate_1 = ucwords(substr($_POST['num_plate_2'], -1));
+	$number_plate = $num_plate_1 . " " . $num_plate_2;
+
+	$taken_plate = unique_registration($number_plate);
+	if ($taken_plate == "Taken") {
+		$number_plate_err = "A vehicle exists with the given registration.";
+		header("Location: index.php?page=fleet/new&$number_plate_err=$number_plate_err");
+		exit;
+	}
+
 	// vehicle basics data
 	$make = ucfirst($_POST['make']);
 	$model = ucfirst($_POST['model']);
-	$number_plate = $_POST['number_plate'];
+	// $number_plate = $_POST['number_plate'];
 	$category = $_POST['category'];
 	$transmission = $_POST['transmission'];
 	$fuel = $_POST['fuel'];

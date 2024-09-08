@@ -70,6 +70,9 @@ $log->info('customers', $customers);
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
+                                        <?php if (isset($_GET['start_date_err'])): ?>
+                                            <p class="text-danger"> <?php echo $_GET['end_date_err']; ?> </p>
+                                        <?php endif;?>
                                     </div>
 
                                 </div>
@@ -84,6 +87,39 @@ $log->info('customers', $customers);
                                         </div>
                                         <?php if (isset($_GET['end_date_err'])): ?>
                                             <p class="text-danger"> <?php echo $_GET['end_date_err']; ?> </p>
+                                        <?php endif;?>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="date_of_birth">Start Time</label>
+                                        <div class="input-group date" id="starttime" data-target-input="nearest">
+                                            <input type="text" name="start_time" class="form-control datetimepicker-input" data-target="#starttime"/>
+                                            <div class="input-group-append" data-target="#starttime" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <?php if (isset($_GET['start_time_err'])): ?>
+                                            <p class="text-danger"> <?php echo $_GET['start_time_err']; ?> </p>
+                                        <?php endif;?>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="date_of_birth">End Time</label>
+                                        <div class="input-group date" id="endtime" data-target-input="nearest">
+                                            <input type="text" name="end_time" class="form-control datetimepicker-input" data-target="#endtime"/>
+                                            <div class="input-group-append" data-target="#endtime" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                                            </div>
+                                        </div>
+                                        <?php if (isset($_GET['end_time_err'])): ?>
+                                            <p class="text-danger"> <?php echo $_GET['end_time_err']; ?> </p>
                                         <?php endif;?>
                                     </div>
 

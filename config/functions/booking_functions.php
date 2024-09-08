@@ -8,7 +8,7 @@ function bookings() {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id";
+		$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id ORDER BY b.created_at DESC";
 		$stmt = $con->prepare($sql);
 		$stmt->execute();
 		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -187,7 +187,7 @@ function booking_drivers() {
 }
 
 // function to insert booking into database
-function save_booking($v_id, $c_id, $d_id, $start_date, $end_date) {
+function save_booking($v_id, $c_id, $d_id, $start_date, $end_date, $start_time, $end_time) {
 	global $con;
 	global $res;
 	$status = "upcoming";
@@ -195,9 +195,9 @@ function save_booking($v_id, $c_id, $d_id, $start_date, $end_date) {
 	try {
 		$con->beginTransaction();
 
-		$sql = "INSERT INTO bookings (vehicle_id, customer_id, driver_id, start_date, end_date, status) VALUES (?,?,?,?,?,?)";
+		$sql = "INSERT INTO bookings (vehicle_id, customer_id, driver_id, start_date, end_date, start_time, end_time, status) VALUES (?,?,?,?,?,?,?,?)";
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$v_id, $c_id, $d_id, $start_date, $end_date, $status])) {
+		if ($stmt->execute([$v_id, $c_id, $d_id, $start_date, $end_date, $start_time, $end_time, $status])) {
 			$res = $con->lastInsertId();
 		} else {
 			$res = "No Success";

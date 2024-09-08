@@ -54,6 +54,11 @@ ALTER TABLE `kisuzi-rental`.`contracts`
 ADD COLUMN `status` VARCHAR(15) NULL DEFAULT 'unsigned' AFTER `account_id`;
 
 
-add fuel to bookings
+-- add fuel to bookings
 ALTER TABLE `kisuzi-rental`.`bookings` 
 ADD COLUMN `fuel` VARCHAR(20) NULL AFTER `created_at`;
+
+-- add start and end time to booking 
+ALTER TABLE `kisuzi-rental`.`bookings` 
+ADD COLUMN `start_time` TIME NULL AFTER `start_date`,
+ADD COLUMN `end_time` TIME NULL AFTER `end_date`;

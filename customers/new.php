@@ -84,10 +84,7 @@ $account_id = $_SESSION['account']['id'];
                             <div class="form-group">
                                 <label for="tel">Tel</label>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">+254</span>
-                                    </div>
-                                    <input type="text" name="tel" placeholder="without '0'" class="form-control form-control-border" required>
+                                    <input type="text" name="tel" placeholder="Include country code" class="form-control form-control-border" required>
                                     <?php if (isset($_GET['tel_err'])): ?>
                                         <p class="text-danger"><?php echo $_GET['tel_err']; ?></p>
                                     <?php endif;?>

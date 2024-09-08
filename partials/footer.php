@@ -239,6 +239,15 @@ if (isset($_GET['msg'])) {
             format: 'YYYY-MM-DD'
         });
 
+       //Timepicker
+        $('#starttime').datetimepicker({
+          format: 'LT'
+        })
+        $('#endtime').datetimepicker({
+          format: 'LT'
+        })
+
+
         $("#example1").DataTable();
 
         $('#example2').DataTable({

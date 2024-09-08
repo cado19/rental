@@ -22,7 +22,7 @@ include_once 'partials/content_start.php';
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
-$bookings = bookings($account_id);
+$bookings = bookings();
 
 ?>
 

@@ -96,17 +96,17 @@ $current_date = date('Y-m-d');
 
                                       <?php if ($booking['status'] == "upcoming"): ?>
                                         <div class="col-md-8">
-                                        <h5><u>Assign Vehicle</u></h5>
-                                        <p>
-                                          <form action="index.php?page=bookings/assign" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                            <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
-                                            <div class="form-group">
-                                              <input type="text" name="fuel" placeholder="Fuel level" class="form-control form-control-border">
-                                            </div>
-                                            <button type="submit" class="btn btn-outline-dark text-sm"><i class="fa fa-link mr-1"></i> Assign </button>
-                                          </form>
-                                        </p>
+                                          <h5><u>Assign Vehicle</u></h5>
+                                          <p>
+                                            <form action="index.php?page=bookings/assign" method="POST">
+                                              <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                              <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
+                                              <div class="form-group">
+                                                <input type="text" name="fuel" placeholder="Fuel level" class="form-control form-control-border">
+                                              </div>
+                                              <button type="submit" class="btn btn-outline-dark text-sm"><i class="fa fa-link mr-1"></i> Assign </button>
+                                            </form>
+                                          </p>
                                         </div>
                                       <?php else: ?>
                                         <div class="row">
@@ -134,6 +134,54 @@ $current_date = date('Y-m-d');
                                           <?php endif;?>
                                         </div>
                                       <?php endif;?>
+                                    </div>
+
+                                    <div class="row">
+                                      <!-- A box with a form to extend booking in one column -->
+                                      <div class="col-12 col-sm-4">
+                                        <?php if ($booking['status'] == "active"): ?>
+                                          <div class="info-box bg-light">
+                                            <div class="info-box-content">
+
+
+                                              <form action="index.php?page=bookings/extend" method="POST">
+                                                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                                <input type="hidden" name="start_date" value="<?php echo $booking['start_date']; ?>" >
+                                                <input type="hidden" name="rate" value="<?php echo $booking['daily_rate']; ?>" >
+
+                                                <div class="form-group">
+                                                    <label for="date_of_birth">New End Date</label>
+                                                    <div class="input-group date" id="extenddate" data-target-input="nearest">
+                                                        <input type="text" name="extend_date" class="form-control datetimepicker-input" data-target="#extenddate"/>
+                                                        <div class="input-group-append" data-target="#extenddate" data-toggle="datetimepicker">
+                                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                        </div>
+                                                    </div>
+                                                    <?php if (isset($_GET['extend_date_err'])): ?>
+                                                        <p class="text-danger"> <?php echo $_GET['extend_date_err']; ?> </p>
+                                                    <?php endif;?>
+                                                </div>
+                                                <button type="submit" class="btn btn-outline-dark text-sm"> Extend Booking </button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        <?php endif;?>
+                                      </div>
+
+                                      <!-- A box with a form to stop booking early in one column -->
+                                      <div class="col-12 col-sm-4">
+                                        <?php if ($booking['status'] != "cancelled"): ?>
+                                          <div class="info-box bg-light">
+                                            <div class="info-box-content">
+                                              <form action="index.php?page=bookings/cancel" method="POST">
+                                                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                                <button type="submit" class="btn btn-outline-danger text-sm"> Cancel Booking </button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        <?php endif;?>
+                                      </div>
+
                                     </div>
 
 

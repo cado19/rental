@@ -239,6 +239,10 @@ if (isset($_GET['msg'])) {
             format: 'YYYY-MM-DD'
         });
 
+        $('#extenddate').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+
        //Timepicker
         $('#starttime').datetimepicker({
           format: 'LT'

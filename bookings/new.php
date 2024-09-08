@@ -71,7 +71,7 @@ $log->info('customers', $customers);
                                             </div>
                                         </div>
                                         <?php if (isset($_GET['start_date_err'])): ?>
-                                            <p class="text-danger"> <?php echo $_GET['end_date_err']; ?> </p>
+                                            <p class="text-danger"> <?php echo $_GET['start_date_err']; ?> </p>
                                         <?php endif;?>
                                     </div>
 

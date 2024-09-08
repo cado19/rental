@@ -118,8 +118,8 @@ function unique_customer_email($email) {
 
 		$sql = "SELECT id FROM customer_details WHERE email = ?";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
-		if ($stmt->rowCount() == 1) {
+		$stmt->execute([$email]);
+		if ($stmt->rowCount() > 0) {
 			$res = "Email taken";
 		} else {
 			$res = "You may proceed";
@@ -134,16 +134,17 @@ function unique_customer_email($email) {
 }
 
 // create customer account through self sign up
-function create_customer_account($name, $email, $password) {
+function create_customer_account($email, $password) {
 	global $con;
 	global $res;
+	$registration = "Yes";
 
 	try {
 		$con->beginTransaction();
 
-		$sql = "INSERT INTO customer_details (name, email, password) VALUES (?,?,?)";
+		$sql = "INSERT INTO customer_details (email, password, self_registered) VALUES (?,?,?,?)";
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$name, $email, $password])) {
+		if ($stmt->execute([$email, $password, $registration])) {
 			$res = $con->lastInsertId();
 		} else {
 			$res = "No Success";

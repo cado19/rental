@@ -21,6 +21,7 @@ include_once 'partials/content_start.php';
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$vehicle = get_vehicle($id);
+	$bookings = vehicle_bookings($id);
 	$log->info('Foo: ', $vehicle);
 } else {
 	$msg = "Couldn't fetch fetch vehicle";
@@ -28,6 +29,9 @@ if (isset($_GET['id'])) {
 }
 
 ?>
+<script>
+    console.log(<?php echo json_encode($bookings); ?>);
+</script>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -136,6 +140,44 @@ if (isset($_GET['id'])) {
                                 </table>
                                 <a href="index.php?page=fleet/delete&id=<?php echo $id; ?>" class="btn btn-danger">Delete</a>
                             </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <h2>Vehicle's bookings</h2>
+                            <?php if (empty($bookings)): ?>
+                                <h4>You currently have no bookings yet</h4>
+                            <?php else: ?>
+                            <table id="example1" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php forEach ($bookings as $booking): ?>
+                                        <tr>
+                                            <td> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </td>
+                                            <td>
+                                                <?php
+$start = strtotime($booking['start_date']);
+echo date("l jS \of F Y", $start);
+?>
+                                            </td>
+                                            <td>
+                                                <?php
+$end = strtotime($booking['end_date']);
+echo date("l jS \of F Y", $end);
+?>
+                                            </td>
+                                            <td><?php echo $booking['total']; ?></td>
+                                        </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>

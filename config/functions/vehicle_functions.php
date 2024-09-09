@@ -64,6 +64,26 @@ function get_vehicle($id) {
 	return $res;
 }
 
+function vehicle_bookings($id) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date, b.total FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.vehicle_id = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$id]);
+		$res = $stmt->fetchAll();
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
 function unique_registration($plate) {
 	global $con;
 	global $res;

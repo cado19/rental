@@ -83,7 +83,7 @@ $account_id = $_SESSION['account']['id'];
                                 <select name="category" class="form-control form-control-border">
                                         <option value="">--Please choose an option--</option>
                                         <option value="Mid-size SUV"> Mid Size SUV </option>
-                                        <option value="Mid-size SUV"> Crossover SUV </option>
+                                        <option value="SUV"> SUV </option>
                                         <option value="Medium Car"> Medium Car </option>
                                         <option value="Small Car "> Small Car </option>
                                         <option value="Safari"> Safari </option>

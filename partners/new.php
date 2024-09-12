@@ -1,16 +1,16 @@
 <?php
-$page = "New Driver";
+$page = "New Partner";
 
 // Navbar Links. We set these link in the navbar programatically.
 $home_link = "index.php?page=partners/all";
-$home_link_name = "All Drivers";
+$home_link_name = "All Partners";
 
 $new_link = "index.php?page=partners/new";
-$new_link_name = "New Driver";
+$new_link_name = "New Partner";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Drivers";
-$breadcrumb_active = "New Driver";
+$breadcrumb = "Partners";
+$breadcrumb_active = "New Partner";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';

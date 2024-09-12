@@ -26,7 +26,7 @@ include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 
 $account_id = $_SESSION['account']['id'];
-$vehicles = all_vehicles($account_id);
+$vehicles = all_vehicles();
 $log->info('vehicles', $vehicles)
 ?>
 

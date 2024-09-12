@@ -8,7 +8,7 @@ $home_link = "index.php?page=partners/all";
 $home_link_name = "All Partners";
 
 $new_link = "index.php?page=partners/new";
-$new_link_name = "New Partner-";
+$new_link_name = "New Partner";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Partners";

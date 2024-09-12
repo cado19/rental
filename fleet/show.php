@@ -37,17 +37,17 @@ if (isset($_GET['id'])) {
         <div class="row">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title"><?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?></h3>
+                    <h3 class="card-title"><?php show_value($vehicle['model']);?> <?php show_value($vehicle['make']);?></h3>
                     <h6 class="card-subtitle"><?php echo $vehicle['number_plate']; ?></h6>
                     <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-6">
+                        <div class="col-lg-5 col-md-4 col-sm-5">
                             <div class="white-box text-center"><img src="https://www.bootdey.com/image/430x600/00CED1/000000" class="img-responsive"></div>
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-6">
                             <h4 class="box-title mt-5">Product description</h4>
-                            <p> The <?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?> is a <?php echo $vehicle['drive_train']; ?> <?php echo $vehicle['category']; ?> loved by many. It can carry <?php echo $vehicle['seats']; ?> people. It's transmission is <?php echo $vehicle['transmission']; ?> and it uses <?php echo $vehicle['fuel']; ?> fuel .</p>
+                            <p> The <?php show_value($vehicle['model']);?> <?php show_value($vehicle['make']);?> is a <?php show_value($vehicle['drive_train']);?> <?php show_value($vehicle['category']);?> loved by many. It can carry <?php show_value($vehicle['seats']);?> people. It's transmission is <?php show_value($vehicle['transmission']);?> and it uses <?php show_value($vehicle['fuel']);?> fuel .</p>
                             <h2 class="mt-5">
-                                <?php echo number_format($vehicle['daily_rate']); ?>/- <small class="text-success">(per day)</small>
+                                <?php show_value(number_format($vehicle['daily_rate']));?>/- <small class="text-success">(per day)</small>
                             </h2>
 
                             <em><b><h5>Update Daily Rate</h5></b></em>
@@ -65,9 +65,9 @@ if (isset($_GET['id'])) {
 
                             <h3 class="box-title mt-5">Key Highlights</h3>
                             <ul class="list-unstyled">
-                                <li><i class="fa fa-check text-success"></i><?php echo $vehicle['seats']; ?> seater</li>
-                                <li><i class="fa fa-check text-success"></i><?php echo $vehicle['category']; ?></li>
-                                <li><i class="fa fa-check text-success"></i><?php echo $vehicle['drive_train']; ?></li>
+                                <li><i class="fa fa-check text-success"></i><?php show_value($vehicle['seats']);?> seater</li>
+                                <li><i class="fa fa-check text-success"></i><?php show_value($vehicle['category']);?></li>
+                                <li><i class="fa fa-check text-success"></i><?php show_value($vehicle['drive_train']);?></li>
                             </ul>
                             <a href="index.php?page=fleet/edit&id=<?php echo $id; ?>" class="btn btn-dark btn-rounded">Edit Vehicle</a>
                         </div>
@@ -78,63 +78,63 @@ if (isset($_GET['id'])) {
                                     <tbody>
                                         <tr>
                                             <td width="390">Brand</td>
-                                            <td><?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?></td>
+                                            <td><?php show_value($vehicle['model']);?> <?php show_value($vehicle['make']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Registration</td>
-                                            <td><?php echo $vehicle['number_plate']; ?></td>
+                                            <td><?php show_value($vehicle['number_plate']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Category</td>
-                                            <td><?php echo $vehicle['category']; ?></td>
+                                            <td><?php show_value($vehicle['category']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Daily Rate</td>
-                                            <td><?php echo number_format($vehicle['daily_rate']); ?>/-</td>
+                                            <td><?php show_value(number_format($vehicle['daily_rate']));?>/-</td>
                                         </tr>
                                         <tr>
                                             <td>Deposit</td>
-                                            <td><?php echo number_format($vehicle['refundable_security_deposit']); ?>/-</td>
+                                            <td><?php show_value(number_format($vehicle['refundable_security_deposit']));?>/-</td>
                                         </tr>
                                         <tr>
                                             <td>Vehicle Excess</td>
-                                            <td><?php echo number_format($vehicle['vehicle_excess']); ?>/-</td>
+                                            <td><?php show_value(number_format($vehicle['vehicle_excess']));?>/-</td>
                                         </tr>
                                         <tr>
                                             <td>Transmission</td>
-                                            <td><?php echo $vehicle['transmission']; ?></td>
+                                            <td><?php show_value($vehicle['transmission']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Fuel Type</td>
-                                            <td><?php echo $vehicle['fuel']; ?></td>
+                                            <td><?php show_value($vehicle['fuel']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Seats</td>
-                                            <td><?php echo $vehicle['seats']; ?></td>
+                                            <td><?php show_value($vehicle['seats']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Bluetooth</td>
-                                            <td><?php echo $vehicle['bluetooth']; ?></td>
+                                            <td><?php show_value($vehicle['bluetooth']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Reverse Camera</td>
-                                            <td><?php echo $vehicle['reverse_cam']; ?></td>
+                                            <td><?php show_value($vehicle['reverse_cam']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Keyless Entry</td>
-                                            <td><?php echo $vehicle['keyless_entry']; ?></td>
+                                            <td><?php show_value($vehicle['keyless_entry']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Audio Input</td>
-                                            <td><?php echo $vehicle['audio_input']; ?></td>
+                                            <td><?php show_value($vehicle['audio_input']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Android Auto</td>
-                                            <td><?php echo $vehicle['android_auto']; ?></td>
+                                            <td><?php show_value($vehicle['android_auto']);?></td>
                                         </tr>
                                         <tr>
                                             <td>Apple Car Play</td>
-                                            <td><?php echo $vehicle['apple_carplay']; ?></td>
+                                            <td><?php show_value($vehicle['apple_carplay']);?></td>
                                         </tr>
                                     </tbody>
                                 </table>

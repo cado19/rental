@@ -32,9 +32,5 @@ include 'config/functions/contract_functions.php';
 include 'config/functions/analytic_functions.php';
 
 //   ******************* */ DISPLAY FUNCTIONS ******************* */
-// display images such as profile pictures and id images
-function capitalize_first($string) {
-	$res = ucfirst($string);
-	return $res;
-}
+include 'config/functions/display_functions.php';
 ?>

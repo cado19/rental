@@ -53,12 +53,12 @@ $log->info('vehicles', $vehicles)
                                 <tbody>
                                     <?php forEach ($vehicles as $vehicle): ?>
                                         <tr>
-                                            <td> <?php echo $vehicle['model']; ?> </td>
-                                            <td> <?php echo $vehicle['make']; ?> </td>
-                                            <td> <?php echo $vehicle['reg']; ?> </td>
-                                            <td> <?php echo $vehicle['category']; ?> </td>
-                                            <td> <?php echo number_format($vehicle['rate']); ?>/- </td>
-                                            <td> <a href="index.php?page=fleet/show&id=<?php echo $vehicle['id']; ?>">Details</a> </td>
+                                            <td> <?php show_value($vehicle['model']);?> </td>
+                                            <td> <?php show_value($vehicle['make']);?> </td>
+                                            <td> <?php show_value($vehicle['reg']);?> </td>
+                                            <td> <?php show_value($vehicle['category']);?> </td>
+                                            <td> <?php show_value(number_format($vehicle['rate']));?>/- </td>
+                                            <td> <a href="index.php?page=fleet/show&id=<?php show_value($vehicle['id']);?>">Details</a> </td>
                                         </tr>
                                     <?php endforeach;?>
                                 </tbody>

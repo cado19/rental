@@ -8,7 +8,7 @@ function all_vehicles() {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id AND vb.deleted = ?";
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id AND vb.deleted = ? AND partner_id IS NULL";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$status]);
 		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);

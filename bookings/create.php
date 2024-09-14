@@ -1,4 +1,4 @@
-<?php
+ <?php
 // THIS SCRIPT WILL HANDLE THE NEW BOOKING FORM PROCESSING
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -13,16 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
 		exit;
 	}
-	if (empty($_POST['start_time'])) {
-		$start_time_err = "Required";
-		header("Location: index.php?page=bookings/new&start_time_err=$start_time_err");
-		exit;
-	}
-	if (empty($_POST['end_time'])) {
-		$end_time_err = "Required";
-		header("Location: index.php?page=bookings/new&end_time_err=$end_time_err");
-		exit;
-	}
+
+	// if (empty($_POST['start_time'])) {
+	// 	$start_time_err = "Required";
+	// 	header("Location: index.php?page=bookings/new&start_time_err=$start_time_err");
+	// 	exit;
+	// }
+	// if (empty($_POST['end_time'])) {
+	// 	$end_time_err = "Required";
+	// 	header("Location: index.php?page=bookings/new&end_time_err=$end_time_err");
+	// 	exit;
+	// }
 
 	$v_id = $_POST['vehicle_id'];
 	$c_id = $_POST['customer_id'];
@@ -48,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	// INSERT BOOKING DATA INTO THE DATABASE
 
 	$result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date, $start_time, $end_time);
-		if ($result == "No Success") {
+	if ($result == "No Success") {
 		$err = "An error occured. Try again later";
 		header("Location: index.php?page=bookings/new&err_msg=$err");
 		exit;
@@ -69,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$msg = "Booking created";
 
 		header("Location: index.php?page=contracts/edit&id=$result&msg=$msg");
+	}
 } else {
 	$msg = "Unauthorized activity";
 	session_start();

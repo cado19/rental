@@ -62,3 +62,8 @@ ADD COLUMN `fuel` VARCHAR(20) NULL AFTER `created_at`;
 ALTER TABLE `kisuzi-rental`.`bookings` 
 ADD COLUMN `start_time` TIME NULL AFTER `start_date`,
 ADD COLUMN `end_time` TIME NULL AFTER `end_date`;
+
+-- change time to varchar
+ALTER TABLE `kisuzi-rental`.`bookings` 
+CHANGE COLUMN `start_time` `start_time` VARCHAR(20) NULL DEFAULT NULL ,
+CHANGE COLUMN `end_time` `end_time` VARCHAR(20) NULL DEFAULT NULL ;

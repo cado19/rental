@@ -9,7 +9,7 @@ $home_link_name = "All Bookings";
 $new_link = "index.php?page=bookings/new";
 $new_link_name = "New Booking";
 
-$new_pb_link = "index.php?page=bookings/new_pb";
+$new_pb_link = "index.php?page=bookings/partner_list";
 $new_pb_link_name = "New Partner Booking";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php

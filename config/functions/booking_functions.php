@@ -21,6 +21,27 @@ function bookings() {
 	return $res;
 }
 
+function partner_bookings($partner_id) {
+	global $con;
+	global $res;
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE v.partner_id = ? ORDER BY b.created_at DESC";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$partner_id]);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
 // function to get single booking
 function booking($id) {
 	global $con;

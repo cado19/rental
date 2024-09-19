@@ -13,18 +13,22 @@ $new_link_name = "New Bookings";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Bookings";
-$breadcrumb_active = "All Bookings";
+$breadcrumb_active = "New partner booking";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
 
-$vehicles = partner_booking_vehicles();
+$id = $_GET['id'];
+
+$vehicles = partner_vehicles($id);
 $customers = booking_customers();
 $drivers = booking_drivers();
 $log->info('customers', $customers);
 ?>
-
+<script>
+    console.log(<?php echo json_encode($vehicles); ?>)
+</script>
 <section class="content">
     <div class="container-fluid">
         <div class="row">

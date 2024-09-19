@@ -203,7 +203,7 @@ function delete_vehicle($id) {
 }
 
 // get all partner vehicles
-function partner_vehicles() {
+function partner_vehicles($partner_id) {
 	global $con;
 	global $vehicles;
 	$status = "false";

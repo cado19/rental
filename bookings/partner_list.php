@@ -13,8 +13,7 @@ $new_link_name = "New Bookings";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Bookings";
-$breadcrumb_active = "All Bookings" 
-
+$breadcrumb_active = "All Bookings";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
@@ -48,7 +47,7 @@ $partners = all_partners();
                                     <tr>
                                         <td><?php echo $partner['name'] ?> </td>
                                         <td> <a href="index.php?page=bookings/new_pb&id=<?php echo $partner['id']; ?>">Select</a> </td>
-                                        index.php?page=bookings/new_pb&id=<?php echo $partner['id']; ?>
+                                        <td> <a href="index.php?page=bookings/partner_bookings&id=<?php echo $partner['id']; ?>">View bookings</a> </td>
                                     </tr>
                                 <?php endforeach;?>
                             </tbody>

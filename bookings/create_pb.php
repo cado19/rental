@@ -1,33 +1,54 @@
-<?php
-// THIS SCRIPT WILL HANDLE THE NEW PARTNER BOOKING FORM PROCESSING
+ <?php
+// THIS SCRIPT WILL HANDLE THE NEW BOOKING FORM PROCESSING
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	// VALIDATIONS
+	if (empty($_POST['start_date'])) {
+		$start_date_err = "Required";
+		header("Location: index.php?page=bookings/new&start_date_err=$start_date_err");
+		exit;
+	}
+	if (empty($_POST['end_date'])) {
+		$end_date_err = "Required";
+		header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
+		exit;
+	}
+
+	// if (empty($_POST['start_time'])) {
+	// 	$start_time_err = "Required";
+	// 	header("Location: index.php?page=bookings/new&start_time_err=$start_time_err");
+	// 	exit;
+	// }
+	// if (empty($_POST['end_time'])) {
+	// 	$end_time_err = "Required";
+	// 	header("Location: index.php?page=bookings/new&end_time_err=$end_time_err");
+	// 	exit;
+	// }
+
 	$v_id = $_POST['vehicle_id'];
 	$c_id = $_POST['customer_id'];
 	$d_id = $_POST['driver_id'];
 	$start_date = $_POST['start_date'];
+	$start_time = $_POST['start_time'];
 	$end_date = $_POST['end_date'];
+	$end_time = $_POST['end_time'];
 
-	$posts = array($v_id, $c_id, $d_id, $start_date, $end_date);
-
-	// GET START DATE AND END DATE FOR CALCUATING DURATION
+	$posts = array($v_id, $c_id, $d_id, $start_date, $start_time, $end_time, $end_date);
+	$log->info('Posts:', $posts);
+	// GET THE DURATION (TOTAL NUMBER OF DAYS OF THE BOOKING)
 	$start_date_time = strtotime($_POST['start_date']);
 	$end_date_time = strtotime($_POST['end_date']);
-
-	// GET THE DURATION (TOTAL NUMBER OF DAYS OF THE BOOKING)
 	$duration = ($end_date_time - $start_date_time) / 86400;
 
 	// VALIDATION TO MAKE SURE BOOKING IS GREATER THAN OR EQUAL TO 3 DAYS
 	if ($duration < 3) {
 		$end_date_err = "Rental duration must be atleast 3 days";
-		header("Location: index.php?page=bookings/new_pb&end_date_err=$end_date_err");
+		header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
 		exit;
 	}
-
 	// INSERT BOOKING DATA INTO THE DATABASE
 
-	$result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date);
-
+	$result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date, $start_time, $end_time);
 	if ($result == "No Success") {
 		$err = "An error occured. Try again later";
 		header("Location: index.php?page=bookings/new&err_msg=$err");
@@ -50,12 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 		header("Location: index.php?page=contracts/edit&id=$result&msg=$msg");
 	}
-
 } else {
 	$msg = "Unauthorized activity";
 	session_start();
 	session_destroy();
-	header("Location: index.php?emsg=$msg");
+	header("Location: index.php?msg=$msg");
 	exit;
 }
 ?>
+<script>
+	console.log(<?php echo json_encode($posts); ?>);
+</script>

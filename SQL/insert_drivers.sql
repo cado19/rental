@@ -53,3 +53,6 @@ SELECT c.first_name, c.last_name, count(c.id) AS Bookings FROM customer_details 
 -- MOST PROFITABLE CLIENTS 
 SELECT c.first_name, c.last_name, sum(b.total) AS Income FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id GROUP BY c.id ORDER BY Income DESC
 
+-- SELF DRIVE 
+INSERT INTO `kisuzi-rental`.`drivers` (`first_name`, `last_name`, `id_no`, `dl_no`, `dl_expiration_date`, `date_of_birth`, `phone_no`, `email`, `deleted`) VALUES ('SELF', 'DRIVE', 'NONE', 'NONE', '1970-01-01', '1970-01-01', '123456789', 'self@drive.com', 'false');
+

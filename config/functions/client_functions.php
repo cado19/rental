@@ -74,7 +74,7 @@ function all_customers() {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM customer_details WHERE deleted = ?";
+		$sql = "SELECT id, first_name, last_name, email, id_no, phone_no FROM customer_details WHERE deleted = ? ORDER BY first_name DESC";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$status]);
 		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -167,9 +167,9 @@ function save_customer($first_name, $last_name, $email, $id_type, $id_number, $t
 
 		$con->beginTransaction();
 
-		$sql = "INSERT INTO customer_details (first_name, last_name, email, id_type, phone_no, id_no, residential_address, work_address, date_of_birth) VALUES (?,?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO customer_details (first_name, last_name, email, id_type, id_no, phone_no, residential_address, work_address, date_of_birth) VALUES (?,?,?,?,?,?,?,?,?)";
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $tel, $id_number, $residential_address, $work_address, $date_of_birth])) {
+		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth])) {
 			$res = "Success";
 		} else {
 			$res = "Uncsuccessful";

@@ -159,7 +159,7 @@ function create_customer_account($email, $password) {
 }
 
 // save customer when created from admin section
-function save_customer($first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth) {
+function save_customer($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth) {
 	global $con;
 	global $res;
 
@@ -167,9 +167,9 @@ function save_customer($first_name, $last_name, $email, $id_type, $id_number, $t
 
 		$con->beginTransaction();
 
-		$sql = "INSERT INTO customer_details (first_name, last_name, email, id_type, id_no, phone_no, residential_address, work_address, date_of_birth) VALUES (?,?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO customer_details (first_name, last_name, email, id_type, id_no, dl_number, dl_expiry, phone_no, residential_address, work_address, date_of_birth) VALUES (?,?,?,?,?,?,?,?,?)";
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth])) {
+		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth])) {
 			$res = "Success";
 		} else {
 			$res = "Uncsuccessful";
@@ -184,7 +184,7 @@ function save_customer($first_name, $last_name, $email, $id_type, $id_number, $t
 }
 
 // update customer
-function update_customer($first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id) {
+function update_customer($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $id) {
 	global $con;
 	global $res;
 
@@ -192,9 +192,9 @@ function update_customer($first_name, $last_name, $email, $id_type, $id_number, 
 
 		$con->beginTransaction();
 
-		$sql = "UPDATE customer_details SET first_name = ?, last_name = ?, email = ?, id_type = ?, id_no = ?, phone_no = ?, residential_address = ?, work_address = ?, date_of_birth = ? WHERE id = ?";
+		$sql = "UPDATE customer_details SET first_name = ?, last_name = ?, email = ?, id_type = ?, id_no = ?, dl_number = ?, dl_expiry = ?, phone_no = ?, residential_address = ?, work_address = ?, date_of_birth = ? WHERE id = ?";
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id])) {
+		if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $id])) {
 			$res = "Success";
 		} else {
 			$res = "Unsuccessful";

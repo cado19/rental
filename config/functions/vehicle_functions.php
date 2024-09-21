@@ -207,15 +207,14 @@ function partner_vehicles($partner_id) {
 	global $con;
 	global $vehicles;
 	$status = "false";
-	$partner = '';
 
 	try {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id AND vb.deleted = ? AND vb.partner_id != ?";
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN partners p ON vb.partner_id = p.id WHERE vb.partner_id = ?";
 		$stmt = $con->prepare($sql);
-		$stmt->execute([$status, $partner]);
+		$stmt->execute([$partner_id]);
 		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$con->commit();

@@ -41,6 +41,28 @@ $contract_id = $stmt->fetch(PDO::FETCH_ASSOC);
 $new_id = $contract_id['id'];
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/contracts/update.php";
+
+// get page url
+// Program to display complete URL
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+	$link = "https";
+} else {
+	$link = "http";
+}
+
+// Here append the common URL characters
+$link .= "://";
+
+// Append the host(domain name,
+// ip) to the URL.
+$link .= $_SERVER['HTTP_HOST'];
+
+// Append the requested resource
+// location to the URL
+$link .= $_SERVER['PHP_SELF'];
+
+$link .= "?page=contracts/edit&id=${id}";
+
 // echo $new_id;
 
 // $log->info($new_id);
@@ -94,6 +116,7 @@ $path = $_SERVER['DOCUMENT_ROOT'] . "/contracts/update.php";
             </div>
         </div>
         </div>
+
     </div>
 
 <script>
@@ -121,6 +144,22 @@ savePNGButton.addEventListener("click", function (event){
 });
 function my_function(){
     document.getElementById("note").innerHTML="";
+}
+
+function contractFunction(e) {
+    e.preventDefault();
+  // Get the text field
+  var copyText = document.getElementById("contractLink");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
 }
 </script>
 </body>

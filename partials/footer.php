@@ -242,6 +242,10 @@ if (isset($_GET['msg'])) {
         $('#extenddate').datetimepicker({
             format: 'YYYY-MM-DD'
         });
+        $('#dl_expiry').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+
 
        //Timepicker
         $('#starttime').datetimepicker({

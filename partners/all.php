@@ -48,7 +48,7 @@ $partners = all_partners();
                                     <tr>
                                         <td><?php echo $partner['name'] ?> </td>
                                         <td> <?php echo $partner['email']; ?> </td>
-                                        <td> <?php echo $partner['phone_no']; ?> </td>
+                                        <td> 254<?php echo $partner['phone_no']; ?> </td>
                                         <td> <a href="index.php?page=partners/show&id=<?php echo $partner['id']; ?>">Details</a> </td>
                                     </tr>
                                 <?php endforeach;?>

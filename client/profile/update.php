@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$msg = "Unauthorized activity";
 	session_start();
 	session_destroy();
-	header("Location: index.php?err_msg=$msg");
+	header("Location: index.php?page=client/auth/login&err_msg=$msg");
 	exit;
 }
 

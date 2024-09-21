@@ -100,10 +100,10 @@ function partner_vehicle_count($partner_id) {
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT v.id, count(v.id) AS vehicle_count FROM vehicle_basics WHERE partner_id = ? GROUP BY v.id";
+		$sql = "SELECT count(v.id) AS vehicle_count FROM vehicle_basics v INNER JOIN partners p on v.partner_id = p.id WHERE v.partner_id = ?";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$partner_id]);
-		$res = $stmt->fetchAll();
+		$res = $stmt->fetch();
 	} catch (Exception $e) {
 		$con->rollback();
 	}
@@ -119,10 +119,10 @@ function partner_booking_count($partner_id) {
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT b.id, count(b.id) AS booking_count FROM bookings b INNER JOIN vehicle_basics v ON v.id = b.vehicle_id WHERE v.partner_id = ? GROUP BY b.id";
+		$sql = "SELECT count(b.id) AS booking_count FROM bookings b INNER JOIN vehicle_basics v ON v.id = b.vehicle_id WHERE v.partner_id = ?";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$partner_id]);
-		$res = $stmt->fetchAll();
+		$res = $stmt->fetch();
 	} catch (Exception $e) {
 		$con->rollback();
 	}

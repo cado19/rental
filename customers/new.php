@@ -82,6 +82,29 @@ $account_id = $_SESSION['account']['id'];
                             </div>
 
                             <div class="form-group">
+                                <label for="id">DL Number</label>
+                                <input type="text" name="dl_number" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['dl_no_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['dl_no_err']; ?></p>
+                                <?php endif;?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date_of_birth">DL Expiry</label>
+                                <div class="input-group date" id="dl_expiry" data-target-input="nearest">
+                                    <input type="text" name="dl_expiry" class="form-control datetimepicker-input" data-target="#dl_expiry"/>
+                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                <?php if (isset($_GET['dl_expiry_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['dl_expiry_err']; ?></p>
+                                <?php endif;?>
+
+                            </div>
+
+
+                            <div class="form-group">
                                 <label for="tel">Tel</label>
                                 <div class="input-group mb-3">
                                     <input type="text" name="tel" placeholder="Include country code" class="form-control form-control-border" required>

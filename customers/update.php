@@ -33,6 +33,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location: index.php?page=customers/edit&id=$id&id_number_err=$id_number_err");
 		exit;
 	}
+
+	if (empty($_POST['dl_number'])) {
+		$dl_number_err = "Required";
+		header("Location: index.php?page=customers/edit&id=$id&dl_number_err=$dl_number_err");
+		exit;
+	}
+
+	if (empty($_POST['dl_expiry'])) {
+		$dl_expiry_err = "Required";
+		header("Location: index.php?page=customers/edit&id=$id&dl_expiry_err=$dl_expiry_err");
+		exit;
+	}
+
 	if (empty($_POST['tel'])) {
 		$tel_err = "Required";
 		header("Location: index.php?page=customers/edit&id=$id&tel_err=$tel_err");
@@ -58,6 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$email = $_POST['email'];
 	$id_type = $_POST['id_type'];
 	$id_number = $_POST['id_number'];
+	$dl_number = $_POST['dl_number'];
+	$dl_expiry = $_POST['dl_expiry'];
 	$tel = $_POST['tel'];
 	$residential_address = $_POST['residential_address'];
 	$work_address = $_POST['work_address'];

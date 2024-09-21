@@ -9,24 +9,19 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.php?page=client/catalog/all">Home <span class="sr-only">(current)</span></a>
       </li>
-      <?php if (isset($_SESSION['client_logged_in'])): ?>
-        <li class="nav-item dropdown">
+      <li class="nav-item dropdown">
 
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Booking Requests</a>
-            <a class="dropdown-item" href="#">My Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="index.php?page=client/auth/logoout">Logout</a>
-          </div>
-        </li>
-      <?php else: ?>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?page=client/auth/login">Login</a>
-        </li>
-      <?php endif;?>
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Booking Requests</a>
+          <a class="dropdown-item" href="#">My Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="index.php?page=client/auth/logoout">Logout</a>
+        </div>
+      </li>
+
 
 
       <li class="nav-item">

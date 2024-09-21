@@ -23,10 +23,32 @@ if (isset($_GET['id'])) {
 	$partner = get_partner($id);
 	$no_of_vehicles = partner_vehicle_count($id);
 	$no_of_bookings = partner_booking_count($id);
+	$vehicles = partner_vehicles($id);
 }
 
-?>
+// Program to display complete URL
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+	$link = "https";
+} else {
+	$link = "http";
+}
 
+// Here append the common URL characters
+$link .= "://";
+
+// Append the host(domain name,
+// ip) to the URL.
+$link .= $_SERVER['HTTP_HOST'];
+
+// Append the requested resource
+// location to the URL
+$link .= $_SERVER['PHP_SELF'];
+
+$link .= "?page=partners/show&id=${id}";
+?>
+<script>
+	console.log(<?php echo json_encode($no_of_bookings); ?>);
+</script>
 <section class="content">
 	<div class="container-fluid">
 		<div class="row">
@@ -46,7 +68,7 @@ if (isset($_GET['id'])) {
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Tel</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($partner['phone_no']);?></span>
+	                      <span class="info-box-number text-center text-muted mb-0">254<?php show_value($partner['phone_no']);?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -68,7 +90,7 @@ if (isset($_GET['id'])) {
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Partner's vehicles</span>
-	                      <span class="info-box-number text-center text-muted mb-0">10</span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($no_of_vehicles['vehicle_count']);?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -77,7 +99,7 @@ if (isset($_GET['id'])) {
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Bookings with partner's vehicles</span>
-	                      <span class="info-box-number text-center text-muted mb-0">22</span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($no_of_bookings['booking_count']);?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -97,5 +119,45 @@ if (isset($_GET['id'])) {
 
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-10">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Partner's Vehicles</h4>
+	                    <table id="example1" class="table">
+	                        <thead>
+	                            <tr>
+	                                <th>Model</th>
+	                                <th>Make</th>
+	                                <th>Registration</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <?php forEach ($vehicles as $vehicle): ?>
+	                                <tr>
+	                                    <td><?php echo $vehicle['model'] ?> </td>
+	                                    <td> <?php echo $vehicle['make']; ?> </td>
+	                                    <td> <?php echo $vehicle['reg']; ?> </td>
+	                                </tr>
+	                            <?php endforeach;?>
+	                        </tbody>
+	                    </table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-6">
+				<div class="card">
+					<div class="card-body">
+						<?php echo $link; ?>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
+
+<?php include_once "partials/footer.php";?>

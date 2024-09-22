@@ -28,7 +28,7 @@ function show_numeric_value($object, $value) {
 }
 
 // function that will show record value or empty string in field in edit form
-function edit_input_value($value, $object) {
+function edit_input_value($object, $value) {
 	if (array_key_exists($value, $object)) {
 		if (isset($object[$value])) {
 			echo $object[$value];
@@ -40,12 +40,17 @@ function edit_input_value($value, $object) {
 	}
 }
 // function that will show record value or empty string in dropdown field in edit form
-function edit_dropdown_value($value) {
-	if (isset($value)) {
-		echo $value;
+function edit_dropdown_value($object, $value) {
+	if (array_key_exists($value, $object)) {
+		if (isset($value)) {
+			echo $object[$value];
+		} else {
+			echo "--Please choose an option--";
+		}
 	} else {
 		echo "--Please choose an option--";
 	}
+
 }
 
 ?>

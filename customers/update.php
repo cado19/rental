@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// $details = [$first_name,$last_name,$email,$id_type,$id_number,$tel,$residential_address,$work_address,$date_of_birth,$account_id];
 	// $log->warning('client:',$details);
 
-	$result = update_customer($first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id);
+	$result = update_customer($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $id);
 	if ($result == "Success") {
 		$msg = "Successfully updated customer's details";
 		header("Location: index.php?page=customers/all&msg=$msg");

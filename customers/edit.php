@@ -30,6 +30,15 @@ if (isset($_GET['id'])) {
 
 $account_id = $_SESSION['account']['id'];
 ?>
+<?php if (array_key_exists('dl_number', $customer)): ?>
+    <script>
+        console.log("Key exists");
+    </script>
+<?php else: ?>
+    <script>
+        console.log("Key doesn't exist");
+    </script>
+<?php endif;?>
 
 <section class="content">
     <div class="container-fluid">
@@ -44,7 +53,7 @@ $account_id = $_SESSION['account']['id'];
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="first_name">First Name</label>
-                                        <input type="text" name="first_name" value="<?php edit_input_value($customer['first_name']);?>" placeholder="eg: Michelle" class="form-control form-control-border">
+                                        <input type="text" name="first_name" value="<?php edit_input_value('first_name', $customer);?>" placeholder="eg: Michelle" class="form-control form-control-border">
                                         <?php if (isset($_GET['first_name_err'])): ?>
                                             <p class="text-danger"><?php echo $_GET['first_name_err']; ?></p>
                                         <?php endif;?>
@@ -55,7 +64,7 @@ $account_id = $_SESSION['account']['id'];
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="last_name">Last Name</label>
-                                        <input type="text" name="last_name" value="<?php edit_input_value($customer['last_name']);?>" placeholder="eg: Ngele" class="form-control form-control-border" required>
+                                        <input type="text" name="last_name" value="<?php edit_input_value('last_name', $customer);?>" placeholder="eg: Ngele" class="form-control form-control-border" required>
                                         <?php if (isset($_GET['last_name_err'])): ?>
                                             <p class="text-danger"><?php echo $_GET['last_name_err']; ?></p>
                                         <?php endif;?>
@@ -67,7 +76,7 @@ $account_id = $_SESSION['account']['id'];
 
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" value="<?php edit_input_value($customer['email']);?>" class="form-control form-control-border" required>
+                                <input type="email" name="email" value="<?php edit_input_value('email', $customer);?>" class="form-control form-control-border" required>
                                 <?php if (isset($_GET['email_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['email_err']; ?></p>
                                 <?php endif;?>
@@ -76,7 +85,7 @@ $account_id = $_SESSION['account']['id'];
                             <div class="form-group">
                                 <label for="id_type">Id Type</label>
                                 <select name="id_type" class="form-control form-control-border">
-                                        <option  value="<?php echo $customer['id_type']; ?>"><?php edit_dropdown_value($customer['id_type']);?></option>
+                                        <option  value="<?php echo $customer['id_type']; ?>"><?php edit_dropdown_value('id_type', $customer);?></option>
                                         <option value="national_id"> National ID </option>
                                         <option value="passport"> Passport </option>
                                         <option value="military_id"> Military ID </option>
@@ -88,7 +97,7 @@ $account_id = $_SESSION['account']['id'];
 
                             <div class="form-group">
                                 <label for="id">Id Number</label>
-                                <input type="text" name="id_number" value="<?php edit_input_value($customer['id_no']);?>" class="form-control form-control-border" required>
+                                <input type="text" name="id_number" value="<?php edit_input_value('id_no', $customer);?>" class="form-control form-control-border" required>
                                 <?php if (isset($_GET['id_no_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['id_no_err']; ?></p>
                                 <?php endif;?>
@@ -96,7 +105,7 @@ $account_id = $_SESSION['account']['id'];
 
                              <div class="form-group">
                                 <label for="id">DL Number</label>
-                                <input type="text" name="dl_number" class="form-control form-control-border" value="<?php edit_input_value($customer['dl_number']);?>" required>
+                                <input type="text" name="dl_number" class="form-control form-control-border" value="<?php edit_input_value('dl_number', $customer);?>" required>
                                 <?php if (isset($_GET['dl_no_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['dl_no_err']; ?></p>
                                 <?php endif;?>
@@ -105,8 +114,8 @@ $account_id = $_SESSION['account']['id'];
                             <div class="form-group">
                                 <label for="date_of_birth">DL Expiry</label>
                                 <div class="input-group date" id="dl_expiry" data-target-input="nearest">
-                                    <input type="text" name="dl_expiry" class="form-control datetimepicker-input" data-target="#dl_expiry" value="<?php edit_input_value($customer['dl_expiry']);?>" />
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                    <input type="text" name="dl_expiry" class="form-control datetimepicker-input" data-target="#dl_expiry" value="<?php edit_input_value('dl_expiry', $customer);?>" />
+                                    <div class="input-group-append" data-target="#dl_expiry" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
@@ -119,20 +128,16 @@ $account_id = $_SESSION['account']['id'];
 
                             <div class="form-group">
                                 <label for="tel">Tel</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">+254</span>
-                                    </div>
-                                    <input type="text" name="tel" placeholder="without '0'" value="<?php edit_input_value($customer['phone_no']);?>" class="form-control form-control-border" required>
-                                    <?php if (isset($_GET['tel_err'])): ?>
-                                        <p class="text-danger"><?php echo $_GET['tel_err']; ?></p>
-                                    <?php endif;?>
-                                </div>
-                            </div>
+
+                                <input type="text" name="tel" placeholder="without '0'" value="<?php edit_input_value('phone_no', $customer);?>" class="form-control form-control-border" required>
+                                <?php if (isset($_GET['tel_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['tel_err']; ?></p>
+                                <?php endif;?>
+                        </div>
 
                             <div class="form-group">
                                 <label for="residential_address">Residential Address</label>
-                                <input type="text" name="residential_address" value="<?php edit_input_value($customer['residential_address']);?>" class="form-control form-control-border" required>
+                                <input type="text" name="residential_address" value="<?php edit_input_value('residential_address', $customer);?>" class="form-control form-control-border" required>
                                 <?php if (isset($_GET['residential_address_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['residential_address_err']; ?></p>
                                 <?php endif;?>
@@ -140,7 +145,7 @@ $account_id = $_SESSION['account']['id'];
 
                             <div class="form-group">
                                 <label for="work_address">Work Address</label>
-                                <input type="text" name="work_address" value="<?php edit_input_value($customer['work_address']);?>" class="form-control form-control-border">
+                                <input type="text" name="work_address" value="<?php edit_input_value('work_address', $customer);?>" class="form-control form-control-border">
                                 <?php if (isset($_GET['work_address_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['work_address_err']; ?></p>
                                 <?php endif;?>
@@ -149,7 +154,7 @@ $account_id = $_SESSION['account']['id'];
                             <div class="form-group">
                                 <label for="date_of_birth">Date of Birth</label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" name="date_of_birth" value="<?php edit_input_value($customer['date_of_birth']);?>" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                    <input type="text" name="date_of_birth" value="<?php edit_input_value('date_of_birth', $customer);?>" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>

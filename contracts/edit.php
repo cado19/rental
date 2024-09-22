@@ -112,6 +112,8 @@ $link .= "?page=contracts/edit&id=${id}";
                             </div>
                         </div>
                     <form>
+                    <div class="row">
+
                 </div>
             </div>
         </div>
@@ -145,22 +147,23 @@ savePNGButton.addEventListener("click", function (event){
 function my_function(){
     document.getElementById("note").innerHTML="";
 }
+</script>
+<script>
+    var copyBtn = document.getElementById("copyButton");
+    copyBtn.addEventListener("click",function (e) {
+      // Get the text field
+      var copyText = document.getElementById("contractLink");
 
-function contractFunction(e) {
-    e.preventDefault();
-  // Get the text field
-  var copyText = document.getElementById("contractLink");
+      // Select the text field
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); // For mobile devices
 
-  // Select the text field
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
+       // Copy the text inside the text field
+      navigator.clipboard.writeText(copyText.value);
 
-   // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText.value);
-
-  // Alert the copied text
-  alert("Copied the text: " + copyText.value);
-}
+      // Alert the copied text
+      alert("Copied the text: " + copyText.value);
+    })
 </script>
 </body>
 </html>

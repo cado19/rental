@@ -103,49 +103,68 @@ $log->info('bookings', $bookings);
              </div>
 
              <div class="row">
+                 <div class="col-12">
+                     <div class="card">
+                         <div class="card-body">
+                            <label>Customer Self Sign Up Link</label>
+                            <input type="text" name="self-sign" value="www.kizusi-rental.com/index.php?page=client/auth/signup" id="" class="form-control form-control-border">
+                         </div>
+                     </div>
+                 </div>
+             </div>
 
-                <!-- Recent Orders Table  -->
-                 <div class="recent-orders">
-                    <h2>Recent Orders</h2>
-                    <?php if (empty($bookings)): ?>
-                        <h4>You currently have no bookings yet</h4>
-                    <?php else: ?>
-                    <table id="example1" class="table">
-                        <thead>
-                            <tr>
-                                <th>Client</th>
-                                <th>Car</th>
-                                <th>Registration</th>
-                                <th>Start</th>
-                                <th>End</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php forEach ($bookings as $booking): ?>
-                                <tr>
-                                    <td> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </td>
-                                    <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
-                                    <td> <?php echo $booking['number_plate']; ?> </td>
-                                    <td>
-                                        <?php
+             <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+
+
+                    <!-- Recent Orders Table  -->
+                             <div class="recent-orders">
+                                <h2>Recent Orders</h2>
+                                <?php if (empty($bookings)): ?>
+                                    <h4>You currently have no bookings yet</h4>
+                                <?php else: ?>
+                                <table id="example1" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Client</th>
+                                            <th>Car</th>
+                                            <th>Registration</th>
+                                            <th>Start</th>
+                                            <th>End</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php forEach ($bookings as $booking): ?>
+                                            <tr>
+                                                <td> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </td>
+                                                <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
+                                                <td> <?php echo $booking['number_plate']; ?> </td>
+                                                <td>
+                                                    <?php
 $start = strtotime($booking['start_date']);
 echo date("l jS \of F Y", $start);
 ?>
-                                    </td>
-                                    <td>
-                                        <?php
+                                                </td>
+                                                <td>
+                                                    <?php
 $end = strtotime($booking['end_date']);
 echo date("l jS \of F Y", $end);
 ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach;?>
-                        </tbody>
-                    </table>
-                    <?php endif;?>
-                    <a href="index.php?page=bookings/all">Show All</a>
-                 </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                                <?php endif;?>
+                                <a href="index.php?page=bookings/all">Show All</a>
 
+                         </div>
+                     </div>
+                </div>
+            </div>
                  <!-- End of Recent Orders  -->
              </div>
 

@@ -59,7 +59,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Partner</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($partner['name']);?></span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($partner, 'name');?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -68,7 +68,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Tel</span>
-	                      <span class="info-box-number text-center text-muted mb-0">254<?php show_value($partner['phone_no']);?></span>
+	                      <span class="info-box-number text-center text-muted mb-0">254<?php show_value($partner, 'phone_no');?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -77,7 +77,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Email</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($partner['email']);?> days</span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($partner, 'email');?> days</span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -90,7 +90,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Partner's vehicles</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($no_of_vehicles['vehicle_count']);?></span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_numeric_value($no_of_vehicles, 'vehicle_count');?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -99,7 +99,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Bookings with partner's vehicles</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($no_of_bookings['booking_count']);?></span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_numeric_value($no_of_bookings, 'booking_count');?></span>
 	                    </div>
 	                  </div>
 	                </div>

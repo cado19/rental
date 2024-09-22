@@ -253,7 +253,7 @@ if (isset($_GET['msg'])) {
         })
         $('#endtime').datetimepicker({
           format: 'LT'
-        })
+        });
 
 
         $("#example1").DataTable();

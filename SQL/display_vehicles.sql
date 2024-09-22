@@ -67,3 +67,7 @@ ADD COLUMN `end_time` TIME NULL AFTER `end_date`;
 ALTER TABLE `kisuzi-rental`.`bookings` 
 CHANGE COLUMN `start_time` `start_time` VARCHAR(20) NULL DEFAULT NULL ,
 CHANGE COLUMN `end_time` `end_time` VARCHAR(20) NULL DEFAULT NULL ;
+
+-- add image to vehicle_basics
+ALTER TABLE `kisuzi-rental`.`vehicle_basics` 
+ADD COLUMN `image` VARCHAR(255) NULL AFTER `partner_id`;

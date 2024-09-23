@@ -41,3 +41,4 @@ $log->info('vehicles', $vehicles);
         <?php endforeach;?>
     </div>
 </div>
+<?php include_once 'partials/client-footer';?>

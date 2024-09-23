@@ -142,7 +142,7 @@ function create_customer_account($email, $password) {
 	try {
 		$con->beginTransaction();
 
-		$sql = "INSERT INTO customer_details (email, password, self_registered) VALUES (?,?,?,?)";
+		$sql = "INSERT INTO customer_details (email, password, self_registered) VALUES (?,?,?)";
 		$stmt = $con->prepare($sql);
 		if ($stmt->execute([$email, $password, $registration])) {
 			$res = $con->lastInsertId();

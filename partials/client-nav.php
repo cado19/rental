@@ -9,20 +9,15 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.php?page=client/catalog/all">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item dropdown">
-
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Booking Requests</a>
-          <a class="dropdown-item" href="#">My Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="index.php?page=client/auth/logoout">Logout</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Booking Requests</a>
       </li>
-
-
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?page=client/profile/edit">My Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?page=client/auth/logout">Logout</a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link disabled">Disabled</a>

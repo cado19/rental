@@ -91,6 +91,29 @@ function save_partner($name, $email, $tel) {
 	return $res;
 }
 // update partner
+function update_partner($name, $email, $tel, $id) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "UPDATE partners SET name = ?, email = ?, phone_no = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+
+		if ($stmt->execute([$name, $email, $tel, $id])) {
+			$res = "Success";
+		} else {
+			$res = "Uncsuccessful";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
 
 // partner vehicle count
 function partner_vehicle_count($partner_id) {

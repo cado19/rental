@@ -1,12 +1,13 @@
 <?php
 
-if (!(isset($_SESSION['client']))) {
-	header("Location: index.php?page=client/auth/login");
-	exit;
-}
+// if (!(isset($_SESSION['client']))) {
+// 	header("Location: index.php?page=client/auth/login");
+// 	exit;
+// }
 
 $client = $_SESSION['client'];
 $page = "Edit";
+
 include_once 'partials/client-header.php';
 include_once 'partials/client-nav.php';
 ?>

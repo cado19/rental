@@ -35,24 +35,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//fetch account with the above credentials
 	$client = fetch_client($email);
 
-	$hashed_password = $client['password'];
-
-	if (password_verify($password, $hashed_password)) {
-		session_start();
-
-		$_SESSION['client_logged_in'] = true;
-
-		$_SESSION['client'] = $client;
-
-		header("Location: index.php?page=client/catalog/all");
+	if ($client == "No such person") {
+		$err_msg = "Incorrect email/password combination";
+		header("Location: index.php?page=client/auth/login&err_msg=$err_msg");
 		exit;
 	} else {
-		$msg = "Incorrect email/password combination";
-		header("Location: index.php?page=client/auth/login&msg=$msg");
-		exit;
+		$hashed_password = $client['password'];
+
+		if (password_verify($password, $hashed_password)) {
+			session_start();
+
+			$_SESSION['client_logged_in'] = true;
+
+			$_SESSION['client'] = $client;
+
+			header("Location: index.php?page=client/catalog/all");
+			exit;
+		} else {
+			$msg = "Incorrect email/password combination";
+			header("Location: index.php?page=client/auth/login&msg=$msg");
+			exit;
+		}
 	}
 
-	$log->info('account', $account);
+	// $log->info('account', $account);
 
 	// Validate credentials
 	// if(empty($username_err) && empty($password_err)){
@@ -107,3 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// unset($pdo);
 }
 ?>
+<script>
+	console.log(<?php echo json_encode($client); ?>);
+</script>

@@ -10,45 +10,12 @@
     <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
 
+<!-- Tempusdominus Bootstrap 4 -->
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" ></script>
 
-// DISPLAY SWEET ALERT IF A MESSAGE IS SET IN THE URL
-
-// check for message in the url
-
-if (isset($_GET['msg'])) {
-	$msg = $_GET['msg'];
-	echo "
-        <script>
-            $(document).ready(function(){
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '$msg',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            })
-        </script>
-    ";
-} elseif (isset($_GET['err_msg'])) {
-	$msg = $_GET['err_msg'];
-	echo "
-        <script>
-            $(document).ready(function(){
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'error',
-                    title: '$msg',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            })
-        </script>
-    ";
-}
+<?php include_once 'config/notifications.php';?>
 
 <script>
     $(document).ready(function(){

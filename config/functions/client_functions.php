@@ -9,8 +9,9 @@ function fetch_client($email) {
 
 		$sql = "SELECT * FROM customer_details WHERE email = ?";
 		$stmt = $con->prepare($sql);
+		$stmt->execute([$email]);
 		if ($stmt->rowCount() == 1) {
-			$res = stmt->fetch();
+			$res = $stmt->fetch();
 		} else {
 			$res = "No such person";
 		}
@@ -201,6 +202,26 @@ function update_customer($first_name, $last_name, $email, $id_type, $id_number, 
 		}
 
 		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// function to update clients from the client's dashboard
+function update_client($first_name, $last_name, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id) {
+	global $con;
+	global $res;
+	try {
+		$con->beginTransaction();
+		$sql = "UPDATE customer_details SET first_name = ?, last_name = ?, id_type = ?, id_no = ?, dl_no = ?, dl_expiration = ?, phone_no = ?, residential_address = ?, work_address = ?, date_of_birth = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$first_name, $last_name, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $id])) {
+			$res = "Success";
+		} else {
+			$res = "Unsuccessful";
+		}
 	} catch (Exception $e) {
 		$con->rollback();
 	}

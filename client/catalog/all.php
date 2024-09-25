@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!(isset($_SESSION['client_logged_in']))) {
+	header("Location: index.php?page=client/auth/login");
+	exit;
+}
 $page = "Catalog";
 
 include_once 'partials/client-header.php';
@@ -6,8 +11,11 @@ include_once 'partials/client-nav.php';
 
 $vehicles = catalog_vehicles();
 $log->info('vehicles', $vehicles);
+$logged_in = $_SESSION['client_logged_in'];
 ?>
-
+<script>
+    console.log(<?php echo json_encode($logged_in); ?>);
+</script>
 <div class="container">
 
     <div class="row mt-3">
@@ -41,4 +49,4 @@ $log->info('vehicles', $vehicles);
         <?php endforeach;?>
     </div>
 </div>
-<?php include_once 'partials/client-footer';?>
+<?php include_once 'partials/client-footer.php';?>

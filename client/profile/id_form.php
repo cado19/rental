@@ -1,5 +1,5 @@
 <?php
-// THIS PAGE DISPLAYS ALLOWS A SELF REGISTERED CUSTOMER TO UPLOAD PROFILE IMAGE
+// THIS PAGE DISPLAYS ALLOWS A SELF REGISTERED CUSTOMER TO UPLOAD ID IMAGE
 session_start();
 if (!(isset($_SESSION['client']))) {
 	header("Location: index.php?page=client/auth/login");
@@ -16,19 +16,20 @@ $client = $_SESSION['client'];
 $id = $client['id'];
 ?>
 
+?>
 
-	<div class="container">
-		<div class="row mt-3">
+	<div class="container-fluid">
+		<div class="row">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">Upload Profile Image</h3>
+					<h3 class="card-title">Upload ID Card Image</h3>
 				</div>
 				<div class="card-body">
-					<form action="index.php?page=client/profile/profile_upload" method="post" enctype="multipart/form-data">
+					<form action="index.php?page=client/profile/id_upload" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 						    <label for="id_profile">Select Image Files to Upload:</label>
 						    <input type="hidden" name="id" value="<?php echo $id ?>">
-						    <input type="file" class="form-control-file" name="profile_image">
+						    <input type="file" class="form-control-file" name="id_image">
 					    </div>
 					    <input type="submit" name="submit" class="btn btn-outline-dark" value="UPLOAD">
 					</form>

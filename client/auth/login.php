@@ -20,7 +20,7 @@ include_once 'partials/client-header.php';
                             <div class="text-center">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Andrew Jones" class="img-fluid rounded-circle" width="132" height="132">
                             </div>
-                            <form>
+                            <form method="POST" action="index.php?page=client/auth/login_process">
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" required>
@@ -42,3 +42,4 @@ include_once 'partials/client-header.php';
         </div>
     </div>
 </div>
+<?php include_once 'partials/client-footer.php';?>

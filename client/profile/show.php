@@ -1,9 +1,10 @@
 <?php
-
-// if (!(isset($_SESSION['client']))) {
-// 	header("Location: index.php?page=client/auth/login");
-// 	exit;
-// }
+// THIS PAGE DISPLAYS A SELF REGISTERED CUSTOMER'S DETAILS AND ALLOWS EDITING AND UPDATING OF DETAILS
+session_start();
+if (!(isset($_SESSION['client_logged_in']))) {
+	header("Location: index.php?page=client/auth/login");
+	exit;
+}
 
 $page = "Catalog";
 
@@ -12,7 +13,7 @@ include_once 'partials/client-nav.php';
 
 $vehicles = catalog_vehicles();
 $client = $_SESSION['client'];
-$log->info('vehicles', $vehicles);
+$id = $client['id'];
 ?>
 <script>
 	console.log(<?php echo json_encode($client); ?>);
@@ -33,11 +34,11 @@ $log->info('vehicles', $vehicles);
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <img class="img-account-profile rounded-circle mb-2" src="customers/profile/<?php show_value($client, 'profile_image')?>" alt="http://bootdey.com/img/Content/avatar/avatar1.png">
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     <!-- Profile picture upload button-->
-                    <button class="btn btn-primary" type="button">Upload new image</button>
+                    <a href="index.php?page=client/profile/profile_form" class="btn btn-primary">Upload new image</a>
                 </div>
             </div>
         </div>
@@ -47,18 +48,19 @@ $log->info('vehicles', $vehicles);
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
                     <form method="POST" action="index.php?page=client/profile/update">
-
+                        <!-- id -->
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputFirstName">First name</label>
-                                <input class="form-control"  name="first_name" type="text" placeholder="Enter your first name" value="<?php edit_input_value($client['first_name']);?>">
+                                <label class="small mb-1" for="first_name">First name</label>
+                                <input class="form-control"  name="first_name" type="text" placeholder="Enter your first name" value="<?php edit_input_value($client, 'first_name');?>">
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Last name</label>
-                                <input class="form-control" name="last_name" type="text" placeholder="Enter your last name" value="<?php edit_input_value($client['last_name']);?>">
+                                <label class="small mb-1" for="last_name">Last name</label>
+                                <input class="form-control" name="last_name" type="text" placeholder="Enter your last name" value="<?php edit_input_value($client, 'last_name');?>">
                             </div>
                         </div>
 
@@ -66,9 +68,9 @@ $log->info('vehicles', $vehicles);
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (name Type)-->
                             <div class="col-md-6">
-                                <label for="id_type">name Type</label>
+                                <label for="id_type">ID Type</label>
                                 <select name="id_type" class="form-control form-control-border">
-                                        <option  value="<?php echo $customer['id_type']; ?>">--Please choose an option--</option>
+                                        <option  value="<?php edit_input_value($client, 'id_type');?>"><?php edit_dropdown_value($client, 'id_type');?></option>
                                         <option value="national_id"> National ID </option>
                                         <option value="passport"> Passport </option>
                                         <option value="military_id"> Military ID </option>
@@ -76,21 +78,21 @@ $log->info('vehicles', $vehicles);
                             </div>
                             <!-- Form Group (name Number)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">ID Number</label>
-                                <input class="form-control" name="id_number" type="text" placeholder="Enter your location" value="<?php edit_input_value($client['id_no']);?>">
+                                <label class="small mb-1" for="id_number">ID Number</label>
+                                <input class="form-control" name="id_number" type="text" placeholder="Enter your location" value="<?php edit_input_value($client, 'id_no');?>">
                             </div>
                         </div>
 
 
                         <!-- Form Group (home address)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Home address</label>
-                            <input class="form-control" name="inputEmailAddress" type="email" placeholder="Enter your email address" value="<?php edit_input_value($client['residential_address']);?>">
+                            <label class="small mb-1" for="work_address">Home address</label>
+                            <input class="form-control" name="residential_address" type="text" placeholder="Enter your home address" value="<?php edit_input_value($client, 'residential_address');?>">
                         </div>
                         <!-- Form Group (work address)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Work address</label>
-                            <input class="form-control" name="inputEmailAddress" type="email" placeholder="Enter your email address" value="<?php edit_input_value($client['work_address']);?>">
+                            <label class="small mb-1" for="work_address">Work address</label>
+                            <input class="form-control" name="work_address" type="text" placeholder="Enter your work address" value="<?php edit_input_value($client, 'work_address');?>">
                         </div>
 
 
@@ -98,26 +100,30 @@ $log->info('vehicles', $vehicles);
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (phone number)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" name="tel" type="tel" placeholder="Enter your phone number including country code" value="<?php edit_input_value($client['phone_no']);?>">
+                                <label class="small mb-1" for="tel">Phone number</label>
+                                <input class="form-control" name="tel" type="tel" placeholder="Include country code" value="<?php edit_input_value($client, 'phone_no');?>">
                             </div>
 
                             <!-- Form Group (birthday)-->
                             <div class="col-md-6">
                                 <label for="date_of_birth">Date of Birth</label>
                                 <div class="input-group date" id="birthdate" data-target-input="nearest">
-                                    <input type="text" name="date_of_birth" class="form-control datetimepicker-input" data-target="#birthdate" value="<?php edit_input_value($client['date_of_birth']);?>" />
+                                    <input type="text" name="date_of_birth" class="form-control datetimepicker-input" data-target="#birthdate" value="<?php edit_input_value($client, 'date_of_birth');?>" />
                                     <div class="input-group-append" data-target="#birthdate" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
+                                <?php if (isset($_GET['date_of_birth_err'])): ?>
+                                    <p class="text-danger"><?php echo $_GET['date_of_birth_err']; ?></p>
+                                <?php endif;?>
                             </div>
                         </div>
                         <!-- Save changes button-->
-                        <button class="btn btn-primary" type="button">Save changes</button>
+                        <button class="btn btn-primary">Save changes</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php include_once 'partials/client-footer.php';?>

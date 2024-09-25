@@ -13,7 +13,7 @@
         <a class="nav-link" href="#">Booking Requests</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?page=client/profile/edit">My Profile</a>
+        <a class="nav-link" href="index.php?page=client/profile/show">My Profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="index.php?page=client/auth/logout">Logout</a>

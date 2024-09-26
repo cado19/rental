@@ -1,30 +1,41 @@
+<?php
+include_once 'partials/header.php';
+// include_once 'partials/content_start.php';
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+}
+$contract = contract($id);
+$created = strtotime($contract['created_at']);
+$log->info('contract:', $contract);
+
+?>
 <div class="container-fluid">
 	<div class="row">
-		<p><b>CUSTOMER NAME / HIRER</b></p>
-		<p><b>MOBILE NUMBER</b></p>
-		<p><b>ADDRESS</b></p>
-		<p><b>ID TYPE</b></p>
-		<p><b>ID NO / PASSPORT</b></p>
-		<p><b>DL NO.</b></p>
+		<p><b>CUSTOMER NAME / HIRER</b> <?php show_value($contract, 'c_fname');?> <?php show_value($contract, 'c_lname');?></p>
+		<p><b>MOBILE NUMBER</b> <?php show_value($contract, 'c_phone_no');?></p>
+		<p><b>ADDRESS</b> <?php show_value($contract, 'residential_address');?></p>
+		<p><b>ID TYPE</b><?php show_value($contract, 'c_id_type');?></p>
+		<p><b>ID NO / PASSPORT</b><?php show_value($contract, 'c_id_no');?></p>
+		<p><b>DL NO.</b><?php show_value($contract, 'c_dl_no');?></p>
 		<p><b>PHYSICAL ADRESS</b></p>
 	</div>
 	<div class="row d-flex justify-content-center">
 		<b><u>IDENTIFICATION OF THE RENTAL CAR</u></b>
 	</div>
 	<div class="row">
-		<p><b>CAR MAKE</b></p>
+		<p><b>CAR MAKE</b><?php show_value($contract, 'make');?> <?php show_value($contract, 'model');?></p>
 		<p><b>PASSENGERS</b></p>
-		<p><b>REGISTRATION</b></p>
+		<p><b>REGISTRATION</b><?php show_value($contract, 'number_plate');?></p>
 		<p><b>CONDITION</b></p>
-		<p><b>START DATE</b></p>
-		<p><b>END DATE</b></p>
-		<p><b>START TIME</b></p>
-		<p><b>END TIME</b></p>
+		<p><b>START DATE</b><?php show_value($contract, 'start_date');?></p>
+		<p><b>END DATE</b><?php show_value($contract, 'end_date');?></p>
+		<p><b>START TIME</b><?php show_value($contract, 'start_time');?></p>
+		<p><b>END TIME</b><?php show_value($contract, 'end_time');?></p>
 	</div>
 	<div class="row">
 		<p>
-			 I FULLY UNDERSTAND THAT BY PAYMENT OF DAILY MAXIMUM LIABILITY TO THE COMPANY IS LIMITED UPTO KSHS......................... FOR
-COLLISION AND KSHS..................... (FOR THEFT) BEING THE EXCESS PREMIUM ON EACH AND EVERY CLAIM PAYABLE TO THE INSURANCE
+			 I FULLY UNDERSTAND THAT BY PAYMENT OF DAILY MAXIMUM LIABILITY TO THE COMPANY IS LIMITED UPTO KSHS...<?php show_numeric_value($contract, 'vehicle_excess');?>.... FOR
+COLLISION AND KSHS...<?php show_numeric_value($contract, 'vehicle_excess');?>... (FOR THEFT) BEING THE EXCESS PREMIUM ON EACH AND EVERY CLAIM PAYABLE TO THE INSURANCE
 COMPANY NOT WITHSTANDING PAYMENT OF THE AFOREMENTIONED RATE, I SHALL BE WHOLLY RESPONSIBLE FOR ANY DAMAGE(S)
 OCCASIONED TO THE VEHICLE IF USED, OPERATED OR DRIVEN IN VIOLATION OR BREACH OF THE TERMS & CONDITIONS OF
 THIS CONTRACT.
@@ -32,7 +43,7 @@ THIS CONTRACT.
 	</div>
 	<div class="row">
 		<div class="col-6">
-			SIGNATURE OF HIRER: [img of signature]
+			SIGNATURE OF HIRER: <img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img">
 		</div>
 		<div class="col-6">
 			DATE: [booking start date]
@@ -48,7 +59,7 @@ VEHICLE WHICH IS AN OFFENCE.
 	</div>
 	<div class="row">
 		<div class="col-6">
-			SIGNATURE OF HIRER: [img of signature]
+			SIGNATURE OF HIRER: <img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img">
 		</div>
 		<div class="col-6">
 			DATE: [booking start date]

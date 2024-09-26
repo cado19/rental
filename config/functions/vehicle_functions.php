@@ -225,4 +225,26 @@ function partner_vehicles($partner_id) {
 	return $vehicles;
 }
 
+function all_partner_vehicles() {
+	global $con;
+	global $vehicles;
+	$status = "false";
+
+	try {
+
+		$con->beginTransaction();
+
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN partners p ON vb.partner_id = p.id WHERE vb.partner_id IS NOT NULL";
+		$stmt = $con->prepare($sql);
+		$stmt->execute();
+		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $vehicles;
+}
+
 ?>

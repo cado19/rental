@@ -35,6 +35,40 @@ if (isset($_GET['id'])) {
 <section class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+                <div class="row d-flex justify-content-center">
+
+                    <div class="col-12 col-sm-4">
+                      <div class="info-box bg-light">
+                        <div class="info-box-content">
+                          <span class="info-box-text text-center text-muted"><?php show_value($vehicle, 'model');?> <?php show_value($vehicle, 'make');?></span>
+                          <span class="info-box-number text-center text-muted mb-0"><?php show_value($vehicle, 'number_plate');?></span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                      <div class="info-box bg-light">
+                        <div class="info-box-content">
+                          <span class="info-box-text text-center text-muted">Tel</span>
+                          <span class="info-box-number text-center text-muted mb-0">254<?php show_value($partner, 'phone_no');?></span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                      <div class="info-box bg-light">
+                        <div class="info-box-content">
+                          <span class="info-box-text text-center text-muted">Email</span>
+                          <span class="info-box-number text-center text-muted mb-0"><?php show_value($partner, 'email');?> days</span>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="card v-card">
                 <div class="card-body">
                     <h3 class="card-title"><?php show_value($vehicle, 'model');?> <?php show_value($vehicle, 'make');?></h3>

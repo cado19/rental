@@ -298,6 +298,15 @@ CREATE TABLE `kisuzi-rental`.`partners` (
 `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`));
 
+CREATE TABLE `kisuzi-rental`.`vehicle_issues` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `vehicle_id` INT NULL,
+  `title` VARCHAR(45) NULL,
+  `description` LONGTEXT NULL,
+  `status` VARCHAR(45) NULL DEFAULT 'pending',
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`));
+
 
 
 ALTER TABLE `kisuzi-rental`.`bookings` 

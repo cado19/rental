@@ -254,16 +254,17 @@ function is_partner_vehicle($vehicle_id) {
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT partner_id FROM vehicle_basics WHERE id = ?";
+		$sql = "SELECT id FROM vehicle_basics v WHERE v.id = ? AND partner_id IS NOT NULL";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$vehicle_id]);
 		if ($stmt->rowCount() == 1) {
 			$sql1 = "SELECT p.name FROM partners p INNER JOIN vehicle_basics v ON p.id = v.partner_id WHERE v.id = ?";
 			$stmt1 = $con->prepare($sql1);
 			$stmt1->execute([$vehicle_id]);
-			$res = stmt1->fetch();
+			$res = $stmt1->fetch();
 		} else {
-			$res = "Our vehicle";
+
+			$res = array("name" => "Our vehicle");
 		}
 
 		$con->commit();

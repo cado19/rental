@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
 	$vehicle = get_vehicle($id);
 	$ownership = is_partner_vehicle($id);
 	$bookings = vehicle_bookings($id);
-	$log->info('Foo: ', $vehicle);
+	// $log->info('Foo: ', $vehicle);
 } else {
 	$msg = "Couldn't fetch fetch vehicle";
 	header("Location: index.php?page=fleet/all&msg=$msg");
@@ -52,7 +52,7 @@ if (isset($_GET['id'])) {
                       <div class="info-box bg-light">
                         <div class="info-box-content">
                           <span class="info-box-text text-center text-muted">Ownership</span>
-                          <span class="info-box-number text-center text-muted mb-0"><?php echo $ownership; ?></span>
+                          <span class="info-box-number text-center text-muted mb-0"><?php echo $ownership['name']; ?></span>
                         </div>
                       </div>
                     </div>

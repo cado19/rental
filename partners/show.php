@@ -47,7 +47,7 @@ $link .= $_SERVER['PHP_SELF'];
 $link .= "?page=partners/show&id=${id}";
 ?>
 <script>
-	console.log(<?php echo json_encode($no_of_bookings); ?>);
+	console.log(<?php echo json_encode($vehicles); ?>);
 </script>
 <section class="content">
 	<div class="container-fluid">
@@ -131,6 +131,7 @@ $link .= "?page=partners/show&id=${id}";
 	                                <th>Model</th>
 	                                <th>Make</th>
 	                                <th>Registration</th>
+	                                <th></th>
 	                            </tr>
 	                        </thead>
 	                        <tbody>
@@ -139,6 +140,7 @@ $link .= "?page=partners/show&id=${id}";
 	                                    <td><?php echo $vehicle['model'] ?> </td>
 	                                    <td> <?php echo $vehicle['make']; ?> </td>
 	                                    <td> <?php echo $vehicle['reg']; ?> </td>
+	                                    <td><a href="index.php?page=fleet/show&id=<?php echo $vehicle['id']; ?>">Details</a></td>
 	                                </tr>
 	                            <?php endforeach;?>
 	                        </tbody>

@@ -39,7 +39,7 @@ function customer_count() {
 	return $res;
 }
 
-function active_bookings() {
+function home_active_bookings() {
 	global $con;
 	global $res;
 	$status = "active";

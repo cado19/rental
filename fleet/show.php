@@ -21,6 +21,7 @@ include_once 'partials/content_start.php';
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$vehicle = get_vehicle($id);
+	$ownership = is_partner_vehicle($id);
 	$bookings = vehicle_bookings($id);
 	$log->info('Foo: ', $vehicle);
 } else {
@@ -30,7 +31,7 @@ if (isset($_GET['id'])) {
 
 ?>
 <script>
-    console.log(<?php echo json_encode($vehicle); ?>);
+    console.log(<?php echo json_encode($ownership); ?>);
 </script>
 <section class="content">
     <div class="container-fluid">
@@ -38,7 +39,7 @@ if (isset($_GET['id'])) {
             <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
                 <div class="row d-flex justify-content-center">
 
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 col-sm-6">
                       <div class="info-box bg-light">
                         <div class="info-box-content">
                           <span class="info-box-text text-center text-muted"><?php show_value($vehicle, 'model');?> <?php show_value($vehicle, 'make');?></span>
@@ -47,20 +48,11 @@ if (isset($_GET['id'])) {
                       </div>
                     </div>
 
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 col-sm-6">
                       <div class="info-box bg-light">
                         <div class="info-box-content">
-                          <span class="info-box-text text-center text-muted">Tel</span>
-                          <span class="info-box-number text-center text-muted mb-0">254<?php show_value($partner, 'phone_no');?></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-12 col-sm-4">
-                      <div class="info-box bg-light">
-                        <div class="info-box-content">
-                          <span class="info-box-text text-center text-muted">Email</span>
-                          <span class="info-box-number text-center text-muted mb-0"><?php show_value($partner, 'email');?> days</span>
+                          <span class="info-box-text text-center text-muted">Ownership</span>
+                          <span class="info-box-number text-center text-muted mb-0"><?php echo $ownership; ?></span>
                         </div>
                       </div>
                     </div>
@@ -71,8 +63,7 @@ if (isset($_GET['id'])) {
         <div class="row">
             <div class="card v-card">
                 <div class="card-body">
-                    <h3 class="card-title"><?php show_value($vehicle, 'model');?> <?php show_value($vehicle, 'make');?></h3>
-                    <h6 class="card-subtitle"><?php show_value($vehicle, 'number_plate');?></h6>
+
                     <div class="row">
                         <div class="col-lg-5 col-md-4 col-sm-5">
                             <div class="white-box text-center"><img src="fleet/images/<?php echo show_value($vehicle, 'image'); ?>" class="img-responsive v-image"></div>

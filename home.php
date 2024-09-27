@@ -22,7 +22,7 @@ $account_id = $_SESSION['account']['id'];
 
 $vehicle_count = vehicle_count();
 $customer_count = customer_count();
-$active_bookings = active_bookings();
+$active_bookings = home_active_bookings();
 $partner_count = partner_count();
 $bookings = home_bookings();
 
@@ -77,7 +77,7 @@ $log->info('bookings', $bookings);
                       <div class="icon">
                         <i class="ion ion-android-list"></i>
                       </div>
-                      <a href="index.php?page=bookings/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                      <a href="index.php?page=bookings/active" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                   <!-- ./col -->

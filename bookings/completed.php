@@ -1,5 +1,5 @@
 <?php
-// THIS PAGE SHOWS ALL BOOKINGS
+// THIS PAGE SHOWS ALL BOOKINGS THAT ARE COMPLETED
 //page name. We set this inn the content start and also in the page title programatically
 $page = "Bookings";
 
@@ -15,7 +15,7 @@ $new_pb_link_name = "New Partner Booking";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Bookings";
-$breadcrumb_active = "All Bookings";
+$breadcrumb_active = "Completed Bookings";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
@@ -23,7 +23,7 @@ include_once 'partials/content_start.php';
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
-$bookings = bookings();
+$bookings = active_bookings();
 
 ?>
 

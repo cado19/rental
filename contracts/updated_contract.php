@@ -9,28 +9,34 @@ $created = strtotime($contract['created_at']);
 $log->info('contract:', $contract);
 
 ?>
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
-		<p><b>CUSTOMER NAME / HIRER</b> <?php show_value($contract, 'c_fname');?> <?php show_value($contract, 'c_lname');?></p>
-		<p><b>MOBILE NUMBER</b> <?php show_value($contract, 'c_phone_no');?></p>
-		<p><b>ADDRESS</b> <?php show_value($contract, 'residential_address');?></p>
-		<p><b>ID TYPE</b><?php show_value($contract, 'c_id_type');?></p>
-		<p><b>ID NO / PASSPORT</b><?php show_value($contract, 'c_id_no');?></p>
-		<p><b>DL NO.</b><?php show_value($contract, 'c_dl_no');?></p>
-		<p><b>PHYSICAL ADRESS</b></p>
+		<div class="col">
+
+
+			<p><b>CUSTOMER NAME / HIRER</b> <?php show_value($contract, 'c_fname');?> <?php show_value($contract, 'c_lname');?></p>
+			<p><b>MOBILE NUMBER</b> <?php show_value($contract, 'c_phone_no');?></p>
+			<p><b>ADDRESS</b> <?php show_value($contract, 'residential_address');?></p>
+			<p><b>ID TYPE</b><?php show_value($contract, 'c_id_type');?></p>
+			<p><b>ID NO / PASSPORT</b><?php show_value($contract, 'c_id_no');?></p>
+			<p><b>DL NO.</b><?php show_value($contract, 'c_dl_no');?></p>
+			<p><b>PHYSICAL ADRESS</b></p>
+		</div>
 	</div>
 	<div class="row d-flex justify-content-center">
 		<b><u>IDENTIFICATION OF THE RENTAL CAR</u></b>
 	</div>
 	<div class="row">
-		<p><b>CAR MAKE</b><?php show_value($contract, 'make');?> <?php show_value($contract, 'model');?></p>
-		<p><b>PASSENGERS</b></p>
-		<p><b>REGISTRATION</b><?php show_value($contract, 'number_plate');?></p>
-		<p><b>CONDITION</b></p>
-		<p><b>START DATE</b><?php show_value($contract, 'start_date');?></p>
-		<p><b>END DATE</b><?php show_value($contract, 'end_date');?></p>
-		<p><b>START TIME</b><?php show_value($contract, 'start_time');?></p>
-		<p><b>END TIME</b><?php show_value($contract, 'end_time');?></p>
+		<div class="col">
+			<p><b>CAR MAKE</b><?php show_value($contract, 'make');?> <?php show_value($contract, 'model');?></p>
+			<p><b>PASSENGERS</b></p>
+			<p><b>REGISTRATION</b><?php show_value($contract, 'number_plate');?></p>
+			<p><b>CONDITION</b></p>
+			<p><b>START DATE</b><?php show_value($contract, 'start_date');?></p>
+			<p><b>END DATE</b><?php show_value($contract, 'end_date');?></p>
+			<p><b>START TIME</b><?php show_value($contract, 'start_time');?></p>
+			<p><b>END TIME</b><?php show_value($contract, 'end_time');?></p>
+			</div>
 	</div>
 	<div class="row">
 		<p>
@@ -42,13 +48,16 @@ THIS CONTRACT.
 		</p>
 	</div>
 	<div class="row">
-		<div class="col-6">
-			SIGNATURE OF HIRER: <img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img">
-		</div>
-		<div class="col-6">
-			DATE: [booking start date]
-		</div>
-	</div>
+			<table class="table">
+				<tr>
+					<td class="contract-td"><b>DATE</b></td>
+					<td class="contract-td"><b>HIRER SIGNATURE</b></td>
+				</tr>
+				<tr>
+					<td class="contract-td"><b><?php echo date("l jS \of F Y", $created); ?></b></td>
+					<td class="contract-td"><img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img"></td>
+				</tr>
+			</table>
 	<div class="row">
 		<p>
 			I FULLY UNDERSTAND THAT I AM THE AUTHORISED PERSON TO DRIVE THIS VEHICLE UNLESS OTHER DRIVERS ARE SPECIFIED ABOVE IN
@@ -58,12 +67,16 @@ VEHICLE WHICH IS AN OFFENCE.
 		</p>
 	</div>
 	<div class="row">
-		<div class="col-6">
-			SIGNATURE OF HIRER: <img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img">
-		</div>
-		<div class="col-6">
-			DATE: [booking start date]
-		</div>
+			<table class="table">
+				<tr>
+					<td class="contract-td"><b>DATE</b></td>
+					<td class="contract-td"><b>HIRER SIGNATURE</b></td>
+				</tr>
+				<tr>
+					<td class="contract-td"><b><?php echo date("l jS \of F Y", $created); ?></b></td>
+					<td class="contract-td"><img src="contracts/signatures/<?php echo $contract['signature']; ?>" alt="Signature" class="signature-img"></td>
+				</tr>
+			</table>
 	</div>
 
 	<div class="row">

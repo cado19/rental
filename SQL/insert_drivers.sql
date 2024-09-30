@@ -56,3 +56,9 @@ SELECT c.first_name, c.last_name, sum(b.total) AS Income FROM customer_details c
 -- SELF DRIVE 
 INSERT INTO `kisuzi-rental`.`drivers` (`first_name`, `last_name`, `id_no`, `dl_no`, `dl_expiration_date`, `date_of_birth`, `phone_no`, `email`, `deleted`) VALUES ('SELF', 'DRIVE', 'NONE', 'NONE', '1970-01-01', '1970-01-01', '123456789', 'self@drive.com', 'false');
 
+-- INSERT ROLES IN ROLES TABLE
+INSERT INTO `kisuzi-rental`.`roles` (`name`) VALUES ('admin');
+INSERT INTO `kisuzi-rental`.`roles` (`name`) VALUES ('agent');
+INSERT INTO `kisuzi-rental`.`roles` (`name`) VALUES ('driver');
+INSERT INTO `kisuzi-rental`.`roles` (`name`) VALUES ('fleet manager');
+

@@ -45,6 +45,9 @@
       <!-- OUR CSS  -->
       <link rel="stylesheet" href="assets/style.css">
 
+      <!-- Intl Tel CSS -->
+      <link rel="stylesheet" href="assets/build/css/intlTelInput.css">
+
 
 
       <script type="text/javascript" src="assets/signature.js"></script>

@@ -307,6 +307,12 @@ CREATE TABLE `kisuzi-rental`.`vehicle_issues` (
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`));
 
+CREATE TABLE `kisuzi-rental`.`roles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+
 
 
 ALTER TABLE `kisuzi-rental`.`bookings` 

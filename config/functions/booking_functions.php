@@ -164,7 +164,7 @@ function assign_vehicle($id, $fuel, $account_id) {
 
 		$con->beginTransaction();
 
-		$sql = "UPDATE bookings SET fuel = ?, account_id = ? WHERE id = ?";
+		$sql = "UPDATE bookings SET fuel = ?, assign_id = ? WHERE id = ?";
 		$stmt = $con->prepare($sql);
 		if ($stmt->execute([$fuel, $account_id, $id])) {
 			$res = "Success";
@@ -274,7 +274,7 @@ function booking_drivers() {
 }
 
 // function to insert booking into database
-function save_booking($v_id, $c_id, $d_id, $start_date, $end_date, $start_time, $end_time) {
+function save_booking($v_id, $c_id, $d_id, $a_id, $start_date, $end_date, $start_time, $end_time) {
 	global $con;
 	global $res;
 	$status = "upcoming";
@@ -282,9 +282,9 @@ function save_booking($v_id, $c_id, $d_id, $start_date, $end_date, $start_time, 
 	try {
 		$con->beginTransaction();
 
-		$sql = "INSERT INTO bookings (vehicle_id, customer_id, driver_id, start_date, end_date, start_time, end_time, status) VALUES (?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO bookings (vehicle_id, customer_id, driver_id, account_id, start_date, end_date, start_time, end_time, status) VALUES (?,?,?,?,?,?,?,?,?)";
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$v_id, $c_id, $d_id, $start_date, $end_date, $start_time, $end_time, $status])) {
+		if ($stmt->execute([$v_id, $c_id, $d_id, $a_id, $start_date, $end_date, $start_time, $end_time, $status])) {
 			$res = $con->lastInsertId();
 		} else {
 			$res = "No Success";

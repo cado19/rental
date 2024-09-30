@@ -10,6 +10,12 @@ include 'config/functions/homepage_functions.php';
 //   ******************* */ CLIENT FUNCTIONS ******************* */
 include 'config/functions/client_functions.php';
 
+//   ******************* */ ORGANISATION FUNCTIONS ******************* */
+include 'config/functions/organisation_functions.php';
+
+//   ******************* */ AGENT FUNCTIONS ******************* */
+include 'config/functions/agent_functions.php';
+
 //   ******************* */ VEHICLE FUNCTIONS ******************* */
 include 'config/functions/vehicle_functions.php';
 

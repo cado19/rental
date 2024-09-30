@@ -31,6 +31,9 @@
 <!-- overlayScrollbars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.10.0/browser/overlayscrollbars.browser.es6.min.js"></script>
 
+<!-- Intl Tel Js -->
+<script src="assets/build/js/intlTelInput.min.js"></script>
+
 <!-- DataTables  & Plugins -->
 <script src="assets/datatables/jquery.dataTables.min.js"></script>
 <script src="assets/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -48,6 +51,25 @@
 
 <!-- AdminLTE App -->
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+<!-- telephone input init script -->
+
+<script>
+    var input = document.querySelector("#telephone");
+    window.intlTelInput(input,({
+      // options here
+        utilsScript: 'assets/build/js/utils.js',
+        customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+            return "e.g. " + selectedCountryPlaceholder;
+        },
+        hiddenInput: function(telInputName) {
+            return {
+                phone: "phone_full",
+                country: "country_code"
+            };
+          }
+    }));
+</script>
 
 
 <?php if ($page == "Client Analytics"): ?>

@@ -23,6 +23,7 @@
                     </li>
 
                     <li class="nav-item">
+
                         <a href="index.php?page=customers/all" class="nav-link">
                           <i class="nav-icon fa fa-users"></i>
                           <p>
@@ -30,8 +31,18 @@
                           </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+
+                        <a href="index.php?page=agents/all" class="nav-link">
+                          <i class="nav-icon fa fa-male"></i>
+                          <p>
+                            Agents
+                          </p>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
+
                         <a href="index.php?page=drivers/all" class="nav-link">
                           <i class="nav-icon fa fa-id-card"></i>
                           <p>
@@ -39,6 +50,8 @@
                           </p>
                         </a>
                     </li>
+
+
 
                     <li class="nav-item">
                         <a href="index.php?page=partners/all" class="nav-link">
@@ -48,6 +61,16 @@
                           </p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="index.php?page=organisations/all" class="nav-link">
+                          <i class="nav-icon fa fa-sitemap"></i>
+                          <p>
+                            Organisations
+                          </p>
+                        </a>
+                    </li>
+
 
                     <li class="nav-item">
                         <a href="index.php?page=fleet/all" class="nav-link">

@@ -33,6 +33,7 @@ $log->info('customers', $customers);
                     <div class="card-body">
 
                         <form action="index.php?page=bookings/create" method="post" autocomplete="off">
+                            <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
                             <div class="form-group">
                                 <label for="vehicle_id">Vehicle</label>
                                 <select name="vehicle_id"  class="form-control form-control-border">

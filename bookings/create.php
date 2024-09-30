@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	// 	header("Location: index.php?page=bookings/new&end_time_err=$end_time_err");
 	// 	exit;
 	// }
-
+	$a_id = $_POST['account_id']
 	$v_id = $_POST['vehicle_id'];
 	$c_id = $_POST['customer_id'];
 	$d_id = $_POST['driver_id'];
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$end_date = $_POST['end_date'];
 	$end_time = $_POST['end_time'];
 
-	$posts = array($v_id, $c_id, $d_id, $start_date, $start_time, $end_time, $end_date);
+	$posts = array($v_id, $c_id, $d_id, $a_id, $start_date, $end_date, $start_time, $end_time);
 	$log->info('Posts:', $posts);
 	// GET THE DURATION (TOTAL NUMBER OF DAYS OF THE BOOKING)
 	$start_date_time = strtotime($_POST['start_date']);
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	}
 	// INSERT BOOKING DATA INTO THE DATABASE
 
-	$result = save_booking($v_id, $c_id, $d_id, $start_date, $end_date, $start_time, $end_time);
+	$result = save_booking($v_id, $c_id, $d_id, $a_id, $start_date, $end_date, $start_time, $end_time);
 	if ($result == "No Success") {
 		$err = "An error occured. Try again later";
 		header("Location: index.php?page=bookings/new&err_msg=$err");

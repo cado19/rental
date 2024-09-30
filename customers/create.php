@@ -30,31 +30,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		exit;
 	}
 
-	if (empty($_POST['dl_number'])) {
-		$dl_number_err = "Required";
-		header("Location: index.php?page=customers/new&dl_number_err=$dl_number_err");
-		exit;
-	}
-
-	if (empty($_POST['dl_expiry'])) {
-		$dl_expiry_err = "Required";
-		header("Location: index.php?page=customers/new&dl_expiry_err=$dl_expiry_err");
-		exit;
-	}
-
-	if (empty($_POST['tel'])) {
-		$tel_err = "Required";
-		header("Location: index.php?page=customers/new&tel_err=$tel_err");
-	}
-	if (empty($_POST['residential_address'])) {
-		$residential_address_err = "Required";
-		header("Location: index.php?page=customers/new&residential_address_err=$residential_address_err");
-		exit;
-	}
-	if (empty($_POST['work_address'])) {
-		$work_address_err = "Required";
-		header("Location: index.php?page=customers/new&work_address_err=$work_address_err");
-		exit;
+	// if (empty($_POST['tel'])) {
+	// 	$tel_err = "Required";
+	// 	header("Location: index.php?page=customers/new&tel_err=$tel_err");
+	// }
+	// if (empty($_POST['residential_address'])) {
+	// 	$residential_address_err = "Required";
+	// 	header("Location: index.php?page=customers/new&residential_address_err=$residential_address_err");
+	// 	exit;
+	// }
+	// if (empty($_POST['work_address'])) {
+	// 	$work_address_err = "Required";
+	// 	header("Location: index.php?page=customers/new&work_address_err=$work_address_err");
+	// 	exit;
 	}
 	if (empty($_POST['date_of_birth'])) {
 		$date_of_birth_err = "Required";

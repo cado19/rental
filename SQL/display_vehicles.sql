@@ -71,3 +71,15 @@ CHANGE COLUMN `end_time` `end_time` VARCHAR(20) NULL DEFAULT NULL ;
 -- add image to vehicle_basics
 ALTER TABLE `kisuzi-rental`.`vehicle_basics` 
 ADD COLUMN `image` VARCHAR(255) NULL AFTER `partner_id`;
+
+-- add roles to accounts 
+ALTER TABLE `kisuzi-rental`.`accounts` 
+ADD COLUMN `role_id` VARCHAR(45) NULL AFTER `verified`;
+
+-- add country to accounts
+ALTER TABLE `kisuzi-rental`.`accounts` 
+ADD COLUMN `country` VARCHAR(100) NULL AFTER `representative`;
+
+-- assignment id to bookings. person who assigns the car
+ALTER TABLE `kisuzi-rental`.`bookings` 
+ADD COLUMN `assign_id` INT NULL AFTER `account_id`;

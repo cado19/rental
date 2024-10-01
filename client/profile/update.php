@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$work_address = $_POST['work_address'];
 	$date_of_birth = $_POST['date_of_birth'];
 
-	$details = [$first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $account_id];
+	$details = [$first_name, $last_name, $email, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id];
 	// $log->warning('client:',$details);
 
 	$result = update_client($first_name, $last_name, $id_type, $id_number, $tel, $residential_address, $work_address, $date_of_birth, $id);
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location: index.php?page=client/catalog/show&err_msg=$msg");
 	}
 
-	// $log->info($result);
+	// $log->info('client:', $details);
 
 } else {
 	$msg = "Unauthorized activity";

@@ -37,6 +37,7 @@ include_once 'partials/client-header.php';
                                 <div class="text-center mt-3">
                                     <button type="submit" class="btn btn-lg btn-outline-primary">Sign up</button>
                                 </div>
+                                <a href="index.php?page=client/auth/login">Sign In</a>
 
                             </form>
                         </div>

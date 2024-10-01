@@ -1,4 +1,5 @@
 <?php
+// THIS PAGE OUGHT TO DISPLAY A FORM TO COLLECT VEHICLE DATA
 $page = "New Vehicle";
 
 // Navbar Links. We set these link in the navbar programatically.

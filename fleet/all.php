@@ -19,7 +19,7 @@ $partner_vehicle_link = "index.php?page=fleet/partners/all";
 $partner_vehicle_link_name = "Partner Vehicles";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Vehicles";
+$breadcrumb = "Vehicls";
 $breadcrumb_active = "All Vehicles";
 
 include_once 'partials/header.php';

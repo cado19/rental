@@ -20,6 +20,7 @@ include_once 'partials/content_start.php';
 
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
+	$no_of_issues = issues_count($id);
 	$vehicle = get_vehicle($id);
 	$ownership = is_partner_vehicle($id);
 	$bookings = vehicle_bookings($id);
@@ -31,7 +32,7 @@ if (isset($_GET['id'])) {
 
 ?>
 <script>
-    console.log(<?php echo json_encode($ownership); ?>);
+    console.log(<?php echo json_encode($no_of_issues); ?>);
 </script>
 <section class="content">
     <div class="container-fluid">
@@ -39,7 +40,7 @@ if (isset($_GET['id'])) {
             <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
                 <div class="row d-flex justify-content-center">
 
-                    <div class="col-12 col-sm-6">
+                    <div class="col-12 col-sm-4">
                       <div class="info-box bg-light">
                         <div class="info-box-content">
                           <span class="info-box-text text-center text-muted"><?php show_value($vehicle, 'model');?> <?php show_value($vehicle, 'make');?></span>
@@ -48,11 +49,19 @@ if (isset($_GET['id'])) {
                       </div>
                     </div>
 
-                    <div class="col-12 col-sm-6">
+                    <div class="col-12 col-sm-4">
                       <div class="info-box bg-light">
                         <div class="info-box-content">
                           <span class="info-box-text text-center text-muted">Ownership</span>
                           <span class="info-box-number text-center text-muted mb-0"><?php echo $ownership['name']; ?></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                      <div class="info-box bg-light">
+                        <div class="info-box-content">
+                          <span class="info-box-text text-center text-muted"><?php show_numeric_value($no_of_issues, 'issue_count');?> Issues</span>
+                          <span class="info-box-number text-center text-muted mb-0"><a href="index.php?page=fleet/issues&id=<?php echo $id; ?>">View <span class="fa fa-arrow-right"></span></a></span>
                         </div>
                       </div>
                     </div>

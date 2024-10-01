@@ -36,32 +36,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
-	if (empty($_POST['category'])) {
-		$category_err = "Required";
-		header("Location: index.php?page=fleet/new&category_err=$category_err");
-		exit;
-	}
-	if (empty($_POST['transmission'])) {
-		$transmission_err = "Required";
-		header("Location: index.php?page=fleet/new&transmission_err=$transmission_err");
-		exit;
-	}
-	if (empty($_POST['fuel'])) {
-		$fuel_err = "Required";
-		header("Location: index.php?page=fleet/new&fuel_err=$fuel_err");
-	}
+	// if (empty($_POST['category'])) {
+	// 	$category_err = "Required";
+	// 	header("Location: index.php?page=fleet/new&category_err=$category_err");
+	// 	exit;
+	// }
+	// if (empty($_POST['transmission'])) {
+	// 	$transmission_err = "Required";
+	// 	header("Location: index.php?page=fleet/new&transmission_err=$transmission_err");
+	// 	exit;
+	// }
+	// if (empty($_POST['fuel'])) {
+	// 	$fuel_err = "Required";
+	// 	header("Location: index.php?page=fleet/new&fuel_err=$fuel_err");
+	// }
 
-	if (empty($_POST['seats'])) {
-		$seats_err = "Required";
-		header("Location: index.php?page=fleet/new&seats_err=$seats_err");
-		exit;
-	}
+	// if (empty($_POST['seats'])) {
+	// 	$seats_err = "Required";
+	// 	header("Location: index.php?page=fleet/new&seats_err=$seats_err");
+	// 	exit;
+	// }
 
-	if (empty($_POST['colour'])) {
-		$colour_err = "Required";
-		header("Location: index.php?page=fleet/new&colour_err=$colour_err");
-		exit;
-	}
+	// if (empty($_POST['colour'])) {
+	// 	$colour_err = "Required";
+	// 	header("Location: index.php?page=fleet/new&colour_err=$colour_err");
+	// 	exit;
+	// }
 
 	if (empty($_POST['daily_rate'])) {
 		$daily_rate_err = "Required";
@@ -83,15 +83,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
-	if (empty($_POST['deposit'])) {
-		$deposit_err = "Required";
-		header("Location: index.php?page=fleet/new&deposit_err=$deposit_err");
-		exit;
-	} elseif (($_POST['deposit']) <= 0) {
-		$deposit_err = "Must be greater than 0";
-		header("Location: index.php?page=fleet/new&deposit_err=$deposit_err");
-		exit;
-	}
+	// if (empty($_POST['deposit'])) {
+	// 	$deposit_err = "Required";
+	// 	header("Location: index.php?page=fleet/new&deposit_err=$deposit_err");
+	// 	exit;
+	// } elseif (($_POST['deposit']) <= 0) {
+	// 	$deposit_err = "Must be greater than 0";
+	// 	header("Location: index.php?page=fleet/new&deposit_err=$deposit_err");
+	// 	exit;
+	// }
 
 	// format the number plate
 	$num_plate_1 = ucwords($_POST['num_plate_1']);

@@ -201,7 +201,7 @@ function delete_vehicle($id) {
 
 	return $res;
 }
-
+// PARTNER VEHICLE
 // get all partner vehicles
 function partner_vehicles($partner_id) {
 	global $con;
@@ -267,6 +267,131 @@ function is_partner_vehicle($vehicle_id) {
 			$res = array("name" => "Our vehicle");
 		}
 
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+// VEHICLE ISSUES
+function all_issues($vehicle_id) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "SELECT * FROM vehicle_issues WHERE vehicle_id = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$vehicle_id]);
+		$res = $stmt->fetchAll();
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function get_issue($issue_id) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "SELECT * FROM vehicle_issues WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$issue_id]);
+		$res = $stmt->fetch();
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function issues_count($vehicle_id) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "SELECT count(i.id) AS issue_count FROM vehicle_issues i INNER JOIN vehicle_basics v ON i.vehicle_id = v.id WHERE v.id = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$vehicle_id]);
+		$res = $stmt->fetch();
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function save_issue($vehicle_id, $title, $description) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "INSERT INTO vehicle_issues (vehicle_id, title, description) VALUES (?,?,?)";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$vehicle_id, $title, $description])) {
+			$res = "Success";
+		} else {
+			$res = "Failed";
+		}
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function vehicle_from_issues($issue_id) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+		$sql = "SELECT vb.make, vb.model, vb.number_plate FROM vehicle_basics vb INNER JOIN vehicle_issues vi ON vi.vehicle_id = vb.id WHERE vi.id = ?";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$issue_id]);
+		$res = $stmt->fetch();
+
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+function resolve_issue($issue_id, $cost, $date) {
+	global $con;
+	global $res;
+	$status = "resolved";
+
+	try {
+		$con->beginTransaction();
+		$sql = "UPDATE vehicle_issues SET resolution_cost = ?, resolution_date = ?, status = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$cost, $date, $status, $issue_id])) {
+			$res = "Success";
+		} else {
+			$res = "Failed";
+		}
 		$con->commit();
 	} catch (Exception $e) {
 		$con->rollback();

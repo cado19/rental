@@ -19,20 +19,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	if (empty($_POST['num_plate_1'])) {
 		$num_plate_1_err = "Required";
-		header("Location: index.php?page=fleet/new&$num_plate_1_err=$num_plate_1_err");
+		header("Location: index.php?page=fleet/new&num_plate_1_err=$num_plate_1_err");
 		exit;
-	} elseif ($_POST['num_plate_1'] != 3) {
+	} elseif (strlen($_POST['num_plate_1']) != 3) {
 		$num_plate_1_err = "Atleast 3 letters required";
-		header("Location: index.php?page=fleet/new&$num_plate_1_err=$num_plate_1_err");
+		header("Location: index.php?page=fleet/new&num_plate_1_err=$num_plate_1_err");
 		exit;
 	}
 	if (empty($_POST['num_plate_2'])) {
 		$num_plate_2_err = "Required";
-		header("Location: index.php?page=fleet/new&$num_plate_2_err=$num_plate_2_err");
+		header("Location: index.php?page=fleet/new&num_plate_2_err=$num_plate_2_err");
 		exit;
-	} elseif ($_POST['num_plate_2'] != 4) {
+	} elseif (strlen($_POST['num_plate_2']) != 4) {
 		$num_plate_2_err = "Atleast 4 characters required";
-		header("Location: index.php?page=fleet/new&$num_plate_2_err=$num_plate_2_err");
+		header("Location: index.php?page=fleet/new&num_plate_2_err=$num_plate_2_err");
 		exit;
 	}
 
@@ -94,9 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// }
 
 	// format the number plate
-	$num_plate_1 = ucwords($_POST['num_plate_1']);
-	$num_plate_1 = ucwords(substr($_POST['num_plate_2'], -1));
-	$number_plate = $num_plate_1 . " " . $num_plate_2;
+	$num_plate_1 = $_POST['num_plate_1'];
+	$num_plate_2 = $_POST['num_plate_2'];
+	$number_plate = format_number_plate($num_plate_1, $num_plate_2);
 
 	$taken_plate = unique_registration($number_plate);
 	if ($taken_plate == "Taken") {

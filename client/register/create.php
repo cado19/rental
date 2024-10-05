@@ -6,27 +6,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//VALIDATIONS
 	if (empty($_POST['first_name'])) {
 		$first_name_err = "Required";
-		header("Location: index.php?page=customers/new&first_name_err=$first_name_err");
+		header("Location: index.php?page=client/register/new&first_name_err=$first_name_err");
 		exit;
 	}
 	if (empty($_POST['last_name'])) {
 		$last_name_err = "Required";
-		header("Location: index.php?page=customers/new&last_name_err=$last_name_err");
+		header("Location: index.php?page=client/register/new&last_name_err=$last_name_err");
 		exit;
 	}
 	if (empty($_POST['email'])) {
 		$email_err = "Required";
-		header("Location: index.php?page=customers/new&email_err=$email_err");
+		header("Location: index.php?page=client/register/new&email_err=$email_err");
 		exit;
 	}
 	if (empty($_POST['id_type'])) {
 		$id_type_err = "Required";
-		header("Location: index.php?page=customers/new&id_type_err=$id_type_err");
+		header("Location: index.php?page=client/register/new&id_type_err=$id_type_err");
 		exit;
 	}
 	if (empty($_POST['id_number'])) {
 		$id_number_err = "Required";
-		header("Location: index.php?page=customers/new&id_number_err=$id_number_err");
+		header("Location: index.php?page=client/register/new&id_number_err=$id_number_err");
 		exit;
 	}
 
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// }
 	if (empty($_POST['date_of_birth'])) {
 		$date_of_birth_err = "Required";
-		header("Location: index.php?page=customers/new&date_of_birth_err=$date_of_birth_err");
+		header("Location: index.php?page=client/register/new&date_of_birth_err=$date_of_birth_err");
 		exit;
 	}
 
@@ -64,15 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	$details = [$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $account_id];
 
-	$result = save_customer($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth);
+	// $result = save_customer($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth);
 
-	if ($result == "Success") {
-		$msg = "Successfully created customers";
-		header("Location: index.php?page=customers/all&msg=$msg");
-	} else {
-		$msg = "An error occured";
-		header("Location: index.php?page=customers/all&err_msg=$msg");
-	}
+	// if ($result == "Success") {
+	// 	$msg = "Successfully created customers";
+	// 	header("Location: index.php?page=client/register/new&msg=$msg");
+	// } else {
+	// 	$msg = "An error occured";
+	// 	header("Location: index.php?page=client/register/new&err_msg=$msg");
+	// }
 	// $log->info($result);
 } else {
 	$msg = "Unauthorized activity";

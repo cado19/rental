@@ -1,6 +1,9 @@
 <?php
 // FOR NOW THIS WILL BE THE HOME DASHBOARD. WE'LL CUSTOMIZE IT AS THE APP GROWS
 
+// head to login screen if user is not signed in.
+include_once 'config/session_script.php';
+
 //page name. We set this inn the content start and also in the page title programatically
 $page = "Dashboard";
 
@@ -106,8 +109,8 @@ $log->info('bookings', $bookings);
                  <div class="col-12">
                      <div class="card">
                          <div class="card-body">
-                            <label>Customer Self Sign Up Link</label>
-                            <input type="text" name="self-sign" value="www.kizusi-rental.com/index.php?page=client/auth/signup" id="" class="form-control form-control-border">
+                            <p id="customer-link" class="d-none">www.kizusi-rental.com/index.php?page=client/register/new</p>
+                            <button onclick="copyToClipboard('#customer-link')" class="btn btn-primary">Copy Customer Link</button>
                          </div>
                      </div>
                  </div>

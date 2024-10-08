@@ -1,4 +1,11 @@
 <?php
+// THIS PAGE SHOWS ALL AGENTS
+
+// head to login screen if user is not signed in.
+include_once 'config/session_script.php';
+
+// head to home screen if user is not admin.
+include_once 'config/user_auth_script.php';
 
 //page name. We set this inn the content start and also in the page title programatically
 $page = "Agents";

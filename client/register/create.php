@@ -62,17 +62,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$work_address = $_POST['work_address'];
 	$date_of_birth = $_POST['date_of_birth'];
 
-	$details = [$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $account_id];
+	// $details = [$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $account_id];
 
-	// $result = save_customer($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth);
+	$result = save_customer($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth);
 
-	// if ($result == "Success") {
-	// 	$msg = "Successfully created customers";
-	// 	header("Location: index.php?page=client/register/new&msg=$msg");
-	// } else {
-	// 	$msg = "An error occured";
-	// 	header("Location: index.php?page=client/register/new&err_msg=$msg");
-	// }
+	if ($result == "Success") {
+		$msg = "Successfully registered";
+		header("Location: index.php?page=client/register/new&msg=$msg");
+	} else {
+		$msg = "An error occured";
+		header("Location: index.php?page=client/register/new&err_msg=$msg");
+	}
 	// $log->info($result);
 } else {
 	$msg = "Unauthorized activity";
@@ -83,6 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-<script>
+<!-- <script>
 	console.log(<?php echo json_encode($details); ?>);
-</script>
+</script> -->

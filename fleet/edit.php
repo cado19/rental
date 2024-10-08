@@ -1,4 +1,13 @@
 <?php
+// THIS FILE DISPLAYS ALL THE DRIVERS
+
+// head to login screen if user is not signed in.
+include_once 'config/session_script.php';
+
+// head to home screen if user is not admin.
+include_once 'config/user_auth_script.php';
+
+// PROGRAMMATICALLY SET PAGE NAME
 $page = "New Driver";
 
 // Navbar Links. We set these link in the navbar programatically.

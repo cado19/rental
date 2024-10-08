@@ -1,6 +1,9 @@
 <?php
 // THIS FILE DISPLAYS ALL THE CUSTOMERS
 
+// head to login screen if user is not signed in.
+include_once 'config/session_script.php';
+
 //page name. We set this inn the content start and also in the page title programatically
 $page = "Customers";
 
@@ -22,7 +25,7 @@ $breadcrumb_active = "All Clients";
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 
-$account_id = $_SESSION['account']['id'];
+// $account_id = $_SESSION['account']['id'];
 
 //Fetch all customers
 $customers = all_customers();

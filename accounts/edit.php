@@ -1,6 +1,13 @@
 <?php
 $page = "Edit Password";
 include_once 'partials/account-header.php';
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+	$agent = get_agent($id);
+} else {
+	// code...
+}
+
 ?>
 
         <div class="wrapper fadeInDown">
@@ -17,7 +24,8 @@ include_once 'partials/account-header.php';
 
             <!-- Login Form -->
             <form action="index.php?page=accounts/update" method="POST" class="log-in" autocomplete="off">
-              <input type="text" id="login" class="fadeIn second" name="email" placeholder="login" required>
+              <input type="hidden" name="id" value="<?php show_value($agent, 'id');?>">
+              <input type="text" value="<?php show_value($agent, 'email');?>" id="login" class="fadeIn second" name="email" placeholder="email" disabled>
               <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required>
               <input type="submit" class="fadeIn fourth" value="Submit">
             </form>

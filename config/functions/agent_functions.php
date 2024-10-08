@@ -60,6 +60,28 @@ function save_agent($name, $email, $country, $tel, $password, $role_id) {
 	return $res;
 }
 
+function update_agent_password($id, $password) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "UPDATE accounts SET password = ?, WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$password, $id])) {
+			$res = "Success";
+		} else {
+			$res = "Failed";
+		}
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
 //partner booking count
 function agent_booking_count($agent_id) {
 	global $con;

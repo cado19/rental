@@ -1,4 +1,12 @@
 <?php
+// THIS FILE DISPLAYS A FORM TO EDIT PARTNER'S DETAILS
+
+// head to login screen if user is not signed in.
+include_once 'config/session_script.php';
+
+// head to home screen if user is not admin.
+include_once 'config/user_auth_script.php';
+
 $page = "Edit Partner";
 
 // Navbar Links. We set these link in the navbar programatically.

@@ -71,6 +71,8 @@
     }));
 </script>
 
+<script src="assets/copytext.js"></script>
+
 
 <?php if ($page == "Client Analytics"): ?>
     <!-- profitable client chart script -->

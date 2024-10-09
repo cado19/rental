@@ -8,7 +8,7 @@ $countries = countries();
 <div class="container bootstrap snippets bootdeys">
 <div class="row">
   <div class="col-xs-12 col-sm-9">
-    <form class="form-horizontal" method="POST" action="index.php?page=client/register/create">
+    <form class="form-horizontal" method="POST" action="index.php?page=client/register/create" enctype="multipart/form-data">
         <div class="panel panel-default">
           <div class="panel-body text-center">
            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
@@ -98,14 +98,6 @@ $countries = countries();
             <?php endif;?>
           </div>
 
-          <!-- DL Number  -->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">DL Number</label>
-            <div class="col-sm-10">
-              <input type="text" name="dl_number" class="form-control">
-            </div>
-          </div>
-
           <!-- DL Expiry  -->
           <div class="form-group">
             <label class="col-sm-2 control-label">DL Expiry</label>
@@ -118,6 +110,39 @@ $countries = countries();
                 </div>
             </div>
           </div>
+
+          <!-- DL Number  -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Profile Image</label>
+            <div class="col-sm-10">
+              <input type="file" name="profile_image" class="form-control-file">
+            </div>
+                    <?php if (isset($_GET['profile_image_err'])): ?>
+                        <p class="text-danger"><?php echo $_GET['profile_image_err']; ?></p>
+                    <?php endif;?>
+          </div>
+          <!-- DL Number  -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">ID Image</label>
+            <div class="col-sm-10">
+              <input type="file" name="id_image" class="form-control-file">
+            </div>
+                    <?php if (isset($_GET['id_image_err'])): ?>
+                        <p class="text-danger"><?php echo $_GET['id_image_err']; ?></p>
+                    <?php endif;?>
+          </div>
+          <!-- DL Number  -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">DL Image</label>
+            <div class="col-sm-10">
+              <input type="file" name="dl_image" class="form-control-file">
+            </div>
+                    <?php if (isset($_GET['dl_image_err'])): ?>
+                        <p class="text-danger"><?php echo $_GET['dl_image_err']; ?></p>
+                    <?php endif;?>
+          </div>
+
+
 
         </div>
 

@@ -24,26 +24,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location: index.php?page=client/register/new&id_type_err=$id_type_err");
 		exit;
 	}
-	if (empty($_POST['id_number'])) {
-		$id_number_err = "Required";
-		header("Location: index.php?page=client/register/new&id_number_err=$id_number_err");
+	if (empty($_FILES['profile_image'])) {
+		$profile_image_err = "Required";
+		header("Location: index.php?page=client/register/new&profile_image_err=$profile_image_err");
+		exit;
+	}
+	if (empty($_FILES['id_image'])) {
+		$id_image_err = "Required";
+		header("Location: index.php?page=client/register/new&id_image_err=$id_image_err");
+		exit;
+	}
+	if (empty($_FILES['dl_image'])) {
+		$dl_image_err = "Required";
+		header("Location: index.php?page=client/register/new&dl_image_err=$dl_image_err");
 		exit;
 	}
 
-	// if (empty($_POST['tel'])) {
-	// 	$tel_err = "Required";
-	// 	header("Location: index.php?page=customers/new&tel_err=$tel_err");
-	// }
-	// if (empty($_POST['residential_address'])) {
-	// 	$residential_address_err = "Required";
-	// 	header("Location: index.php?page=customers/new&residential_address_err=$residential_address_err");
-	// 	exit;
-	// }
-	// if (empty($_POST['work_address'])) {
-	// 	$work_address_err = "Required";
-	// 	header("Location: index.php?page=customers/new&work_address_err=$work_address_err");
-	// 	exit;
-	// }
+	//PROFILE_IMAGE DETAILS PROCESSING
+	$profile_filename = $_FILES["profile_image"]["name"];
+	$profile_tempname = $_FILES["profile_image"]["tmp_name"];
+	// new file name to eliminate conflicts even if someone uploads the same file twice for different records.
+	$profile_filenameNew = "profile_" . date("his") . ".png";
+
+	// folder to upload the image and also its destination
+	$profile_folder = "customers/profile/" . $profile_filenameNew;
+
+	//ID_IMAGE DETAILS PROCESSING
+	$id_filename = $_FILES["id_image"]["name"];
+	$id_tempname = $_FILES["id_image"]["tmp_name"];
+	// new file name to eliminate conflicts even if someone uploads the same file twice for different records.
+	$id_filenameNew = "id_" . date("his") . ".png";
+
+	// folder to upload the image and also its destination
+	$id_folder = "customers/id/" . $id_filenameNew;
+
+	//DL_IMAGE DETAILS PROCESSING
+	$dl_filename = $_FILES["dl_image"]["name"];
+	$dl_tempname = $_FILES["dl_image"]["tmp_name"];
+	// new file name to eliminate conflicts even if someone uploads the same file twice for different records.
+	$dl_filenameNew = "license_" . date("his") . ".png";
+
+	// folder to upload the image and also its destination
+	$dl_folder = "customers/license/" . $dl_filenameNew;
+
 	if (empty($_POST['date_of_birth'])) {
 		$date_of_birth_err = "Required";
 		header("Location: index.php?page=client/register/new&date_of_birth_err=$date_of_birth_err");
@@ -64,11 +87,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// $details = [$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $account_id];
 
-	$result = save_customer($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth);
+	$result = save_client($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $profile_filenameNew, $id_filenameNew, $dl_filenameNew);
 
 	if ($result == "Success") {
+		// UPLOAD THE IMAGES
+		move_uploaded_file($profile_tempname, $profile_folder);
+		move_uploaded_file($id_tempname, $id_folder);
+		move_uploaded_file($dl_tempname, $dl_folder);
+
 		$msg = "Successfully registered";
-		header("Location: index.php?page=client/register/new&msg=$msg");
+		header("Location: index.php?page=client/register/success&msg=$msg");
 	} else {
 		$msg = "An error occured";
 		header("Location: index.php?page=client/register/new&err_msg=$msg");

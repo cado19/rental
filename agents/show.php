@@ -106,6 +106,40 @@ $link .= "?page=agents/show&id=${id}";
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="col-6">
+				<div class="card mb-3">
+                    <?php if (isset($agent['id_image'])): ?>
+                        <img src="agents/id/<?php echo $agent['id_image']; ?>" class="card-img-top display-img" alt="Client ID Image">
+                    <?php else: ?>
+                        <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client ID Image">
+                    <?php endif;?>
+
+                  <div class="card-body">
+                    <h5 class="card-title">Identification</h5>
+                    <p class="card-text">This is the agent's identification card.</p>
+                    <a href="index.php?page=agents/id_form&id=<?php echo $id; ?>" class="btn btn-primary">Upload ID Card</a>
+                  </div>
+                </div>
+			</div>
+			<div class="col-6">
+				<div class="card mb-3">
+                    <?php if (isset($agent['license_image'])): ?>
+                        <img src="agents/license/<?php echo $agent['license_image']; ?>" class="card-img-top display-img" alt="Client License Image">
+                    <?php else: ?>
+                        <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client License Image">
+                    <?php endif;?>
+
+                    <div class="card-body">
+                        <h5 class="card-title">License</h5>
+                        <p class="card-text">This is the agent's license.</p>
+                        <a href="index.php?page=agents/license_form&id=<?php echo $id; ?>" class="btn btn-primary">Upload agent's License</a>
+                    </div>
+                </div>
+			</div>
+
+		</div>
+
         <div class="row">
             <div class="card">
                 <div class="card-header">

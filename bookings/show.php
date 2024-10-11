@@ -42,7 +42,7 @@ $current_date = date('Y-m-d');
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="card shaadow">
+            <div class="card shadow">
                 <div class="card-header">
                     <h2 class="card-title">Booking for: </h2> <h3 class="card-title"> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </h3>
                 </div>

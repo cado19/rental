@@ -82,7 +82,7 @@ function update_agent_password($id, $password) {
 	return $res;
 }
 
-//partner booking count
+//agen booking count
 function agent_booking_count($agent_id) {
 	global $con;
 	global $res;

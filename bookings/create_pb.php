@@ -41,11 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$duration = ($end_date_time - $start_date_time) / 86400;
 
 	// VALIDATION TO MAKE SURE BOOKING IS GREATER THAN OR EQUAL TO 3 DAYS
-	if ($duration < 3) {
-		$end_date_err = "Rental duration must be atleast 3 days";
-		header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
-		exit;
-	}
+	// if ($duration < 3) {
+	// 	$end_date_err = "Rental duration must be atleast 3 days";
+	// 	header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
+	// 	exit;
+	// }
 	// INSERT BOOKING DATA INTO THE DATABASE
 
 	$result = save_booking($v_id, $c_id, $d_id, $a_id, $start_date, $end_date, $start_time, $end_time);
@@ -54,6 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		header("Location: index.php?page=bookings/new&err_msg=$err");
 		exit;
 	} else {
+
+		// CREATE A CONTRACT WITH THE CURRENT LAST BOOKING ID AS THE REFERENCE ID (THIS JUST MIGHT BE IN THE FUNCTIONS FILE)
+		$response = create_contract($result);
+
 		//GET BOOKING USING LAST INSERT ID
 		$booking = booking($result);
 
@@ -62,9 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 		// UPDATE THE TOTAL PRICE
 		$total = update_booking($total, $result);
-
-		// CREATE A CONTRACT WITH THE CURRENT LAST BOOKING ID AS THE REFERENCE ID (THIS JUST MIGHT BE IN THE FUNCTIONS FILE)
-		$response = create_contract($result);
 
 		//REDIRECT TO THE CONTRACT PAGE SO THAT A SIGNATURE CAN BE UPLOADED IF IT IS AVAILABLE
 		$msg = "Booking created";

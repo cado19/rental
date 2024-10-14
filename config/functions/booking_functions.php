@@ -21,6 +21,7 @@ function bookings() {
 	return $res;
 }
 
+// function to get upcoming bookings
 function upcoming_bookings() {
 	global $con;
 	global $res;
@@ -43,6 +44,7 @@ function upcoming_bookings() {
 	return $res;
 }
 
+// function to get active bookings
 function active_bookings() {
 	global $con;
 	global $res;

@@ -1,26 +1,26 @@
 <?php
-// THIS PAGE WILL SHOW A FROM TO INPUT INDIVIDUAL DRIVER'S DETAILS
+    // THIS PAGE WILL SHOW A FROM TO INPUT INDIVIDUAL DRIVER'S DETAILS
 
-// head to login screen if user is not signed in.
-include_once 'config/session_script.php';
+    // head to login screen if user is not signed in.
+    include_once 'config/session_script.php';
 
-$page = "New Driver";
+    $page = "New Driver";
 
-// Navbar Links. We set these link in the navbar programatically.
-$home_link = "index.php?page=drivers/all";
-$home_link_name = "All Drivers";
+    // Navbar Links. We set these link in the navbar programatically.
+    $home_link      = "index.php?page=drivers/all";
+    $home_link_name = "All Drivers";
 
-$new_link = "index.php?page=drivers/new";
-$new_link_name = "New Driver";
+    $new_link      = "index.php?page=drivers/new";
+    $new_link_name = "New Driver";
 
-// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Drivers";
-$breadcrumb_active = "New Driver";
+    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+    $breadcrumb        = "Drivers";
+    $breadcrumb_active = "New Driver";
 
-include_once 'partials/header.php';
-include_once 'partials/content_start.php';
+    include_once 'partials/header.php';
+    include_once 'partials/content_start.php';
 
-$account_id = $_SESSION['account']['id'];
+    $account_id = $_SESSION['account']['id'];
 ?>
 
 <main>
@@ -82,15 +82,10 @@ $account_id = $_SESSION['account']['id'];
 
                                 <div class="form-group">
                                     <label for="tel">Tel</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">+254</span>
-                                        </div>
-                                        <input type="text" name="tel" class="form-control form-control-border" placeholder="without '0'" required>
-                                        <?php if (isset($_GET['tel_err'])): ?>
-                                            <p class="text-danger"><?php echo $_GET['tel_err']; ?></p>
-                                        <?php endif;?>
-                                    </div>
+                                    <input type="tel" name="tel" class="form-control form-control-border" id="phone" required>
+                                    <?php if (isset($_GET['tel_err'])): ?>
+                                        <p class="text-danger"><?php echo $_GET['tel_err']; ?></p>
+                                    <?php endif;?>
                                 </div>
 
                                 <div class="form-group">

@@ -1,36 +1,36 @@
 <?php
-// FOR NOW THIS WILL BE THE HOME DASHBOARD. WE'LL CUSTOMIZE IT AS THE APP GROWS
+    // FOR NOW THIS WILL BE THE HOME DASHBOARD. WE'LL CUSTOMIZE IT AS THE APP GROWS
 
-// head to login screen if user is not signed in.
-include_once 'config/session_script.php';
+    // head to login screen if user is not signed in.
+    include_once 'config/session_script.php';
 
-//page name. We set this inn the content start and also in the page title programatically
-$page = "Dashboard";
+    //page name. We set this inn the content start and also in the page title programatically
+    $page = "Dashboard";
 
-// Navbar Links. We set these link in the navbar programatically.
-$home_link = "index.php";
-$home_link_name = "Home";
+    // Navbar Links. We set these link in the navbar programatically.
+    $home_link      = "index.php";
+    $home_link_name = "Home";
 
-$new_link = "index.php";
-$new_link_name = "Dashboard";
+    $new_link      = "index.php";
+    $new_link_name = "Dashboard";
 
-// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Home";
-$breadcrumb_active = "Dashboard";
+    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+    $breadcrumb        = "Home";
+    $breadcrumb_active = "Dashboard";
 
-include_once 'partials/header.php';
-include_once 'partials/content_start.php';
+    include_once 'partials/header.php';
+    include_once 'partials/content_start.php';
 
-$account_id = $_SESSION['account']['id'];
+    $account_id = $_SESSION['account']['id'];
 
-$vehicle_count = vehicle_count();
-$customer_count = customer_count();
-$active_bookings = home_active_bookings();
-$partner_count = partner_count();
-$bookings = home_bookings();
+    $vehicle_count   = vehicle_count();
+    $customer_count  = customer_count();
+    $active_bookings = home_active_bookings();
+    $partner_count   = partner_count();
+    $bookings        = home_bookings();
 
-$log->info('bookings', $bookings);
 ?>
+
 
 
     <section class="content">
@@ -140,22 +140,22 @@ $log->info('bookings', $bookings);
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php forEach ($bookings as $booking): ?>
+                                        <?php foreach ($bookings as $booking): ?>
                                             <tr>
-                                                <td> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </td>
-                                                <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
-                                                <td> <?php echo $booking['number_plate']; ?> </td>
+                                                <td>                                                     <?php echo $booking['first_name']; ?><?php echo $booking['last_name']; ?> </td>
+                                                <td>                                                     <?php echo $booking['model']; ?><?php echo $booking['make']; ?> </td>
+                                                <td>                                                     <?php echo $booking['number_plate']; ?> </td>
                                                 <td>
                                                     <?php
-$start = strtotime($booking['start_date']);
-echo date("l jS \of F Y", $start);
-?>
+                                                        $start = strtotime($booking['start_date']);
+                                                        echo date("l jS \of F Y", $start);
+                                                    ?>
                                                 </td>
                                                 <td>
                                                     <?php
-$end = strtotime($booking['end_date']);
-echo date("l jS \of F Y", $end);
-?>
+                                                        $end = strtotime($booking['end_date']);
+                                                        echo date("l jS \of F Y", $end);
+                                                    ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach;?>

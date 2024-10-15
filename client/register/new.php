@@ -1,8 +1,8 @@
 <?php
-$page = "Sign Up";
-include_once 'partials/client-header.php';
+    $page = "Sign Up";
+    include_once 'partials/client-header.php';
 
-$countries = countries();
+    $countries = countries();
 ?>
 
 <div class="container bootstrap snippets bootdeys">
@@ -26,7 +26,7 @@ $countries = countries();
             <div class="col-sm-10">
               <select name="country" class="form-control">
                 <option selected="">Select country</option>
-                    <?php forEach ($countries as $country): ?>
+                    <?php foreach ($countries as $country): ?>
                         <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
                     <?php endforeach;?>
               </select>
@@ -158,7 +158,7 @@ $countries = countries();
           <div class="form-group">
             <label class="col-sm-2 control-label">Mobile number</label>
             <div class="col-sm-10">
-              <input type="tel" class="form-control" name="tel">
+              <input type="tel" class="form-control" id="phone" name="tel">
             </div>
           </div>
           <div class="form-group">

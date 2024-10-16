@@ -1,30 +1,30 @@
 <?php
-// THIS PAGE WILL DISPLAY A FORM FOR UPLOADING A CLIENT'S ID CARD IMAGE
+    // THIS PAGE WILL DISPLAY A FORM FOR UPLOADING A CLIENT'S ID CARD IMAGE
 
-// head to login screen if user is not signed in.
-include_once 'config/session_script.php';
+    // head to login screen if user is not signed in.
+    include_once 'config/session_script.php';
 
-//page name. We set this inn the content start and also in the page title programatically
-$page = "Upload Customer ID";
+    //page name. We set this inn the content start and also in the page title programatically
+    $page = "Upload Customer ID";
 
-// Navbar Links. We set these link in the navbar programatically.
-$home_link = "index.php?page=customers/all";
-$home_link_name = "All Customers";
+    // Navbar Links. We set these link in the navbar programatically.
+    $home_link      = "index.php?page=customers/all";
+    $home_link_name = "All Customers";
 
-$new_link = "index.php?page=customers/new";
-$new_link_name = "New Customer";
+    $new_link      = "index.php?page=customers/new";
+    $new_link_name = "New Customer";
 
-// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Customers";
-$breadcrumb_active = "Upload ID";
+    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+    $breadcrumb        = "Customers";
+    $breadcrumb_active = "Upload ID";
 
-// GET DRIVER ID FROM URL
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-}
+    // GET DRIVER ID FROM URL
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+    }
 
-include_once 'partials/header.php';
-include_once 'partials/content_start.php';
+    include_once 'partials/header.php';
+    include_once 'partials/content_start.php';
 
 ?>
 

@@ -1,27 +1,27 @@
 <?php
-include_once 'partials/header.php';
-// include_once 'partials/content_start.php';
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-}
-$contract = contract($id);
-$created = strtotime($contract['created_at']);
-$log->info('contract:', $contract);
+    include_once 'partials/header.php';
+    // include_once 'partials/content_start.php';
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+    }
+    $contract = contract($id);
+    $created  = strtotime($contract['created_at']);
+    $log->info('contract:', $contract);
 
 ?>
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-			<img src="assets/kizusi-contract-top.png" alt="">
+			<img src="assets/kizusi_contract_top.png" alt="">
 		</div>
 	</div>
 	<div class="row">
 		<div class="col">
 
 
-			<p><b>CUSTOMER NAME / HIRER:</b> <?php show_value($contract, 'c_fname');?> <?php show_value($contract, 'c_lname');?></p>
-			<p><b>MOBILE NUMBER:</b> <?php show_value($contract, 'c_phone_no');?></p>
-			<p><b>ADDRESS:</b> <?php show_value($contract, 'residential_address');?></p>
+			<p><b>CUSTOMER NAME / HIRER:</b>			                                 <?php show_value($contract, 'c_fname');?><?php show_value($contract, 'c_lname');?></p>
+			<p><b>MOBILE NUMBER:</b>			                         <?php show_value($contract, 'c_phone_no');?></p>
+			<p><b>ADDRESS:</b>			                   <?php show_value($contract, 'residential_address');?></p>
 			<p><b>ID TYPE:</b><?php show_value($contract, 'c_id_type');?></p>
 			<p><b>ID NO / PASSPORT:</b><?php show_value($contract, 'c_id_no');?></p>
 			<p><b>DL NO:</b><?php show_value($contract, 'c_dl_no');?></p>
@@ -33,7 +33,7 @@ $log->info('contract:', $contract);
 	</div>
 	<div class="row">
 		<div class="col">
-			<p><b>CAR MAKE:</b><?php show_value($contract, 'make');?> <?php show_value($contract, 'model');?></p>
+			<p><b>CAR MAKE:</b><?php show_value($contract, 'make');?><?php show_value($contract, 'model');?></p>
 			<p><b>PASSENGERS:</b></p>
 			<p><b>REGISTRATION:</b><?php show_value($contract, 'number_plate');?></p>
 			<p><b>CONDITION:</b></p>

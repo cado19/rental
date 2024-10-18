@@ -5,7 +5,7 @@
     include_once 'config/session_script.php';
 
     //page name. We set this inn the content start and also in the page title programatically
-    $page = "Customers";
+    $page = "Recent Customers";
 
     // Navbar Links. We set these link in the navbar programatically.
     $home_link      = "index.php?page=customers/all";
@@ -31,7 +31,7 @@
     // $account_id = $_SESSION['account']['id'];
 
     //Fetch all customers
-    $customers = all_customers();
+    $customers = recent_customers();
 
     // Log customers for testing purposes
     $log->info('customers:', $customers);
@@ -60,9 +60,9 @@
                             <tbody>
                                 <?php foreach ($customers as $customer): ?>
                                     <tr>
-                                        <td>                                             <?php echo $customer['first_name']; ?><?php echo $customer['last_name']; ?> </td>
-                                        <td>                                             <?php echo $customer['email']; ?> </td>
-                                        <td>                                             <?php echo $customer['id_no']; ?> </td>
+                                        <td>                                                                                                                                     <?php echo $customer['first_name']; ?><?php echo $customer['last_name']; ?> </td>
+                                        <td>                                                                                                                                     <?php echo $customer['email']; ?> </td>
+                                        <td>                                                                                                                                     <?php echo $customer['id_no']; ?> </td>
                                         <td> 254<?php echo $customer['phone_no']; ?> </td>
                                         <td> <a href="index.php?page=customers/show&id=<?php echo $customer['id']; ?>">Details</a> </td>
                                     </tr>

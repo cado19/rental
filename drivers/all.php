@@ -51,7 +51,7 @@ $drivers = all_drivers();
                             <tbody>
                                 <?php forEach ($drivers as $driver): ?>
                                     <tr>
-                                        <td><?php echo $driver['first_name'] ?> <?php echo $driver['last_name'] ?> </td>
+                                        <td><?php echo $driver['first_name'] ?><?php echo " "; ?><?php echo $driver['last_name'] ?> </td>
                                         <td> <?php echo $driver['email']; ?> </td>
                                         <td> <?php echo $driver['id_no']; ?> </td>
                                         <td> 254<?php echo $driver['phone_no']; ?> </td>

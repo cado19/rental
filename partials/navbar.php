@@ -11,7 +11,7 @@
         <a href="<?php echo $new_link; ?>" class="nav-link"><?php echo $new_link_name ?> </a>
       </li>
 
-      <!-- Show blacklisted only if in customers index page  -->
+      <!-- Show blacklisted, recent only if in customers index page  -->
       <?php if ($page == "Customers"): ?>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="<?php echo $blacklist_link; ?>" class="nav-link"><?php echo $blacklist_link_name; ?> </a>

@@ -1,10 +1,10 @@
 <?php
-$page = "Login";
-include_once 'partials/account-header.php';
-// $log->info('session', $_SESSION['logged_in']);
-if (isset($_SESSION['account'])) {
-	$log->info('account', $_SESSION['account']);
-}
+    $page = "Login";
+    include_once 'partials/account-header.php';
+    // $log->info('session', $_SESSION['logged_in']);
+    if (isset($_SESSION['account'])) {
+        $log->info('account', $_SESSION['account']);
+    }
 ?>
 
 
@@ -36,3 +36,5 @@ if (isset($_SESSION['account'])) {
 
           </div>
         </div>
+
+<?php include_once 'partials/other_footer.php';?>

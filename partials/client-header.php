@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="assets/client.css">
 
 
-	<title>Rental |	                <?php echo $page; ?></title>
+	<title>Rental |	<?php echo $page; ?></title>
 </head>
 <body>
 

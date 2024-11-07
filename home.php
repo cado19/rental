@@ -23,11 +23,12 @@
 
     $account_id = $_SESSION['account']['id'];
 
-    $vehicle_count   = vehicle_count();
-    $customer_count  = customer_count();
-    $active_bookings = home_active_bookings();
-    $partner_count   = partner_count();
-    $bookings        = home_bookings();
+    $vehicle_count        = vehicle_count();
+    $customer_count       = customer_count();
+    $active_bookings      = home_active_bookings();
+    $partner_count        = partner_count();
+    $bookings             = home_bookings();
+    $customer_signup_link = customer_signup_link();
 
 ?>
 
@@ -109,7 +110,7 @@
                  <div class="col-12">
                      <div class="card">
                          <div class="card-body">
-                            <p id="customer-link" class="d-none">www.kizusi-rental.com/index.php?page=client/register/new</p>
+                            <p id="customer-link" class="d-none"><?php echo $customer_signup_link; ?></p>
                             <button onclick="copyToClipboard('#customer-link')" class="btn btn-primary">Copy Customer Link</button>
                          </div>
                      </div>

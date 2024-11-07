@@ -6,18 +6,16 @@
 ?>
 
 <div class="container bootstrap snippets bootdeys">
-<div class="row">
-  <div class="col-xs-12 col-sm-9">
+<div class="row d-flex justify-content-center">
+  <div class="col-xs-12 col-sm-9 col-8">
     <form class="form-horizontal" method="POST" action="index.php?page=client/register/create" enctype="multipart/form-data">
         <div class="panel panel-default">
           <div class="panel-body text-center">
-           <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
+           <img src="assets/kizusi_logo_white.png" class="img-circle profile-avatar" alt="User avatar">
           </div>
         </div>
       <div class="panel panel-default">
-        <div class="panel-heading">
-	        <h4 class="panel-title">User info</h4>
-        </div>
+
 
         <div class="panel-body">
     	  <!-- Country  -->
@@ -84,6 +82,9 @@
                     <option value="passport"> Passport </option>
                     <option value="military_id"> Military ID </option>
             </select>
+            <?php if (isset($_GET['id_type_err'])): ?>
+                <p class="text-danger"><?php echo $_GET['id_type_err']; ?></p>
+            <?php endif;?>
             </div>
           </div>
 
@@ -95,6 +96,17 @@
             </div>
             <?php if (isset($_GET['id_number_err'])): ?>
                 <p class="text-danger"><?php echo $_GET['id_number_err']; ?></p>
+            <?php endif;?>
+          </div>
+
+          <!-- DL Number  -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">DL Number</label>
+            <div class="col-sm-10">
+              <input type="text" name="dl_number" class="form-control">
+            </div>
+            <?php if (isset($_GET['id_number_err'])): ?>
+                <p class="text-danger"><?php echo $_GET['dl_number_err']; ?></p>
             <?php endif;?>
           </div>
 
@@ -111,7 +123,7 @@
             </div>
           </div>
 
-          <!-- DL Number  -->
+          <!--  Profile Image -->
           <div class="form-group">
             <label class="col-sm-2 control-label">Profile Image</label>
             <div class="col-sm-10">
@@ -121,7 +133,7 @@
                         <p class="text-danger"><?php echo $_GET['profile_image_err']; ?></p>
                     <?php endif;?>
           </div>
-          <!-- DL Number  -->
+          <!-- ID Image  -->
           <div class="form-group">
             <label class="col-sm-2 control-label">ID Image</label>
             <div class="col-sm-10">
@@ -131,7 +143,7 @@
                         <p class="text-danger"><?php echo $_GET['id_image_err']; ?></p>
                     <?php endif;?>
           </div>
-          <!-- DL Number  -->
+          <!-- DL Image  -->
           <div class="form-group">
             <label class="col-sm-2 control-label">DL Image</label>
             <div class="col-sm-10">
@@ -150,9 +162,7 @@
       <!-- </div> -->
 
       <div class="panel panel-default">
-        <div class="panel-heading">
-        <h4 class="panel-title">Contact info</h4>
-        </div>
+
         <div class="panel-body">
 
           <div class="form-group">
@@ -187,8 +197,8 @@
 
       <div class="panel panel-default">
           <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-              <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="col-sm-10 col-sm-offset-2 col-8 mt-2">
+              <button type="submit" class="btn btn-primary btn-block">Submit</button>
             </div>
           </div>
         </div>

@@ -120,6 +120,7 @@ $link .= "?page=contracts/edit&id=${id}";
             </div>
             <div class="col-4">
                 <a href="index.php?page=contracts/updated_contract&id=<?php echo $id; ?>" class="btn btn-success" target="_blank">View contract</a>
+                <a href="index.php?page=bookings/show&id=<?php echo $id; ?>" class="btn btn-warning">Back to booking</a>
             </div>
         </div>
 

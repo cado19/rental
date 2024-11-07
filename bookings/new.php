@@ -132,7 +132,7 @@ $log->info('customers', $customers);
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-outline-dark">Proceed to Contract</button>
+                                <button type="submit" class="btn btn-outline-dark">Save</button>
                             </div>
                         </form>
 

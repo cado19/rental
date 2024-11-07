@@ -8,7 +8,7 @@ function all_vehicles() {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id AND vb.deleted = ? AND partner_id IS NULL";
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, cat.name AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN vehicle_categories cat ON vb.category_id = cat.id AND vb.deleted = ? AND partner_id IS NULL";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$status]);
 		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -51,7 +51,7 @@ function get_vehicle($id) {
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT vb.make, vb.model, vb.number_plate, vb.category, vb.drive_train, vb.seats, vb.fuel, vb.transmission, vb.image, vp.daily_rate, vp.vehicle_excess, vp.refundable_security_deposit, ve.bluetooth, ve.keyless_entry, ve.reverse_cam, ve.audio_input, ve.gps, ve.android_auto, ve.apple_carplay FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN vehicle_extras ve ON vb.id = ve.vehicle_id WHERE vb.id = ?";
+		$sql = "SELECT vb.make, vb.model, vb.number_plate, cat.name as category, vb.drive_train, vb.seats, vb.fuel, vb.transmission, vb.image, vp.daily_rate, vp.vehicle_excess, vp.refundable_security_deposit, ve.bluetooth, ve.keyless_entry, ve.reverse_cam, ve.audio_input, ve.gps, ve.android_auto, ve.apple_carplay FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN vehicle_extras ve ON vb.id = ve.vehicle_id INNER JOIN vehicle_categories cat ON vb.category_id = cat.id WHERE vb.id = ?";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$id]);
 		$res = $stmt->fetch();
@@ -212,7 +212,7 @@ function partner_vehicles($partner_id) {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate, vb.category AS category, vp.daily_rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN partners p ON vb.partner_id = p.id WHERE vb.partner_id = ?";
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, cat.name AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN partners p ON vb.partner_id = p.id INNER JOIN vehicle_categories cat ON vb.category_id = cat.id WHERE vb.partner_id = ?";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$partner_id]);
 		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -234,7 +234,7 @@ function all_partner_vehicles() {
 
 		$con->beginTransaction();
 
-		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, vb.category AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN partners p ON vb.partner_id = p.id WHERE vb.partner_id IS NOT NULL";
+		$sql = "SELECT vb.id, vb.make AS make, vb.model AS model, vb.number_plate AS reg, cat.name AS category, vp.daily_rate AS rate FROM vehicle_basics vb INNER JOIN vehicle_pricing vp ON vb.id = vp.vehicle_id INNER JOIN partners p ON vb.partner_id = p.id INNER JOIN vehicle_categories cat ON vb.category_id = cat.id WHERE vb.partner_id IS NOT NULL";
 		$stmt = $con->prepare($sql);
 		$stmt->execute();
 		$vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);

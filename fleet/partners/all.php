@@ -1,6 +1,8 @@
 <?php
-// THIS PAGE OUGHT TO SHOW ALL VEHICLES
+// THIS PAGE OUGHT TO SHOW ALL PARTNER VEHICLES
 
+// head to login screen if user is not signed in.
+include_once 'config/session_script.php';
 //page name. We set this inn the content start and also in the page title programatically
 $page = "Partner Vehicles";
 

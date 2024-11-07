@@ -1,4 +1,7 @@
 <?php
+// head to login screen if user is not signed in.
+include_once 'config/session_script.php';
+
 $page = "New Vehicle";
 
 // Navbar Links. We set these link in the navbar programatically.

@@ -23,6 +23,8 @@ $breadcrumb_active = "New Vehicle";
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
+
+$categories = categories();
 ?>
 
 <section class="content">
@@ -86,16 +88,13 @@ $account_id = $_SESSION['account']['id'];
 
                             </div>
 
-                            <div class="form-group">
+                             <div class="form-group">
                                 <label for="category">Category</label>
                                 <select name="category" class="form-control form-control-border">
                                         <option value="">--Please choose an option--</option>
-                                        <option value="Mid-size SUV"> Mid Size SUV </option>
-                                        <option value="SUV"> SUV </option>
-                                        <option value="Medium Car"> Medium Car </option>
-                                        <option value="Small Car "> Small Car </option>
-                                        <option value="Safari"> Safari </option>
-                                        <option value="Luxury"> Luxury </option>
+                                        <?php foreach ($categories as $category): ?>
+                                            <option value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
+                                        <?php endforeach;?>
                                 </select>
                                 <?php if (isset($_GET['category_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['category_err']; ?></p>

@@ -21,6 +21,26 @@ function all_vehicles() {
 	return $vehicles;
 }
 
+// function to retrieve all categories for saving a vehicle
+function categories()
+{
+    global $con;
+    global $res;
+
+    try {
+        $con->beginTransaction();
+        $sql  = "SELECT id, name FROM vehicle_categories ORDER BY id ASC";
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
 // function to get deleted vehicles
 function deleted_vehicles() {
 	global $con;
@@ -114,7 +134,7 @@ function save_vehicle($make, $model, $number_plate, $category, $transmission, $f
 	try {
 		$con->beginTransaction();
 
-		$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train,account_id) VALUES (?,?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category_id,transmission,fuel,seats,drive_train,account_id) VALUES (?,?,?,?,?,?,?,?,?)";
 		$stmt = $con->prepare($sql);
 		if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $account_id])) {
 			$res = $con->lastInsertId();

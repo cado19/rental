@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
-	// if (empty($_POST['category'])) {
-	// 	$category_err = "Required";
-	// 	header("Location: index.php?page=fleet/new&category_err=$category_err");
-	// 	exit;
-	// }
+	if (empty($_POST['category'])) {
+		$category_err = "Required";
+		header("Location: index.php?page=fleet/new&category_err=$category_err");
+		exit;
+	}
 	// if (empty($_POST['transmission'])) {
 	// 	$transmission_err = "Required";
 	// 	header("Location: index.php?page=fleet/new&transmission_err=$transmission_err");
@@ -178,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// insert vehicle basics data
 
-	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train,colour) VALUES (?,?,?,?,?,?,?,?,?)";
+	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category_id,transmission,fuel,seats,drive_train,colour) VALUES (?,?,?,?,?,?,?,?,?)";
 	$stmt = $con->prepare($sql);
 	if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $colour])) {
 		$res = $con->lastInsertId();

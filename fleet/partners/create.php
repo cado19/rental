@@ -17,9 +17,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		header("Location: index.php?page=fleet/partners/new&model_err=$model_err");
 		exit;
 	}
-	if (empty($_POST['number_plate'])) {
-		$number_plate_err = "Required";
-		header("Location: index.php?page=fleet/partners/new&$number_plate_err=$number_plate_err");
+
+	if (empty($_POST['num_plate_1'])) {
+		$num_plate_1_err = "Required";
+		header("Location: index.php?page=fleet/partners/new&num_plate_1_err=$num_plate_1_err");
+		exit;
+	} elseif (strlen($_POST['num_plate_1']) != 3) {
+		$num_plate_1_err = "Atleast 3 letters required";
+		header("Location: index.php?page=fleet/partners/new&num_plate_1_err=$num_plate_1_err");
+		exit;
+	}
+	if (empty($_POST['num_plate_2'])) {
+		$num_plate_2_err = "Required";
+		header("Location: index.php?page=fleet/partners/new&num_plate_2_err=$num_plate_2_err");
+		exit;
+	} elseif (strlen($_POST['num_plate_2']) != 4) {
+		$num_plate_2_err = "Atleast 4 characters required";
+		header("Location: index.php?page=fleet/partners/new&num_plate_2_err=$num_plate_2_err");
 		exit;
 	}
 
@@ -80,13 +94,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 
-	if (empty($_POST['deposit'])) {
-		$deposit_err = "Required";
-		header("Location: index.php?page=fleet/partners/new&deposit_err=$deposit_err");
-		exit;
-	} elseif (($_POST['deposit']) <= 0) {
-		$deposit_err = "Must be greater than 0";
-		header("Location: index.php?page=fleet/partners/new&deposit_err=$deposit_err");
+	// if (empty($_POST['deposit'])) {
+	// 	$deposit_err = "Required";
+	// 	header("Location: index.php?page=fleet/partners/new&deposit_err=$deposit_err");
+	// 	exit;
+	// } elseif (($_POST['deposit']) <= 0) {
+	// 	$deposit_err = "Must be greater than 0";
+	// 	header("Location: index.php?page=fleet/partners/new&deposit_err=$deposit_err");
+	// 	exit;
+	// }
+
+		// format the number plate
+	$num_plate_1 = $_POST['num_plate_1'];
+	$num_plate_2 = $_POST['num_plate_2'];
+	$number_plate = format_number_plate($num_plate_1, $num_plate_2);
+
+	// VALIDATE NUMBER PLATE UNIQUENESS
+	$taken_plate = unique_registration($number_plate);
+	if ($taken_plate == "Taken") {
+		$number_plate_err = "A vehicle exists with the given registration.";
+		header("Location: index.php?page=fleet/partners/new&$number_plate_err=$number_plate_err");
 		exit;
 	}
 
@@ -168,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// insert vehicle basics data
 
-	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category,transmission,fuel,seats,drive_train,colour,partner_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	$sql = "INSERT INTO vehicle_basics (make,model,number_plate,category_id,transmission,fuel,seats,drive_train,colour,partner_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	$stmt = $con->prepare($sql);
 	if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $colour, $partner_id])) {
 		$res = $con->lastInsertId();

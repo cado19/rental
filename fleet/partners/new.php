@@ -20,6 +20,8 @@ include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
 
 $partners = partners_for_vehicle();
+
+$categories = categories();
 ?>
 
 <section class="content">
@@ -72,24 +74,37 @@ $partners = partners_for_vehicle();
 
                             </div>
 
-                            <div class="form-group">
-                                <label for="email">Number Plate</label>
-                                <input type="text" name="number_plate" class="form-control form-control-border" required>
-                                <?php if (isset($_GET['number_plate_err'])): ?>
-                                    <p class="text-danger"><?php echo $_GET['number_plate_err']; ?></p>
-                                <?php endif;?>
+                            <div class="row">
+                                <h6 class="text-center"><b>Number Plate:</b></h6>
+                                <div class="row mt-3">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <input type="text" name="num_plate_1" placeholder="eg: KAA" class="form-control form-control-border" required>
+                                            <?php if (isset($_GET['make_err'])): ?>
+                                                <p class="text-danger"><?php echo $_GET['make_err']; ?></p>
+                                            <?php endif;?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <input type="text" name="num_plate_2" placeholder="eg: 123X" class="form-control form-control-border" required>
+                                            <?php if (isset($_GET['model_err'])): ?>
+                                                <p class="text-danger"><?php echo $_GET['model_err']; ?></p>
+                                            <?php endif;?>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <div class="form-group">
+                             <div class="form-group">
                                 <label for="category">Category</label>
                                 <select name="category" class="form-control form-control-border">
                                         <option value="">--Please choose an option--</option>
-                                        <option value="Mid-size SUV"> Mid Size SUV </option>
-                                        <option value="Mid-size SUV"> Crossover SUV </option>
-                                        <option value="Medium Car"> Medium Car </option>
-                                        <option value="Small Car "> Small Car </option>
-                                        <option value="Safari"> Safari </option>
-                                        <option value="Luxury"> Luxury </option>
+                                        <?php foreach ($categories as $category): ?>
+                                            <option value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
+                                        <?php endforeach;?>
                                 </select>
                                 <?php if (isset($_GET['category_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['category_err']; ?></p>

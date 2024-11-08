@@ -48,7 +48,7 @@
           	<div class="col-6">
           		<div class="form-group">
 
-	          		<label for="first_name" class="col-sm-2 control-label">Last Name</label>
+	          		<label for="last_name" class="col-sm-2 control-label">Last Name</label>
 	          		<div class="col-sm-10">
 		                <input type="text" name="last_name" placeholder="eg: Ngele" class="form-control" required>
 		                <?php if (isset($_GET['first_name_err'])): ?>
@@ -149,9 +149,9 @@
             <div class="col-sm-10">
               <input type="file" name="dl_image" class="form-control-file">
             </div>
-                    <?php if (isset($_GET['dl_image_err'])): ?>
-                        <p class="text-danger"><?php echo $_GET['dl_image_err']; ?></p>
-                    <?php endif;?>
+            <?php if (isset($_GET['dl_image_err'])): ?>
+                <p class="text-danger"><?php echo $_GET['dl_image_err']; ?></p>
+            <?php endif;?>
           </div>
 
 
@@ -171,12 +171,17 @@
               <input type="tel" class="form-control" id="phone" name="tel">
             </div>
           </div>
+
           <div class="form-group">
             <label class="col-sm-2 control-label">E-mail address</label>
             <div class="col-sm-10">
               <input type="email" class="form-control" name="email">
             </div>
+            <?php if (isset($_GET['email_err'])): ?>
+                <p class="text-danger"><?php echo $_GET['email_err']; ?></p>
+            <?php endif;?>
           </div>
+
           <div class="form-group">
             <label class="col-sm-2 control-label">Work address</label>
             <div class="col-sm-10">

@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		exit;
 	}
 
+
 	//PROFILE_IMAGE DETAILS PROCESSING
 	$profile_filename = $_FILES["profile_image"]["name"];
 	$profile_tempname = $_FILES["profile_image"]["tmp_name"];
@@ -84,6 +85,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$residential_address = $_POST['residential_address'];
 	$work_address = $_POST['work_address'];
 	$date_of_birth = $_POST['date_of_birth'];
+
+	
+	// Validate email uniqueness
+	$taken_email = unique_customer_email($email);
+	if ($taken_email == "Email taken") {
+		$email_err = "An account exists with such an email.";
+		header("Location: index.php?page=client/auth/signup&email_err=$email_err");
+		exit;
+	}
 
 	// $details = [$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $account_id];
 

@@ -44,7 +44,7 @@ $log->info('customers', $customers);
                                 <label for="vehicle_id">Vehicle</label>
                                 <select name="vehicle_id"  class="form-control form-control-border">
                                     <?php foreach ($vehicles as $vehicle): ?>
-                                        <option value="<?php echo $vehicle['id']; ?>"> <?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?> <?php echo $vehicle['number_plate']; ?>
+                                        <option value="<?php echo $vehicle['id']; ?>"> <?php echo $vehicle['model']; ?> <?php echo $vehicle['make']; ?> <?php echo $vehicle['reg']; ?>
                                         </option>
                                     <?php endforeach;?>
                                 </select>

@@ -51,8 +51,8 @@
 	          		<label for="last_name" class="col-sm-2 control-label">Last Name</label>
 	          		<div class="col-sm-10">
 		                <input type="text" name="last_name" placeholder="eg: Ngele" class="form-control" required>
-		                <?php if (isset($_GET['first_name_err'])): ?>
-		                    <p class="text-danger"><?php echo $_GET['first_name_err']; ?></p>
+		                <?php if (isset($_GET['last_name_err'])): ?>
+		                    <p class="text-danger"><?php echo $_GET['last_name_err']; ?></p>
 		                <?php endif;?>
 	          		</div>
           		</div>
@@ -129,9 +129,9 @@
             <div class="col-sm-10">
               <input type="file" name="id_image" class="form-control-file">
             </div>
-                    <?php if (isset($_GET['profile_image_err'])): ?>
-                        <p class="text-danger"><?php echo $_GET['profile_image_err']; ?></p>
-                    <?php endif;?>
+            <?php if (isset($_GET['id_image_err'])): ?>
+                <p class="text-danger"><?php echo $_GET['id_image_err']; ?></p>
+            <?php endif;?>
           </div>
           <!-- ID Image  -->
           <div class="form-group">
@@ -139,9 +139,9 @@
             <div class="col-sm-10">
               <input type="file" name="id_image_back" class="form-control-file">
             </div>
-                    <?php if (isset($_GET['id_image_err'])): ?>
-                        <p class="text-danger"><?php echo $_GET['id_image_err']; ?></p>
-                    <?php endif;?>
+            <?php if (isset($_GET['id_image_back_err'])): ?>
+                <p class="text-danger"><?php echo $_GET['id_image_back_err']; ?></p>
+            <?php endif;?>
           </div>
           <!-- DL Image  -->
           <div class="form-group">

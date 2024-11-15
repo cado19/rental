@@ -30,6 +30,8 @@
         $log->info('Foo: ', $customer);
     }
 
+    $customer_profile_pic_link = customer_profile_pic_link($id);
+
 ?>
 
 <section class="content">
@@ -69,6 +71,9 @@
                     </ul>
 
                     <a href="index.php?page=customers/profile_form&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile Picture</b></a>
+                      <!-- Edit Profile Picture -->
+                    <p id="profile-pic-link" class="d-none"><?php echo $customer_profile_pic_link; ?></p>
+                    <button onclick="copyToClipboard('#profile-pic-link')" class="btn btn-sm btn-success btn-block mt-2">Copy Profile Picture Link</button>
                     <a href="index.php?page=customers/edit&id=<?php echo $id; ?>" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
                     <a href="index.php?page=customers/delete&id=<?php echo $id; ?>" class="btn btn-danger btn-block">Delete Client</a>
                     <a href="index.php?page=customers/blacklist_form&id=<?php echo $id; ?>" class="btn btn-warning btn-block">Blacklist Client</a>

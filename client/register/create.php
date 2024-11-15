@@ -31,6 +31,14 @@
             exit;
         }
 
+        if (empty($_FILES['id_image_back'])) {
+            $id_image_back_err = "Required";
+            header("Location: index.php?page=client/register/new&id_image_back_err=$id_image_back_err");
+            exit;
+        }
+
+        
+
         if (empty($_FILES['dl_image'])) {
             $dl_image_err = "Required";
             header("Location: index.php?page=client/register/new&dl_image_err=$dl_image_err");
@@ -82,7 +90,7 @@
         $taken_email = unique_customer_email($email);
         if ($taken_email == "Email taken") {
             $email_err = "An account exists with such an email.";
-            header("Location: index.php?page=client/auth/signup&email_err=$email_err");
+            header("Location: index.php?page=client/register/new&email_err=$email_err");
             exit;
         }
 

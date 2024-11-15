@@ -125,9 +125,9 @@
 
           <!--  Profile Image -->
           <div class="form-group">
-            <label class="col-sm-2 control-label">Profile Image</label>
+            <label class="col-sm-2 control-label">ID Front Image</label>
             <div class="col-sm-10">
-              <input type="file" name="profile_image" class="form-control-file">
+              <input type="file" name="id_image" class="form-control-file">
             </div>
                     <?php if (isset($_GET['profile_image_err'])): ?>
                         <p class="text-danger"><?php echo $_GET['profile_image_err']; ?></p>
@@ -135,9 +135,9 @@
           </div>
           <!-- ID Image  -->
           <div class="form-group">
-            <label class="col-sm-2 control-label">ID Image</label>
+            <label class="col-sm-2 control-label">ID Back Image</label>
             <div class="col-sm-10">
-              <input type="file" name="id_image" class="form-control-file">
+              <input type="file" name="id_image_back" class="form-control-file">
             </div>
                     <?php if (isset($_GET['id_image_err'])): ?>
                         <p class="text-danger"><?php echo $_GET['id_image_err']; ?></p>

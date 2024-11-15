@@ -215,7 +215,7 @@ function save_customer($first_name, $last_name, $email, $id_type, $id_number, $d
     return $res;
 }
 
-function save_client($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $profile_filenameNew, $id_filenameNew, $dl_filenameNew)
+function save_client($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $front_filenameNew, $back_filenameNew, $dl_filenameNew)
 {
     global $con;
     global $res;
@@ -224,9 +224,9 @@ function save_client($first_name, $last_name, $email, $id_type, $id_number, $dl_
 
         $con->beginTransaction();
 
-        $sql  = "INSERT INTO customer_details (first_name, last_name, email, id_type, id_no, dl_no, dl_expiration, phone_no, residential_address, work_address, date_of_birth, profile_image, id_image, license_image) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql  = "INSERT INTO customer_details (first_name, last_name, email, id_type, id_no, dl_no, dl_expiration, phone_no, residential_address, work_address, date_of_birth, id_image, id_back_image, license_image) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $con->prepare($sql);
-        if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $profile_filenameNew, $id_filenameNew, $dl_filenameNew])) {
+        if ($stmt->execute([$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $front_filenameNew, $back_filenameNew, $dl_filenameNew])) {
             $res = "Success";
         } else {
             $res = "Uncsuccessful";

@@ -1,34 +1,34 @@
 <?php
-// THIS FILE WILL DISPLAY AN INDIVIDUAL CUSTOMER
+    // THIS FILE WILL DISPLAY AN INDIVIDUAL CUSTOMER
 
-// head to login screen if user is not signed in.
-include_once 'config/session_script.php';
+    // head to login screen if user is not signed in.
+    include_once 'config/session_script.php';
 
-//page name. We set this inn the content start and also in the page title programatically
-$page = "Showing Client";
+    //page name. We set this inn the content start and also in the page title programatically
+    $page = "Showing Client";
 
-// Navbar Links. We set these link in the navbar programatically.
-$home_link = "index.php?page=customers/all";
-$home_link_name = "All Customers";
+    // Navbar Links. We set these link in the navbar programatically.
+    $home_link      = "index.php?page=customers/all";
+    $home_link_name = "All Customers";
 
-$new_link = "index.php?page=customers/new";
-$new_link_name = "New Customers";
+    $new_link      = "index.php?page=customers/new";
+    $new_link_name = "New Customers";
 
-// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Customers";
-$breadcrumb_active = "Customer";
+    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+    $breadcrumb        = "Customers";
+    $breadcrumb_active = "Customer";
 
-// include navbar, functions, db_conn and sidebar
-include_once 'partials/header.php';
-include_once 'partials/content_start.php';
+    // include navbar, functions, db_conn and sidebar
+    include_once 'partials/header.php';
+    include_once 'partials/content_start.php';
 
-// fetch id from url and use to fetch client record from database
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-	$customer = get_customer($id);
-	$bookings = customer_bookings($id);
-	$log->info('Foo: ', $customer);
-}
+    // fetch id from url and use to fetch client record from database
+    if (isset($_GET['id'])) {
+        $id       = $_GET['id'];
+        $customer = get_customer($id);
+        $bookings = customer_bookings($id);
+        $log->info('Foo: ', $customer);
+    }
 
 ?>
 
@@ -52,7 +52,7 @@ if (isset($_GET['id'])) {
 
                     </div>
 
-                    <h3 class="profile-username text-center"><?php echo $customer['first_name']; ?> <?php echo $customer['last_name']; ?></h3>
+                    <h3 class="profile-username text-center"><?php echo $customer['first_name']; ?><?php echo $customer['last_name']; ?></h3>
 
                     <p class="text-muted text-center">customer</p>
 
@@ -83,11 +83,44 @@ if (isset($_GET['id'])) {
                     <!-- show id images through a carousel -->
                     <div class="col-6">
                         <div class="card mb-3">
-                            <?php if (isset($customer['id_image'])): ?>
-                                <img src="customers/id/<?php echo $customer['id_image']; ?>" class="card-img-top display-img" alt="Client ID Image">
-                            <?php else: ?>
-                                <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client ID Image">
-                            <?php endif;?>
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                              <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                              <!-- <li data-target="#carouselExampleCaptions" data-slide-to="2"></li> -->
+                            </ol>
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <?php if (isset($customer['id_image'])): ?>
+                                    <img src="customers/id/<?php echo $customer['id_image']; ?>" class="card-img-top display-img d-block" alt="Client Front ID Image">
+                                <?php else: ?>
+                                    <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client ID Image">
+                                <?php endif;?>
+                                <div class="carousel-caption d-none d-md-block">
+                                  <h5>Front ID Image</h5>
+                                </div>
+                              </div>
+                              <div class="carousel-item">
+                                <?php if (isset($customer['id_back_image'])): ?>
+                                    <img src="customers/id/<?php echo $customer['id_back_image']; ?>" class="card-img-top display-img d-block" alt="Client Back ID Image">
+                                <?php else: ?>
+                                    <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client ID Image">
+                                <?php endif;?>
+                                <div class="carousel-caption d-none d-md-block">
+                                  <h5>Back ID Image</h5>
+                                </div>
+                              </div>
+
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
 
                           <div class="card-body">
                             <h5 class="card-title">Identification</h5>
@@ -140,22 +173,22 @@ if (isset($_GET['id'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php forEach ($bookings as $booking): ?>
+                                <?php foreach ($bookings as $booking): ?>
                                     <tr>
-                                        <td> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </td>
-                                        <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
-                                        <td> <?php echo $booking['number_plate']; ?> </td>
+                                        <td>                                             <?php echo $booking['first_name']; ?><?php echo $booking['last_name']; ?> </td>
+                                        <td>                                             <?php echo $booking['model']; ?><?php echo $booking['make']; ?> </td>
+                                        <td>                                             <?php echo $booking['number_plate']; ?> </td>
                                         <td>
                                             <?php
-$start = strtotime($booking['start_date']);
-echo date("l jS \of F Y", $start);
-?>
+                                                $start = strtotime($booking['start_date']);
+                                                echo date("l jS \of F Y", $start);
+                                            ?>
                                         </td>
                                         <td>
                                             <?php
-$end = strtotime($booking['end_date']);
-echo date("l jS \of F Y", $end);
-?>
+                                                $end = strtotime($booking['end_date']);
+                                                echo date("l jS \of F Y", $end);
+                                            ?>
                                         </td>
                                         <td> <a href="index.php?page=bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
                                     </tr>

@@ -23,7 +23,9 @@
     $bookings   = bookings();
 
 ?>
-
+<script>
+    console.log(<?php echo json_encode($bookings) ?>);
+</script>
 <!-- Main Content  -->
 
 <section class="content">
@@ -43,6 +45,7 @@
                                     <th>Plate</th>
                                     <th>Start</th>
                                     <th>End</th>
+                                    <th>Ownership</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -64,6 +67,9 @@
                                                 $end = strtotime($booking['end_date']);
                                                 echo date("l jS \of F Y", $end);
                                             ?>
+                                        </td>
+                                        <td>
+                                            <?php show_owner($booking, 'partner_id') ?>
                                         </td>
                                         <td> <a href="index.php?page=bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
                                     </tr>

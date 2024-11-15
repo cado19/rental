@@ -9,7 +9,7 @@ function bookings()
 
         $con->beginTransaction();
 
-        $sql  = "SELECT b.id, b.booking_no, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id ORDER BY b.created_at DESC";
+        $sql  = "SELECT b.id, b.booking_no, c.first_name, c.last_name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id ORDER BY b.created_at DESC";
         $stmt = $con->prepare($sql);
         $stmt->execute();
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ function upcoming_bookings()
 
         $con->beginTransaction();
 
-        $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
+        $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
         $stmt = $con->prepare($sql);
         $stmt->execute([$status]);
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -57,7 +57,7 @@ function active_bookings()
 
         $con->beginTransaction();
 
-        $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
+        $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
         $stmt = $con->prepare($sql);
         $stmt->execute([$status]);
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -81,7 +81,7 @@ function completed_bookings()
 
         $con->beginTransaction();
 
-        $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
+        $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
         $stmt = $con->prepare($sql);
         $stmt->execute([$status]);
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -105,7 +105,7 @@ function cancelled_bookings()
 
         $con->beginTransaction();
 
-        $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
+        $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
         $stmt = $con->prepare($sql);
         $stmt->execute([$status]);
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -159,6 +159,7 @@ function active_agent_bookings()
     v.make,
     v.number_plate,
     b.start_date,
+    v.partner_id,
     b.end_date
 FROM
     customer_details c

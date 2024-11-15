@@ -32,12 +32,7 @@
         </li>
       <?php endif;?>
 
-      <!-- Show new partner booking only if in bookings index page  -->
-      <?php if ($page == "Bookings"): ?>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?php echo $new_pb_link; ?>" class="nav-link"><?php echo $new_pb_link_name; ?> </a>
-        </li>
-      <?php endif;?>
+
 
     </ul>
 </nav>

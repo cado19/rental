@@ -106,8 +106,8 @@
                                       </div>
                                       <!-- /.user-block -->
                                       <p>
-                                        The                                                                                                                                                                                                                        <?php echo $booking['model']; ?><?php echo $booking['make']; ?> is a<?php echo $booking['drive_train']; ?><?php echo $booking['category']; ?> loved by many. It can carry<?php echo $booking['seats']; ?>
-                                        people. The hire rate is<?php echo number_format($booking['daily_rate']); ?>.
+                                        The  <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> is a <?php echo $booking['drive_train']; ?> <?php echo $booking['category']; ?> loved by many. It can carry <?php echo $booking['seats']; ?>
+                                        people. The hire rate is <?php echo number_format($booking['daily_rate']); ?>.
                                       </p>
 
                                       <?php if ($booking['status'] == "upcoming"): ?>
@@ -198,7 +198,7 @@
                                         <?php endif;?>
                                       </div>
 
-                                                                            <!-- A box with a link to edit booking -->
+                                       <!-- A box with a link to edit booking -->
                                       <div class="col-4 col-sm-4">
                                           <?php if ($booking['status'] != "cancelled"): ?>
                                             <div class="info-box bg-light">
@@ -226,6 +226,9 @@
                             </p>
                             <p class="text-sm">Client
                               <b class="d-block"><?php echo $booking['customer_first_name']; ?><?php echo " "; ?><?php echo $booking['customer_last_name']; ?></b>
+                            </p>                            
+                            <p class="text-sm">Total
+                              <b class="d-block"><?php show_numeric_value($booking, 'total'); ?></b>
                             </p>
                           </div>
 

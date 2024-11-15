@@ -289,7 +289,7 @@ function booking_vehicles()
 
         $con->beginTransaction();
 
-        $sql  = "SELECT id, make, model, number_plate FROM vehicle_basics WHERE deleted = ? AND partner_id IS NULL ORDER BY id DESC";
+        $sql  = "SELECT id, make, model, number_plate FROM vehicle_basics WHERE deleted = ? ORDER BY id DESC";
         $stmt = $con->prepare($sql);
         $stmt->execute([$status]);
         $bk_vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);

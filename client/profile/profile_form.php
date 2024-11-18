@@ -1,20 +1,14 @@
+
 <?php
-// THIS PAGE DISPLAYS ALLOWS A SELF REGISTERED CUSTOMER TO UPLOAD LICENSE IMAGE
-session_start();
-if (!(isset($_SESSION['client']))) {
-	header("Location: index.php?page=client/auth/login");
-	exit;
-}
+    // THIS PAGE ALLOWS A USER TO TAKE A SELFIE FOR CLIENT'S PROFILE IMAGE
+    $page = "Capture Profile Picture";
+    include_once 'partials/client-header.php';
 
-$page = "Upload Profile Picture";
-
-include_once 'partials/client-header.php';
-include_once 'partials/client-nav.php';
-
-$vehicles = catalog_vehicles();
-$client = $_SESSION['client'];
-$id = $client['id'];
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+    }
 ?>
+
 
 
 	<div class="container">

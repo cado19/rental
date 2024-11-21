@@ -2,7 +2,7 @@
 include_once 'config/db_conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$make = $model = $number_plate = $category = $transmission = $fuel = $seats = $daily_rate = $vehicle_excess = $deposit = '';
+	$make = $model = $number_plate = $category = $transmission = $fuel = $seats = $daily_rate = $vehicle_excess = $deposit = $colour = '';
 	$bluetooth = $keyless_entry = $reverse_cam = $audio_input = $gps = $android_auto = $apple_carplay = 'No';
 
 	$make_err = $model_err = $number_plate_err = $categor_erry = $transmission_err = $fuel_err = $seats_err = $daily_rate_err = $vehicle_excess_err = $deposit_err = '';
@@ -97,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$fuel = $_POST['fuel'];
 		$seats = $_POST['seats'];
 		$drive_train = $_POST['drive_train'];
+		$colour = ucfirst($_POST['colour']);
 
 		// vehicle pricing data
 		$daily_rate = $_POST['daily_rate'];
@@ -173,9 +174,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		// update vehicle basics data
 
-		$sql = "UPDATE vehicle_basics SET make = ?,model = ?,number_plate = ?,category = ?,transmission = ?,fuel = ?,seats = ?,drive_train = ? WHERE id = ?";
+		$sql = "UPDATE vehicle_basics SET make = ?,model = ?,number_plate = ?,category_id = ?,transmission = ?,fuel = ?,seats = ?,drive_train = ?, colour = ? WHERE id = ?";
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $id])) {
+		if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $colour, $id])) {
 			$res = $con->lastInsertId();
 		} else {
 			$res = "Couldn't update vehicle";

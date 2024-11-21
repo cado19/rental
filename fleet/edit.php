@@ -1,40 +1,43 @@
 <?php
-// THIS FILE DISPLAYS ALL THE DRIVERS
+    // THIS FILE DISPLAYS ALL THE DRIVERS
 
-// head to login screen if user is not signed in.
-include_once 'config/session_script.php';
+    // head to login screen if user is not signed in.
+    include_once 'config/session_script.php';
 
-// head to home screen if user is not admin.
-include_once 'config/user_auth_script.php';
+    // head to home screen if user is not admin.
+    include_once 'config/user_auth_script.php';
 
-// PROGRAMMATICALLY SET PAGE NAME
-$page = "New Driver";
+    // PROGRAMMATICALLY SET PAGE NAME
+    $page = "New Driver";
 
-// Navbar Links. We set these link in the navbar programatically.
-$home_link = "index.php?page=fleet/all";
-$home_link_name = "All Drivers";
+    // Navbar Links. We set these link in the navbar programatically.
+    $home_link      = "index.php?page=fleet/all";
+    $home_link_name = "All Drivers";
 
-$new_link = "index.php?page=fleet/new";
-$new_link_name = "New Driver";
+    $new_link      = "index.php?page=fleet/new";
+    $new_link_name = "New Driver";
 
-// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Drivers";
-$breadcrumb_active = "New Driver";
+    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+    $breadcrumb        = "Drivers";
+    $breadcrumb_active = "New Driver";
 
-include_once 'partials/header.php';
-include_once 'partials/content_start.php';
+    include_once 'partials/header.php';
+    include_once 'partials/content_start.php';
 
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-	$vehicle = get_vehicle($id);
-	$log->info('Foo: ', $vehicle);
-} else {
-	$msg = "Couldn't fetch fetch vehicle";
-	header("Location: index.php?page=fleet/all&msg=$msg");
-}
+    if (isset($_GET['id'])) {
+        $id      = $_GET['id'];
+        $vehicle = get_vehicle($id);
+        $log->info('Foo: ', $vehicle);
+    } else {
+        $msg = "Couldn't fetch fetch vehicle";
+        header("Location: index.php?page=fleet/all&msg=$msg");
+    }
 
+    $categories = categories();
 ?>
-
+<script>
+    console.log(<?php echo json_encode($vehicle) ?>);
+</script>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -83,14 +86,11 @@ if (isset($_GET['id'])) {
 
                             <div class="form-group">
                                 <label for="category">Category</label>
-                                <select name="category" value="<?php edit_input_value($vehicle, 'category');?>" class="form-control form-control-border">
-                                        <option value="<?php edit_input_value($vehicle, 'category');?>"><?php edit_dropdown_value($vehicle, 'category');?></option>
-                                        <option value="Mid-size SUV"> Mid Size SUV </option>
-                                        <option value="Mid-size SUV"> Crossover SUV </option>
-                                        <option value="Medium Car"> Medium Car </option>
-                                        <option value="Small Car "> Small Car </option>
-                                        <option value="Safari"> Safari </option>
-                                        <option value="Luxury"> Luxury </option>
+                                <select name="category" value="<?php edit_input_value($vehicle, 'category_id');?>" class="form-control form-control-border">
+                                        <option value="<?php edit_input_value($vehicle, 'category_id');?>"><?php edit_dropdown_value($vehicle, 'category');?></option>
+                                        <?php foreach ($categories as $category): ?>
+                                            <option value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
+                                        <?php endforeach;?>
                                 </select>
                                 <?php if (isset($_GET['category_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['category_err']; ?></p>

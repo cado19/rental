@@ -85,7 +85,7 @@ function fetch_account($email)
 
         $con->beginTransaction();
 
-        $sql  = "SELECT id, email, password FROM accounts WHERE email = ?";
+        $sql  = "SELECT id, email, password, role_id FROM accounts WHERE email = ?";
         $stmt = $con->prepare($sql);
         $stmt->execute([$email]);
         if ($stmt->rowCount() == 1) {

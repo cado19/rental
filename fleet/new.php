@@ -22,10 +22,11 @@ $breadcrumb_active = "New Vehicle";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
-$account_id = $_SESSION['account']['id'];
+// $account_id = $_SESSION['account']['id'];
 
 $categories = categories();
 ?>
+
 
 <section class="content">
     <div class="container-fluid">
@@ -152,6 +153,11 @@ $categories = categories();
                                 <?php if (isset($_GET['colour_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['colour_err']; ?></p>
                                 <?php endif;?>
+                            </div>
+
+                            <div class="form-check">
+                                <input type="checkbox" name="partner_id" id="partnerCheck" class="form-check-input">
+                                <label>Partner Vehicles</label>
                             </div>
 
                           </div>

@@ -3,13 +3,14 @@ function all_agents() {
 	global $con;
 	global $res;
 	$id = 2;
+	$status = "false";
 
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT * FROM accounts WHERE role_id = ?";
+		$sql = "SELECT * FROM accounts WHERE role_id = ? AND deleted = ?";
 		$stmt = $con->prepare($sql);
-		$stmt->execute([$id]);
+		$stmt->execute([$id, $status]);
 		$res = $stmt->fetchAll();
 
 		$con->commit();
@@ -59,6 +60,29 @@ function save_agent($name, $email, $country, $tel, $password, $role_id) {
 
 	return $res;
 }
+
+function update_agent($name, $email, $country, $tel, $agent_id) {
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+		$sql = "UPDATE accounts SET name = ?, email = ?, country = ?, phone_no = ? WHERE id = ?";
+		$stmt = $con->prepare($sql);
+		if ($stmt->execute([$name, $email, $country, $tel, $agent_id])) {
+			$res = "Success";
+		} else {
+			$res = "Failed";
+		}
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
+
 
 function update_agent_password($id, $password) {
 	global $con;

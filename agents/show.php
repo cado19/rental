@@ -95,8 +95,24 @@ $link .= "?page=agents/show&id=${id}";
 	                <div class="col-12 col-sm-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
-	                      <span class="info-box-text text-center text-muted">Bookings</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_numeric_value($no_of_bookings, 'booking_count');?> </span>
+	                      <span class="info-box-text text-center text-muted"></span>
+	                      <span class="info-box-number text-center text-muted mb-0">
+	                      	<form action="index.php?page=agents/delete" method="POST">
+	                      		<input type="hidden" name="id" value="<?php echo $id ?>">
+	                      		<button type="submit" class="btn btn-outline-danger">Delete Agent</button>
+	                      	</form>
+	                      </span>
+	                    </div>
+	                  </div>
+	                </div>
+
+	                
+
+	                <div class="col-12 col-sm-3">
+	                  <div class="info-box bg-light">
+	                    <div class="info-box-content">
+	                      <span class="info-box-text text-center text-muted"></span>
+	                      <span class="info-box-number text-center text-muted mb-0"><a href="index.php?page=agents/edit&id=<?php echo $id; ?>">Edit <span class="fa fa-arrow-right"></span></a> </span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -110,9 +126,9 @@ $link .= "?page=agents/show&id=${id}";
 			<div class="col-6">
 				<div class="card mb-3">
                     <?php if (isset($agent['id_image'])): ?>
-                        <img src="agents/id/<?php echo $agent['id_image']; ?>" class="card-img-top display-img" alt="Client ID Image">
+                        <img src="agents/id/<?php echo $agent['id_image']; ?>" class="card-img-top display-img" alt="Agent ID Image">
                     <?php else: ?>
-                        <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client ID Image">
+                        <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Agent ID Image">
                     <?php endif;?>
 
                   <div class="card-body">
@@ -125,9 +141,9 @@ $link .= "?page=agents/show&id=${id}";
 			<div class="col-6">
 				<div class="card mb-3">
                     <?php if (isset($agent['license_image'])): ?>
-                        <img src="agents/license/<?php echo $agent['license_image']; ?>" class="card-img-top display-img" alt="Client License Image">
+                        <img src="agents/license/<?php echo $agent['license_image']; ?>" class="card-img-top display-img" alt="Agent License Image">
                     <?php else: ?>
-                        <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Client License Image">
+                        <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Agent License Image">
                     <?php endif;?>
 
                     <div class="card-body">

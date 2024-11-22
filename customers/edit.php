@@ -135,7 +135,8 @@ $account_id = $_SESSION['account']['id'];
                             <div class="form-group">
                                 <label for="tel">Tel</label>
 
-                                <input type="text" name="tel" placeholder="without '0'" value="<?php edit_input_value($customer, 'phone_no');?>" class="form-control form-control-border" required>
+                                <input type="text" name="tel" id="phone" class="form-control form-control-border" required>
+                                <p class="text-primary">Current phone: <?php show_value($agent, 'phone_no') ?> </p>
                                 <?php if (isset($_GET['tel_err'])): ?>
                                     <p class="text-danger"><?php echo $_GET['tel_err']; ?></p>
                                 <?php endif;?>

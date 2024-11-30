@@ -25,47 +25,8 @@
             exit;
         }
 
-        if (empty($_FILES['id_image'])) {
-            $id_image_err = "Required";
-            header("Location: index.php?page=client/register/new&id_image_err=$id_image_err");
-            exit;
-        }
 
-        if (empty($_FILES['id_image_back'])) {
-            $id_image_back_err = "Required";
-            header("Location: index.php?page=client/register/new&id_image_back_err=$id_image_back_err");
-            exit;
-        }
 
-        
-
-        if (empty($_FILES['dl_image'])) {
-            $dl_image_err = "Required";
-            header("Location: index.php?page=client/register/new&dl_image_err=$dl_image_err");
-            exit;
-        }
-
-        $front_filename = $_FILES["id_image"]["name"];
-        $front_tempname = $_FILES["id_image"]["tmp_name"];
-
-        $back_filename = $_FILES["id_image_back"]["name"];
-        $back_tempname = $_FILES["id_image_back"]["tmp_name"];
-
-        // new file name to eliminate conflicts even if someone uploads the same file twice for different records.
-        $front_filenameNew = "id_front_" . date("his") . ".png";
-        $back_filenameNew  = "id_back_" . date("his") . ".png";
-
-        // folder to upload the image and also its destination
-        $front_folder = "customers/id/" . $front_filenameNew;
-        $back_folder  = "customers/id/" . $back_filenameNew;
-
-        //DL_IMAGE DETAILS PROCESSING
-        $dl_filename = $_FILES["dl_image"]["name"];
-        $dl_tempname = $_FILES["dl_image"]["tmp_name"];
-        // new file name to eliminate conflicts even if someone uploads the same file twice for different records.
-        $dl_filenameNew = "license_" . date("his") . ".png";
-
-        // folder to upload the image and also its destination
         $dl_folder = "customers/license/" . $dl_filenameNew;
 
         if (empty($_POST['date_of_birth'])) {
@@ -96,14 +57,9 @@
 
         // $details = [$first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $account_id];
 
-        $result = save_client($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth, $front_filenameNew, $back_filenameNew, $dl_filenameNew);
+        $result = save_client($first_name, $last_name, $email, $id_type, $id_number, $dl_number, $dl_expiry, $tel, $residential_address, $work_address, $date_of_birth);
 
         if ($result == "Success") {
-            // UPLOAD THE IMAGES
-            upload_image($front_folder, $front_tempname);
-            upload_image($back_folder, $back_tempname);
-            upload_image($dl_folder, $dl_tempname);
-
             $msg = "Successfully registered";
             header("Location: index.php?page=client/register/success&msg=$msg");
         } else {

@@ -122,40 +122,6 @@
                 </div>
             </div>
           </div>
-
-          <!--  Profile Image -->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">ID Front Image</label>
-            <div class="col-sm-10">
-              <input type="file" name="id_image" class="form-control-file">
-            </div>
-            <?php if (isset($_GET['id_image_err'])): ?>
-                <p class="text-danger"><?php echo $_GET['id_image_err']; ?></p>
-            <?php endif;?>
-          </div>
-          <!-- ID Image  -->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">ID Back Image</label>
-            <div class="col-sm-10">
-              <input type="file" name="id_image_back" class="form-control-file">
-            </div>
-            <?php if (isset($_GET['id_image_back_err'])): ?>
-                <p class="text-danger"><?php echo $_GET['id_image_back_err']; ?></p>
-            <?php endif;?>
-          </div>
-          <!-- DL Image  -->
-          <div class="form-group">
-            <label class="col-sm-2 control-label">DL Image</label>
-            <div class="col-sm-10">
-              <input type="file" name="dl_image" class="form-control-file">
-            </div>
-            <?php if (isset($_GET['dl_image_err'])): ?>
-                <p class="text-danger"><?php echo $_GET['dl_image_err']; ?></p>
-            <?php endif;?>
-          </div>
-
-
-
         </div>
 
 

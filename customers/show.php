@@ -31,6 +31,8 @@
     }
 
     $customer_profile_pic_link = customer_profile_pic_link($id);
+    $customer_id_link          = customer_id_link($id);
+    $customer_dl_link          = customer_license_link($id);
 
 ?>
 
@@ -130,7 +132,8 @@
                           <div class="card-body">
                             <h5 class="card-title">Identification</h5>
                             <p class="card-text">This is the customer's identification card.</p>
-                            <a href="index.php?page=customers/id_form&id=<?php echo $id; ?>" class="btn btn-primary">Upload ID Card</a>
+                            <p id="id-pic-link" class="d-none"><?php echo $customer_id_link; ?></p>
+                            <button onclick="copyToClipboard('#id-pic-link')" class="btn btn-success">Copy ID Upload Link</button>
                           </div>
                         </div>
                     </div>
@@ -147,7 +150,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">License</h5>
                                 <p class="card-text">This is the customer's license.</p>
-                                <a href="index.php?page=customers/license_form&id=<?php echo $id; ?>" class="btn btn-primary">Upload customer's License</a>
+                                <p id="license-pic-link" class="d-none"><?php echo $customer_dl_link; ?></p>
+                                <button onclick="copyToClipboard('#license-pic-link')" class="btn btn-success">Copy License Upload Link</button>
+
                             </div>
                         </div>
                     </div>

@@ -155,3 +155,11 @@ table.shoping-cart-table tr td:last-child {
 .rounded-circle {
     border-radius: 50% !important;
 }
+.success-col{
+  height: 100%;
+}
+#success{
+  width: 200px;
+  height: 50px;
+
+}

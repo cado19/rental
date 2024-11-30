@@ -237,6 +237,7 @@
                               <a href="index.php?page=contracts/edit&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">Sign Contract</a>
                             <?php endif;?>
                             <a href="index.php?page=contracts/updated_contract&id=<?php echo $id; ?>" class="btn btn-sm btn-warning" target="_blank">Show contract</a>
+                            <a href="index.php?page=payments/new&id=<?php echo $id; ?>" class="btn btn-sm btn-warning" target="_blank">Pay Now</a>
                           </div>
                         </div>
                     </div>

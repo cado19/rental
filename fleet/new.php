@@ -155,11 +155,6 @@ $categories = categories();
                                 <?php endif;?>
                             </div>
 
-                            <div class="form-check">
-                                <input type="checkbox" name="partner_id" id="partnerCheck" class="form-check-input">
-                                <label>Partner Vehicles</label>
-                            </div>
-
                           </div>
                     </div>
 

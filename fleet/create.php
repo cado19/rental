@@ -116,9 +116,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $seats        = $_POST['seats'];
     $drive_train  = $_POST['drive_train'];
     $colour       = ucfirst($_POST['colour']);
-    if (! empty($_POST['partner_id'])) {
-        $partner_id = $_POST['partner_id'];
-    }
+    // if (! empty($_POST['partner_id'])) {
+    //     $partner_id = $_POST['partner_id'];
+    // }
 
     // vehicle pricing data
     $daily_rate = $_POST['daily_rate'];
@@ -183,9 +183,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // insert vehicle basics data
 
-    $sql  = "INSERT INTO vehicle_basics (make,model,number_plate,category_id,transmission,fuel,seats,drive_train,colour,partner_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $sql  = "INSERT INTO vehicle_basics (make,model,number_plate,category_id,transmission,fuel,seats,drive_train,colour) VALUES (?,?,?,?,?,?,?,?,?)";
     $stmt = $con->prepare($sql);
-    if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $colour, $partner_id])) {
+    if ($stmt->execute([$make, $model, $number_plate, $category, $transmission, $fuel, $seats, $drive_train, $colour])) {
         $res = $con->lastInsertId();
     } else {
         $res = "Couldn't save vehicle";

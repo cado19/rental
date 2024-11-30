@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$taken_plate = unique_registration($number_plate);
 	if ($taken_plate == "Taken") {
 		$number_plate_err = "A vehicle exists with the given registration.";
-		header("Location: index.php?page=fleet/partners/new&$number_plate_err=$number_plate_err");
+		header("Location: index.php?page=fleet/partners/new&err_msg=$number_plate_err");
 		exit;
 	}
 
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$partner_id = $_POST['partner_id'];
 	$make = ucfirst($_POST['make']);
 	$model = ucfirst($_POST['model']);
-	$number_plate = $_POST['number_plate'];
+	// $number_plate = $_POST['number_plate'];
 	$category = $_POST['category'];
 	$transmission = $_POST['transmission'];
 	$fuel = $_POST['fuel'];

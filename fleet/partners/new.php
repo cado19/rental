@@ -80,8 +80,8 @@ $categories = categories();
                                     <div class="col-6">
                                         <div class="form-group">
                                             <input type="text" name="num_plate_1" placeholder="eg: KAA" class="form-control form-control-border" required>
-                                            <?php if (isset($_GET['make_err'])): ?>
-                                                <p class="text-danger"><?php echo $_GET['make_err']; ?></p>
+                                            <?php if (isset($_GET['num_plate_1_err'])): ?>
+                                                <p class="text-danger"><?php echo $_GET['num_plate_1_err']; ?></p>
                                             <?php endif;?>
                                         </div>
                                     </div>
@@ -89,8 +89,8 @@ $categories = categories();
                                     <div class="col-6">
                                         <div class="form-group">
                                             <input type="text" name="num_plate_2" placeholder="eg: 123X" class="form-control form-control-border" required>
-                                            <?php if (isset($_GET['model_err'])): ?>
-                                                <p class="text-danger"><?php echo $_GET['model_err']; ?></p>
+                                            <?php if (isset($_GET['num_plate_2_err'])): ?>
+                                                <p class="text-danger"><?php echo $_GET['num_plate_2_err']; ?></p>
                                             <?php endif;?>
                                         </div>
                                     </div>

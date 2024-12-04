@@ -1,50 +1,54 @@
 <?php
 // THIS FILE WILL HANDLE SAVING OF PARTNER INTO THE DB
-$name = $email = $contact_name = $country = $tel = $kra_pin = '';
+$name = $email = $company_no = $country = $tel = $kra_pin = '';
 $name_err = $email_err = $tel_err = $msg = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//VALIDATIONS
 	if (empty($_POST['name'])) {
 		$name_err = "Required";
-		header("Location: index.php?page=agents/new&first_name_err=$first_name_err");
+		header("Location: index.php?page=organisations/new&name_err=$name_err");
 		exit;
+	}
+
+	if (empty($_POST['email'])) {
+		$email_err = "Required";
+		header("Location: index.php?page=organisations/new&email_err=$email_err");
+		exit;
+	}
+	if (empty($_POST['country'])) {
+		$country_err = "Required";
+		header("Location: index.php?page=client/register/new_organisation&country_err=$country_err");
+		exit;
+	}
+
+	if (!empty($_POST['company_no'])) {
+		$company_no = $_POST['company_no'];
 	}
 
 	$name = ucwords($_POST['name']);
 
-	if (isset($_POST['contact_name'])) {
-		$contact_name = ucwords($_POST['contact_name']);
+	$kra_pin = ucfirst($_POST['kra_pin']);
+
+	$email = $_POST['email'];
+
+	$country = $_POST['country'];
+
+	$tel = $_POST['tel'];
+
+
+	$details = [$name, $email, $company_no, $country, $tel, $kra_pin];
+
+	$result = save_organisation($name, $email, $company_no, $country, $tel, $kra_pin);
+
+	if ($result == "Success") {
+		$msg = "Successfully added organisation";
+		header("Location: index.php?page=organisations/all&msg=$msg");
+		exit;
+	} else {
+		$msg = "An error occured. Please try again later";
+		header("Location: index.php?page=organisations/all&err_msg=$msg");
+		exit;
 	}
-
-	if (isset($_POST['kra_pin'])) {
-		$kra_pin = ucfirst($_POST['kra_pin']);
-	}
-
-	if (isset($_POST['email'])) {
-		$email = $_POST['email'];
-	}
-
-	if (isset($_POST['country'])) {
-		$country = $_POST['country'];
-	}
-
-	if (isset($_POST['tel'])) {
-		$tel = $_POST['tel'];
-	}
-
-	$details = [$name, $email, $contact_name, $country, $tel, $kra_pin];
-
-	// $result = save_organisation($name, $email, $contact_name, $tel, $kra_pin);
-
-	// if ($result == "Success") {
-	// 	$msg = "Successfully added organisation";
-	// 	header("Location: index.php?page=organisations/all&msg=$msg");
-	// 	exit;
-	// } else {
-	// 	$msg = "An error occured. Please try again later";
-	// 	header("Location: index.php?page=organisations/all&err_msg=$msg");
-	// 	exit;
-	// }
 
 	// $log->info($result);
 

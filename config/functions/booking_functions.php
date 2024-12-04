@@ -21,6 +21,27 @@ function bookings()
 
     return $res;
 }
+// get client details needed for booking 
+function client_from_booking($booking_id){
+    global $con;
+    global $res;
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "SELECT c.id AS customer_id, c.first_name AS customer_first_name, c.last_name AS customer_last_name, c.email AS customer_email, c.phone_no AS customer_phone_no, b.total, b.status, b.booking_no FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id WHERE b.id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$booking_id]);
+        $res = $stmt->fetch();
+
+        $con->commit();
+        
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+    return $res;
+}
 
 // function to get upcoming bookings
 function upcoming_bookings()
@@ -206,6 +227,27 @@ function booking($id)
     return $res;
 }
 
+// get booking number
+function get_booking_no($booking_id){
+    global $con;
+    global $res;
+
+    try {
+        $con->beginTransaction();
+
+        $sql =  "SELECT booking_no FROM bookings WHERE id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$booking_id]);
+        $res = $stmt->fetch();
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
 // gets the daily rate of a vehicle in booking after it has just been saved
 function get_booking_vehicle_daily_rate($booking_id)
 {
@@ -375,6 +417,32 @@ function booking_customers()
 
     return $bk_customers;
 }
+
+// function to get all organisations for the organisation booking process
+function booking_organisations()
+{
+    global $con;
+    global $res;
+    $status = "false";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "SELECT id, name FROM organisation_details WHERE deleted = ? ORDER BY id DESC";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$status]);
+        $bk_customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+
 
 // function to get all drivers for the booking process
 function booking_drivers()

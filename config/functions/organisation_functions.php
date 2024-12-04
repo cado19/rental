@@ -6,7 +6,7 @@ function all_organisations() {
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT * FROM organisations";
+		$sql = "SELECT * FROM organisation_details";
 		$stmt = $con->prepare($sql);
 		$stmt->execute();
 		$res = $stmt->fetchAll();
@@ -38,16 +38,16 @@ function get_organisation($organisation_id) {
 	return $res;
 }
 
-function save_organisation($name, $email, $contact_name, $country, $tel, $kra_pin) {
+function save_organisation($name, $email, $company_no, $country, $tel, $kra_pin) {
 	global $con;
 	global $res;
 
 	try {
 		$con->beginTransaction();
-		$sql = "INSERT INTO organisation_details (name, email, contact_name, country, contact_no, kra_pin) VALUES (?,?,?,?,?,?)";
+		$sql = "INSERT INTO organisation_details (name, email, company_no, country, phone_no, kra_pin) VALUES (?,?,?,?,?,?)";
 
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$name, $email, $contact_name, $country, $tel, $kra_pin])) {
+		if ($stmt->execute([$name, $email, $company_no, $country, $tel, $kra_pin])) {
 			$res = "Success";
 		} else {
 			$res = "Failed";

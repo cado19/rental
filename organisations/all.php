@@ -1,5 +1,6 @@
 <?php
-
+    // head to login screen if user is not signed in.
+    include_once 'config/session_script.php';
 //page name. We set this inn the content start and also in the page title programatically
 $page = "Organisations";
 
@@ -41,7 +42,7 @@ $organisations = all_organisations();
                                     <tr>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Contact</th>
+                                        <th>Company Number</th>
                                         <th>Tel</th>
                                         <th></th>
                                     </tr>
@@ -51,8 +52,8 @@ $organisations = all_organisations();
                                         <tr>
                                             <td> <?php echo $organisation['name'] ?> </td>
                                             <td> <?php echo $organisation['email']; ?> </td>
-                                            <td> <?php echo $organisation['contact_name']; ?> </td>
-                                            <td> <?php echo $organisation['contact_phone_no']; ?> </td>
+                                            <td> <?php echo $organisation['company_no']; ?> </td>
+                                            <td> <?php echo $organisation['phone_no']; ?> </td>
                                             <td> <a href="index.php?page=Organisations/show&id=<?php echo $organisation['id']; ?>">Details</a> </td>
                                         </tr>
                                     <?php endforeach;?>

@@ -1,5 +1,5 @@
 <?php
-// THIS PAGE IS WHERE THE CONTRACT WILL BE SIGNED
+// THIS PAGE IS WHERE THE ORGANISATION CONTRACT WILL BE SIGNED
 
 // our database configuration
 include_once '../db_credentials/credentials.php';
@@ -33,14 +33,14 @@ if (isset($_GET['id'])) {
 }
 
 // use the id from the url to fetch the contract id for the contract that needs to be signed
-$sql = "SELECT id from contracts WHERE booking_id = ?";
+$sql = "SELECT id from organisation_contracts WHERE organisation_booking_id = ?";
 $stmt = $con->prepare($sql);
 $stmt->execute([$id]);
 $contract_id = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $new_id = $contract_id['id'];
 
-$path = $_SERVER['DOCUMENT_ROOT'] . "/contracts/update.php";
+$path = $_SERVER['DOCUMENT_ROOT'] . "/organisation_bookings/update_contract.php";
 
 // get page url
 // Program to display complete URL
@@ -61,7 +61,7 @@ $link .= $_SERVER['HTTP_HOST'];
 // location to the URL
 $link .= $_SERVER['PHP_SELF'];
 
-$link .= "?page=contracts/edit&id=${id}";
+$link .= "?page=organisation_bookings/edit_contract&id=${id}";
 
 // echo $new_id;
 
@@ -97,7 +97,7 @@ $link .= "?page=contracts/edit&id=${id}";
                     </div>
                     <div class="card-body">
 
-                        <form method="post" action="contracts/update.php" enctype="multipart/form-data">
+                        <form method="post" action="organisation_bookings/update_contract.php" enctype="multipart/form-data">
                             <!-- pass the contract id as a hidden input field  -->
                             <input type="hidden" name="id" value="<?php echo $new_id; ?>">
                             <div id="signature-pad">
@@ -120,10 +120,10 @@ $link .= "?page=contracts/edit&id=${id}";
         </div>
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-8 col-sm-12 mt-3">
-                <a href="index.php?page=contracts/updated_contract&id=<?php echo $id; ?>" class="btn btn-success m-3" target="_blank">View contract</a>
+                <a href="index.php?page=organisation_bookings/show_contract&id=<?php echo $id; ?>" class="btn btn-success m-3" target="_blank">View contract</a>
                 <a href="index.php?page=bookings/show&id=<?php echo $id; ?>" class="btn btn-warning">Back to booking</a>
             </div>
-            
+
         </div>
 
     </div>

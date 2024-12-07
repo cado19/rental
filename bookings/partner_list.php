@@ -48,7 +48,7 @@ $partners = all_partners();
                                 <?php forEach ($partners as $partner): ?>
                                     <tr>
                                         <td><?php echo $partner['name'] ?> </td>
-                                        <td> <a href="index.php?page=bookings/new_pb&id=<?php echo $partner['id']; ?>">Select</a> </td>
+                                        <td> <a href="index.php?page=partners/lease/new&id=<?php echo $partner['id']; ?>">Select</a> </td>
                                         <td> <a href="index.php?page=bookings/partner_bookings&id=<?php echo $partner['id']; ?>">View bookings</a> </td>
                                     </tr>
                                 <?php endforeach;?>

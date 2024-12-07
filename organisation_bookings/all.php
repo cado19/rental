@@ -26,7 +26,7 @@
     include_once 'partials/header.php';
     include_once 'partials/content_start.php';
     $account_id = $_SESSION['account']['id'];
-    $bookings   = bookings();
+    $bookings   = organisation_bookings();
 
 ?>
 <script>
@@ -36,7 +36,7 @@
 
 <section class="content">
     <div class="container-fluid">
-        <?php include_once 'partials/booking_nav.php';?>
+        <!-- <?php include_once 'partials/booking_nav.php';?> -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -59,7 +59,7 @@
                                 <?php foreach ($bookings as $booking): ?>
                                     <tr>
                                         <td><?php show_value($booking, 'booking_no');?>  </td>
-                                        <td><?php echo $booking['first_name']; ?><?php echo " "; ?><?php echo $booking['last_name']; ?> </td>
+                                        <td><?php echo $booking['name']; ?></td>
                                         <td><?php echo $booking['model']; ?><?php echo " "; ?><?php echo " "; ?><?php echo $booking['make']; ?> </td>
                                         <td><?php echo $booking['number_plate']; ?> </td>
                                         <td>
@@ -77,7 +77,7 @@
                                         <td>
                                             <?php show_owner($booking, 'partner_id') ?>
                                         </td>
-                                        <td> <a href="index.php?page=bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
+                                        <td> <a href="index.php?page=organisation_bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
                                     </tr>
                                 <?php endforeach;?>
                             </tbody>

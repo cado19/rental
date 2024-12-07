@@ -22,6 +22,19 @@
 
       <?php endif;?>
 
+      <!-- Show blacklisted, recent only if in customers index page  -->
+      <?php if ($page == "Bookings"): ?>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="<?php echo $organisation_booking_link; ?>" class="nav-link"><?php echo $organisation_booking_link_name; ?> </a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="<?php echo $new_organisation_booking_link; ?>" class="nav-link"><?php echo $new_organisation_booking_link_name; ?> </a>
+        </li>
+
+      <?php endif;?>
+
+      
+
       <!-- Show partner vehicle only if in fleet index page  -->
       <?php if ($page == "Vehicles"): ?>
         <li class="nav-item d-none d-sm-inline-block">

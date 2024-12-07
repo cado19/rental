@@ -403,6 +403,34 @@ function assign_vehicle($id, $fuel, $account_id)
     return $res;
 }
 
+// function to assign(hand over) a vehicle to the client organisation
+function assign_organisation_vehicle($id, $fuel, $account_id)
+{
+    global $con;
+    global $res;
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "UPDATE organisation_bookings SET fuel = ?, assign_id = ? WHERE id = ?";
+        $stmt = $con->prepare($sql);
+        if ($stmt->execute([$fuel, $account_id, $id])) {
+            $res = "Success";
+        } else {
+            $res = "Error";
+        }
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+
+
 // function to get all vehicles for the booking process
 function booking_vehicles()
 {
@@ -667,6 +695,7 @@ function update_booking_details($v_id, $d_id, $end_date, $start_time, $end_time,
     return $res;
 }
 
+// set booking status to active
 function activate_booking($id)
 {
     global $con;
@@ -689,3 +718,29 @@ function activate_booking($id)
 
     return $res;
 }
+
+// set organisation booking status to active
+function activate_organisation_booking($id)
+{
+    global $con;
+    global $res;
+    $status = "active";
+
+    try {
+        $con->beginTransaction();
+        $sql  = "UPDATE organisation_bookings SET status = ? WHERE id = ?";
+        $stmt = $con->prepare($sql);
+        if ($stmt->execute([$status, $id])) {
+            $res = "Success";
+        } else {
+            $res = "Failed";
+        }
+        $con->commit();
+    } catch (\Throwable $th) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+

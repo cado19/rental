@@ -8,12 +8,22 @@
 <div class="container bootstrap snippets bootdeys">
 <div class="row d-flex justify-content-center">
   <div class="col-xs-12 col-sm-9 col-8">
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+       <img src="assets/kizusi_logo_white.png" class="img-circle profile-avatar" alt="User avatar">
+      </div>
+        <ul class="nav nav-pills justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.php?page=client/register/new">Individual</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?page=client/register/new_organisation">Organisation</a>
+          </li>
+        </ul>
+    </div>
+
     <form class="form-horizontal" method="POST" action="index.php?page=client/register/create" enctype="multipart/form-data">
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-           <img src="assets/kizusi_logo_white.png" class="img-circle profile-avatar" alt="User avatar">
-          </div>
-        </div>
+
       <div class="panel panel-default">
 
 

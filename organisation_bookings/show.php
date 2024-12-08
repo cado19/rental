@@ -114,7 +114,7 @@
                                         <div class="col-md-8">
                                           <h5><u>Assign Vehicle</u></h5>
                                           <p>
-                                            <form action="index.php?page=bookings/assign" method="POST">
+                                            <form action="index.php?page=organisation_bookings/assign" method="POST">
                                               <input type="hidden" name="id" value="<?php echo $id; ?>">
                                               <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
                                               <div class="form-group">
@@ -160,7 +160,7 @@
                                             <div class="info-box-content">
 
 
-                                              <form action="index.php?page=bookings/extend" method="POST">
+                                              <form action="index.php?page=organisation_bookings/extend" method="POST">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <input type="hidden" name="start_date" value="<?php echo $booking['start_date']; ?>" >
                                                 <input type="hidden" name="rate" value="<?php echo $booking['daily_rate']; ?>" >
@@ -189,7 +189,7 @@
                                         <?php if ($booking['status'] != "cancelled"): ?>
                                           <div class="info-box bg-light">
                                             <div class="info-box-content">
-                                              <form action="index.php?page=bookings/cancel" method="POST">
+                                              <form action="index.php?page=organisation_bookings/cancel" method="POST">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <button type="submit" class="btn btn-outline-danger"> Cancel Booking </button>
                                               </form>
@@ -203,7 +203,7 @@
                                           <?php if ($booking['status'] != "cancelled"): ?>
                                             <div class="info-box bg-light">
                                               <div class="info-box-content">
-                                                <a href="index.php?page=bookings/edit&id=<?php echo $id; ?>" class="btn btn-outline-danger">Edit Booking</a>
+                                                <a href="index.php?page=organisation_bookings/edit&id=<?php echo $id; ?>" class="btn btn-outline-danger">Edit Booking</a>
                                               </div>
                                             </div>
                                           <?php endif;?>

@@ -90,6 +90,17 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="index.php?page=payments/all" class="nav-link">
+                          <i class="nav-icon fa fa-money"></i>
+                          <p>
+                            Payments
+                          </p>
+                        </a>
+                    </li>
+
+                    
+
+                    <li class="nav-item">
                         <a href="index.php?page=analytics/landing" class="nav-link">
                           <i class="nav-icon fa fa-pie-chart"></i>
                           <p>

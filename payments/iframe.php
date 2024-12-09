@@ -30,7 +30,7 @@ $access_token = $access->token;
 // step 2 IPN URL Registration Endpoint
 // $IPN_id = "7f462d26-018b-4a36-a04d-dff5624d41a0";
 // fd4dd98b-d46a-4f38-8675-dc74a256a638
-$callback_url = "https://e571-41-80-118-64.ngrok-free.app/index.php?page=payments/redirect";
+$callback_url = "https://www.kizusi-rental.com/index.php?page=payments/redirect";
 
 $IPN_respose = $pesapalV30Helper->getNotificationId($access_token, $callback_url);
 

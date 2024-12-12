@@ -1,11 +1,7 @@
 <h2>Payment form</h2>
 <div class="row-fluid">
-    <div class="span4">
-        <ol type="1">
-        <li>At this point, its best you store the payment details inyour DB. Set the transaction status as PLACED</li>
-        <li>The iframe with the payment options is a page from our PesaPal server. Its secured and is available over a secure https link</li>
-        <li>It's not Mandatory to purchase the SSL certificate for your site</li>
-        </ol>
+    <div class="span4 text-center">
+        <img src="assets/kizusi_logo_white.png" class="img-circle profile-avatar" alt="User avatar">
     </div>
     
     <div id="rightcol2" class="span8">

@@ -55,11 +55,6 @@
 		                    <td>Reference:</td>
 		                    <td><input type="text" name="reference" value="<?php show_value($booking_no, 'booking_no'); ?>" /></td>
 		                </tr>
-		                    <tr>
-		                <td colspan="2"><input type="checkbox" name="ref" id="ref" onClick="return referenceShuffle()" />System allows my clients to input a predefined reference code issued to the client before they make the payment</td>
-		                </tr>
-		                <td colspan="2"><input type="checkbox" name="keys" id="keys"/><b>ENSURE TO CHECK THIS FIELD</b> The consumer key and consumer secret i have used used in this sample PHP code are <a href="https://developer.pesapal.com/api3-demo-keys.txt"><b>DEMO Credentials</b></a>.</td>
-		                </tr>
 		                <tr><td colspan="2"><hr /></td></tr>
 		                <tr>
 		                    <td>Description:</td>

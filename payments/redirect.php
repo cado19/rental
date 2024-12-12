@@ -3,10 +3,10 @@
 	// require_once('db/dbconnector.php');
     require_once('config/pesapalV30Helper.php');
 
-    $consumer_key = "qkio1BGGYAXTu2JOfm7XSXNruoZsrqEW";
-    $consumer_secret = "osGQ364R49cXKeOYSpaOnT++rHs=";
+    $consumer_key = $CONSUMER_KEY;
+    $consumer_secret = $CONSUMER_SECRET;
 
-    $api = 'demo';
+    $api = 'live';
 
     $helper = new pesapalV30Helper($api);
 

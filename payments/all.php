@@ -41,44 +41,48 @@
 
                     </div>
                     <div class="card-body">
-                        <table id="example1" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Booking Number</th>
-                                    <th>Currency</th>
-                                    <th>Amount</th>
-                                    <th>Payment Method</th>
-                                    <th>Payment Date</th>
-                                    <th>Payment Time</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($payments as $payment): ?>
+                        <?php if (empty($payments)): ?>
+                            <p>No payments</p>
+                        <?php else: ?>
+                            <table id="example1" class="table">
+                                <thead>
                                     <tr>
-                                        <td><?php show_value($payment, 'booking_no'); ?> </td>
-                                        <td><?php show_value($payment, 'currency'); ?> </td>
-                                        <td><?php show_value($payment, 'amount'); ?> </td>
-                                        <td> <?php show_value($payment, 'payment_method'); ?> </td>
-                                        <td> 
-                                            <?php 
-                                                $date = strtotime($payment['payment_time']);
-                                                $display_date = date("l jS \of F Y", $date);
-                                                echo $display_date;
-                                            ?> 
-                                        </td>
+                                        <th>Booking Number</th>
+                                        <th>Currency</th>
+                                        <th>Amount</th>
+                                        <th>Payment Method</th>
+                                        <th>Payment Date</th>
+                                        <th>Payment Time</th>
 
-                                        <td> 
-                                            <?php 
-                                                $time = strtotime($payment['payment_time']);
-                                                $display_time = date("H:i:s", $time);
-                                                echo $display_time;
-                                            ?> 
-                                        </td>
                                     </tr>
-                                <?php endforeach;?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($payments as $payment): ?>
+                                        <tr>
+                                            <td><?php show_value($payment, 'booking_no'); ?> </td>
+                                            <td><?php show_value($payment, 'currency'); ?> </td>
+                                            <td><?php show_value($payment, 'amount'); ?> </td>
+                                            <td> <?php show_value($payment, 'payment_method'); ?> </td>
+                                            <td> 
+                                                <?php 
+                                                    $date = strtotime($payment['payment_time']);
+                                                    $display_date = date("l jS \of F Y", $date);
+                                                    echo $display_date;
+                                                ?> 
+                                            </td>
+
+                                            <td> 
+                                                <?php 
+                                                    $time = strtotime($payment['payment_time']);
+                                                    $display_time = date("H:i:s", $time);
+                                                    echo $display_time;
+                                                ?> 
+                                            </td>
+                                        </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

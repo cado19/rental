@@ -41,11 +41,26 @@
         $duration        = ($end_date_time - $start_date_time) / 86400;
 
         // VALIDATION TO MAKE SURE BOOKING IS GREATER THAN OR EQUAL TO 3 DAYS
-        // if ($duration < 3) {
-        // 	$end_date_err = "Rental duration must be atleast 3 days";
-        // 	header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
-        // 	exit;
-        // }
+        if ($duration < 3) {
+        	$end_date_err = "Rental duration must be atleast 3 days";
+        	header("Location: index.php?page=bookings/new&end_date_err=$end_date_err");
+        	exit;
+        }
+        // VALIDATION TO MAKE SURE VEHICLE IS NOT TAKEN
+        $taken_vehicle = taken_vehicle($v_id);
+        $organisation_taken_vehicle = organisation_taken_vehicle($v_id);
+
+        // first check if the vehicle is in a standard client booking 
+        if($taken_vehicle == "Taken"){
+            $vehicle_error = "That vehicle is in another active booking";
+            header("Location: index.php?page=bookings/new&vehicle_error=$vehicle_error");
+            exit;
+        // next check if the vehicle is in an organisation booking 
+        } elseif ($organisation_taken_vehicle == "Taken") {
+            $vehicle_error = "That vehicle is in another active booking";
+            header("Location: index.php?page=bookings/new&vehicle_error=$vehicle_error");
+            exit;
+        }
         // INSERT BOOKING DATA INTO THE DATABASE
 
         $result = save_booking($v_id, $c_id, $d_id, $a_id, $start_date, $end_date, $start_time, $end_time);

@@ -417,6 +417,62 @@ function get_booking_vehicle_daily_rate($booking_id)
     return $res;
 }
 
+// function to check whether a vehicle is currently on a booking 
+function taken_vehicle($vehicle_id){
+    global $con;
+    global $res;
+    $status = "active";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "SELECT id FROM bookings WHERE vehicle_id = ? AND status = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$vehicle_id, $status]);
+        if ($stmt->rowCount() > 0 ) {
+            $res = "Taken";
+        } else {
+            $res = "Free";
+        }
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+// function to check whether a vehicle is currently on a booking 
+function organisation_taken_vehicle($vehicle_id){
+    global $con;
+    global $res;
+    $status = "active";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "SELECT id FROM organisation_bookings WHERE vehicle_id = ? AND status = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$vehicle_id, $status]);
+        if ($stmt->rowCount() > 0 ) {
+            $res = "Taken";
+        } else {
+            $res = "Free";
+        }
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+
+
 // function to update last booking details (total_price)
 function update_booking($total, $id)
 {

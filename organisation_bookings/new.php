@@ -46,6 +46,9 @@ $drivers = booking_drivers();
                                         </option>
                                     <?php endforeach;?>
                                 </select>
+                                <?php if (isset($_GET['vehicle_error'])): ?>
+                                    <p class="text-danger"> <?php echo $_GET['vehicle_error']; ?> </p>
+                                <?php endif;?>
                             </div>
 
                             <div class="form-group">

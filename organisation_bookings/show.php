@@ -139,7 +139,7 @@
                                           <div class="col-12 col-sm-4">
                                             <div class="info-box bg-light">
                                               <div class="info-box-content">
-                                                <form action="index.php?page=bookings/complete" method="POST">
+                                                <form action="index.php?page=organisation_bookings/complete" method="POST">
                                                   <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                   <button type="submit" class="btn btn-outline-dark">Complete booking</button>
                                                 </form>

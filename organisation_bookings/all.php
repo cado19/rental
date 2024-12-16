@@ -1,4 +1,4 @@
-<?php
+ <?php
     // THIS PAGE SHOWS ALL BOOKINGS
 
     include_once 'config/session_script.php';
@@ -34,7 +34,7 @@
 
 <section class="content">
     <div class="container-fluid">
-        <!-- <?php include_once 'partials/booking_nav.php';?> -->
+        <?php include_once 'partials/organisation_booking_nav.php';?>
         <div class="row">
             <div class="col-12">
                 <div class="card">

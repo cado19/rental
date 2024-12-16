@@ -239,7 +239,7 @@ function cancelled_bookings()
 }
 
 // function to get cancelled organisation bookings
-function completed_organisation_bookings()
+function cancelled_organisation_bookings()
 {
     global $con;
     global $res;

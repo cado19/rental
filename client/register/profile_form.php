@@ -26,23 +26,24 @@
 	        </div>
 
 	        <div class="panel-body">
-						<form class="form-horizontal" method="POST" action="index.php?page=client/register/profile_process" enctype="multipart/form-data">
-							<input type="hidden" name="id" value="<?php echo $id; ?>">
-							<div class="form-group">
-								<div id="my_camera"></div>
+				<form class="form-horizontal" method="POST" action="index.php?page=client/register/profile_process" enctype="multipart/form-data">
+					<input type="hidden" name="id" value="<?php echo $id; ?>">
+					<div class="form-group">
+						<div id="my_camera"></div>
 
-				                <input type=button value="Take Snapshot" onClick=" take_snapshot();" class="text-center">
+		                <input type=button value="Take Selfie" onClick=" take_snapshot();" class="text-center">
 
+		                <div id="notice"></div>
+		                <input type="hidden" name="image" class="image-tag">
+		                
+					</div>
 
-				                <input type="hidden" name="image" class="image-tag">
-							</div>
-
-				          <div class="form-group">
-				            <div class="col-sm-6 col-sm-offset-4">
-				              <button type="submit" class="btn btn-outline-primary">Submit</button>
-				            </div>
-				          </div>
-						</form>
+		          <div class="form-group">
+		            <div class="col-sm-6 col-sm-offset-4">
+		              <button type="submit" class="btn btn-outline-primary">Submit</button>
+		            </div>
+		          </div>
+				</form>
 	        </div>
 
 

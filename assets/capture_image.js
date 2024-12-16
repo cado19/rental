@@ -24,7 +24,11 @@
 
             $(".image-tag").val(data_uri);
 
-            document.getElementById('results').innerHTML = '<img src="'+data_uri+'" class="client-img"/>';
+            // document.getElementById('results').innerHTML = '<img src="'+data_uri+'" class="client-img"/>';
+
+            alert("Captured Selfie. Click Submit to save");
+
+            // document.getElementById('notice').innerHTML = `<div class="alert alert-success">Successfully captured image. Click submit to save</div>`;
 
         } );
 

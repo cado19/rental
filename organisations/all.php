@@ -54,7 +54,7 @@ $organisations = all_organisations();
                                             <td> <?php echo $organisation['email']; ?> </td>
                                             <td> <?php echo $organisation['company_no']; ?> </td>
                                             <td> <?php echo $organisation['phone_no']; ?> </td>
-                                            <td> <a href="index.php?page=Organisations/show&id=<?php echo $organisation['id']; ?>">Details</a> </td>
+                                            <td> <a href="index.php?page=organisations/show&id=<?php echo $organisation['id']; ?>">Details</a> </td>
                                         </tr>
                                     <?php endforeach;?>
                                 </tbody>

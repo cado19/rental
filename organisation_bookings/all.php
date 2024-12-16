@@ -4,7 +4,7 @@
     include_once 'config/session_script.php';
 
     //page name. We set this inn the content start and also in the page title programatically
-    $page = "Bookings";
+    $page = "Organisation Bookings";
 
     // Navbar Links. We set these link in the navbar programatically.
     $home_link      = "index.php?page=bookings/all";
@@ -29,9 +29,7 @@
     $bookings   = organisation_bookings();
 
 ?>
-<script>
-    console.log(<?php echo json_encode($bookings) ?>);
-</script>
+
 <!-- Main Content  -->
 
 <section class="content">

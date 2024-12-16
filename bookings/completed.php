@@ -17,6 +17,12 @@ $new_link_name = "New Booking";
 $new_pb_link = "index.php?page=bookings/partner_list";
 $new_pb_link_name = "New Partner Booking";
 
+    $organisation_booking_link = "index.php?page=organisation_bookings/all";
+    $organisation_booking_link_name = "Organisation bookings";
+
+    $new_organisation_booking_link = "index.php?page=organisation_bookings/new";
+    $new_organisation_booking_link_name = "New Organisation booking";
+
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Bookings";
 $breadcrumb_active = "Completed Bookings";

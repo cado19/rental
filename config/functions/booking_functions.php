@@ -93,6 +93,30 @@ function upcoming_bookings()
     return $res;
 }
 
+// function to get upcoming organisation bookings
+function upcoming_organisation_bookings()
+{
+    global $con;
+    global $res;
+    $status = "upcoming";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "SELECT b.id, o.name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM organisation_details o INNER JOIN organisation_bookings b ON o.id = b.organisation_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$status]);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
 // function to get active bookings
 function active_bookings()
 {
@@ -116,6 +140,30 @@ function active_bookings()
 
     return $res;
 }
+// function to get active organisation bookings
+function active_organisation_bookings()
+{
+    global $con;
+    global $res;
+    $status = "active";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "SELECT b.id, o.name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM organisation_details o INNER JOIN organisation_bookings b ON o.id = b.organisation_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$status]);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
 
 // function to get completed bookings
 function completed_bookings()
@@ -141,6 +189,31 @@ function completed_bookings()
     return $res;
 }
 
+// function to get completed organisation bookings
+function completed_organisation_bookings()
+{
+    global $con;
+    global $res;
+    $status = "complete";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "SELECT b.id, o.name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM organisation_details o INNER JOIN organisation_bookings b ON o.id = b.organisation_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$status]);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+
 // function to get cancelled bookings
 function cancelled_bookings()
 {
@@ -153,6 +226,30 @@ function cancelled_bookings()
         $con->beginTransaction();
 
         $sql  = "SELECT b.id, c.first_name, c.last_name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM customer_details c INNER JOIN bookings b ON c.id = b.customer_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$status]);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+// function to get cancelled organisation bookings
+function completed_organisation_bookings()
+{
+    global $con;
+    global $res;
+    $status = "cancelled";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql  = "SELECT b.id, o.name, v.model, v.make, v.number_plate, v.partner_id, b.start_date, b.end_date FROM organisation_details o INNER JOIN organisation_bookings b ON o.id = b.organisation_id INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status = ? ORDER BY b.created_at DESC";
         $stmt = $con->prepare($sql);
         $stmt->execute([$status]);
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -188,7 +285,7 @@ function partner_bookings($partner_id)
 }
 
 // function to get all active bookings created by agents
-function active_agent_bookings()
+function active_agent_bookings($agent_id)
 {
     global $con;
     global $res;
@@ -215,11 +312,11 @@ FROM
         INNER JOIN
     vehicle_basics v ON b.vehicle_id = v.id
 WHERE
-    b.account_id IS NOT NULL AND b.status = ?
+    b.account_id = ? AND b.status = ?
 ORDER BY b.created_at DESC;";
 
         $stmt = $con->prepare($sql);
-        $stmt->execute([$status]);
+        $stmt->execute([$agent_id, $status]);
         $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $con->commit();

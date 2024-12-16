@@ -39,4 +39,7 @@ include 'config/functions/analytic_functions.php';
 
 //   ******************* */ DISPLAY FUNCTIONS ******************* */
 include 'config/functions/display_functions.php';
+
+//   ******************* */ PAYMENT FUNCTIONS ******************* */
+include 'config/functions/payment_functions.php';
 ?>

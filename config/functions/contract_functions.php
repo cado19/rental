@@ -51,7 +51,31 @@ function create_organisation_contract($bk_id) {
 	return $res;
 }
 
+// function to insert partner lease contract into database
+function create_lease_contract($lease_id) {
+	global $con;
+	global $res;
+	// global $lastId;
 
+	try {
+		$con->beginTransaction();
+
+		$sql = "INSERT INTO lease_contracts (lease_id) VALUES (?)";
+		$stmt = $con->prepare($sql);
+
+		if ($stmt->execute([$lease_id])) {
+			$res = "Successfully created contract";
+		} else {
+			$res = "An error occurred";
+		}
+
+		$con->commit();
+	} catch (\Throwable $th) {
+		$con->rollback();
+	}
+
+	return $res;
+}
 
 // fetch id of the contract that is to be signed
 function contract_to_sign($id) {

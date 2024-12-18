@@ -161,7 +161,7 @@ function all_leases(){
 
 	try {
 		$con->beginTransaction();
-		$sql = "SELECT l.lease_no, v.make, v.model, v.number_plate, l.start_date, l.end_date, p.name AS partner_name FROM partner_lease l INNER JOIN vehicle_basics v ON v.id = l.vehicle_id INNER JOIN partners p ON l.partner_id = p.id ORDER BY l.no DESC";
+		$sql = "SELECT l.id, l.lease_no, v.make, v.model, v.number_plate, l.start_date, l.end_date, p.name AS partner_name FROM partner_lease l INNER JOIN vehicle_basics v ON v.id = l.vehicle_id INNER JOIN partners p ON l.partner_id = p.id ORDER BY l.lease_no DESC";
 
 		$stmt = $con->prepare($sql);
 		$stmt->execute();

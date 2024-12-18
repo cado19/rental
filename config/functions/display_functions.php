@@ -249,6 +249,34 @@
         return $link;
     }
 
+    // generate link where partner can add their vehicle
+    function partner_vehicle_link($partner_id)
+    {
+        // Program to display complete URL
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+            $link = "https";
+        } else {
+            $link = "http";
+        }
+
+        // Here append the common URL characters
+        $link .= "://";
+
+        // Append the host(domain name,
+        // ip) to the URL.
+        $link .= $_SERVER['HTTP_HOST'];
+
+        // Append the requested resource
+        // location to the URL
+        $link .= $_SERVER['PHP_SELF'];
+
+        $link .= "?page=client/vehicle/new&id=${partner_id}";
+
+        return $link;
+    }
+
+    
+
     // this is a general upload function that will return a status response for validation purposes
     function upload_image($destination, $temporary_name)
     {

@@ -84,6 +84,27 @@ function get_vehicle($id) {
 	return $res;
 }
 
+function get_vehicle_basics($vehicle_id){
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "SELECT make, model, number_plate FROM vehicle_basics WHERE id = ? LIMIT 0,1";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$vehicle_id]);
+		$res = $stmt->fetch();
+
+		$con->commit();
+
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+
+	return $res;
+}
+
 function vehicle_bookings($id) {
 	global $con;
 	global $res;

@@ -218,6 +218,26 @@ function organisation_contract($id) {
 	return $res;
 }
 
+// get lease contract 
+function lease_contract($lease_id){
+	global $con;
+	global $res;
+
+	try {
+		$con->beginTransaction();
+
+		$sql = "SELECT l.lease_no, v.make, v.model, v.number_plate, l.start_date, l.end_date, l.rate AS rate, l.total, l.created_at, p.name AS partner_name, p.certificate_no AS certificate_no, lct.status AS signature_status, lct.signature FROM partner_lease l INNER JOIN vehicle_basics v ON v.id = l.vehicle_id INNER JOIN partners p ON l.partner_id = p.id INNER JOIN lease_contracts lct ON l.id = lct.lease_id WHERE l.id = ? LIMIT 0,1";
+		$stmt = $con->prepare($sql);
+		$stmt->execute([$lease_id]);
+		$res = $stmt->fetch();
+		$con->commit();
+	} catch (Exception $e) {
+		$con->rollback();
+	}
+	
+	return $res;
+}
+
 
 
 // get booking id using contract id

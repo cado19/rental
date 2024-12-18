@@ -1,22 +1,21 @@
 <?php
-// THIS FILE DISPLAYS ALL PARTNERS
-
 // head to login screen if user is not signed in.
 include_once 'config/session_script.php';
 
 //page name. We set this inn the content start and also in the page title programatically
-$page = "Partners";
+$page = "Select Partner";
 
 // Navbar Links. We set these link in the navbar programatically.
-$home_link = "index.php?page=partners/all";
-$home_link_name = "All Partners";
+// Navbar Links. We set these link in the navbar programatically.
+$home_link = "index.php?page=bookings/all";
+$home_link_name = "All Bookings";
 
-$new_link = "index.php?page=partners/new";
-$new_link_name = "New Partner";
+$new_link = "index.php?page=bookings/new";
+$new_link_name = "New Bookings";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Partners";
-$breadcrumb_active = "All Partners";
+$breadcrumb = "Bookings";
+$breadcrumb_active = "All Bookings";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
@@ -34,8 +33,7 @@ $partners = all_partners();
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <a href="index.php?page=partners/lease/all" class="btn btn-outline-primary mb-3">View Leases <span class="fa fa-arrow-right"></span></a>
-                <div class="card shadow">
+                <div class="card">
                     <div class="card-body">
 
 
@@ -43,8 +41,6 @@ $partners = all_partners();
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Tel</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -52,9 +48,8 @@ $partners = all_partners();
                                 <?php forEach ($partners as $partner): ?>
                                     <tr>
                                         <td><?php echo $partner['name'] ?> </td>
-                                        <td> <?php echo $partner['email']; ?> </td>
-                                        <td> 254<?php echo $partner['phone_no']; ?> </td>
-                                        <td> <a href="index.php?page=partners/show&id=<?php echo $partner['id']; ?>">Details</a> </td>
+                                        <td> <a href="index.php?page=bookings/new_pb&id=<?php echo $partner['id']; ?>">Select</a> </td>
+                                        <td> <a href="index.php?page=bookings/partner_bookings&id=<?php echo $partner['id']; ?>">View bookings</a> </td>
                                     </tr>
                                 <?php endforeach;?>
                             </tbody>

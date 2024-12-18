@@ -1,11 +1,11 @@
 <?php
-// THIS FILE DISPLAYS ALL PARTNERS
+// THIS FILE DISPLAYS ALL LEASES
 
 // head to login screen if user is not signed in.
 include_once 'config/session_script.php';
 
 //page name. We set this inn the content start and also in the page title programatically
-$page = "Partners";
+$page = "Partner Leases";
 
 // Navbar Links. We set these link in the navbar programatically.
 $home_link = "index.php?page=partners/all";
@@ -16,7 +16,7 @@ $new_link_name = "New Partner";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Partners";
-$breadcrumb_active = "All Partners";
+$breadcrumb_active = "All Leases";
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
@@ -25,7 +25,7 @@ include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
 
 // fetch all the partners
-$partners = all_partners();
+$leases = all_leases();
 ?>
 
 <!-- Main Content  -->
@@ -34,7 +34,6 @@ $partners = all_partners();
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <a href="index.php?page=partners/lease/all" class="btn btn-outline-primary mb-3">View Leases <span class="fa fa-arrow-right"></span></a>
                 <div class="card shadow">
                     <div class="card-body">
 
@@ -42,19 +41,23 @@ $partners = all_partners();
                         <table id="example1" class="table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Tel</th>
+                                    <th>Lease No</th>
+                                    <th>Partner</th>
+                                    <th>Vehicle</th>
+                                    <th>Start</th>
+                                    <th>End</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php forEach ($partners as $partner): ?>
+                                <?php forEach ($leases as $lease): ?>
                                     <tr>
-                                        <td><?php echo $partner['name'] ?> </td>
-                                        <td> <?php echo $partner['email']; ?> </td>
-                                        <td> 254<?php echo $partner['phone_no']; ?> </td>
-                                        <td> <a href="index.php?page=partners/show&id=<?php echo $partner['id']; ?>">Details</a> </td>
+                                        <td><?php echo $lease['lease_no'] ?> </td>
+                                        <td> <?php echo $lease['partner_name']; ?> </td>
+                                        <td> <?php echo $lease['make']; ?> <?php echo $lease['model']; ?> <?php echo $lease['number_plate']; ?> </td>
+                                        <td> <?php echo $lease['start_date']; ?> </td>
+                                        <td> <?php echo $lease['end_date']; ?> </td>
+                                        <td> <a href="index.php?page=partners/lease/show&id=<?php echo $lease['id']; ?>">Details</a> </td>
                                     </tr>
                                 <?php endforeach;?>
                             </tbody>

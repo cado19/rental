@@ -155,13 +155,13 @@
                                       </div>
 
                                        <!-- A box with a link to edit lease -->
-                                      <div class="col-4 col-sm-4">
+                                   <!--    <div class="col-4 col-sm-4">
                                             <div class="info-box bg-light">
                                               <div class="info-box-content">
                                                 <a href="index.php?page=bookings/edit&id=<?php echo $id; ?>" class="btn btn-outline-danger">Edit lease</a>
                                               </div>
                                             </div>
-                                      </div>
+                                      </div> -->
 
                                     </div>
 
@@ -188,10 +188,9 @@
 
                           <div class="text-center mt-5 mb-3">
                             <?php if ($lease['signature_status'] == "unsigned"): ?>
-                              <a href="index.php?page=contracts/edit&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">Sign Contract</a>
+                              <a href="index.php?page=partners/lease/contract_edit&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">Sign Contract</a>
                             <?php endif;?>
-                            <a href="index.php?page=contracts/updated_contract&id=<?php echo $id; ?>" class="btn btn-sm btn-warning" target="_blank">Show contract</a>
-                            <a href="index.php?page=payments/new&id=<?php echo $id; ?>" class="btn btn-sm btn-warning" target="_blank">Pay Now</a>
+                            <a href="index.php?page=partners/lease/contract_show&id=<?php echo $id; ?>" class="btn btn-sm btn-warning" target="_blank">Show contract</a>
                           </div>
                         </div>
                     </div>

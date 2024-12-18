@@ -58,9 +58,9 @@ $link .= "?page=partners/show&id=${id}";
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
-				<div class="row d-flex justify-content-center">
+				<div class="row d-flex">
 
-	                <div class="col-12 col-sm-4">
+	                <div class="col-12 col-sm-3 col-md-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Partner</span>
@@ -69,7 +69,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  </div>
 	                </div>
 
-	                <div class="col-12 col-sm-4">
+	                <div class="col-12 col-sm-3 col-md-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Tel</span>
@@ -78,7 +78,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  </div>
 	                </div>
 
-	                <div class="col-12 col-sm-4">
+	                <div class="col-12 col-sm-3 col-md-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Email</span>
@@ -87,11 +87,20 @@ $link .= "?page=partners/show&id=${id}";
 	                  </div>
 	                </div>
 
+	                <div class="col-12 col-sm-3 col-md-3">
+	                  <div class="info-box bg-light">
+	                    <div class="info-box-content">
+	                      <span class="info-box-text text-center text-muted">New Lease</span>
+	                      <span class="info-box-number text-center text-muted mb-0"><a href="index.php?page=partners/lease/new&id=<?php echo $id; ?>">Create <span class="fa fa-arrow-right"></span></a></span>
+	                    </div>
+	                  </div>
+	                </div>
+
 				</div>
 
 				<div class="row d-flex justify-content-center">
 
-	                <div class="col-12 col-sm-4">
+	                <div class="col-12 col-sm-3 col-md-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Partner's vehicles</span>
@@ -100,7 +109,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  </div>
 	                </div>
 
-	                <div class="col-12 col-sm-4">
+	                <div class="col-12 col-sm-3 col-md-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Bookings with partner's vehicles</span>
@@ -109,7 +118,7 @@ $link .= "?page=partners/show&id=${id}";
 	                  </div>
 	                </div>
 
-	                <div class="col-12 col-sm-4">
+	                <div class="col-12 col-sm-3 col-md-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Percentage of bookings with partner's vehicles</span>
@@ -119,9 +128,6 @@ $link .= "?page=partners/show&id=${id}";
 	                </div>
 
 				</div>
-
-
-
 			</div>
 		</div>
 

@@ -28,6 +28,8 @@
     $active_bookings      = home_active_bookings();
     $partner_count        = partner_count();
     $bookings             = home_bookings();
+    $active_workplan_bookings = active_workplan_bookings();
+    $upcoming_workplan_bookings = upcoming_workplan_bookings();
     $customer_signup_link = customer_signup_link();
 
 ?>
@@ -116,6 +118,33 @@
                      </div>
                  </div>
              </div>
+
+             <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+
+
+                    <!-- Recent Orders Table  -->
+                             <div id="calendar"></div>
+
+                         </div>
+                         <div class="card-footer">
+                            <div class="d-flex flex-row align-items-center">
+                                
+                                 <div class="blue-key"></div>
+                                 <div class="text ml-3 mr-3"> Upcoming Bookings </div>
+
+                                 <div class="yellow-key"></div>
+                                 <div class="text ml-3">Active Bookings </div>
+                            </div>
+
+                             
+                         </div>
+                     </div>
+                </div>
+            </div>
 
              <div class="row">
                 <div class="col-12">

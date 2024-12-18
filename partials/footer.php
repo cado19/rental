@@ -31,6 +31,11 @@
 <!-- overlayScrollbars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.10.0/browser/overlayscrollbars.browser.es6.min.js"></script>
 
+<!-- Full Calendar JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/index.global.min.js" integrity="sha512-PneTXNl1XRcU6n5B1PGTDe3rBXY04Ht+Eddn/NESwvyc+uV903kiyuXCWgL/OfSUgnr8HLSGqotxe6L8/fOvwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
 <!-- Intl Tel Js -->
 <!-- <script src="assets/build/js/intlTelInput.min.js"></script> -->
 
@@ -58,6 +63,34 @@
 <script src="assets/copytext.js"></script>
 
 <script src="assets/phone.js"></script>
+
+<script>
+     document.addEventListener('DOMContentLoaded', function(){
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, 
+            {
+                initialView: 'dayGridMonth',
+                height: 650,
+                eventSources: [
+                    {
+                        events: <?php echo json_encode($active_workplan_bookings);?>,
+                        color: 'green',
+                        textColor: 'black'
+                    },
+
+                    {
+                        events: <?php echo json_encode($upcoming_workplan_bookings);?>,
+                        color: 'blue',
+                    },
+
+                    
+                ] 
+            }
+        
+        );
+        calendar.render();
+     });
+</script>
 
 
 <?php if ($page == "Client Analytics"): ?>

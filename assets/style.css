@@ -59,3 +59,15 @@
 .brand {
     width: 100%;
 }
+
+/*style for dashboard calendar key */
+.blue-key{
+    width: 20px;
+    height: 20px;
+    background-color: blue;
+}
+.yellow-key{
+    width: 20px;
+    height: 20px;
+    background-color: green;
+}

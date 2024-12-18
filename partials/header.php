@@ -52,6 +52,11 @@
        <!-- Intl Tel JS -->
        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
+           <!-- Full Calendar CSS  -->
+    <!-- <link href="js/fullcalendar/lib/main.css" rel="stylesheet" /> -->
+    <!-- CSS for full calender -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+
 
 
       <script type="text/javascript" src="assets/signature.js"></script>

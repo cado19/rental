@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="form-group mt-3">
-                    <buttton type="submit" class="btn btn-outline-dark">Save</buttton>
+                    <button type="submit" class="btn btn-outline-dark">Submit</button>
                 </div>
             </form>
         </div>

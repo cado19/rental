@@ -29,6 +29,7 @@ if (isset($_GET['id'])) {
 	$no_of_vehicles = partner_vehicle_count($id);
 	$no_of_bookings = partner_booking_count($id);
 	$vehicles = partner_vehicles($id);
+	$partner_vehicle_link = partner_vehicle_link($id);
 }
 
 // Program to display complete URL
@@ -98,7 +99,7 @@ $link .= "?page=partners/show&id=${id}";
 
 				</div>
 
-				<div class="row d-flex justify-content-center">
+				<div class="row ">
 
 	                <div class="col-12 col-sm-3 col-md-3">
 	                  <div class="info-box bg-light">
@@ -126,6 +127,19 @@ $link .= "?page=partners/show&id=${id}";
 	                    </div>
 	                  </div>
 	                </div>
+
+	                <div class="col-12 col-sm-3 col-md-3">
+	                  <div class="info-box bg-light">
+	                    <div class="info-box-content">
+	                      <span class="info-box-text text-center text-muted">Copy Partner Vehicle Link</span>
+                          <p id="profile-pic-link" class="d-none"><?php echo $partner_vehicle_link; ?></p>
+	                      <button onclick="copyToClipboard('#profile-pic-link')" class="btn btn-sm btn-success btn-block mt-2">Copy Link</button>
+	                      <span class="info-box-number text-center text-muted mb-0">4%</span>
+	                    </div>
+	                  </div>
+	                </div>
+
+	                
 
 				</div>
 			</div>

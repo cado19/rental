@@ -66,7 +66,7 @@ function partners_for_vehicle() {
 	return $res;
 }
 
-function save_partner($name, $email, $tel) {
+function save_partner($name, $email, $tel, $address, $cerificate_no, $kra_pin, $id) {
 	global $con;
 	global $res;
 
@@ -74,10 +74,10 @@ function save_partner($name, $email, $tel) {
 
 		$con->beginTransaction();
 
-		$sql = "INSERT INTO partners (name, email, phone_no) VALUES (?,?,?)";
+		$sql = "INSERT INTO partners ($name, $email, $tel, $address, $cerificate_no, $kra_pin) VALUES (?,?,?,?,?,?)";
 
 		$stmt = $con->prepare($sql);
-		if ($stmt->execute([$name, $email, $tel])) {
+		if ($stmt->execute([$name, $email, $tel, $address, $cerificate_no, $kra_pin])) {
 			$res = "Success";
 		} else {
 			$res = "Uncsuccessful";
@@ -91,17 +91,17 @@ function save_partner($name, $email, $tel) {
 	return $res;
 }
 // update partner
-function update_partner($name, $email, $tel, $id) {
+function update_partner($name, $email, $tel, $address, $cerificate_no, $kra_pin, $id) {
 	global $con;
 	global $res;
 
 	try {
 		$con->beginTransaction();
 
-		$sql = "UPDATE partners SET name = ?, email = ?, phone_no = ? WHERE id = ?";
+		$sql = "UPDATE partners SET name = ?, email = ?, phone_no = ?, address = ?, cerificate_no = ?, kra_pin = ? WHERE id = ?";
 		$stmt = $con->prepare($sql);
 
-		if ($stmt->execute([$name, $email, $tel, $id])) {
+		if ($stmt->execute([$name, $email, $tel, $address, $cerificate_no, $kra_pin, $id])) {
 			$res = "Success";
 		} else {
 			$res = "Uncsuccessful";

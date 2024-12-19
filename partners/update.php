@@ -25,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$email 				= $_POST['email'];
 	$tel 				= $_POST['tel'];
 	$address 			= $_POST['address'];
-	$cerificate_no		= $_POST['cerificate_no'];
+	$certificate_no		= $_POST['certificate_no'];
 	$kra_pin 			= $_POST['kra_pin'];
 
-	$details = [$name, $email, $tel, $address, $cerificate_no, $kra_pin, $id];
+	$details = [$name, $email, $tel, $address, $certificate_no, $kra_pin, $id];
 
-	$result = update_partner($name, $email, $tel, $address, $cerificate_no, $kra_pin, $id);
+	$result = update_partner($name, $email, $tel, $address, $certificate_no, $kra_pin, $id);
 
 	if ($result == "Success") {
 		$msg = "Successfully updated partner";

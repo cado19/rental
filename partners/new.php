@@ -69,7 +69,7 @@ $account_id = $_SESSION['account']['id'];
 
                                 <div class="form-group">
                                     <label for="email">Certificate Number</label>
-                                    <input type="text" name="cerificate_no"  class="form-control form-control-border"  required>
+                                    <input type="text" name="certificate_no"  class="form-control form-control-border"  required>
                                     <?php if (isset($_GET['email_err'])): ?>
                                         <p class="text-danger"><?php echo $_GET['email_err']; ?></p>
                                     <?php endif;?>

@@ -3,7 +3,7 @@
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	echo $id;
-	$response = delete_driver($id);
+	$response = delete_organisation($id);
 	if ($response == "Deleted") {
 		$msg = "Successfully deleted organisation";
 		header("Location: index.php?page=organisations/all&msg=$msg");
@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 	}
 
 } else {
-	$msg = "No such driver";
+	$msg = "No such organisation";
 	header("Location: index.php?page=organisations/all&err_msg=$msg");
 	exit;
 }

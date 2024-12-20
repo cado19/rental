@@ -54,7 +54,7 @@ if (isset($_GET['id'])) {
 						<p>Tel: <?php show_value($organisation, 'phone_no'); ?></p>
 						<p>Country: <?php show_value($organisation, 'country'); ?></p>
 						<br>
-						<a href="index.php?page=organisations/delete" class="btn btn-outline-danger">Delete</a>
+						<a href="index.php?page=organisations/delet&id=<?php echo $id; ?>" class="btn btn-outline-danger">Delete</a>
 					</div>
 				</div>
 			</div>

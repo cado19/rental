@@ -30,6 +30,7 @@
     $bookings             = home_bookings();
     $active_workplan_bookings = active_workplan_bookings();
     $upcoming_workplan_bookings = upcoming_workplan_bookings();
+    $completed_workplan_bookings = completed_workplan_bookings();
     $customer_signup_link = customer_signup_link();
 
 ?>
@@ -137,6 +138,9 @@
                                  <div class="text ml-3 mr-3"> Upcoming Bookings </div>
 
                                  <div class="yellow-key"></div>
+                                 <div class="text ml-3">Completed Bookings </div>                                 
+
+                                 <div class="green-key ml-3"></div>
                                  <div class="text ml-3">Active Bookings </div>
                             </div>
 

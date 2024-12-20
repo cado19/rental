@@ -69,5 +69,10 @@
 .yellow-key{
     width: 20px;
     height: 20px;
+    background-color: yellow;
+}
+.green-key{
+    width: 20px;
+    height: 20px;
     background-color: green;
 }

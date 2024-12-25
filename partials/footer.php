@@ -80,10 +80,13 @@
 
                     {
                         events: <?php echo json_encode($upcoming_workplan_bookings);?>,
-                        color: 'blue',
+                        color: 'blue'
                     },
-
-                    
+                    {
+                        events: <?php echo json_encode($completed_workplan_bookings);?>,
+                        color: 'yellow',
+                        textColor: 'black'
+                    }
                 ] 
             }
         
@@ -96,8 +99,8 @@
 <?php if ($page == "Client Analytics"): ?>
     <!-- profitable client chart script -->
     <script>
-        const client_names =                                                                                     <?php echo json_encode($loaded_client_names); ?>;
-        const revenue =                                                                      <?php echo json_encode($loaded_clients); ?>;
+        const client_names = <?php echo json_encode($loaded_client_names); ?>;
+        const revenue = <?php echo json_encode($loaded_clients); ?>;
         //setup block
         const data = {
             labels: client_names,
@@ -142,8 +145,8 @@
 <?php if ($page == "Analytics"): ?>
     <!-- 90 day income chart script -->
     <script>
-        const months =                                                                   <?php echo json_encode($months); ?>;
-        const money =                                                                <?php echo json_encode($money); ?>;
+        const months = <?php echo json_encode($months); ?>;
+        const money = <?php echo json_encode($money); ?>;
         //setup block
         const income_data = {
             labels: months,
@@ -184,18 +187,21 @@
         );
     </script>
     <script>
-        const vehicles =                                                                         <?php echo json_encode($vehicles); ?>;
-        const popularity =                                                                               <?php echo json_encode($popularity); ?>;
+        const vehicles = <?php echo json_encode($vehicles); ?>;
+        const popularity = <?php echo json_encode($popularity); ?>;
         //setup block
         const data = {
             labels: vehicles,
             datasets: [{
-                label: 'Revenue last 90 Days',
+                label: 'Most Popular Vehicle Categories',
                 data: popularity,
                 backgroundColor: [
                     'rgb(220, 20, 60)',
                     'rgb(255, 140, 0)',
-                    'rgb(255, 87, 51)'
+                    'rgb(255, 87, 51)',
+                    'rgb(50, 117, 168)',
+                    'rgb(7, 30, 48)',
+                    'rgb(15, 21, 26)',
 
                 ],
                 borderColor: [
@@ -225,8 +231,6 @@
             config
         );
     </script>
-
-
 <?php endif;?>
 
 

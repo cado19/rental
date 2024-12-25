@@ -1,6 +1,7 @@
 <?php
 // FOR NOW THIS WILL BE THE ANALYTIC DASHBOARD. WE'LL USE IT AS THE LANDING PAGE FOR ANALYTICS MODULE
-
+    // head to login screen if user is not signed in.
+    include_once 'config/session_script.php';
 //page name. We set this inn the content start and also in the page title programatically
 $page = "Analytics";
 
@@ -29,12 +30,12 @@ foreach ($last_three_money as $cash) {
 	array_push($money, $cash['Total']);
 }
 
-// most popular vehicles
-$popular_vehicles = most_popular_vehicles();
+// most popular vehicle categoriess
+$popular_vehicles = most_popular_categories();
 $vehicles = array();
 $popularity = array();
 foreach ($popular_vehicles as $car) {
-	$car_name = $car['model'] . " " . $car['make'];
+	$car_name = $car['category'];
 	array_push($vehicles, $car_name);
 	array_push($popularity, $car['total']);
 }
@@ -53,34 +54,35 @@ $booking_count_this_month = booking_count_this_month();
 <section class="content">
 	<div class="container-fluid">
 		<!-- a row with info boxes as links to booking, customer and vehicle analytics  -->
-		<div class="row">
-			<div class="col-12 col-sm-4">
-              <div class="info-box bg-light">
+				<div class="row">
+					<div class="col-12 col-sm-4">
+            <div class="info-box bg-light">
                 <div class="info-box-content">
                   <span class="info-box-text text-center text-muted">More booking Stats</span>
-                  <a href="index.php?page=fleet/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                  <a href="index.php?page=analytics/booking_stats/landing" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-              </div>
             </div>
+          </div>
 
-            <div class="col-12 col-sm-4">
-              <div class="info-box bg-light">
-                <div class="info-box-content">
-                  <span class="info-box-text text-center text-muted">More Client Stats</span>
-                  <a href="index.php?page=fleet/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
+          <div class="col-12 col-sm-4">
+            <div class="info-box bg-light">
+              <div class="info-box-content">
+                <span class="info-box-text text-center text-muted">More Client Stats</span>
+                <a href="index.php?page=analytics/client_stats/landing" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
+          </div>
 
-            <div class="col-12 col-sm-4">
-              <div class="info-box bg-light">
-                <div class="info-box-content">
-                  <span class="info-box-text text-center text-muted">More Vehicle Stats</span>
-                  <a href="index.php?page=fleet/all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
+          <div class="col-12 col-sm-4">
+            <div class="info-box bg-light">
+              <div class="info-box-content">
+                <span class="info-box-text text-center text-muted">More Vehicle Stats</span>
+                <a href="index.php?page=analytics/vehicle_stats/landing" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
-        </div>
+          </div>
+
+		    </div>
 		<!-- a row with a graph showing revenue last 3 months   -->
         <div class="row">
            <div class="col-8">
@@ -113,7 +115,7 @@ $booking_count_this_month = booking_count_this_month();
                            <!-- DOUGHNUT CHART -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Top 3 Vehicles by popularity</h3>
+                        <h3 class="card-title">Most popular vehicle categories</h3>
 
                         <div class="card-tools">
                           <button type="button" class="btn btn-tool" data-card-widget="collapse">

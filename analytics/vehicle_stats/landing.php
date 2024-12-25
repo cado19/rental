@@ -54,7 +54,7 @@ $vehicle_totals = all_vehicles_totals();
 ?>
 
 <script>	
-	console.log(<?php echo json_encode($popular_vehicles) ?>);
+	console.log(<?php echo json_encode($vehicle_totals) ?>);
 </script>
 
 <section class="content">

@@ -40,4 +40,27 @@
 		
 		return $res;
 	}
+
+	function existing_payment($order_tracking_id){
+		global $con;
+		global $res;
+
+		try {
+			$con->beginTransaction();
+			$sql = "SELECT id FROM payments WHERE order_tracking_id = ?";
+			$stmt = $con->prepare($sql);
+			$stmt->execute([$order_tracking_id]);
+			if ($stmt->rowCount == 1) {
+				$res = "Exists";
+			} else {
+				$res = "New";
+			}
+			
+			$con->commit();
+		} catch (Exception $e) {
+			$con->rollback();
+		}
+		
+		return $res;
+	}
  ?>

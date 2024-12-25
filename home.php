@@ -34,7 +34,9 @@
     $customer_signup_link = customer_signup_link();
 
 ?>
-
+<script>
+    console.log(<?php echo json_encode($completed_workplan_bookings) ?>);
+</script>
 
 
     <section class="content">
@@ -207,16 +209,5 @@
 
         </div>
     </section>
-      <main>
-        <h1>Analytics</h1>
-        <!-- Analyses  -->
-
-        <!-- End of Analyses  -->
-
-
-
-      </main>
-      <!-- End of Main Content  -->
-
 
 <?php include_once "partials/footer.php";?>

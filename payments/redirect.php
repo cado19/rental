@@ -32,8 +32,18 @@
     $order_tracking_id = $status->order_tracking_id;
     $payment_time = $status->created_date;
 
-    // A function to save the details above to DB
-    $response = save_payment($booking_no, $currency, $amount, $payment_account, $payment_status, $message, $payment_method, $confirmation_code, $order_tracking_id, $payment_time);
+    //check whether this transaction exists
+    $transacion = existing_payment($order_tracking_id);
+    if ($transacion == "Exists") {
+        $msg = "That payment has been saved";
+        header("Location: index.php?msg=$msg");
+        exit;
+    } else {
+        // code...
+        // A function to save the details above to DB
+        $response = save_payment($booking_no, $currency, $amount, $payment_account, $payment_status, $message, $payment_method, $confirmation_code, $order_tracking_id, $payment_time);
+    }
+    
 
     // var_dump($status)
     

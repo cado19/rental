@@ -301,7 +301,7 @@ function all_vehicles_totals() {
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT v.id, v.make, v.model, v.number_plate, sum(b.total) AS total, (SELECT daily_rate FROM vehicle_pricing vp WHERE vp.vehicle_id = v.id) AS daily_rate, sum(b.total) / 90 AS ADR FROM bookings b INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status != ? group by v.id;";
+		$sql = "SELECT v.id, v.make, v.model, v.number_plate, sum(b.total) AS total, (SELECT daily_rate FROM vehicle_pricing vp WHERE vp.vehicle_id = v.id) AS daily_rate, sum(b.total) / 90 AS ADR FROM bookings b INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE b.status != ? group by v.id";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$status]);
 		$res = $stmt->fetchAll();
@@ -391,7 +391,7 @@ function month_vehicles_totals($month) {
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT v.id, v.make, v.model, v.number_plate, sum(b.total) AS total, (SELECT daily_rate FROM vehicle_pricing vp WHERE vp.vehicle_id = v.id) AS daily_rate, sum(b.total) / 30 AS ADR FROM bookings b INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE month(b.created_at) = ? AND b.status != ? group by v.id;";
+		$sql = "SELECT v.id, v.make, v.model, v.number_plate, sum(b.total) AS total, (SELECT daily_rate FROM vehicle_pricing vp WHERE vp.vehicle_id = v.id) AS daily_rate, sum(b.total) / 30 AS ADR FROM bookings b INNER JOIN vehicle_basics v ON b.vehicle_id = v.id WHERE month(b.created_at) = ? AND b.status != ? group by v.id";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$month,$status]);
 		$res = $stmt->fetchAll();

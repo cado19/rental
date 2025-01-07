@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $taken_plate = unique_registration($number_plate);
     if ($taken_plate == "Taken") {
         $number_plate_err = "A vehicle exists with the given registration.";
-        header("Location: index.php?page=fleet/new&$number_plate_err=$number_plate_err");
+        header("Location: index.php?page=fleet/new&number_plate_err=$number_plate_err");
         exit;
     }
 
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $log->warning($response);
 
-    header("Location: index.php?page=fleet/all&msg=$response");
+    // header("Location: index.php?page=fleet/all&msg=$response");
 } else {
     $msg = "Unauthorized activity";
     session_start();
@@ -229,3 +229,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: index.php?msg=$msg");
     exit;
 }
+?>

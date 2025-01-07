@@ -135,7 +135,7 @@ function unique_registration($plate) {
 		$sql = "SELECT id from vehicle_basics WHERE number_plate = ?";
 		$stmt = $con->prepare($sql);
 		$stmt->execute([$plate]);
-		if ($stmt->rowCount == 1) {
+		if ($stmt->rowCount() > 0) {
 			$res = "Taken";
 		} else {
 			$res = "Proceed";

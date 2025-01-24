@@ -32,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$stmt->execute([$filenameNew, $id]);
 		$msg = " Image uploaded successfully!";
   	} else {
-  		$msg = "Failed to upload image!";.
+  		$msg = "Failed to upload image!";
   	}
-  	
+
 
 	header("Location: index.php?page=client/register/success&msg=$msg");
 }

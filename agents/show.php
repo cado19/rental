@@ -1,60 +1,60 @@
 <?php
-// THIS PAGE SHOWS AN INDIVIDUAL AGENT
+    // THIS PAGE SHOWS AN INDIVIDUAL AGENT
 
-// head to login screen if user is not signed in.
-include_once 'config/session_script.php';
+    // head to login screen if user is not signed in.
+    include_once 'config/session_script.php';
 
-// head to home screen if user is not admin.
-include_once 'config/user_auth_script.php';
+    // head to home screen if user is not admin.
+    include_once 'config/user_auth_script.php';
 
-//page name. We set this inn the content start and also in the page title programatically
-$page = "agent";
+    //page name. We set this inn the content start and also in the page title programatically
+    $page = "agent";
 
-// Navbar Links. We set these link in the navbar programatically.
-$home_link = "index.php?page=agents/all";
-$home_link_name = "All Agents";
+    // Navbar Links. We set these link in the navbar programatically.
+    $home_link      = "index.php?page=agents/all";
+    $home_link_name = "All Agents";
 
-$new_link = "index.php?page=agents/new";
-$new_link_name = "New agent";
+    $new_link      = "index.php?page=agents/new";
+    $new_link_name = "New agent";
 
-// Breadcrumb variables for programatically setting breadcrumbs in content_start.php
-$breadcrumb = "Agents";
-$breadcrumb_active = "agent";
+    // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
+    $breadcrumb        = "Agents";
+    $breadcrumb_active = "agent";
 
-include_once 'partials/header.php';
-include_once 'partials/content_start.php';
+    include_once 'partials/header.php';
+    include_once 'partials/content_start.php';
 
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
 
-	//fetch agent
-	$agent = get_agent($id);
-	// $no_of_vehicles = partner_vehicle_count($id);
-	$bookings = agent_bookings($id);
-	$no_of_bookings = agent_booking_count($id);
-	// $vehicles = partner_vehicles($id);
-}
-$log->info('Bookings:', $bookings);
+        //fetch agent
+        $agent = get_agent($id);
+        // $no_of_vehicles = partner_vehicle_count($id);
+        $bookings       = agent_bookings($id);
+        $no_of_bookings = agent_booking_count($id);
+        // $vehicles = partner_vehicles($id);
+    }
+    $log->info('Bookings:', $bookings);
 
-// Program to display complete URL
-if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-	$link = "https";
-} else {
-	$link = "http";
-}
+    // Program to display complete URL
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+        $link = "https";
+    } else {
+        $link = "http";
+    }
 
-// Here append the common URL characters
-$link .= "://";
+    // Here append the common URL characters
+    $link .= "://";
 
-// Append the host(domain name,
-// ip) to the URL.
-$link .= $_SERVER['HTTP_HOST'];
+    // Append the host(domain name,
+    // ip) to the URL.
+    $link .= $_SERVER['HTTP_HOST'];
 
-// Append the requested resource
-// location to the URL
-$link .= $_SERVER['PHP_SELF'];
+    // Append the requested resource
+    // location to the URL
+    $link .= $_SERVER['PHP_SELF'];
 
-$link .= "?page=agents/show&id=${id}";
+    $link .= "?page=agents/show&id=${id}";
 ?>
 <script>
 	console.log(<?php echo json_encode($bookings); ?>);
@@ -63,13 +63,13 @@ $link .= "?page=agents/show&id=${id}";
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
-				<div class="row d-flex justify-content-center">
+				<div class="row d-flex ">
 
 	                <div class="col-12 col-sm-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Agent</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($agent, 'name');?></span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($agent, 'name'); ?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -78,7 +78,7 @@ $link .= "?page=agents/show&id=${id}";
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Tel</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($agent, 'phone_no');?></span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($agent, 'phone_no'); ?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -87,7 +87,7 @@ $link .= "?page=agents/show&id=${id}";
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted">Email</span>
-	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($agent, 'email');?></span>
+	                      <span class="info-box-number text-center text-muted mb-0"><?php show_value($agent, 'email'); ?></span>
 	                    </div>
 	                  </div>
 	                </div>
@@ -106,16 +106,28 @@ $link .= "?page=agents/show&id=${id}";
 	                  </div>
 	                </div>
 
-	                
+
 
 	                <div class="col-12 col-sm-3">
 	                  <div class="info-box bg-light">
 	                    <div class="info-box-content">
 	                      <span class="info-box-text text-center text-muted"></span>
-	                      <span class="info-box-number text-center text-muted mb-0"><a href="index.php?page=agents/edit&id=<?php echo $id; ?>">Edit <span class="fa fa-arrow-right"></span></a> </span>
+	                      <span class="info-box-number text-center text-muted mb-0"><a href="index.php?page=agents/edit&id=<?php echo $id; ?>">Edit Account <span class="fa fa-arrow-right"></span></a> </span>
 	                    </div>
 	                  </div>
 	                </div>
+
+	                <div class="col-12 col-sm-3">
+	                  <div class="info-box bg-light">
+	                    <div class="info-box-content">
+	                      <span class="info-box-text text-center text-muted"></span>
+	                      <span class="info-box-number text-center text-muted mb-0"><a href="index.php?page=accounts/edit&id=<?php echo $id; ?>">Edit Password <span class="fa fa-arrow-right"></span></a> </span>
+	                    </div>
+	                  </div>
+	                </div>
+
+
+
 
 				</div>
 
@@ -129,7 +141,7 @@ $link .= "?page=agents/show&id=${id}";
                         <img src="agents/id/<?php echo $agent['id_image']; ?>" class="card-img-top display-img" alt="Agent ID Image">
                     <?php else: ?>
                         <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Agent ID Image">
-                    <?php endif;?>
+                    <?php endif; ?>
 
                   <div class="card-body">
                     <h5 class="card-title">Identification</h5>
@@ -144,7 +156,7 @@ $link .= "?page=agents/show&id=${id}";
                         <img src="agents/license/<?php echo $agent['license_image']; ?>" class="card-img-top display-img" alt="Agent License Image">
                     <?php else: ?>
                         <img src="images/male-laughter-avatar.jpg" class="card-img-top" alt="Agent License Image">
-                    <?php endif;?>
+                    <?php endif; ?>
 
                     <div class="card-body">
                         <h5 class="card-title">License</h5>
@@ -180,29 +192,29 @@ $link .= "?page=agents/show&id=${id}";
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php forEach ($bookings as $booking): ?>
+                                <?php foreach ($bookings as $booking): ?>
                                     <tr>
-                                        <td> <?php echo $booking['first_name']; ?> <?php echo $booking['last_name']; ?> </td>
-                                        <td> <?php echo $booking['model']; ?> <?php echo $booking['make']; ?> </td>
-                                        <td> <?php echo $booking['number_plate']; ?> </td>
+                                        <td>                                                                                                                                                                                 <?php echo $booking['first_name']; ?><?php echo $booking['last_name']; ?> </td>
+                                        <td>                                                                                                                                                                                 <?php echo $booking['model']; ?><?php echo $booking['make']; ?> </td>
+                                        <td>                                                                                                                                                                                 <?php echo $booking['number_plate']; ?> </td>
                                         <td>
                                             <?php
-$start = strtotime($booking['start_date']);
-echo date("l jS \of F Y", $start);
-?>
+                                                $start = strtotime($booking['start_date']);
+                                                echo date("l jS \of F Y", $start);
+                                            ?>
                                         </td>
                                         <td>
                                             <?php
-$end = strtotime($booking['end_date']);
-echo date("l jS \of F Y", $end);
-?>
+                                                $end = strtotime($booking['end_date']);
+                                                echo date("l jS \of F Y", $end);
+                                            ?>
                                         </td>
                                         <td> <a href="index.php?page=bookings/show&id=<?php echo $booking['id']; ?>">Details</a> </td>
                                     </tr>
-                                <?php endforeach;?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
-                    <?php endif;?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -210,4 +222,4 @@ echo date("l jS \of F Y", $end);
 	</div>
 </section>
 
-<?php include_once "partials/footer.php";?>
+<?php include_once "partials/footer.php"; ?>

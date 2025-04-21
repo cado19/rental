@@ -31,8 +31,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 ?>
-
-<script>
-	console.log(<?php echo json_encode($posts); ?>);
-
-</script>

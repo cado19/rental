@@ -91,7 +91,7 @@ function update_agent_password($id, $password) {
 	try {
 		$con->beginTransaction();
 
-		$sql = "UPDATE accounts SET password = ?, WHERE id = ?";
+		$sql = "UPDATE accounts SET password = ? WHERE id = ?";
 		$stmt = $con->prepare($sql);
 		if ($stmt->execute([$password, $id])) {
 			$res = "Success";

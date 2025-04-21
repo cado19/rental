@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
 
             <!-- Login Form -->
             <form action="index.php?page=accounts/update" method="POST" class="log-in" autocomplete="off">
-              <input type="hidden" name="id" value="<?php show_value($agent, 'id');?>">
+              <input type="hidden" name="id" value="<?php show_value($agent, 'id'); ?>">
               <input type="text" value="<?php show_value($agent, 'email');?>" id="login" class="fadeIn second" name="email" placeholder="email" disabled>
               <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required>
               <input type="submit" class="fadeIn fourth" value="Submit">

@@ -32,8 +32,7 @@ include_once 'partials/content_start.php';
 
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
-// $account_id = $_SESSION['account']['id'];
-$bookings = completed_bookings();
+$account_id = $_SESSION['account']['id'];
 
 // get the role id of the signed in user.
 $role_id = $_SESSION['account']['role_id'];

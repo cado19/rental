@@ -17,6 +17,12 @@ $new_link_name = "New Booking";
 $new_pb_link = "index.php?page=bookings/partner_list";
 $new_pb_link_name = "New Partner Booking";
 
+    $organisation_booking_link = "index.php?page=organisation_bookings/all";
+    $organisation_booking_link_name = "Organisation bookings";
+
+    $new_organisation_booking_link = "index.php?page=organisation_bookings/new";
+    $new_organisation_booking_link_name = "New Organisation booking";
+
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Bookings";
 $breadcrumb_active = "Upcoming Bookings";
@@ -27,7 +33,17 @@ include_once 'partials/content_start.php';
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
-$bookings = upcoming_bookings();
+
+// get the role id of the signed in user.
+$role_id = $_SESSION['account']['role_id'];
+
+// if the role_id is 2, then get active agent bookings, if not get all bookings. 
+if ($role_id == 2) {
+    $bookings = upcoming_agent_bookings($account_id);
+} else {
+    // code...
+    $bookings = upcoming_bookings();
+}
 
 ?>
 

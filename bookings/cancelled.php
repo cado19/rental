@@ -33,7 +33,16 @@ include_once 'partials/content_start.php';
 include_once 'partials/header.php';
 include_once 'partials/content_start.php';
 $account_id = $_SESSION['account']['id'];
-$bookings = cancelled_bookings();
+    // get the role id of the signed in user.
+    $role_id = $_SESSION['account']['role_id'];
+
+    // if the role_id is 2, then get active agent bookings, if not get all bookings. 
+    if ($role_id == 2) {
+        $bookings = cancelled_agent_bookings($account_id);
+    } else {
+        // code...
+        $bookings = cancelled_bookings();
+    }
 
 ?>
 

@@ -327,6 +327,136 @@ ORDER BY b.created_at DESC;";
     return $res;
 }
 
+// function to get all upcoming bookings created by agents
+function upcoming_agent_bookings($agent_id)
+{
+    global $con;
+    global $res;
+    $status = "upcoming";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql = "SELECT
+    b.id,
+    c.first_name,
+    c.last_name,
+    v.model,
+    v.make,
+    v.number_plate,
+    b.start_date,
+    v.partner_id,
+    b.end_date
+FROM
+    customer_details c
+        INNER JOIN
+    bookings b ON c.id = b.customer_id
+        INNER JOIN
+    vehicle_basics v ON b.vehicle_id = v.id
+WHERE
+    b.account_id = ? AND b.status = ?
+ORDER BY b.created_at DESC;";
+
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$agent_id, $status]);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+// function to get all completed bookings created by agents
+function completed_agent_bookings($agent_id)
+{
+    global $con;
+    global $res;
+    $status = "complete";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql = "SELECT
+    b.id,
+    c.first_name,
+    c.last_name,
+    v.model,
+    v.make,
+    v.number_plate,
+    b.start_date,
+    v.partner_id,
+    b.end_date
+FROM
+    customer_details c
+        INNER JOIN
+    bookings b ON c.id = b.customer_id
+        INNER JOIN
+    vehicle_basics v ON b.vehicle_id = v.id
+WHERE
+    b.account_id = ? AND b.status = ?
+ORDER BY b.created_at DESC;";
+
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$agent_id, $status]);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+// function to get all cancelled bookings created by agents
+function cancelled_agent_bookings($agent_id)
+{
+    global $con;
+    global $res;
+    $status = "cancelled";
+
+    try {
+
+        $con->beginTransaction();
+
+        $sql = "SELECT
+    b.id,
+    c.first_name,
+    c.last_name,
+    v.model,
+    v.make,
+    v.number_plate,
+    b.start_date,
+    v.partner_id,
+    b.end_date
+FROM
+    customer_details c
+        INNER JOIN
+    bookings b ON c.id = b.customer_id
+        INNER JOIN
+    vehicle_basics v ON b.vehicle_id = v.id
+WHERE
+    b.account_id = ? AND b.status = ?
+ORDER BY b.created_at DESC;";
+
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$agent_id, $status]);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $con->commit();
+    } catch (Exception $e) {
+        $con->rollback();
+    }
+
+    return $res;
+}
+
+
 // function to get single booking
 function booking($id)
 {

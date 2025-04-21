@@ -17,3 +17,9 @@ if (isset($_GET['id'])) {
 	header("Location: index.php?page=organisations/all&err_msg=$msg");
 	exit;
 }
+
+?>
+<!-- 
+<script>
+	console.log(<?php echo json_encode($response); ?>);
+</script> -->

@@ -79,7 +79,7 @@ function delete_organisation($organisation_id){
 		if ($stmt->execute([$deleted, $organisation_id])) {
 			$res = "Deleted";
 		} else {
-			$res = "Failed";
+			$res = $stmt->error();
 		}
 
 		$con->commit();

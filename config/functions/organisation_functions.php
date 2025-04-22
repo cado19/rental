@@ -2,13 +2,14 @@
 function all_organisations() {
 	global $con;
 	global $res;
+	$deleted = 'false';
 
 	try {
 		$con->beginTransaction();
 
-		$sql = "SELECT * FROM organisation_details";
+		$sql = "SELECT * FROM organisation_details WHERE deleted = ?";
 		$stmt = $con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$deleted]);
 		$res = $stmt->fetchAll();
 
 		$con->commit();
@@ -61,7 +62,7 @@ function save_organisation($name, $email, $company_no, $country, $tel, $kra_pin)
 }
 
 function update_organisation($name, $email, $contact_name, $contact_no, $kra_pin) {
-
+	
 }
 
 function delete_organisation($organisation_id){

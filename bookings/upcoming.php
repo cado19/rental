@@ -17,11 +17,11 @@ $new_link_name = "New Booking";
 $new_pb_link = "index.php?page=bookings/partner_list";
 $new_pb_link_name = "New Partner Booking";
 
-    $organisation_booking_link = "index.php?page=organisation_bookings/all";
-    $organisation_booking_link_name = "Organisation bookings";
+$organisation_booking_link = "index.php?page=organisation_bookings/all";
+$organisation_booking_link_name = "Organisation bookings";
 
-    $new_organisation_booking_link = "index.php?page=organisation_bookings/new";
-    $new_organisation_booking_link_name = "New Organisation booking";
+$new_organisation_booking_link = "index.php?page=organisation_bookings/new";
+$new_organisation_booking_link_name = "New Organisation booking";
 
 // Breadcrumb variables for programatically setting breadcrumbs in content_start.php
 $breadcrumb = "Bookings";
@@ -65,6 +65,7 @@ if ($role_id == 2) {
                                     <th>Plate</th>
                                     <th>Start</th>
                                     <th>End</th>
+                                    <th>End Time</th>
                                     <th>Ownership</th>
                                     <th></th>
                                 </tr>
@@ -86,6 +87,9 @@ if ($role_id == 2) {
                                             $end = strtotime($booking['end_date']);
                                             echo date("l jS \of F Y", $end);
                                             ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $booking['end_time']; ?>
                                         </td>
                                         <td>
                                             <?php show_owner($booking, 'partner_id') ?>

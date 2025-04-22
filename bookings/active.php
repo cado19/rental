@@ -67,6 +67,7 @@
                                     <th>Plate</th>
                                     <th>Start</th>
                                     <th>End</th>
+                                    <th>End Time</th>
                                     <th>Ownership</th>
                                     <th></th>
                                 </tr>
@@ -88,6 +89,9 @@
                                                 $end = strtotime($booking['end_date']);
                                                 echo date("l jS \of F Y", $end);
                                             ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $booking['end_time']; ?>
                                         </td>
                                         <td>
                                             <?php show_owner($booking, 'partner_id') ?>

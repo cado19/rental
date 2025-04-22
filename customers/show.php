@@ -90,7 +90,7 @@
                     <!-- show id images through a carousel -->
                     <div class="col-6">
                         <div class="card mb-3">
-  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                          <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                               <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                               <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -133,7 +133,7 @@
                             <h5 class="card-title">Identification</h5>
                             <p class="card-text">This is the customer's identification card.</p>
                             <p id="id-pic-link" class="d-none"><?php echo $customer_id_link; ?></p>
-                            <button onclick="copyToClipboard('#id-pic-link')" class="btn btn-success">Copy ID Upload Link</button>
+                            <a href="index.php?page=customers/id_form" class="btn btn-success">ID Upload</a>
                           </div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                                 <h5 class="card-title">License</h5>
                                 <p class="card-text">This is the customer's license.</p>
                                 <p id="license-pic-link" class="d-none"><?php echo $customer_dl_link; ?></p>
-                                <button onclick="copyToClipboard('#license-pic-link')" class="btn btn-success">Copy License Upload Link</button>
+                                <a href="index.php?page=customers/license_form" class="btn btn-success">License Upload</a>
 
                             </div>
                         </div>

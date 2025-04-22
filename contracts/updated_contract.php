@@ -19,9 +19,9 @@
 		<div class="col">
 
 
-			<p><b>CUSTOMER NAME / HIRER:</b>			                                 <?php show_value($contract, 'c_fname');?><?php show_value($contract, 'c_lname');?></p>
-			<p><b>MOBILE NUMBER:</b>			                         <?php show_value($contract, 'c_phone_no');?></p>
-			<p><b>ADDRESS:</b>			                   <?php show_value($contract, 'residential_address');?></p>
+			<p><b>CUSTOMER NAME / HIRER:</b> <?php show_value($contract, 'c_fname');?><?php show_value($contract, 'c_lname');?></p>
+			<p><b>MOBILE NUMBER:</b> <?php show_value($contract, 'c_phone_no');?></p>
+			<p><b>ADDRESS:</b> <?php show_value($contract, 'residential_address');?></p>
 			<p><b>ID TYPE:</b><?php show_value($contract, 'c_id_type');?></p>
 			<p><b>ID NO / PASSPORT:</b><?php show_value($contract, 'c_id_no');?></p>
 			<p><b>DL NO:</b><?php show_value($contract, 'c_dl_no');?></p>

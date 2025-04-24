@@ -40,9 +40,9 @@
         $end_date_time   = strtotime($_POST['end_date']);
         $duration        = ($end_date_time - $start_date_time) / 86400;
 
-        // VALIDATION TO MAKE SURE BOOKING IS GREATER THAN OR EQUAL TO 3 DAYS
-        if ($duration < 3) {
-        	$end_date_err = "Rental duration must be atleast 3 days";
+        // VALIDATION TO MAKE SURE BOOKING IS GREATER THAN OR EQUAL TO 2 DAYS
+        if ($duration < 2) {
+        	$end_date_err = "Rental duration must be atleast 2 days";
         	header("Location: index.php?page=organisation_bookings/new&end_date_err=$end_date_err");
         	exit;
         }
